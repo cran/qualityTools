@@ -4,6 +4,8 @@
 \alias{response<-}
 \alias{response,facDesign-method}
 \alias{response<-,facDesign-method}
+\alias{response,mixDesign-method}
+\alias{response<-,mixDesign-method}
 \alias{response,gageRR-method}
 \alias{response<-,gageRR-method}
 
@@ -13,12 +15,14 @@
 \usage{
 \S4method{response}{facDesign}(object)
 \S4method{response}{facDesign}(object) <- value
+\S4method{response}{mixDesign}(object)
+\S4method{response}{mixDesign}(object) <- value
 \S4method{response}{gageRR}(object)
 \S4method{response}{gageRR}(object) <- value
 }
 
 \arguments{
-\item{object}{a `facDesign' object}
+\item{object}{a `facDesign', `mixDesign' or `gageRR' object}
 \item{value}{new response vector}
 }
 
@@ -29,6 +33,11 @@
 
 \item{\code{signature(object = "facDesign")}}{
 response is a generic accessor function, and response<- is a generic replacement function. The default methods get and set the "response" attribute of a "facDesign" object.
+value must be of same length as nrow(object). If value is shorter/longer than nrow(object) the setting of the response will fail.
+}
+
+\item{\code{signature(object = "mixDesign")}}{
+response is a generic accessor function, and response<- is a generic replacement function. The default methods get and set the "response" attribute of a "mixDesign" object.
 value must be of same length as nrow(object). If value is shorter/longer than nrow(object) the setting of the response will fail.
 }
 
