@@ -4,6 +4,7 @@
 \alias{[,ANY-method}
 \alias{[,distrCollection-method}
 \alias{[,facDesign-method}
+\alias{[,steepAscent-method}
 \alias{[<-,facDesign-method}
 \alias{[,gageRR-method}
 \alias{[,nonStructure-method}
@@ -23,6 +24,11 @@ object of class distrCollection
 \item{\code{signature(x = "facDesign")}}{
 object of class facDesign
 }
+
+\item{\code{signature(x = "steepAscent")}}{
+object of class steepAscent
+}
+
 
 \item{\code{signature(x = "gageRR")}}{
 object fo class gageRR

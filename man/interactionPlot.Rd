@@ -4,7 +4,7 @@
 \description{Display effects of an object of class 'facDesign' in a line plot.}
 
 \usage{
-interactionPlot(fdo = NULL, y = NULL, response = NULL, fun = mean, main = paste("Interaction plot for ", deparse(substitute(fdo))), col = 1:2, ...)
+interactionPlot(fdo = NULL, y = NULL, response = NULL, fun = mean, main, col = 1:2, ...)
 }
 \arguments{
 \item{fdo}{an object of class facDesign or a vector x}

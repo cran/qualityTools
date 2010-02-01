@@ -1,29 +1,78 @@
 \name{effectPlot}
 \alias{effectPlot}
-\title{effectPlot}
-\description{Display effects of an object of class 'facDesign' in a line plot.}
-
+\title{
+Main Effect Plots
+}
+\description{
+A main effect plot is created for designs of type taguchiDesign and facDesign.
+}
 \usage{
-effectPlot(fdo, main = paste("Main Effect Plot for ", deparse(substitute(fdo))), showPoints = FALSE, ylab = NULL, pch = 15, ...)
+effectPlot(object, factors, fun = mean, single = FALSE, points = FALSE, classic = FALSE, axes = TRUE, lty, xlab, ylab, main, ylim, ...)
 }
+
 \arguments{
-\item{fdo}{an object of class facDesign}
-\item{showPoints}{logical. If TRUE, single observations are displayed as well.}
-\item{main}{main}
-\item{ylab}{ylab}
-\item{pch}{pch}
-\item{...}{further graphical parameters}
+  \item{object}{
+a facDesign or taguchiDesign object
 }
+  \item{factors}{
+for which factor is the effectPlot to be created
+}
+  \item{fun}{
+a function for the construction of the effectPlot such as \code{\link{mean}}, \code{link{median}}
+}
+  \item{single}{
+if TRUE device region can be set up using for instance par(mfrow = c(2,2))
+}
+  \item{points}{
+if TRUE points are shown in addition to fun values
+}
+  \item{axes}{
+TRUE by default
+}
+  \item{classic}{
+TRUE by default to create an effectPlot as depicted in most textbooks
+}
+  \item{lty}{
+line type used
+}
+  \item{xlab}{
+label for x-axis
+}
+  \item{ylab}{
+label for y-axis
+}
+  \item{main}{
+title
+}
+  \item{ylim}{
+limits for y-axis
+}
+  \item{\dots}{
+further graphical parameters
+}
+}
+
+
 \details{
-effectPlot displays effects for an object of class facDesign (i.e. 2^k full or 2^k-p fractional factorial design).
+effectPlot uses an altered version of the base function interaction.plot to draw each effectPlot. 
 }
-\value{none}
+
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
-\seealso{\code{\link{factors}}, \code{\link{fracDesign}}}
+
+\seealso{
+\code{\link{interactionPlot}}, \code{\link{paretoPlot}},\code{\link{facDesign}}, \code{\link{response}},\code{\link{normalPlot}}
+}
 \examples{
-vp = fracDesign(k = 3, replicates = 2)  #NA in response column and 2 replicates per factor combination
-y = 4*vp[,1] -7*vp[,2] + 2*vp[,2]*vp[,1] + 0.2*vp[,3] + rnorm(16)                #generate some data
-response(vp) = y
-effectPlot(vp)                         #show effects and interactions (nothing significant expected)
+#effectPlot for a 2^k factorial design
+fdo = facDesign(k = 3)
+response(fdo) = rnorm(8)  #set response with generic response function
+effectPlot(fdo)
+
+#effectPlot for a taguchiDesign
+tdo = taguchiDesign("L9_3")
+response(tdo) = rnorm(9)
+effectPlot(tdo, points = TRUE, col = 2, pch = 16, lty = 3)
 
 }
+\keyword{design} %designed experiments
+\keyword{methods}%Methods and Generic functions

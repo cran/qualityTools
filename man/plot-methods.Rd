@@ -6,6 +6,7 @@
 \alias{plot,distr-method}
 \alias{plot,distrCollection-method}
 \alias{plot,gageRR-method}
+\alias{plot,steepAscent-method}
 \title{Methods for Function plot in Package `graphics'}
 \description{Methods for function \code{plot} in Package `graphics'}
 
@@ -33,6 +34,10 @@ object of class distr
 }
 
 \item{\code{signature(x = "distrCollection")}}{
+object of class distrCollection
+}
+
+\item{\code{signature(x = "steepAscent")}}{
 object of class distrCollection
 }
 

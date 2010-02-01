@@ -5,6 +5,7 @@
 \alias{summary,distrCollection-method}
 \alias{summary,facDesign-method}
 \alias{summary,mixDesign-method}
+\alias{summary,taguchiDesign-method}
 \alias{summary,gageRR-method}
 \title{Methods for Function summary in Package `base'}
 \description{Methods for function \code{summary} in Package `base'}
@@ -26,6 +27,11 @@ object of class facDesign
 \item{\code{signature(object = "mixDesign")}}{
 object of class mixDesign
 }
+
+\item{\code{signature(object = "taguchiDesign")}}{
+object of class taguchiDesign
+}
+
 
 \item{\code{signature(object = "gageRR")}}{
 object of class gageRR
