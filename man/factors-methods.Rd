@@ -24,8 +24,8 @@ Get and set the \code{factors} in an object of class facDesign
 }
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
-\seealso{\code{\link{factors}}, \code{\link{factors}},\code{\link{factors}},\code{\link{types}}}
-\seealso{\code{\link{response}}, \code{\link{facDesign}}}
+\seealso{\code{\link{factors}}, \code{\link{factors}},\code{\link{factors}},\code{\link{types}}, \code{\link{response}}, \code{\link{facDesign}}}
+
 \examples{
 fdo = facDesign(k = 3)  #NA in response column
 factors(fdo)
