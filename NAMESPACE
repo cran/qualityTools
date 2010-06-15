@@ -1,0 +1,28 @@
+#useDynLib(qualityTools)
+exportClass(desirability, distr, distrCollection, facDesign, desOpt)
+#export(as.data.frame, as.data.frame.facDesign, plot, show, summary, names
+#,response, "response<-", cube, "cube<-", centerCube, "centerCube<-", star, "star<-", centerStar, "centerStar<-" 
+#,factors, lows, "lows<-", highs, "highs<-", units, "units<-", types, "types<-", nrow, ncol, code2real
+#,facDesign, fracDesign, rsmDesign, fracChoose, rsmChoose
+#,blocking, blockGen, block, randomize
+#,generators, aliasTable, identity, confounds, fits, desires, "fits<-", "desires<-", "[", "[<-"
+#,desirability, optimum, desires, "desires<-", fits, "fits<-"
+#,ppPlot, qqPlot ,pcr
+#,gageRR, gageRRDesign, as.data.frame.gageRR
+#,paretoPlot, interactionPlot, effectPlot, normalPlot
+#,contourPlot, wirePlot)
+#
+#export all methods that do not start with a dot
+exportPattern("^[^\\.]")
+#export("[")
+
+import(graphics)
+depends(graphics, methods)
+suggests(methods)
+
+#alle generischen die schon in base vorhanden sind müssen nicht extra exportiert werden
+#S3method(as.data.frame, facDesign)
+#S3method(as.data.frame, desOpt)
+#S3method(as.data.frame, desOpt)
+
+                                                                                      

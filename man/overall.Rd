@@ -1,0 +1,54 @@
+\name{overall}
+\alias{overall}
+%- Also NEED an '\alias' for EACH other topic documented here.
+\title{
+Overall Desirability
+}
+\description{
+This is a function to calculate the desirability for each response as well as the overall desirability. The resulting data.frame can be used to plot the overall as well as the desirabilities for each response. This function serves for a visualization of the desirability approach for multiple response optimization.
+}
+\usage{
+overall(fdo, steps = 20, constraints, ...)
+}
+%- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{fdo}{
+object of class facDesign containing fits and desirabilities}
+  \item{steps}{
+numeric - points per factor to be evaluated --> specifies the grid size
+}
+  \item{constraints}{
+list - constraints for the factors in coded values such as list(A > 0.5,  B < 0.2) 
+}
+  \item{\dots}{
+...
+}
+}
+\value{
+data.frame with a column for each factor, desirability for each response and a column for the overall desirability  }
+\references{
+see \code{\link{desirability}}
+}
+\author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
+
+
+\seealso{
+\code{\link{facDesign}},
+\code{\link{rsmDesign}},
+\code{\link{desirability}},
+}
+\examples{
+#arbitrary example with random data!!!
+require(lattice)
+rsdo = rsmDesign(k = 2, blocks = 2, alpha = "both")
+set.seed(123)
+response(rsdo) = data.frame(y = rnorm(nrow(rsdo)), y2 = rnorm(nrow(rsdo)))
+fits(rsdo) = lm(y ~ A*B + I(A^2) + I(B^2), data = rsdo)
+fits(rsdo) = lm(y2 ~ A*B + I(A^2) + I(B^2), data = rsdo)
+desires(rsdo) = desirability(y, -1, 2, scale = c(1, 1), target = "max")
+desires(rsdo) = desirability(y2, -1, 0, scale = c(1, 1), target = "min")
+dVals = overall(rsdo, steps = 10, constraints = list(A = c(-0.5,1), B = c(0, 1)))
+contourplot(y ~ A*B,  data = dVals) #desirability of y
+contourplot(y2 ~ A*B,  data = dVals) #desirability of y2
+wireframe(overall ~ A*B, shade = TRUE, data = dVals)
+}
