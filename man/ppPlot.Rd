@@ -82,9 +82,9 @@ x = rweibull(20, 8, 2)
 ppPlot(x, "log-normal")
 ppPlot(x, "normal")
 ppPlot(x, "exponential", DB = TRUE)
-#ppPlot(x, "cauchy")
+ppPlot(x, "cauchy")
 ppPlot(x, "weibull")
-#ppPlot(x, "logistic")        
+ppPlot(x, "logistic")        
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
