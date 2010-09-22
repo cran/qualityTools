@@ -27,13 +27,13 @@ Package contains methods associated with the (\strong{D})\bold{efine} (\strong{M
 \tabular{ll}{
 Package: \tab qualityTools\cr
 Type: \tab Package\cr
-Version: \tab 0.6\cr
-Date: \tab 2010-02-10\cr
+Version: \tab 0.7\cr
+Date: \tab 2010-02-01\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }}
 
-\note{This package is used for teaching and will undergo some changes in the next months.}
+\note{This package is used for teaching and is to be revised in the next months.}
 
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}\cr
@@ -56,7 +56,7 @@ example(rsmDesign)
 example(paretoPlot)
 example(wirePlot)
 example(contourPlot)
-#example(mixDesign)
+example(mixDesign)
 example(desirability)
-#example(optimum)
+example(optimum)
 }
