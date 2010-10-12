@@ -51,7 +51,7 @@ setMethod("summary", signature(object = "distrCollection"),
     })
 distribution = function(x, distribution = "weibull", 
     start, ...) {
-    if (!require(MASS)) 
+    if (!require(MASS, quietly = TRUE)) 
         stop("Package MASS needs to be installed!")
     if (is.character(distribution)) 
         distribution = tolower(distribution)

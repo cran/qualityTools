@@ -29,8 +29,8 @@ ontrol} (i.e. \bold{DMAIC}) cycle of the Six Sigma Quality Management methodolog
 \tabular{ll}{
 Package: \tab qualityTools\cr
 Type: \tab Package\cr
-Version: \tab 0.76\cr
-Date: \tab 2010-02-01\cr
+Version: \tab 0.77\cr
+Date: \tab 12-10-2010\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }}

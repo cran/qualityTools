@@ -1,0 +1,14 @@
+This is BibTeX, Version 0.99cThe top-level auxiliary file: qualityTools.aux
+The style file: gerplain.bst
+Database file #1: vignette.bib
+Warning--to sort, need author, organization, or key in DIN07
+Too many commas in name 1 of "Box, George E. P., Hunter, J. Stuart and Hunter, William G." for entry Box05
+while executing---line 1161 of file gerplain.bst
+Too many commas in name 1 of "Box, G.E.P., Bisgard, S. and Fung, C. A." for entry Box88
+while executing---line 1161 of file gerplain.bst
+Warning--to sort, need author, organization, or key in DIN05
+Too many commas in name 1 of "Box, G.E.P., Bisgard, S. and Fung, C. A." for entry Box88
+while executing---line 1202 of file gerplain.bst
+Too many commas in name 1 of "Box, George E. P., Hunter, J. Stuart and Hunter, William G." for entry Box05
+while executing---line 1202 of file gerplain.bst
+(There were 4 error messages)

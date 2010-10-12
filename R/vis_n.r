@@ -53,6 +53,10 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
         theta = -30
     if (missing(factors)) 
         factors = NULL
+    if (missing(xlim)) 
+        xlim = c(min(fdo[, x.c]), max(fdo[, x.c]))
+    if (missing(ylim)) 
+        ylim = c(min(fdo[, y.c]), max(fdo[, y.c]))
     allVars = c(names(names(fdo)), names(response(fdo)))
     isct = intersect(c(x.c, y.c, z.c), c(names(names(fdo)), names(response(fdo))))
     if (DB) {
@@ -129,8 +133,8 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
         print(help.predict(1, 2, "A", "B", lm.1 = lm.1))
         print(help.predict(1, 2, x.c, y.c, lm.1 = lm.1))
     }
-    xVec = seq(min(fdo[, x.c]), max(fdo[, x.c]), length = steps)
-    yVec = seq(min(fdo[, y.c]), max(fdo[, y.c]), length = steps)
+    xVec = seq(min(xlim), max(xlim), length = steps)
+    yVec = seq(min(ylim), max(ylim), length = steps)
     mat = outer(xVec, yVec, help.predict, x.c, y.c, lm.1)
     if (is.function(fun)) 
         mat = try(apply(mat, c(1, 2), fun))
@@ -163,10 +167,12 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
         facetcol = 1
     }
     if (plot) {
+        if (missing(zlim)) 
+            zlim = range(mat)
         persp(xVec, yVec, mat, main = main, sub = sub, xlab = xlab, 
-            ylab = ylab, zlab = zlab, col = color[facetcol], 
-            border = border, ticktype = ticktype, phi = phi, 
-            theta = theta)
+            ylab = ylab, xlim = xlim, ylim = ylim, zlim = zlim, 
+            zlab = zlab, col = color[facetcol], border = border, 
+            ticktype = ticktype, phi = phi, theta = theta)
         if (is.function(col)) {
             zlim = range(mat)
             leglevel = pretty(zlim, 6)
@@ -299,6 +305,10 @@ contourPlot = function(x, y, z, data = NULL, xlim,
         xlab = x.c
     if (missing(factors)) 
         factors = NULL
+    if (missing(xlim)) 
+        xlim = c(min(fdo[, x.c]), max(fdo[, x.c]))
+    if (missing(ylim)) 
+        ylim = c(min(fdo[, y.c]), max(fdo[, y.c]))
     allVars = c(names(names(fdo)), names(response(fdo)))
     isct = intersect(c(x.c, y.c, z.c), c(names(names(fdo)), names(response(fdo))))
     if (DB) {
@@ -375,8 +385,8 @@ contourPlot = function(x, y, z, data = NULL, xlim,
         print(help.predict(1, 2, "A", "B", lm.1 = lm.1))
         print(help.predict(1, 2, x.c, y.c, lm.1 = lm.1))
     }
-    xVec = seq(min(fdo[, x.c]), max(fdo[, x.c]), length = steps)
-    yVec = seq(min(fdo[, y.c]), max(fdo[, y.c]), length = steps)
+    xVec = seq(min(xlim), max(xlim), length = steps)
+    yVec = seq(min(ylim), max(ylim), length = steps)
     mat = outer(xVec, yVec, help.predict, x.c, y.c, lm.1)
     if (is.function(col)) {
         nrMat <- nrow(mat)
