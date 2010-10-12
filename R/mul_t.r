@@ -9,8 +9,7 @@
         print("old and new")
         print(oldValues)
         print(newValues)
-        warning(paste("unequal length of", deparse(substitute(oldValues)), 
-            "and", deparse(substitute(newValues))))
+        warning(paste("unequal length of", deparse(substitute(oldValues)), "and", deparse(substitute(newValues))))
     }
     out = numeric(length(x))
     for (i in seq(along = newValues)) {
@@ -19,10 +18,8 @@
     }
     return(out)
 }
-mvPlot = function(y, factor1, factor2, factor3, factor4, 
-    fun = mean, points = TRUE, connect = TRUE, col = c(1, 2, 
-        3, 4), pch = c(1, 2, 3, 4), xlim, ylim, main, main.sub, 
-    horiz = FALSE, lwd.b = 1, lwd.w = 1, pch.b = 15, pch.w = 17, 
+mvPlot = function(y, factor1, factor2, factor3, factor4, fun = mean, points = TRUE, connect = TRUE, col = c(1, 
+    2, 3, 4), pch = c(1, 2, 3, 4), xlim, ylim, main, main.sub, horiz = FALSE, lwd.b = 1, lwd.w = 1, pch.b = 15, pch.w = 17, 
     col.w = 2, col.b = 1, ...) {
     old.par <- par(no.readonly = TRUE)
     on.exit(par(old.par))
@@ -33,8 +30,7 @@ mvPlot = function(y, factor1, factor2, factor3, factor4,
     if (missing(factor4)) 
         if (missing(factor3)) {
             if (!is.vector(factor1) | !is.vector(factor2)) 
-                stop(paste(deparse(substitute(factor1)), "and", 
-                  deparse(substitute(factor2)), "must be vectors!"))
+                stop(paste(deparse(substitute(factor1)), "and", deparse(substitute(factor2)), "must be vectors!"))
             if (missing(main.sub)) 
                 main.sub = ""
             temp = list(factor1)
@@ -48,17 +44,13 @@ mvPlot = function(y, factor1, factor2, factor3, factor4,
             y = temp
             print(factor2)
             print(factor1)
-            .mv2Plot(y = y, factor1, factor2, fun = fun, points = points, 
-                connect = connect, col = col, pch = pch, xlim = xlim, 
-                ylim = ylim, main, main.sub = main.sub, horiz = horiz, 
-                lwd.b = lwd.b, lwd.w = lwd.w, pch.b = pch.b, 
-                pch.w = pch.w, col.w = col.w, col.b = col.b, 
-                ...)
+            .mv2Plot(y = y, factor1, factor2, fun = fun, points = points, connect = connect, col = col, pch = pch, xlim = xlim, 
+                ylim = ylim, main, main.sub = main.sub, horiz = horiz, lwd.b = lwd.b, lwd.w = lwd.w, pch.b = pch.b, pch.w = pch.w, 
+                col.w = col.w, col.b = col.b, ...)
         }
         else {
             if (!is.vector(factor1) | !is.vector(factor2) | !is.vector(factor3)) 
-                stop(paste(deparse(substitute(factor1)), "and", 
-                  deparse(substitute(factor2)), "and", deparse(substitute(factor3)), 
+                stop(paste(deparse(substitute(factor1)), "and", deparse(substitute(factor2)), "and", deparse(substitute(factor3)), 
                   "must be vectors!"))
             temp = list(factor1)
             names(temp) = deparse(substitute(factor1))
@@ -72,19 +64,14 @@ mvPlot = function(y, factor1, factor2, factor3, factor4,
             temp = list(y)
             names(temp) = deparse(substitute(y))
             y = temp
-            .mv3Plot(y, factor1, factor2, factor3, fun = fun, 
-                points = points, connect = connect, col = col, 
-                pch = pch, xlim = xlim, ylim, horiz = horiz, 
-                main, main.sub, lwd.b = lwd.b, lwd.w = lwd.w, 
-                pch.b = pch.b, pch.w = pch.w, col.w = col.w, 
-                col.b = col.b, ...)
+            .mv3Plot(y, factor1, factor2, factor3, fun = fun, points = points, connect = connect, col = col, pch = pch, 
+                xlim = xlim, ylim, horiz = horiz, main, main.sub, lwd.b = lwd.b, lwd.w = lwd.w, pch.b = pch.b, pch.w = pch.w, 
+                col.w = col.w, col.b = col.b, ...)
         }
     else {
-        if (!is.vector(factor1) | !is.vector(factor2) | !is.vector(factor3) | 
-            !is.vector(factor4)) 
-            stop(paste(deparse(substitute(factor1)), "and", deparse(substitute(factor2)), 
-                "and", deparse(substitute(factor3)), "and", deparse(substitute(factor4)), 
-                "must be vectors!"))
+        if (!is.vector(factor1) | !is.vector(factor2) | !is.vector(factor3) | !is.vector(factor4)) 
+            stop(paste(deparse(substitute(factor1)), "and", deparse(substitute(factor2)), "and", deparse(substitute(factor3)), 
+                "and", deparse(substitute(factor4)), "must be vectors!"))
         temp = list(factor1)
         names(temp) = deparse(substitute(factor1))
         factor1 = temp
@@ -100,18 +87,14 @@ mvPlot = function(y, factor1, factor2, factor3, factor4,
         temp = list(y)
         names(temp) = deparse(substitute(y))
         y = temp
-        .mv4Plot(y, factor1, factor2, factor3, factor4, fun = fun, 
-            points = points, connect = connect, col = col, pch = pch, 
-            xlim = xlim, ylim, horiz = horiz, main, main.sub, 
-            lwd.b = lwd.b, lwd.w = lwd.w, pch.b = pch.b, pch.w = pch.w, 
+        .mv4Plot(y, factor1, factor2, factor3, factor4, fun = fun, points = points, connect = connect, col = col, pch = pch, 
+            xlim = xlim, ylim, horiz = horiz, main, main.sub, lwd.b = lwd.b, lwd.w = lwd.w, pch.b = pch.b, pch.w = pch.w, 
             col.w = col.w, col.b = col.b, ...)
     }
     invisible()
 }
-.mv4Plot = function(y, factor1, factor2, factor3, 
-    factor4, fun, points, connect, col, pch, xlim, ylim, horiz, 
-    main, main.sub, lwd.b, lwd.w, pch.b, pch.w, col.w, col.b, 
-    DB = FALSE, ...) {
+.mv4Plot = function(y, factor1, factor2, factor3, factor4, fun, points, connect, col, pch, xlim, ylim, horiz, 
+    main, main.sub, lwd.b, lwd.w, pch.b, pch.w, col.w, col.b, DB = FALSE, ...) {
     old.par <- par(no.readonly = TRUE)
     on.exit(par(old.par))
     colNum = length(unique(factor1[[1]]))
@@ -128,8 +111,7 @@ mvPlot = function(y, factor1, factor2, factor3, factor4,
             ylim = range(y)
         }
     }
-    fullMat = data.frame(factor1[[1]], factor2[[1]], factor3[[1]], 
-        factor4[[1]], y[[1]])
+    fullMat = data.frame(factor1[[1]], factor2[[1]], factor3[[1]], factor4[[1]], y[[1]])
     split1Mat = split(fullMat, factor1)
     if (DB) 
         print(str(split1Mat))
@@ -147,27 +129,22 @@ mvPlot = function(y, factor1, factor2, factor3, factor4,
             constFac1 = unique(split1Mat[[i]][, 1])
             constFac2 = unique(split12Mat[[j]][, 2])
             if (missing(main.sub) || is.na(main.sub)) 
-                main.sub = paste(names(factor1), "=", constFac1, 
-                  "|", names(factor2), "=", constFac2)
+                main.sub = paste(names(factor1), "=", constFac1, "|", names(factor2), "=", constFac2)
             yPart = list(split1Mat[[j]][, 5])
             names(yPart) = names(y)
             f1Part = list(split1Mat[[j]][, 3])
             names(f1Part) = names(factor3)
             f2Part = list(split1Mat[[j]][, 4])
             names(f2Part) = names(factor4)
-            .mv2Plot(y = yPart, factor1 = f1Part, factor2 = f2Part, 
-                fun = fun, points = points, connect = connect, 
-                main, main.sub, col = col, pch = pch, xlim = xlim, 
-                ylim = ylim, horiz = horiz, lwd.b = lwd.b, lwd.w = lwd.w, 
-                pch.b = pch.b, pch.w = pch.w, col.w = col.w, 
-                col.b = col.b, ...)
+            .mv2Plot(y = yPart, factor1 = f1Part, factor2 = f2Part, fun = fun, points = points, connect = connect, main, 
+                main.sub, col = col, pch = pch, xlim = xlim, ylim = ylim, horiz = horiz, lwd.b = lwd.b, lwd.w = lwd.w, 
+                pch.b = pch.b, pch.w = pch.w, col.w = col.w, col.b = col.b, ...)
             main.sub = NA
         }
     }
     invisible()
 }
-.mv3Plot = function(y, factor1, factor2, factor3, 
-    fun, points, connect, col, pch, xlim, ylim, main, main.sub, 
+.mv3Plot = function(y, factor1, factor2, factor3, fun, points, connect, col, pch, xlim, ylim, main, main.sub, 
     lwd.b, lwd.w, pch.b, pch.w, col.w, col.b, DB = FALSE, ...) {
     old.par <- par(no.readonly = TRUE)
     on.exit(par(old.par))
@@ -184,8 +161,7 @@ mvPlot = function(y, factor1, factor2, factor3, factor4,
             ylim = range(y)
         }
     }
-    fullMat = data.frame(factor1[[1]], factor2[[1]], factor3[[1]], 
-        y[[1]])
+    fullMat = data.frame(factor1[[1]], factor2[[1]], factor3[[1]], y[[1]])
     split1Mat = split(fullMat, fullMat[, 1])
     if (DB) {
         print(fullMat)
@@ -202,19 +178,15 @@ mvPlot = function(y, factor1, factor2, factor3, factor4,
         names(f1Part) = names(factor2)
         f2Part = list(split1Mat[[i]][, 3])
         names(f2Part) = names(factor3)
-        .mv2Plot(y = yPart, factor1 = f1Part, factor2 = f2Part, 
-            fun = fun, points = points, connect = connect, col = col, 
-            pch = pch, ylim = ylim, xlim = xlim, main, main.sub = main.sub, 
-            lwd.b = lwd.b, lwd.w = lwd.w, pch.b = pch.b, pch.w = pch.w, 
-            col.w = col.w, col.b = col.b, ...)
+        .mv2Plot(y = yPart, factor1 = f1Part, factor2 = f2Part, fun = fun, points = points, connect = connect, col = col, 
+            pch = pch, ylim = ylim, xlim = xlim, main, main.sub = main.sub, lwd.b = lwd.b, lwd.w = lwd.w, pch.b = pch.b, 
+            pch.w = pch.w, col.w = col.w, col.b = col.b, ...)
         main.sub = NA
     }
     invisible()
 }
-.mv2Plot = function(y, factor1, factor2, fun, points, 
-    connect, horiz, main, main.sub, col, pch, xlim, ylim, xlab, 
-    ylab, cex = 1, lwd.b, lwd.w, pch.b, pch.w, col.w, col.b, 
-    DB = FALSE, ...) {
+.mv2Plot = function(y, factor1, factor2, fun, points, connect, horiz, main, main.sub, col, pch, xlim, ylim, 
+    xlab, ylab, cex = 1, lwd.b, lwd.w, pch.b, pch.w, col.w, col.b, DB = FALSE, ...) {
     old.par <- par(no.readonly = TRUE)
     on.exit(par(old.par))
     f1Name = NA
@@ -282,15 +254,12 @@ mvPlot = function(y, factor1, factor2, factor3, factor4,
         numTimes = numTimes + 1
         matPart = subset(mat, f1 == levFac1[i])
         levFac2 = unique(matPart$f2)
-        levFac2Coded = numTimes:(numTimes + length(levFac2) - 
-            1)
+        levFac2Coded = numTimes:(numTimes + length(levFac2) - 1)
         numTimes = rev(levFac2Coded)[1] + 1
-        matPart = cbind(matPart, f2c = .mapping(matPart$f2, levFac2, 
-            levFac2Coded))
+        matPart = cbind(matPart, f2c = .mapping(matPart$f2, levFac2, levFac2Coded))
         matComplete = rbind(matComplete, matPart)
         names(matComplete) = names(matPart)
-        matBetween = rbind(matBetween, data.frame(f2c = mean(levFac2Coded), 
-            yFun = with(matPart, fun(matPart$y))))
+        matBetween = rbind(matBetween, data.frame(f2c = mean(levFac2Coded), yFun = with(matPart, fun(matPart$y))))
         names(matBetween) = c("f2c", "yFun")
         if (DB) {
             print(paste("levFac2:", levFac2))
@@ -302,8 +271,7 @@ mvPlot = function(y, factor1, factor2, factor3, factor4,
         for (j in seq(along = matPart$f2c)) {
             matSubPart = subset(matPart, f2c == f2c[j])
             yFun = fun(as.numeric(matSubPart$y))
-            matWithin = rbind(matWithin, data.frame(f1 = levFac1[i], 
-                f2c = matPart$f2c[j], yFun = yFun))
+            matWithin = rbind(matWithin, data.frame(f1 = levFac1[i], f2c = matPart$f2c[j], yFun = yFun))
         }
     }
     f1pch = with(matComplete, .mapping(f1, levFac1, pch))
@@ -312,21 +280,16 @@ mvPlot = function(y, factor1, factor2, factor3, factor4,
         xlim = .xlimcalc(matComplete$f2c)
     if (horiz) {
         ylim = c(min(ylim), 1.15 * max(ylim))
-        with(matComplete, plot(f2c, y, main = main, xlim = xlim, 
-            ylim = ylim, xlab = xlab, ylab = ylab, col = f1col, 
-            pch = f1pch, axes = FALSE, ...))
-        legend("top", title = f1Name, legend = levFac1, pch = pch, 
-            col = col, horiz = TRUE)
+        with(matComplete, plot(f2c, y, main = main, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, col = f1col, pch = f1pch, 
+            axes = FALSE, ...))
+        legend("top", title = f1Name, legend = levFac1, pch = pch, col = col, horiz = TRUE)
     }
     else {
         par(mar = c(5, 4, 4, 6) + 0.1)
-        with(matComplete, plot(f2c, y, main = main, xlim = xlim, 
-            ylim = ylim, xlab = xlab, ylab = ylab, col = f1col, 
-            pch = f1pch, axes = FALSE, ...))
-        xCoord = par("usr")[2] + 0.02 * diff(range(par("usr")[2], 
-            par("usr")[1]))
-        legend(xCoord, par("usr")[4], title = f1Name, legend = levFac1, 
-            pch = pch, col = col, xpd = TRUE)
+        with(matComplete, plot(f2c, y, main = main, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, col = f1col, pch = f1pch, 
+            axes = FALSE, ...))
+        xCoord = par("usr")[2] + 0.02 * diff(range(par("usr")[2], par("usr")[1]))
+        legend(xCoord, par("usr")[4], title = f1Name, legend = levFac1, pch = pch, col = col, xpd = TRUE)
     }
     title(main.sub, line = 0.5)
     axis(2, ...)

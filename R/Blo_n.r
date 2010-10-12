@@ -58,40 +58,25 @@
 }
 .rsm = vector(mode = "list", length = 7)
 .rsm[[1]] = list(k = 3, blocks = 2, gen = c("ABC"))
-.rsm[[2]] = list(k = 3, blocks = 4, gen = c("AB", 
-    "AC"))
+.rsm[[2]] = list(k = 3, blocks = 4, gen = c("AB", "AC"))
 .rsm[[3]] = list(k = 4, blocks = 2, gen = c("ABCD"))
-.rsm[[4]] = list(k = 4, blocks = 4, gen = c("ABC", 
-    "ACD"))
-.rsm[[5]] = list(k = 4, blocks = 8, gen = c("AB", 
-    "BC", "CD"))
+.rsm[[4]] = list(k = 4, blocks = 4, gen = c("ABC", "ACD"))
+.rsm[[5]] = list(k = 4, blocks = 8, gen = c("AB", "BC", "CD"))
 .rsm[[6]] = list(k = 5, blocks = 2, gen = c("ABCDE"))
-.rsm[[7]] = list(k = 5, blocks = 4, gen = c("ABC", 
-    "CDE"))
-.rsm[[8]] = list(k = 5, blocks = 8, gen = c("ABE", 
-    "BCE", "CDE"))
-.rsm[[9]] = list(k = 5, blocks = 16, gen = c("AB", 
-    "AC", "CD", "DE"))
+.rsm[[7]] = list(k = 5, blocks = 4, gen = c("ABC", "CDE"))
+.rsm[[8]] = list(k = 5, blocks = 8, gen = c("ABE", "BCE", "CDE"))
+.rsm[[9]] = list(k = 5, blocks = 16, gen = c("AB", "AC", "CD", "DE"))
 .rsm[[10]] = list(k = 6, blocks = 2, gen = c("ABCDEF"))
-.rsm[[11]] = list(k = 6, blocks = 4, gen = c("ABCF", 
-    "CDEF"))
-.rsm[[12]] = list(k = 6, blocks = 8, gen = c("ABEF", 
-    "ABCD", "ACE"))
-.rsm[[13]] = list(k = 6, blocks = 16, gen = c("ABF", 
-    "ACF", "BDF", "DEF"))
-.rsm[[14]] = list(k = 6, blocks = 32, gen = c("AB", 
-    "BC", "CD", "DE", "EF"))
+.rsm[[11]] = list(k = 6, blocks = 4, gen = c("ABCF", "CDEF"))
+.rsm[[12]] = list(k = 6, blocks = 8, gen = c("ABEF", "ABCD", "ACE"))
+.rsm[[13]] = list(k = 6, blocks = 16, gen = c("ABF", "ACF", "BDF", "DEF"))
+.rsm[[14]] = list(k = 6, blocks = 32, gen = c("AB", "BC", "CD", "DE", "EF"))
 .rsm[[15]] = list(k = 7, blocks = 2, gen = c("ABCDEFG"))
-.rsm[[16]] = list(k = 7, blocks = 4, gen = c("ABCFG", 
-    "CDEFG"))
-.rsm[[17]] = list(k = 7, blocks = 8, gen = c("ABC", 
-    "DEF", "AFG"))
-.rsm[[18]] = list(k = 7, blocks = 16, gen = c("ABD", 
-    "EFG", "CDE", "ADG"))
-.rsm[[19]] = list(k = 7, blocks = 32, gen = c("ABG", 
-    "BCG", "CDG", "DEG", "EFG"))
-.rsm[[20]] = list(k = 7, blocks = 64, gen = c("AB", 
-    "BC", "CD", "DE", "EF", "FG"))
+.rsm[[16]] = list(k = 7, blocks = 4, gen = c("ABCFG", "CDEFG"))
+.rsm[[17]] = list(k = 7, blocks = 8, gen = c("ABC", "DEF", "AFG"))
+.rsm[[18]] = list(k = 7, blocks = 16, gen = c("ABD", "EFG", "CDE", "ADG"))
+.rsm[[19]] = list(k = 7, blocks = 32, gen = c("ABG", "BCG", "CDG", "DEG", "EFG"))
+.rsm[[20]] = list(k = 7, blocks = 64, gen = c("AB", "BC", "CD", "DE", "EF", "FG"))
 .blockInteractions = function(fdo, blocks = 2, useTable = "rsm") {
     DB = FALSE
     if (!(blocks %in% c(0, 1, 2, 4, 8, 16, 32, 64))) 
@@ -107,8 +92,7 @@
             stop("no blocking of a fractional factorial Design --> block on replicates instead!")
         if (identical(useTable, "rsm")) {
             for (i in seq(along = .rsm)) {
-                if (.rsm[[i]]$k == .numFac(fdo) & .rsm[[i]]$blocks == 
-                  blocks) 
+                if (.rsm[[i]]$k == .numFac(fdo) & .rsm[[i]]$blocks == blocks) 
                   return(.rsm[[i]]$gen)
             }
         }
@@ -155,8 +139,7 @@
         }
     }
     for (i in 1:nrow(temp)) {
-        if (!(any(ref - temp[i, ] > 0) | any(ref - temp[i, ] < 
-            0))) {
+        if (!(any(ref - temp[i, ] > 0) | any(ref - temp[i, ] < 0))) {
             index = c(index, i)
         }
     }
@@ -205,10 +188,8 @@
     uniCol = unique(.blockGenCol)
     for (i in 1:nrow(uniCol)) {
         if (ncol(uniCol) == 1) 
-            .blockCol[apply(t(as.data.frame(apply(.blockGenCol, 
-                1, "==", uniCol[i, ]))), 2, all)] = i
-        else .blockCol[apply(apply(.blockGenCol, 1, "==", uniCol[i, 
-            ]), 2, all)] = i
+            .blockCol[apply(t(as.data.frame(apply(.blockGenCol, 1, "==", uniCol[i, ]))), 2, all)] = i
+        else .blockCol[apply(apply(.blockGenCol, 1, "==", uniCol[i, ]), 2, all)] = i
     }
     return(data.frame(Block = .blockCol))
 }
@@ -232,8 +213,7 @@ randomize = function(fdo, random.seed, so = FALSE) {
     runOrd(fdo) = temp
     return(fdo)
 }
-blocking = function(fdo, blocks, BoR = FALSE, random.seed, 
-    useTable = "rsm", gen) {
+blocking = function(fdo, blocks, BoR = FALSE, random.seed, useTable = "rsm", gen) {
     if (missing(random.seed)) {
         runif(1)
         random.seed = .Random.seed[sample(1:626, 1)]

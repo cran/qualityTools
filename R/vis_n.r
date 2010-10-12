@@ -1,5 +1,4 @@
-wirePlot = function(x, y, z, data = NULL, xlim, ylim, 
-    zlim, main, xlab, ylab, border, sub, zlab, form = "fit", 
+wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, zlab, form = "fit", 
     phi, theta, ticktype, col = 1, steps, factors, fun, plot) {
     DB = FALSE
     form = form
@@ -11,12 +10,9 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
     lm.1 = NULL
     if (!is.function(col)) {
         if (identical(col, 1)) 
-            col = colorRampPalette(c("#00007F", "blue", "#007FFF", 
-                "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", 
-                "#7F0000"))
+            col = colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
         if (identical(col, 2)) 
-            col = colorRampPalette(c("blue", "white", "red"), 
-                space = "Lab")
+            col = colorRampPalette(c("blue", "white", "red"), space = "Lab")
         if (identical(col, 3)) 
             col = colorRampPalette(c("blue", "white", "orange"))
         if (identical(col, 4)) 
@@ -74,8 +70,7 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
             stop("fun should be a function, \"overall\" or \"desirability\"")
     if (identical(fun, "desirability")) {
         obj = desires(fdo)[[z.c]]
-        fun = .desireFun(obj@low, obj@high, obj@target, obj@scale, 
-            obj@importance)
+        fun = .desireFun(obj@low, obj@high, obj@target, obj@scale, obj@importance)
     }
     if (form %in% c("fit")) {
         lm.1 = fits(fdo)[[z.c]]
@@ -87,8 +82,7 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
     if (form %in% c("quadratic", "full", "interaction", "linear")) {
     }
     if (identical(form, "interaction")) {
-        form = paste(z.c, "~", x.c, "+", y.c, "+", x.c, ":", 
-            y.c)
+        form = paste(z.c, "~", x.c, "+", y.c, "+", x.c, ":", y.c)
     }
     if (identical(form, "linear")) {
         form = paste(z.c, "~", x.c, "+", y.c)
@@ -97,11 +91,9 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
         form = paste(z.c, "~I(", x.c, "^2) + I(", y.c, "^2)")
     }
     if (identical(form, "full")) {
-        form = paste(z.c, "~", x.c, "+", y.c, "+", x.c, ":", 
-            y.c)
+        form = paste(z.c, "~", x.c, "+", y.c, "+", x.c, ":", y.c)
         if (nrow(star(fdo)) > 0) 
-            form = paste(form, "+ I(", x.c, "^2) + I(", y.c, 
-                "^2)")
+            form = paste(form, "+ I(", x.c, "^2) + I(", y.c, "^2)")
         if (DB) 
             print(form)
     }
@@ -143,10 +135,8 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
         mat = matrix(1, nrow = nrow(mat), ncol = ncol(mat))
         for (i in names(response(fdo))) {
             obj = desires(fdo)[[i]]
-            fun = .desireFun(obj@low, obj@high, obj@target, obj@scale, 
-                obj@importance)
-            temp = outer(xVec, yVec, help.predict, x.c, y.c, 
-                fits(fdo)[[i]])
+            fun = .desireFun(obj@low, obj@high, obj@target, obj@scale, obj@importance)
+            temp = outer(xVec, yVec, help.predict, x.c, y.c, fits(fdo)[[i]])
             temp = try(apply(temp, c(1, 2), fun))
             mat = mat * temp
         }
@@ -158,8 +148,7 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
         jet.colors <- colorRampPalette(c("blue", "green"))
         nbcol <- 100
         color <- col(nbcol)
-        matFacet <- mat[-1, -1] + mat[-1, -ncMat] + mat[-nrMat, 
-            -1] + mat[-nrMat, -ncMat]
+        matFacet <- mat[-1, -1] + mat[-1, -ncMat] + mat[-nrMat, -1] + mat[-nrMat, -ncMat]
         facetcol <- cut(matFacet, nbcol)
     }
     else {
@@ -169,10 +158,8 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
     if (plot) {
         if (missing(zlim)) 
             zlim = range(mat)
-        persp(xVec, yVec, mat, main = main, sub = sub, xlab = xlab, 
-            ylab = ylab, xlim = xlim, ylim = ylim, zlim = zlim, 
-            zlab = zlab, col = color[facetcol], border = border, 
-            ticktype = ticktype, phi = phi, theta = theta)
+        persp(xVec, yVec, mat, main = main, sub = sub, xlab = xlab, ylab = ylab, xlim = xlim, ylim = ylim, zlim = zlim, 
+            zlab = zlab, col = color[facetcol], border = border, ticktype = ticktype, phi = phi, theta = theta)
         if (is.function(col)) {
             zlim = range(mat)
             leglevel = pretty(zlim, 6)
@@ -183,20 +170,16 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
             temp[leglevel < 0] = "-"
             temp[leglevel == 0] = " "
             legpretty = paste(temp, legpretty, sep = "")
-            legend("topright", inset = 0.02, legend = paste(">", 
-                legpretty), col = legcol, bg = "white", pt.cex = 1.5, 
+            legend("topright", inset = 0.02, legend = paste(">", legpretty), col = legcol, bg = "white", pt.cex = 1.5, 
                 cex = 0.75, pch = 15)
         }
     }
     invisible(list(x = xVec, y = yVec, z = mat))
 }
-.mfc = function(x = seq(0, 1, length.out = nrow(z)), 
-    y = seq(0, 1, length.out = ncol(z)), z, xlim = range(x, finite = TRUE), 
-    ylim = range(y, finite = TRUE), zlim = range(z, finite = TRUE), 
-    levels = pretty(zlim, nlevels), nlevels = 20, color.palette = cm.colors, 
-    col = color.palette(length(levels) - 1), plot.title, plot.axes, 
-    key.title, key.axes, asp = NA, xaxs = "i", yaxs = "i", las = 1, 
-    axes = TRUE, frame.plot = axes, ...) {
+.mfc = function(x = seq(0, 1, length.out = nrow(z)), y = seq(0, 1, length.out = ncol(z)), z, xlim = range(x, 
+    finite = TRUE), ylim = range(y, finite = TRUE), zlim = range(z, finite = TRUE), levels = pretty(zlim, nlevels), nlevels = 20, 
+    color.palette = cm.colors, col = color.palette(length(levels) - 1), plot.title, plot.axes, key.title, key.axes, asp = NA, 
+    xaxs = "i", yaxs = "i", las = 1, axes = TRUE, frame.plot = axes, ...) {
     if (missing(z)) {
         if (!missing(x)) {
             if (is.list(x)) {
@@ -225,14 +208,12 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
     mar[2L] <- 1
     mar = c(4.1, 4.1, 4.1, 4.1)
     par(mar = mar)
-    plot(1, 1, type = "n", axes = FALSE, xlim, ylim, xlab = "", 
-        ylab = "", main = "", xaxs = xaxs, yaxs = yaxs, asp = asp)
+    plot(1, 1, type = "n", axes = FALSE, xlim, ylim, xlab = "", ylab = "", main = "", xaxs = xaxs, yaxs = yaxs, asp = asp)
     if (!is.matrix(z) || nrow(z) <= 1L || ncol(z) <= 1L) 
         stop("no proper 'z' matrix specified")
     if (!is.double(z)) 
         storage.mode(z) <- "double"
-    .Internal(filledcontour(as.double(x), as.double(y), z, as.double(levels), 
-        col = col))
+    .Internal(filledcontour(as.double(x), as.double(y), z, as.double(levels), col = col))
     leglevel = pretty(zlim, 6)
     legcol = color.palette(length(leglevel))
     legpretty = as.character(abs(leglevel))
@@ -241,8 +222,7 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
     temp[leglevel < 0] = "-"
     temp[leglevel == 0] = " "
     legpretty = paste(temp, legpretty, sep = "")
-    legend("topright", inset = 0.02, legend = paste(">", legpretty), 
-        col = legcol, bg = "white", pt.cex = 1.5, cex = 0.75, 
+    legend("topright", inset = 0.02, legend = paste(">", legpretty), col = legcol, bg = "white", pt.cex = 1.5, cex = 0.75, 
         pch = 15)
     if (missing(plot.axes)) {
         if (axes) {
@@ -259,8 +239,7 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim,
     else plot.title
     invisible()
 }
-contourPlot = function(x, y, z, data = NULL, xlim, 
-    ylim, zlim, main, xlab, ylab, border, sub, zlab, form = "fit", 
+contourPlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, zlab, form = "fit", 
     ticktype, col = 1, steps, factors, fun) {
     DB = FALSE
     form = form
@@ -272,19 +251,15 @@ contourPlot = function(x, y, z, data = NULL, xlim,
     lm.1 = NULL
     if (!is.function(col)) {
         if (identical(col, 1)) 
-            col = colorRampPalette(c("#00007F", "blue", "#007FFF", 
-                "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", 
-                "#7F0000"))
+            col = colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
         if (identical(col, 2)) 
-            col = colorRampPalette(c("blue", "white", "red"), 
-                space = "Lab")
+            col = colorRampPalette(c("blue", "white", "red"), space = "Lab")
         if (identical(col, 3)) 
             col = colorRampPalette(c("blue", "white", "orange"))
         if (identical(col, 4)) 
             col = colorRampPalette(c("gold", "white", "firebrick"))
         if (identical(col, 5)) 
-            col = colorRampPalette(c("blue4", "lightblue1", "lightgreen", 
-                "green4"))
+            col = colorRampPalette(c("blue4", "lightblue1", "lightgreen", "green4"))
     }
     if (is.null(data)) {
         cat("\n defaulting to filled.contour function\n")
@@ -326,8 +301,7 @@ contourPlot = function(x, y, z, data = NULL, xlim,
             stop("fun should be a function, \"overall\" or \"desirability\"")
     if (identical(fun, "desirability")) {
         obj = desires(fdo)[[z.c]]
-        fun = .desireFun(obj@low, obj@high, obj@target, obj@scale, 
-            obj@importance)
+        fun = .desireFun(obj@low, obj@high, obj@target, obj@scale, obj@importance)
     }
     if (form %in% c("fit")) {
         lm.1 = fits(fdo)[[z.c]]
@@ -339,8 +313,7 @@ contourPlot = function(x, y, z, data = NULL, xlim,
     if (form %in% c("quadratic", "full", "interaction", "linear")) {
     }
     if (identical(form, "interaction")) {
-        form = paste(z.c, "~", x.c, "+", y.c, "+", x.c, ":", 
-            y.c)
+        form = paste(z.c, "~", x.c, "+", y.c, "+", x.c, ":", y.c)
     }
     if (identical(form, "linear")) {
         form = paste(z.c, "~", x.c, "+", y.c)
@@ -349,11 +322,9 @@ contourPlot = function(x, y, z, data = NULL, xlim,
         form = paste(z.c, "~I(", x.c, "^2) + I(", y.c, "^2)")
     }
     if (identical(form, "full")) {
-        form = paste(z.c, "~", x.c, "+", y.c, "+", x.c, ":", 
-            y.c)
+        form = paste(z.c, "~", x.c, "+", y.c, "+", x.c, ":", y.c)
         if (nrow(star(fdo)) > 0) 
-            form = paste(form, "+ I(", x.c, "^2) + I(", y.c, 
-                "^2)")
+            form = paste(form, "+ I(", x.c, "^2) + I(", y.c, "^2)")
         if (DB) 
             print(form)
     }
@@ -393,8 +364,7 @@ contourPlot = function(x, y, z, data = NULL, xlim,
         ncMat <- ncol(mat)
         nbcol <- 1000
         color <- col(nbcol)
-        matFacet <- mat[-1, -1] + mat[-1, -ncMat] + mat[-nrMat, 
-            -1] + mat[-nrMat, -ncMat]
+        matFacet <- mat[-1, -1] + mat[-1, -ncMat] + mat[-nrMat, -1] + mat[-nrMat, -ncMat]
         facetcol <- cut(matFacet, nbcol)
     }
     else {
@@ -408,16 +378,13 @@ contourPlot = function(x, y, z, data = NULL, xlim,
         mat = matrix(1, nrow = nrow(mat), ncol = ncol(mat))
         for (i in names(response(fdo))) {
             obj = desires(fdo)[[i]]
-            fun = .desireFun(obj@low, obj@high, obj@target, obj@scale, 
-                obj@importance)
-            temp = outer(xVec, yVec, help.predict, x.c, y.c, 
-                fits(fdo)[[i]])
+            fun = .desireFun(obj@low, obj@high, obj@target, obj@scale, obj@importance)
+            temp = outer(xVec, yVec, help.predict, x.c, y.c, fits(fdo)[[i]])
             temp = try(apply(temp, c(1, 2), fun))
             mat = mat * temp
         }
         mat = mat^(1/length(names(response(fdo))))
     }
-    .mfc(xVec, yVec, mat, main = main, xlab = xlab, ylab = ylab, 
-        color = col)
+    .mfc(xVec, yVec, mat, main = main, xlab = xlab, ylab = ylab, color = col)
     invisible(list(x = xVec, y = yVec, z = mat))
 } 

@@ -1,13 +1,9 @@
 .NAMES = LETTERS[c(1:8, 10:26)]
-setClass(Class = "taguchiDesign", representation = representation(name = "character", 
-    factors = "list", design = "data.frame", designType = "character", 
-    replic = "data.frame", response = "data.frame", Type = "data.frame", 
-    block = "data.frame", runOrder = "data.frame", standardOrder = "data.frame", 
-    desireVal = "list", desirability = "list", fits = "data.frame"))
-setClass("taguchiFactor", representation = representation(values = "ANY", 
-    name = "character", unit = "character", type = "character"), 
-    prototype = prototype(values = NA, name = " ", unit = " ", 
-        type = "numeric"))
+setClass(Class = "taguchiDesign", representation = representation(name = "character", factors = "list", design = "data.frame", 
+    designType = "character", replic = "data.frame", response = "data.frame", Type = "data.frame", block = "data.frame", 
+    runOrder = "data.frame", standardOrder = "data.frame", desireVal = "list", desirability = "list", fits = "data.frame"))
+setClass("taguchiFactor", representation = representation(values = "ANY", name = "character", unit = "character", 
+    type = "character"), prototype = prototype(values = NA, name = " ", unit = " ", type = "numeric"))
 setGeneric("values", function(object) standardGeneric("values"))
 setGeneric("values<-", function(object, value) standardGeneric("values<-"))
 setMethod("values", "taguchiDesign", function(object) {
@@ -17,12 +13,10 @@ setMethod("values", "taguchiDesign", function(object) {
     }
     return(listOut)
 })
-setReplaceMethod("values", "taguchiDesign", function(object, 
-    value) {
+setReplaceMethod("values", "taguchiDesign", function(object, value) {
     for (i in names(value)) {
         if (i %in% names(object@design)) 
-            if (length(value[[i]]) == length(unique(object@design[, 
-                i]))) 
+            if (length(value[[i]]) == length(unique(object@design[, i]))) 
                 .values(object@factors[[i]]) = value[[i]]
             else stop("Number of values greater or less than number of factor settings!")
     }
@@ -31,30 +25,26 @@ setReplaceMethod("values", "taguchiDesign", function(object,
 setGeneric(".values", function(object) standardGeneric(".values"))
 setGeneric(".values<-", function(object, value) standardGeneric(".values<-"))
 setMethod(".values", "taguchiFactor", function(object) object@values)
-setReplaceMethod(".values", "taguchiFactor", function(object, 
-    value) {
+setReplaceMethod(".values", "taguchiFactor", function(object, value) {
     object@values <- value
     return(object)
 })
 setMethod(".unit", "taguchiFactor", function(object) object@unit)
-setReplaceMethod(".unit", "taguchiFactor", function(x, 
-    value) {
+setReplaceMethod(".unit", "taguchiFactor", function(x, value) {
     x@unit <- value
     x
 })
 setMethod("units", "taguchiDesign", function(x) {
     return(sapply(factors(x), .unit))
 })
-setMethod("units<-", "taguchiDesign", function(x, 
-    value) {
+setMethod("units<-", "taguchiDesign", function(x, value) {
     for (i in 1:length(x@factors)) if (length(value) > 1) 
         .unit(x@factors[[i]]) = as.character(value[i])
     else .unit(x@factors[[i]]) = as.character(value[1])
     x
 })
 setMethod("factors", "taguchiDesign", function(x) x@factors)
-setReplaceMethod("factors", "taguchiDesign", function(x, 
-    value) {
+setReplaceMethod("factors", "taguchiDesign", function(x, value) {
     if (length(value) != ncol(x@design)) 
         stop("\nNumber of factors doesn't match with number of columns for factorial Design\n")
     x@factors <- value
@@ -63,40 +53,32 @@ setReplaceMethod("factors", "taguchiDesign", function(x,
 setMethod("names", "taguchiDesign", function(x) {
     return(sapply(x@factors, names))
 })
-setReplaceMethod("names", "taguchiDesign", function(x, 
-    value) {
+setReplaceMethod("names", "taguchiDesign", function(x, value) {
     for (i in 1:length(x@factors)) names(x@factors[[i]]) = as.character(value[i])
     x
 })
 setMethod("names", "taguchiFactor", function(x) {
     x@name
 })
-setReplaceMethod("names", "taguchiFactor", function(x, 
-    value) {
+setReplaceMethod("names", "taguchiFactor", function(x, value) {
     x@name <- value
     x
 })
-setMethod("as.data.frame", "taguchiDesign", function(x, 
-    row.names = NULL, optional = FALSE) {
-    frameOut = cbind(x@standardOrder, x@runOrder, x@replic, x@design, 
-        x@response)
+setMethod("as.data.frame", "taguchiDesign", function(x, row.names = NULL, optional = FALSE) {
+    frameOut = cbind(x@standardOrder, x@runOrder, x@replic, x@design, x@response)
     return(frameOut)
 })
-as.data.frame.taguchiDesign = function(x, row.names = NULL, 
-    optional = FALSE, ...) {
-    frameOut = cbind(x@standardOrder, x@runOrder, x@replic, x@design, 
-        x@response)
+as.data.frame.taguchiDesign = function(x, row.names = NULL, optional = FALSE, ...) {
+    frameOut = cbind(x@standardOrder, x@runOrder, x@replic, x@design, x@response)
     return(frameOut)
 }
-setMethod("show", signature(object = "taguchiDesign"), 
-    function(object) {
-        print(format(as.data.frame(object), digits = 4))
-    })
+setMethod("show", signature(object = "taguchiDesign"), function(object) {
+    print(format(as.data.frame(object), digits = 4))
+})
 setMethod("response", "taguchiDesign", function(object) {
     return(object@response)
 })
-setReplaceMethod("response", "taguchiDesign", function(object, 
-    value) {
+setReplaceMethod("response", "taguchiDesign", function(object, value) {
     print(deparse(substitute(value)))
     if (!is.numeric(value) & !is.data.frame(value)) 
         stop("vector or data.frame must be given")
@@ -127,8 +109,7 @@ setMethod(".nfp", "taguchiDesign", function(object) {
         numrows = numAttr - 1
         frameOut = data.frame(matrix(NA, ncol = .numFac, nrow = numrows))
         names(frameOut) = names(x)
-        rownames(frameOut) = c(paste("value", 1:len), "name", 
-            "unit", "type")
+        rownames(frameOut) = c(paste("value", 1:len), "name", "unit", "type")
         for (i in names(x)) {
             vin = 1:length(x[[i]]@values)
             frameOut[vin, i] = x[[i]]@values
@@ -139,26 +120,23 @@ setMethod(".nfp", "taguchiDesign", function(object) {
         print(frameOut)
     }
 })
-setMethod("show", signature(object = "taguchiDesign"), 
-    function(object) {
-        print(as.data.frame(object))
-    })
-setMethod("summary", signature(object = "taguchiDesign"), 
-    function(object) {
-        cat(paste("Taguchi", toupper(object@designType), "Design"))
-        cat("\n")
-        cat("Information about the factors:\n\n")
-        .nfp(object)
-        cat("\n")
-        cat("-----------\n")
-        cat("\n")
-        print(as.data.frame(object))
-        cat("\n")
-        cat("-----------\n")
-        cat("\n")
-    })
-taguchiDesign = function(design, randomize = TRUE, 
-    replicates = 1) {
+setMethod("show", signature(object = "taguchiDesign"), function(object) {
+    print(as.data.frame(object))
+})
+setMethod("summary", signature(object = "taguchiDesign"), function(object) {
+    cat(paste("Taguchi", toupper(object@designType), "Design"))
+    cat("\n")
+    cat("Information about the factors:\n\n")
+    .nfp(object)
+    cat("\n")
+    cat("-----------\n")
+    cat("\n")
+    print(as.data.frame(object))
+    cat("\n")
+    cat("-----------\n")
+    cat("\n")
+})
+taguchiDesign = function(design, randomize = TRUE, replicates = 1) {
     DB = FALSE
     odo = NA
     type = "single"
@@ -189,35 +167,28 @@ taguchiDesign = function(design, randomize = TRUE,
             StandOrder = 1:nrow(odo@design)
             RunOrder = StandOrder
             if (randomize) {
-                RunOrder = sample(1:nrow(odo@design), nrow(odo@design), 
-                  replace = FALSE, prob = NULL)
+                RunOrder = sample(1:nrow(odo@design), nrow(odo@design), replace = FALSE, prob = NULL)
             }
             odo@design = odo@design[order(RunOrder), ]
-            odo@replic = data.frame(Replicate = odo@replic[order(RunOrder), 
-                1])
+            odo@replic = data.frame(Replicate = odo@replic[order(RunOrder), 1])
             row.names(odo@design) = odo@design$RunOrder
-            odo@runOrder = data.frame(RunOrder = data.frame(RunOrder = RunOrder)[order(RunOrder), 
-                ])
-            odo@standardOrder = data.frame(StandOrder = data.frame(StandOrder = StandOrder)[order(RunOrder), 
-                ])
+            odo@runOrder = data.frame(RunOrder = data.frame(RunOrder = RunOrder)[order(RunOrder), ])
+            odo@standardOrder = data.frame(StandOrder = data.frame(StandOrder = StandOrder)[order(RunOrder), ])
             odo@response = data.frame(y = rep(NA, nrow(odo@design)))
             tfList = vector("list", ncol(design))
             for (i in seq(along = tfList)) tfList[i] = new("taguchiFactor")
             names(tfList) = names(odo@design)
             factors(odo) = tfList
             valList = list(length = length(names(odo)))
-            for (i in names(names(odo))) valList[[i]] = sort(unique(odo@design[, 
-                i]))
+            for (i in names(names(odo))) valList[[i]] = sort(unique(odo@design[, i]))
             values(odo) = valList
             return(odo)
         }
     }
     return(NA)
 }
-oaChoose = function(factors1, factors2, level1, level2, 
-    ia) {
-    params = list(factors1 = 0, factors2 = 0, level1 = 0, level2 = 0, 
-        ia = 0)
+oaChoose = function(factors1, factors2, level1, level2, ia) {
+    params = list(factors1 = 0, factors2 = 0, level1 = 0, level2 = 0, ia = 0)
     if (!missing(ia)) 
         params$ia = ia
     if (!missing(factors2)) 
@@ -226,14 +197,11 @@ oaChoose = function(factors1, factors2, level1, level2,
         params$level2 = level2
     do.call(taguchiChoose, params)
 }
-taguchiChoose = function(factors1 = 0, factors2 = 0, 
-    level1 = 0, level2 = 0, ia = 0) {
-    if (factors1 == 0 & factors2 == 0 & level1 == 0 & level2 == 
-        0 & ia == 0) {
+taguchiChoose = function(factors1 = 0, factors2 = 0, level1 = 0, level2 = 0, ia = 0) {
+    if (factors1 == 0 & factors2 == 0 & level1 == 0 & level2 == 0 & ia == 0) {
         temp = vector(mode = "character", length = length(.oaList))
         for (i in 1:length(.oaList)) temp[i] = .oaList[[i]]$id
-        temp = c(temp, rep(" ", (length(temp)%/%6 + 1) * 6 - 
-            length(temp)))
+        temp = c(temp, rep(" ", (length(temp)%/%6 + 1) * 6 - length(temp)))
         mat = data.frame(matrix(temp, ncol = 6, byrow = TRUE))
         names(mat) = rep(" ", ncol(mat))
         print(mat)
@@ -251,26 +219,22 @@ taguchiChoose = function(factors1 = 0, factors2 = 0,
         ss = list()
         for (i in seq(along = .oaList)) {
             li = .oaList[[i]]
-            if (li$factors1 >= factors1 & li$factors2 >= factors2 & 
-                (li$levels1 == level1 | li$levels1 == level2) & 
-                (li$levels2 == level2 | li$levels2 == level1) & 
-                li$anzahl_spalten >= Anzahl_Spalten) 
+            if (li$factors1 >= factors1 & li$factors2 >= factors2 & (li$levels1 == level1 | li$levels1 == level2) & (li$levels2 == 
+                level2 | li$levels2 == level1) & li$anzahl_spalten >= Anzahl_Spalten) 
                 ss[i] = li$id
         }
         out = as.character(ss)
         out = out[out != "NULL"]
         if (length(out) > 0) {
-            cat(paste(factors1, "factors on", level1, "levels and", 
-                factors2, "factors on", level2, "levels with", 
-                ia, "desired interactions to be estimated\n"))
+            cat(paste(factors1, "factors on", level1, "levels and", factors2, "factors on", level2, "levels with", ia, 
+                "desired interactions to be estimated\n"))
             cat("\n")
             cat("Possible Designs:\n")
             cat("\n")
             cat(paste(out, sep = " | "))
             cat("\n")
             cat("\n")
-            cat(paste("Use taguchiDesign(\"", out[1], "\") or different to create a taguchi design object\n", 
-                sep = ""))
+            cat(paste("Use taguchiDesign(\"", out[1], "\") or different to create a taguchi design object\n", sep = ""))
         }
         else {
             cat("No Design Found\n")
@@ -313,8 +277,7 @@ taguchiChoose = function(factors1 = 0, factors2 = 0,
             }
             else {
                 X1 = cbind(X1, apply(X[, index], 1, prod))
-                nameVec = c(nameVec, paste(temp[, j], sep = "", 
-                  collapse = ""))
+                nameVec = c(nameVec, paste(temp[, j], sep = "", collapse = ""))
             }
         }
         X1 = data.frame(X1)
@@ -334,8 +297,7 @@ aliasTable = function(fdo, degree, show = TRUE) {
         X2 = .helpAliasTable(fdo, k = kPlusP, degree)
     }
     if (class(fdo) == "taguchiDesign") {
-        if (length(table(as.numeric(as.matrix(fdo@design)))) != 
-            2) 
+        if (length(table(as.numeric(as.matrix(fdo@design)))) != 2) 
             stop("calculation of an alias table for mixed designs is not supported")
         k = ncol(fdo@design)
         if (missing(degree)) 
@@ -343,8 +305,7 @@ aliasTable = function(fdo, degree, show = TRUE) {
         X1 = unique(fdo@design)
         X1 = .replace2s(X1)
         X2 = .helpAliasTable(fdo, k, degree)
-        X1 = cbind(data.frame(Identity = rep(1, times = nrow(X1))), 
-            X1)
+        X1 = cbind(data.frame(Identity = rep(1, times = nrow(X1))), X1)
     }
     logVec = !(names(X2) %in% names(X1))
     X2 = X2[, logVec]
@@ -355,35 +316,31 @@ aliasTable = function(fdo, degree, show = TRUE) {
         print(round(alias.matrix, 2))
     invisible(alias.matrix)
 }
-setMethod("identity", signature(x = "taguchiDesign"), 
-    function(x) {
-        identity = character(0)
-        identityList = vector(mode = "list", length = 0)
-        resolution = numeric(0)
-        temp = NULL
-        A = aliasTable(x)
-        if (any(dim(A) == 0)) 
-            return(identityList)
-        temp = as.matrix(A["Identity", ])
-        boolTemp = apply(temp, 2, as.logical)
-        identity = row.names(temp)[boolTemp[, 1]]
-        if (length(identity) > 0) {
-            charList = strsplit(toupper(identity), split = "")
-            identityList = lapply(charList, match, LETTERS[1:26])
-            names(identityList) = identity
+setMethod("identity", signature(x = "taguchiDesign"), function(x) {
+    identity = character(0)
+    identityList = vector(mode = "list", length = 0)
+    resolution = numeric(0)
+    temp = NULL
+    A = aliasTable(x)
+    if (any(dim(A) == 0)) 
+        return(identityList)
+    temp = as.matrix(A["Identity", ])
+    boolTemp = apply(temp, 2, as.logical)
+    identity = row.names(temp)[boolTemp[, 1]]
+    if (length(identity) > 0) {
+        charList = strsplit(toupper(identity), split = "")
+        identityList = lapply(charList, match, LETTERS[1:26])
+        names(identityList) = identity
+    }
+    cat("Defining relations:\n")
+    if (length(identityList) > 0) {
+        for (i in 1:length(identityList)) {
+            identLen = length((strsplit(names(identityList)[i], split = character(0))[[1]]))
+            if (length(resolution) == 0 || identLen > resolution) 
+                resolution = c(resolution, identLen)
+            cat("I = ", names(identityList)[i], "\t\tColumns:", identityList[[i]], "\n")
         }
-        cat("Defining relations:\n")
-        if (length(identityList) > 0) {
-            for (i in 1:length(identityList)) {
-                identLen = length((strsplit(names(identityList)[i], 
-                  split = character(0))[[1]]))
-                if (length(resolution) == 0 || identLen > resolution) 
-                  resolution = c(resolution, identLen)
-                cat("I = ", names(identityList)[i], "\t\tColumns:", 
-                  identityList[[i]], "\n")
-            }
-            cat("\nResolution: ", as.character(as.roman(min(resolution))), 
-                "\n")
-        }
-        invisible(identityList)
-    }) 
+        cat("\nResolution: ", as.character(as.roman(min(resolution))), "\n")
+    }
+    invisible(identityList)
+}) 

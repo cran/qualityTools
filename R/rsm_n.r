@@ -1,6 +1,5 @@
 .alphaOrth = function(k, p = 0, cc, cs) {
-    alpha = sqrt((2^(k - p) * (2 * k + cs))/(2 * (2^(k - p) + 
-        cc)))
+    alpha = sqrt((2^(k - p) * (2 * k + cs))/(2 * (2^(k - p) + cc)))
     return(alpha)
 }
 .alphaRot = function(k, p = 0) {
@@ -28,8 +27,7 @@
     }
     return(.starFrame)
 }
-rsmDesign = function(k = 3, p = 0, alpha = "rotatable", 
-    blocks = 1, cc = 1, cs = 1, faceCentered = FALSE) {
+rsmDesign = function(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs = 1, faceCentered = FALSE) {
     DB = FALSE
     if (blocks > 2^(k - 1) + 1) 
         stop("Blocking not possible")
@@ -87,80 +85,43 @@ rsmDesign = function(k = 3, p = 0, alpha = "rotatable",
     return(fdo)
 }
 .rsmOrth = vector(mode = "list", length = 7)
-.rsmOrth[[1]] = list(k = 2, p = 0, col = 1, row = 2, 
-    blocks = 2, cc = 3, cs = 3)
-.rsmOrth[[2]] = list(k = 2, p = 0, col = 1, row = 1, 
-    blocks = 1, cc = 0, cs = 0)
-.rsmOrth[[3]] = list(k = 3, p = 0, col = 2, row = 3, 
-    blocks = 3, cc = 2, cs = 2)
-.rsmOrth[[4]] = list(k = 3, p = 0, col = 2, row = 2, 
-    blocks = 2, cc = 2, cs = 2)
-.rsmOrth[[5]] = list(k = 3, p = 0, col = 2, row = 1, 
-    blocks = 1, cc = 0, cs = 0)
-.rsmOrth[[6]] = list(k = 4, p = 0, col = 3, row = 4, 
-    blocks = 5, cc = 2, cs = 2)
-.rsmOrth[[7]] = list(k = 4, p = 0, col = 3, row = 3, 
-    blocks = 3, cc = 2, cs = 2)
-.rsmOrth[[8]] = list(k = 4, p = 0, col = 3, row = 2, 
-    blocks = 2, cc = 2, cs = 2)
-.rsmOrth[[9]] = list(k = 4, p = 0, col = 3, row = 1, 
-    blocks = 1, cc = 0, cs = 0)
-.rsmOrth[[10]] = list(k = 5, p = 0, col = 4, row = 5, 
-    blocks = 9, cc = 2, cs = 4)
-.rsmOrth[[11]] = list(k = 5, p = 0, col = 4, row = 4, 
-    blocks = 5, cc = 2, cs = 4)
-.rsmOrth[[12]] = list(k = 5, p = 0, col = 4, row = 3, 
-    blocks = 3, cc = 2, cs = 4)
-.rsmOrth[[13]] = list(k = 5, p = 0, col = 4, row = 2, 
-    blocks = 2, cc = 2, cs = 4)
-.rsmOrth[[14]] = list(k = 5, p = 0, col = 4, row = 1, 
-    blocks = 1, cc = 0, cs = 0)
-.rsmOrth[[15]] = list(k = 5, p = 1, col = 5, row = 4, 
-    blocks = 5, cc = 6, cs = 1)
-.rsmOrth[[16]] = list(k = 5, p = 1, col = 5, row = 3, 
-    blocks = 3, cc = 6, cs = 1)
-.rsmOrth[[17]] = list(k = 5, p = 1, col = 5, row = 2, 
-    blocks = 2, cc = 6, cs = 1)
-.rsmOrth[[18]] = list(k = 5, p = 1, col = 5, row = 1, 
-    blocks = 1, cc = 0, cs = 0)
-.rsmOrth[[19]] = list(k = 6, p = 0, col = 6, row = 6, 
-    blocks = 17, cc = 1, cs = 6)
-.rsmOrth[[20]] = list(k = 6, p = 0, col = 6, row = 5, 
-    blocks = 9, cc = 1, cs = 6)
-.rsmOrth[[21]] = list(k = 6, p = 0, col = 6, row = 4, 
-    blocks = 5, cc = 1, cs = 6)
-.rsmOrth[[22]] = list(k = 6, p = 0, col = 6, row = 3, 
-    blocks = 3, cc = 1, cs = 6)
-.rsmOrth[[23]] = list(k = 6, p = 0, col = 6, row = 2, 
-    blocks = 2, cc = 1, cs = 6)
-.rsmOrth[[24]] = list(k = 6, p = 0, col = 6, row = 1, 
-    blocks = 1, cc = 0, cs = 0)
-.rsmOrth[[25]] = list(k = 6, p = 1, col = 7, row = 5, 
-    blocks = 9, cc = 4, cs = 2)
-.rsmOrth[[26]] = list(k = 6, p = 1, col = 7, row = 4, 
-    blocks = 5, cc = 4, cs = 2)
-.rsmOrth[[27]] = list(k = 6, p = 1, col = 7, row = 3, 
-    blocks = 3, cc = 4, cs = 2)
-.rsmOrth[[28]] = list(k = 6, p = 1, col = 7, row = 2, 
-    blocks = 2, cc = 4, cs = 2)
-.rsmOrth[[29]] = list(k = 6, p = 1, col = 7, row = 1, 
-    blocks = 1, cc = 0, cs = 0)
-.rsmOrth[[30]] = list(k = 7, p = 0, col = 8, row = 6, 
-    blocks = 17, cc = 1, cs = 11)
-.rsmOrth[[31]] = list(k = 7, p = 0, col = 8, row = 6, 
-    blocks = 17, cc = 1, cs = 11)
-.rsmOrth[[32]] = list(k = 7, p = 0, col = 8, row = 5, 
-    blocks = 9, cc = 1, cs = 11)
-.rsmOrth[[33]] = list(k = 7, p = 0, col = 8, row = 4, 
-    blocks = 5, cc = 1, cs = 11)
-.rsmOrth[[34]] = list(k = 7, p = 0, col = 8, row = 3, 
-    blocks = 3, cc = 1, cs = 11)
-.rsmOrth[[35]] = list(k = 7, p = 0, col = 8, row = 2, 
-    blocks = 2, cc = 1, cs = 11)
-.rsmOrth[[36]] = list(k = 7, p = 0, col = 8, row = 1, 
-    blocks = 1, cc = 0, cs = 0)
-.rsmOrth[[37]] = list(k = 7, p = 1, col = 9, row = 5, 
-    blocks = 9, cc = 1, cs = 4)
+.rsmOrth[[1]] = list(k = 2, p = 0, col = 1, row = 2, blocks = 2, cc = 3, cs = 3)
+.rsmOrth[[2]] = list(k = 2, p = 0, col = 1, row = 1, blocks = 1, cc = 0, cs = 0)
+.rsmOrth[[3]] = list(k = 3, p = 0, col = 2, row = 3, blocks = 3, cc = 2, cs = 2)
+.rsmOrth[[4]] = list(k = 3, p = 0, col = 2, row = 2, blocks = 2, cc = 2, cs = 2)
+.rsmOrth[[5]] = list(k = 3, p = 0, col = 2, row = 1, blocks = 1, cc = 0, cs = 0)
+.rsmOrth[[6]] = list(k = 4, p = 0, col = 3, row = 4, blocks = 5, cc = 2, cs = 2)
+.rsmOrth[[7]] = list(k = 4, p = 0, col = 3, row = 3, blocks = 3, cc = 2, cs = 2)
+.rsmOrth[[8]] = list(k = 4, p = 0, col = 3, row = 2, blocks = 2, cc = 2, cs = 2)
+.rsmOrth[[9]] = list(k = 4, p = 0, col = 3, row = 1, blocks = 1, cc = 0, cs = 0)
+.rsmOrth[[10]] = list(k = 5, p = 0, col = 4, row = 5, blocks = 9, cc = 2, cs = 4)
+.rsmOrth[[11]] = list(k = 5, p = 0, col = 4, row = 4, blocks = 5, cc = 2, cs = 4)
+.rsmOrth[[12]] = list(k = 5, p = 0, col = 4, row = 3, blocks = 3, cc = 2, cs = 4)
+.rsmOrth[[13]] = list(k = 5, p = 0, col = 4, row = 2, blocks = 2, cc = 2, cs = 4)
+.rsmOrth[[14]] = list(k = 5, p = 0, col = 4, row = 1, blocks = 1, cc = 0, cs = 0)
+.rsmOrth[[15]] = list(k = 5, p = 1, col = 5, row = 4, blocks = 5, cc = 6, cs = 1)
+.rsmOrth[[16]] = list(k = 5, p = 1, col = 5, row = 3, blocks = 3, cc = 6, cs = 1)
+.rsmOrth[[17]] = list(k = 5, p = 1, col = 5, row = 2, blocks = 2, cc = 6, cs = 1)
+.rsmOrth[[18]] = list(k = 5, p = 1, col = 5, row = 1, blocks = 1, cc = 0, cs = 0)
+.rsmOrth[[19]] = list(k = 6, p = 0, col = 6, row = 6, blocks = 17, cc = 1, cs = 6)
+.rsmOrth[[20]] = list(k = 6, p = 0, col = 6, row = 5, blocks = 9, cc = 1, cs = 6)
+.rsmOrth[[21]] = list(k = 6, p = 0, col = 6, row = 4, blocks = 5, cc = 1, cs = 6)
+.rsmOrth[[22]] = list(k = 6, p = 0, col = 6, row = 3, blocks = 3, cc = 1, cs = 6)
+.rsmOrth[[23]] = list(k = 6, p = 0, col = 6, row = 2, blocks = 2, cc = 1, cs = 6)
+.rsmOrth[[24]] = list(k = 6, p = 0, col = 6, row = 1, blocks = 1, cc = 0, cs = 0)
+.rsmOrth[[25]] = list(k = 6, p = 1, col = 7, row = 5, blocks = 9, cc = 4, cs = 2)
+.rsmOrth[[26]] = list(k = 6, p = 1, col = 7, row = 4, blocks = 5, cc = 4, cs = 2)
+.rsmOrth[[27]] = list(k = 6, p = 1, col = 7, row = 3, blocks = 3, cc = 4, cs = 2)
+.rsmOrth[[28]] = list(k = 6, p = 1, col = 7, row = 2, blocks = 2, cc = 4, cs = 2)
+.rsmOrth[[29]] = list(k = 6, p = 1, col = 7, row = 1, blocks = 1, cc = 0, cs = 0)
+.rsmOrth[[30]] = list(k = 7, p = 0, col = 8, row = 6, blocks = 17, cc = 1, cs = 11)
+.rsmOrth[[31]] = list(k = 7, p = 0, col = 8, row = 6, blocks = 17, cc = 1, cs = 11)
+.rsmOrth[[32]] = list(k = 7, p = 0, col = 8, row = 5, blocks = 9, cc = 1, cs = 11)
+.rsmOrth[[33]] = list(k = 7, p = 0, col = 8, row = 4, blocks = 5, cc = 1, cs = 11)
+.rsmOrth[[34]] = list(k = 7, p = 0, col = 8, row = 3, blocks = 3, cc = 1, cs = 11)
+.rsmOrth[[35]] = list(k = 7, p = 0, col = 8, row = 2, blocks = 2, cc = 1, cs = 11)
+.rsmOrth[[36]] = list(k = 7, p = 0, col = 8, row = 1, blocks = 1, cc = 0, cs = 0)
+.rsmOrth[[37]] = list(k = 7, p = 1, col = 9, row = 5, blocks = 9, cc = 1, cs = 4)
 rsmChoose = function() {
     DB = FALSE
     old.par <- par(no.readonly = TRUE)
@@ -178,8 +139,7 @@ rsmChoose = function() {
     par(oma = c(4, 4, 4, 4))
     for (i in 1:6) for (j in 1:9) {
         par(mfg = c(i, j))
-        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 
-            1), axes = FALSE, type = "n", xlab = "", ylab = "", 
+        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n", xlab = "", ylab = "", 
             bg = "red", fg = "green")
         box()
     }
@@ -187,32 +147,24 @@ rsmChoose = function() {
         temp = rsmList[[i]]
         par(mfg = c(temp$row, temp$col))
         par(mfg = c(temp$row, temp$col))
-        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 
-            1), axes = FALSE, type = "n", xlab = "", ylab = "", 
+        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n", xlab = "", ylab = "", 
             bg = "red", fg = "green")
         rect(0, 0, 1, 1, col = colPalette[2^((temp$k) - (temp$p))])
-        text(0.1, 0.9, paste("N =", 2^((temp$k) - (temp$p)) + 
-            temp$cc * (temp$blocks - 1) + temp$cs + (temp$k + 
-            temp$p) * 2), adj = c(0, 1), cex = 1.25)
-        text(0.1, 0.75, paste("k =", temp$k), adj = c(0, 1), 
-            cex = 1.25)
+        text(0.1, 0.9, paste("N =", 2^((temp$k) - (temp$p)) + temp$cc * (temp$blocks - 1) + temp$cs + (temp$k + temp$p) * 
+            2), adj = c(0, 1), cex = 1.25)
+        text(0.1, 0.75, paste("k =", temp$k), adj = c(0, 1), cex = 1.25)
         text(0.1, 0.6, paste("p =", temp$p), adj = c(0, 1), cex = 1.25)
         text(0.1, 0.45, ".centerPoints", adj = c(0, 1), cex = 1.25)
-        text(0.1, 0.3, paste("Cube:", temp$cc), adj = c(0, 1), 
-            cex = 1.25)
-        text(0.1, 0.15, paste("Axial:", temp$cs), adj = c(0, 
-            1), cex = 1.25)
+        text(0.1, 0.3, paste("Cube:", temp$cc), adj = c(0, 1), cex = 1.25)
+        text(0.1, 0.15, paste("Axial:", temp$cs), adj = c(0, 1), cex = 1.25)
         box()
     }
     x = 1/18 + (0:8) * 2/18
     mtext(factorVals, at = x, side = 3, line = 0.5, outer = TRUE)
-    mtext("number of factors k", at = 0.5, side = 3, line = 2.5, 
-        outer = TRUE)
+    mtext("number of factors k", at = 0.5, side = 3, line = 2.5, outer = TRUE)
     x = 1/12 + (5:0) * 2/12
-    mtext(blockVals, at = x, side = 2, line = 0.5, outer = TRUE, 
-        las = 2)
-    mtext("number of blocks", at = 0.5, side = 2, line = 2.5, 
-        outer = TRUE)
+    mtext(blockVals, at = x, side = 2, line = 0.5, outer = TRUE, las = 2)
+    mtext("number of blocks", at = 0.5, side = 2, line = 2.5, outer = TRUE)
     cat("\nChoose a response surface design by clicking into the appropriate field")
     cat("\nWaiting for your selection:")
     cat("\n\n")
@@ -243,8 +195,7 @@ rsmChoose = function() {
     for (i in seq(along = rsmList)) {
         if (rsmList[[i]]$k == k) 
             if (rsmList[[i]]$blocks == blocks) 
-                return(rsmDesign(k = k, p = rsmList[[i]]$p, blocks = blocks, 
-                  alpha = "both"))
+                return(rsmDesign(k = k, p = rsmList[[i]]$p, blocks = blocks, alpha = "both"))
     }
     return(cat("\nno selection recognized\n"))
 } 

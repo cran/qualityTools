@@ -55,8 +55,7 @@
             for (j in 1:k) {
                 if (j == 1) 
                   interString = temp[j, i]
-                else interString = paste(interString, ":", temp[j, 
-                  i])
+                else interString = paste(interString, ":", temp[j, i])
             }
             fullString = paste(fullString, "+", interString)
         }
@@ -69,10 +68,8 @@
                 print(quadString)
         }
         if (length(nameVec) >= 2) {
-            quadString = paste(quadString, "+I(", nameVec[i + 
-                1], "^2)", sep = "")
-            quadString2 = c(quadString2, paste("I(", nameVec[i + 
-                1], "^2)", sep = ""))
+            quadString = paste(quadString, "+I(", nameVec[i + 1], "^2)", sep = "")
+            quadString2 = c(quadString2, paste("I(", nameVec[i + 1], "^2)", sep = ""))
             if (DB) {
                 print(quadString2)
                 print(quadString)
@@ -112,16 +109,13 @@
     cat("\n")
     invisible(pValue)
 }
-summaryFits = function(fdo, lmFit = TRUE, curvTest = TRUE, 
-    origFit = TRUE) {
+summaryFits = function(fdo, lmFit = TRUE, curvTest = TRUE, origFit = TRUE) {
     summaryList = vector(mode = "list", length = 0)
     origFrame = as.data.frame(fdo)
-    for (i in names(names(fdo))) origFrame[, i] = code2real(lows(fdo)[[i]], 
-        highs(fdo)[[i]], origFrame[, i])
+    for (i in names(names(fdo))) origFrame[, i] = code2real(lows(fdo)[[i]], highs(fdo)[[i]], origFrame[, i])
     for (f in names(response(fdo))) {
         if (!is.null(fits(fdo)[[f]])) {
-            cat(paste("----------- Summary for response '", f, 
-                "' -----------", sep = ""))
+            cat(paste("----------- Summary for response '", f, "' -----------", sep = ""))
             cat("\n")
             print(summary(fits(fdo)[[f]]))
             cat("-----------")
@@ -139,8 +133,7 @@ summaryFits = function(fdo, lmFit = TRUE, curvTest = TRUE,
             temp[coefsW < 0] = "-"
             firstString = ""
             firstString = paste(firstString, format(coefsI, digits = 4))
-            restString = paste(format(abs(coefsW), digits = 4), 
-                names(coefsW), sep = "*")
+            restString = paste(format(abs(coefsW), digits = 4), names(coefsW), sep = "*")
             restString = paste(temp, restString)
             restString = paste(restString, collapse = " ")
             fullString = paste(firstString, restString)

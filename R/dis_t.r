@@ -1,62 +1,54 @@
-setClass("distr", representation(x = "vector", name = "character", 
-    parameters = "numeric", sd = "numeric", n = "numeric", loglik = "numeric"))
+setClass("distr", representation(x = "vector", name = "character", parameters = "numeric", sd = "numeric", 
+    n = "numeric", loglik = "numeric"))
 setClass("distrCollection", representation(distr = "list"))
-setMethod("[", signature(x = "distrCollection", i = "ANY"), 
-    function(x, i, drop = missing) {
-        x@distr[i]
-    })
-setMethod("show", signature(object = "distrCollection"), 
-    function(object) {
-        distrList = object@distr
+setMethod("[", signature(x = "distrCollection", i = "ANY"), function(x, i, drop = missing) {
+    x@distr[i]
+})
+setMethod("show", signature(object = "distrCollection"), function(object) {
+    distrList = object@distr
+    cat("\n")
+    for (i in seq(along = distrList)) {
+        temp = distrList[[i]]
         cat("\n")
-        for (i in seq(along = distrList)) {
-            temp = distrList[[i]]
-            cat("\n")
-            cat("fitted distribution is", temp@name, ":\n")
-            print(temp@parameters)
-            cat("\n")
-        }
-    })
-setMethod("summary", signature(object = "distrCollection"), 
-    function(object) {
-        numDist = length(object@distr)
-        gofMatrix = data.frame(matrix(nrow = numDist, ncol = 3))
-        names(gofMatrix) = c("Distribution", "A", "p.value")
-        cat("\n------ Fitted Distribution and estimated parameters ------\n")
-        for (i in seq(along = object@distr)) {
-            distrObj = object@distr[[i]]
-            x = distrObj@x
-            distribution = distrObj@name
-            parameters = distrObj@parameters
-            statistic = NA
-            p.value = NA
-            temp = .myADTest(x, distribution)
-            try(statistic <- as.numeric(temp$statistic), silent = TRUE)
-            try(p.value <- as.numeric(temp$p.value), silent = TRUE)
-            gofMatrix[i, ] = c(distribution, as.numeric(statistic), 
-                as.numeric(p.value))
-            cat("\n")
-            cat("fitted distribution is", distribution, ":\n")
-            print(parameters)
-        }
+        cat("fitted distribution is", temp@name, ":\n")
+        print(temp@parameters)
         cat("\n")
-        cat("\n------ Goodness of Fit - Anderson Darling Test ------\n")
+    }
+})
+setMethod("summary", signature(object = "distrCollection"), function(object) {
+    numDist = length(object@distr)
+    gofMatrix = data.frame(matrix(nrow = numDist, ncol = 3))
+    names(gofMatrix) = c("Distribution", "A", "p.value")
+    cat("\n------ Fitted Distribution and estimated parameters ------\n")
+    for (i in seq(along = object@distr)) {
+        distrObj = object@distr[[i]]
+        x = distrObj@x
+        distribution = distrObj@name
+        parameters = distrObj@parameters
+        statistic = NA
+        p.value = NA
+        temp = .myADTest(x, distribution)
+        try(statistic <- as.numeric(temp$statistic), silent = TRUE)
+        try(p.value <- as.numeric(temp$p.value), silent = TRUE)
+        gofMatrix[i, ] = c(distribution, as.numeric(statistic), as.numeric(p.value))
         cat("\n")
-        gofMatrixPrint = gofMatrix
-        gofMatrixPrint[, 2] = signif(as.numeric(gofMatrixPrint[, 
-            2]), 4)
-        gofMatrixPrint[, 3] = signif(as.numeric(gofMatrixPrint[, 
-            3]), 4)
-        print(gofMatrixPrint)
-    })
-distribution = function(x, distribution = "weibull", 
-    start, ...) {
+        cat("fitted distribution is", distribution, ":\n")
+        print(parameters)
+    }
+    cat("\n")
+    cat("\n------ Goodness of Fit - Anderson Darling Test ------\n")
+    cat("\n")
+    gofMatrixPrint = gofMatrix
+    gofMatrixPrint[, 2] = signif(as.numeric(gofMatrixPrint[, 2]), 4)
+    gofMatrixPrint[, 3] = signif(as.numeric(gofMatrixPrint[, 3]), 4)
+    print(gofMatrixPrint)
+})
+distribution = function(x, distribution = "weibull", start, ...) {
     if (!require(MASS, quietly = TRUE)) 
         stop("Package MASS needs to be installed!")
     if (is.character(distribution)) 
         distribution = tolower(distribution)
-    allDistr = c("beta", "cauchy", "chi-squared", "exponential", 
-        "f", "gamma", "geometric", "log-normal", "logistic", 
+    allDistr = c("beta", "cauchy", "chi-squared", "exponential", "f", "gamma", "geometric", "log-normal", "logistic", 
         "negative binomial", "normal", "poisson", "t", "weibull")
     if (distribution %in% allDistr) 
         distrVec = distribution
@@ -79,9 +71,8 @@ distribution = function(x, distribution = "weibull",
     return(distrColl)
 }
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-setMethod("plot", signature(x = "distr"), function(x, 
-    y, main, xlab, xlim, ylim, ylab, line.col, line.width, box = TRUE, 
-    ...) {
+setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim, ylab, line.col, line.width, 
+    box = TRUE, ...) {
     object = x
     xVals = object@x
     parameters = object@parameters
@@ -122,19 +113,16 @@ setMethod("plot", signature(x = "distr"), function(x,
     if (missing(ylim)) {
         ylim = range(0, histObj$density, yPoints)
     }
-    hist(xVals, freq = FALSE, xlab = xlab, ylab = ylab, xlim = xlim, 
-        ylim = ylim, main = main, ...)
+    hist(xVals, freq = FALSE, xlab = xlab, ylab = ylab, xlim = xlim, ylim = ylim, main = main, ...)
     lines(xPoints, yPoints, col = line.col, lwd = line.width)
     abline(h = 0)
-    legend("topright", c(paste(c(names(parameters), "A", "p"), 
-        ": ", c(format(parameters, digits = 3), format(A, digits = 3), 
-            format(p, digits = 3))), sep = " "), inset = 0.02)
+    legend("topright", c(paste(c(names(parameters), "A", "p"), ": ", c(format(parameters, digits = 3), format(A, digits = 3), 
+        format(p, digits = 3))), sep = " "), inset = 0.02)
     if (box) {
         box()
     }
 })
-.xylimits = function(distrCollection, lowerquantile = 0.001, 
-    upperquantile = 0.999) {
+.xylimits = function(distrCollection, lowerquantile = 0.001, upperquantile = 0.999) {
     x = NULL
     y = NULL
     for (i in seq(along = distrCollection@distr)) {
@@ -155,30 +143,27 @@ setMethod("plot", signature(x = "distr"), function(x,
     invisible(list(xlim = x, ylim = y))
 }
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-setMethod("plot", signature(x = "distrCollection"), 
-    function(x, y, xlab, ylab, xlim, ylim, line.col, line.width, 
-        ...) {
-        y = NULL
-        object = x
-        distrList = object@distr
-        numDist = length(object@distr)
-        numColWin = ceiling(numDist/2)
-        if (missing(xlim)) 
-            xlim = .xylimits(object)$xlim
-        if (missing(ylim)) 
-            ylim = .xylimits(object)$ylim
-        if (missing(line.col)) 
-            line.col = "red"
-        if (missing(line.width)) 
-            line.width = 1
-        lapply(distrList, plot, xlim = xlim, ylim = ylim, line.col = line.col, 
-            line.width = line.width, ...)
-        cat(paste("Total of", numDist, "plots created"))
-        cat("\n")
-        cat(paste("Use par(mfrow = c(2,", numColWin, ") to see all of them!", 
-            sep = ""))
-        cat("\n")
-    })
+setMethod("plot", signature(x = "distrCollection"), function(x, y, xlab, ylab, xlim, ylim, line.col, line.width, 
+    ...) {
+    y = NULL
+    object = x
+    distrList = object@distr
+    numDist = length(object@distr)
+    numColWin = ceiling(numDist/2)
+    if (missing(xlim)) 
+        xlim = .xylimits(object)$xlim
+    if (missing(ylim)) 
+        ylim = .xylimits(object)$ylim
+    if (missing(line.col)) 
+        line.col = "red"
+    if (missing(line.width)) 
+        line.width = 1
+    lapply(distrList, plot, xlim = xlim, ylim = ylim, line.col = line.col, line.width = line.width, ...)
+    cat(paste("Total of", numDist, "plots created"))
+    cat("\n")
+    cat(paste("Use par(mfrow = c(2,", numColWin, ") to see all of them!", sep = ""))
+    cat("\n")
+})
 qqPlot = function(x, y, main, xlab, ylab, start, ...) {
     DB = FALSE
     parList = list(...)
@@ -203,13 +188,11 @@ qqPlot = function(x, y, main, xlab, ylab, start, ...) {
     if (missing(y)) 
         y = "normal"
     if (missing(main)) 
-        main = paste("Q-Q Plot for", deparse(substitute(y)), 
-            "distribution")
+        main = paste("Q-Q Plot for", deparse(substitute(y)), "distribution")
     if (missing(ylab)) 
         ylab = paste("Quantiles for", deparse(substitute(x)))
     if (missing(xlab)) 
-        xlab = paste("Quantiles from", deparse(substitute(y)), 
-            "distribution")
+        xlab = paste("Quantiles from", deparse(substitute(y)), "distribution")
     if (is.numeric(y)) {
         cat("\ncalling (original) qqplot from namespace stats!\n")
         return(stats::qqplot(x, y, ...))
@@ -218,8 +201,7 @@ qqPlot = function(x, y, main, xlab, ylab, start, ...) {
     theoretical.quantiles = NULL
     xs = sort(x)
     distribution = tolower(y)
-    distWhichNeedParameters = c("weibull", "logistic", "gamma", 
-        "exponential", "f", "geometric", "chi-squared", "negative binomial", 
+    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", "negative binomial", 
         "poisson")
     if (is.character(distribution)) {
         qFun = .charToDistFunc(distribution, type = "q")
@@ -248,8 +230,7 @@ qqPlot = function(x, y, main, xlab, ylab, start, ...) {
         params = .lfkp(parList, formals(qFun))
         parameter = .lfrm(as.list(parameter), params)
         parameter = c(parameter, params)
-        theoretical.quantiles = do.call(qFun, c(list(c(theoretical.probs)), 
-            parameter))
+        theoretical.quantiles = do.call(qFun, c(list(c(theoretical.probs)), parameter))
         xq <- do.call(qFun, c(list(c(0.25, 0.75)), parameter))
         if (DB) {
             print(paste("parameter: ", parameter))
@@ -281,8 +262,7 @@ qqPlot = function(x, y, main, xlab, ylab, start, ...) {
     slope <- diff(yq)/diff(xq)
     int <- yq[1L] - slope * xq[1L]
     if (!is.infinite(slope)) {
-        params = .lfkp(parList, c(formals(abline), list(lwd = 1, 
-            col = 1)))
+        params = .lfkp(parList, c(formals(abline), list(lwd = 1, col = 1)))
         params$a = int
         params$b = slope
         if (!(is.null(params$col[2]) || is.na(params$col[2]))) 
@@ -291,8 +271,7 @@ qqPlot = function(x, y, main, xlab, ylab, start, ...) {
     }
     invisible(list(x = theoretical.quantiles, y = xs))
 }
-ppPlot = function(x, distribution, probs, main, xlab, 
-    ylab, xlim, ylim, grid = TRUE, box = TRUE, stats = TRUE, 
+ppPlot = function(x, distribution, probs, main, xlab, ylab, xlim, ylim, grid = TRUE, box = TRUE, stats = TRUE, 
     start, ...) {
     DB = FALSE
     if (!require(MASS)) 
@@ -322,16 +301,14 @@ ppPlot = function(x, distribution, probs, main, xlab,
     if (is.numeric(x)) {
         x1 <- sort(na.omit(x))
         if (missing(xlim)) 
-            xlim = c(min(x1) - 0.1 * diff(range(x1)), max(x1) + 
-                0.1 * diff(range(x1)))
+            xlim = c(min(x1) - 0.1 * diff(range(x1)), max(x1) + 0.1 * diff(range(x1)))
     }
     if (missing(distribution)) 
         distribution = "normal"
     if (missing(ylim)) 
         ylim = NULL
     if (missing(main)) 
-        main = paste("Probability Plot for", deparse(substitute(distribution)), 
-            "distribution")
+        main = paste("Probability Plot for", deparse(substitute(distribution)), "distribution")
     if (missing(xlab)) 
         xlab = deparse(substitute(x))
     if (missing(ylab)) 
@@ -340,13 +317,11 @@ ppPlot = function(x, distribution, probs, main, xlab,
         distList = x@distr
         for (i in 1:length(distList)) {
             d = distList[[i]]
-            do.call(ppPlot, c(list(x = d@x, distribution = d@name), 
-                parList))
+            do.call(ppPlot, c(list(x = d@x, distribution = d@name), parList))
         }
         invisible()
     }
-    distWhichNeedParameters = c("weibull", "gamma", "logistic", 
-        "exponential", "f", "geometric", "chi-squared", "negative binomial", 
+    distWhichNeedParameters = c("weibull", "gamma", "logistic", "exponential", "f", "geometric", "chi-squared", "negative binomial", 
         "poisson")
     if (is.character(distribution)) {
         qFun = .charToDistFunc(distribution, type = "q")
@@ -409,8 +384,7 @@ ppPlot = function(x, distribution, probs, main, xlab,
         params$col = params$col[1]
     do.call(plot, params)
     pParams = params
-    params = .lfkp(parList, list(cex.main = 1, cex.axis = 1, 
-        cex.lab = 1))
+    params = .lfkp(parList, list(cex.main = 1, cex.axis = 1, cex.lab = 1))
     params$side = 1
     axisAtX = do.call(axis, params)
     params$side = 2
@@ -419,8 +393,7 @@ ppPlot = function(x, distribution, probs, main, xlab,
     params$las = 2
     do.call(axis, params)
     if (grid) {
-        params = .lfkp(parList, c(formals(abline), list(lwd = 1, 
-            col = 1)))
+        params = .lfkp(parList, c(formals(abline), list(lwd = 1, col = 1)))
         params$h = axisAtY
         params$v = axisAtX
         if (!(is.null(params$col[3]) || is.na(params$col[3]))) 
@@ -436,8 +409,7 @@ ppPlot = function(x, distribution, probs, main, xlab,
     slope <- diff(yq)/diff(xq)
     int <- yq[1] - slope * xq[1]
     if (!is.infinite(slope)) {
-        params = .lfkp(parList, c(formals(abline), list(lwd = 1, 
-            col = 1)))
+        params = .lfkp(parList, c(formals(abline), list(lwd = 1, col = 1)))
         params$a = int
         params$b = slope
         if (!(is.null(params$col[2]) || is.na(params$col[2]))) 

@@ -13,10 +13,15 @@
 \def\Routbackground{\color{white}}    %Rahmenfarbe Output
 %huebsche Schrift
 \usepackage[T1]{fontenc}
+
 \usepackage{lmodern}
+\tolerance=2000
+\usepackage{microtype}
+
 \addtokomafont{sectioning}{\rmfamily}
 
 \usepackage{url}
+\usepackage{listings}
 \usepackage{framed}
 \usepackage{array,booktabs,dcolumn, multirow}  %schoene Tabelle
 \usepackage{ragged2e}
@@ -58,10 +63,14 @@
 \definecolor{navy}{RGB}{0,0,128}
 \definecolor{Gruen}{RGB}{66,161,66}
 
-%Umgebung fr R-Eingaben
-\lstnewenvironment{RI}{\footnotesize \color{red2} \lstset{language=R, basicstyle=\ttfamily, commentstyle=\color{Gruen}, breaklines=true}}{}
-%Umgebung fr R-Ausgaben
-\lstnewenvironment{RO}{\footnotesize \color{navy} \lstset{language=R, basicstyle=\ttfamily, commentstyle=\color{Gruen}, breaklines=true}}{}
+
+\newcommand{\rIn}[1]{\textcolor{red2}{\texttt{#1}}}			%Fuer R Output im Text
+\newcommand{\rOut}[1]{\textcolor{navy}{\texttt{#1}}}		%Fuer R Output im Text
+%
+%%Umgebung fr R-Eingaben
+%\lstnewenvironment{RI}{\footnotesize \color{red2} \lstset{language=R, basicstyle=\ttfamily, commentstyle=\color{Gruen}, breaklines=true}}{}
+%%Umgebung fr R-Ausgaben
+%\lstnewenvironment{RO}{\footnotesize \color{navy} \lstset{language=R, basicstyle=\ttfamily, commentstyle=\color{Gruen}, breaklines=true}}{}
 
 \author{Thomas Roth \\Technical University Berlin}
 %\Plainauthor{Thomas Roth}
@@ -134,8 +143,8 @@ This vignette is intended to give a short introduction into the methods of the q
 Working with the qualityTools package is straightforward as you will see in the next few pages. The qualityTools package was implemented for teaching purposes in order to serve as a (Six-Sigma)-Toolbox and contains methods that are associated to a problem solving cycle. There are many problem solving cycles around with new ones emerging although most of these new ones take on special aspects. A very popular problem solving cycle is the \textbf{PDCA} cycle (i.e. plan $\curvearrowright$ do$\curvearrowright$ check$\curvearrowright$ act$\circlearrowleft$) which was made popular by Deming\footnote{William E. Deming} but goes back to Shewart\footnote{Walter A. Shewhart}. As part of the widely known and accepted Six-Sigma-Methodology some enhancements to this problem solving cycle were made and a problem solving cycle consisting of the five phases Define, Measure, Analyze, Improve and Control emerged.
 
 \begin{description}
-\item[Define]	Describe the problem and its (financial) consequences. Interdisciplinary workgroups contribute to the problem and its consequences which is the pivotal stage in narrowing down the problem. Process flow diagrams identify crucial process elements (i.e. activities), creativity techniques such as Brainwriting and Brainstorming as well as the SIPOC\footnote{Suppliers, inputs, process, outputs, customers} technique should lead, depending on the future size of the project, to possibly a project charter.
-\item[Measure] 	Come up with a reasonable plan for collecting the required data and make sure that the measurement systems are capable (i.e. no or known bias and as little system immanent variation contributing to the measurements as possible). \emph{Variation} and \emph{bias} are the enemy to finding effects. The bigger the background noise the less probable are the chances of success using limited resources for all kinds of experiments.
+\item[Define]	Describe the problem and its (financial) consequences. Interdisciplinary workgroups contribute to the problem and its consequences which is the pivotal stage in narrowing down the problem. Process flow diagrams identify crucial process elements (i.e. activities), creativity techniques such as Brainwriting and Brainstorming as well as the SIPOC\footnote{Suppliers, inputs, process, outputs, customers} technique should lead, depending on the future size of the project, to possibly a project charter. Amongst other things, the project charter serves as a descripition of the process, customer\'s requirements in relation to corporate objectives.
+\item[Measure] 	Come up with a reasonable plan for collecting the required data and make sure that the measurement systems are capable (i.e. no or known bias and as little system immanent variation contributing to the measurements as possible). \emph{Variation} and \emph{bias} are the enemy to finding effects. The bigger the background noise the less probable are the chances of success using limited resources for all kinds of experiments. Within the Measure phase a description of the situation is given with the help of process- or gage capability indices (MSA\footnote{Measurement Systems Analysis} Type I) or a Gage R\&R (MSA Type II)\cite{MSA.2010}.
 \item[Analyze]	Try to find the root causes of the problem using various statistical methods such as histograms, regression, correlation, distribution identification, analysis of variance, multi-vari-charts.
 \item[Improve]	Use designed experiments i.e. full and fractional factorials, response surface designs, mixture designs, taguchi designs and the desirability concept to find optimal settings or solutions for a problem.
 \item[Control]	Once an improvement was achieved it needs to be secured, meaning arrangements need to be implemented in order to secure the level of improvement. Besides proper documentation, the use of statistical process control (i.e. quality-control-charts) can be used to monitor the behavior of a process. Although quite often referred to as \emph{Show Programm for Customers}, SPC is able to help to distinguish between \emph{common causes} and \emph{special causes} in the process behavior.
@@ -162,16 +171,12 @@ Suppose a company is investigating non compliant units (products). 120 units wer
 library(qualityTools)
 @
 
-<<Pareto, echo=TRUE>>= %include=FALSE, 
+\begin{figure}[htbp]\begin{center}
+<<fig=TRUE, echo=TRUE, results=hide, width=14, height=7>>=
 #create artificial defect data set
 defects = c(rep("E", 62), rep("B", 15), rep("F", 3), rep("A", 10),
 rep("C",20), rep("D", 10))
 paretoChart(defects)
-@
-
-\begin{figure}[htbp]\begin{center}
-<<fig=TRUE, echo=FALSE, results=hide, width=14, height=7>>=
-<<Pareto>>
 @
 \caption{Pareto Chart}\label{fig:paretochart}
 \end{center}\end{figure}
@@ -186,7 +191,7 @@ Besides this use case, pareto charts are also used for visualizing the effect si
 
 
 
-%%%%MEASURE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%MEASURE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{qualityTools in MEASURE} \label{sec:measure}
 \marginpar{\includegraphics[width=1.5cm]{Bilder/M.pdf}}
@@ -206,15 +211,71 @@ Gages can have two types of impairments:
 
 These impairments lead to varying measurements for repeated measurements of the same unit (e.g. a product). The amount of tolerable variation of course depends on the number of distinctive categories you need to be able to identify in order to characterize the product. This tolerable amount of variation for a measurement system relates directly to the tolerance range of the characteristics of a product.
 
-\subsection{Gage Repeatability\&Reproducibility}
+The capability of a measurement system is crucial for any conclusion based on data. Non-capable Measurement Systems due to a non adjusted bias, or a Measurement System immanent variation implicate two serious errors of judgement.
 
+\begin{itemize}
+\item Accepting items that are actually \emph{out of tolerance}
+\item Declining items that are actually \emph{within tolerance}
+\end{itemize}
+
+\noindent Thus the capability of Measurement Systems is directly related to costs (see figure \ref{fig:gageCapability}).
+
+\begin{figure}\begin{center}
+	\includegraphics[width=\textwidth]{Bilder/gageCapability.pdf}
+	\caption{Errors of judgement due to non-capable Measurement Systems}
+	\label{fig:gageCapability}
+\end{center}\end{figure}
+
+
+\subsection{Gage Capability - MSA Type I}
+Suppose an engineer wants to check the capability of an optical Measurement Device. An unit with known characteristic ($x_m = 10.033mm$) is repeatedly measured $n=25$ times. From the measurement values the mean $\overline{x_g}$ and standard deviation $s_g$\footnote{$\sigma_g$ denotes the standard deviation of the gage which is also referred to as repeatability} can be calculated.
+
+Basically the calculation of an capability index comprises two steps. First a fraction of the tolerance width (i.e. $USL - LSL$)\footnote{Upper Specification Limit and Lower Specification Limit} is calculated. The fraction typically relates to 0.2. In a second step this fraction is set in relation with a measure of the process spread (i.e. the range in which 95.5\% or 99.73\% of the characteristics of a process are to be expected). For normal distributed measurement values this relates to $k=2\sigma_g$ and $k=3\sigma_g$ calculated from the measurement values.  For non-normal distributed data the corresponding quantiles can be taken. If there's no bias this calculation represents the capability index $c_g$ and reflects the true capability of the measurement device.
+
+\begin{align}
+c_g &= \frac{0.2\cdot(USL - LSL)}{6\cdot s_g}\\
+	&= \frac{0.2\cdot(USL - LSL)}{X_{0.99865} - X_{0.00135}}
+\end{align}
+
+However, if there's a bias it is taken into account by substracting it from the numerator. In this case $c_g$ reflects only the potential capability (i.e. capability if bias is corrected) and $c_{gk}$ is an estimator of the actual capability. The bias is calculated as the difference between the known characteristic $x_m$ and the mean of the measurement values $x_g$
+
+\begin{align}
+c_{gk} = \frac{0.1\cdot(USL - LSL) - \left| x_m - x_g \right|}{3\cdot s_g}
+\end{align}
+
+
+Determining if the bias is due to chance or not can be done with the help of a t-test which has the general form:
+
+\begin{align}
+t = \frac{\text{difference in means}}{\text{standard error of the difference}} = \frac{Bias}{\frac{s_{Bias}}{\sqrt{n}}}
+\end{align}
+
+Besides bias and standard deviation it is important to check the run-chart of the measurement values. Using the qualityTools package, all this is easily achieved using the \Remph{cg} method. The output of the \Remph{cg} method is shown in figure \ref{fig:cgMethod}.
+
+
+<<fig=FALSE, echo = TRUE>>=
+x = c(9.991, 10.013, 10.001, 10.007, 10.010, 10.013, 10.008, 10.017, 10.005,
+10.005, 10.002, 10.017, 10.005, 10.002,  9.996, 10.011, 10.009, 10.006,
+10.008, 10.003, 10.002, 10.006, 10.010, 9.992, 10.013)
+cg(x, target = 10.003, tolerance = c(9.903, 10.103))
+@
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{Bilder/cg.pdf}
+\caption{Potentially capable gage with bias}
+\label{fig:cgMethod}
+\end{center}\end{figure}
+
+
+\subsection{Gage Repeatability\&Reproducibility - MSA Type II}
 A common procedure applied in industry is to perform a Gage R\&R analysis to assess the repeatability and the reproducibility of a measurement system. R\&R stands for repeatability and reproducibility. Repeatability hereby refers to the precision of a measurement system (i.e. the standard deviation of subsequent measurements of the same unit). Reproducibility is the part of the overall variance that models the effect of different e.g. operators performing measurements on the same unit and a possible interaction between different operators and parts measured within this Gage R\&R. The overall model is given by
 \begin{align}
-	\sigma^2_{total} &= \sigma^2_{Parts} +\sigma^2_{Operator} +\sigma^2_{Parts\times Operator} +\sigma^2_{Error}
+	\sigma^2_{total} &= \sigma^2_{Parts} +\sigma^2_{Operator} +\sigma^2_{Parts\times Operator} +\sigma^2_{Error} \label{form:gageRR}
 \end{align}
 where $\sigma^2_{Parts}$ models the variation between different units of the same process. $\sigma^2_{Parts}$ is thus an estimate of the inherent process variability. Repeatability is modeled by $\sigma^2_{Error}$ and reproducibility by $\sigma^2_{Operator} +\sigma^2_{Parts\times Operator}$.
 
-Suppose 9 randomly chosen units were measured by 3 randomly chosen operators. Each operator measured each unit three times in a randomly chosen order. The units were presented in a way they could not be distinguished by the operators.
+Suppose 10 randomly chosen units were measured by 3 randomly chosen operators. Each operator measured each unit two times in a randomly chosen order. The units were presented in a way they could not be distinguished by the operators.
 
 The corresponding gage R\&R design can be created using the \Remph{gageRRDesign} method of the qualityTools package. The measurements are assigned to this design using the response method. Methods for analyzing this design are given by \Remph{gageRR} and \Remph{plot}.
 
@@ -239,11 +300,56 @@ plot(gdo)
 <<fig=TRUE, echo=FALSE, results=hide, width=7, height=7>>=
 <<GageRR>>
 @
-\caption{Visualization of the Gage R\&R with random data}
+\caption{Visualization of the Gage R\&R}
 \label{fig:gageRR}
 \end{center}\end{figure}
 
-The standard graphical output of a Gage R\&R is given in figure \ref{fig:gageRR}. A complete explanation of this output is beyond the scope of this vignette.
+The standard graphical output of a Gage R\&R is given in figure \ref{fig:gageRR}.
+
+The barplot gives a visual representation of the Variance Components. \rOut{totalRR} depicts the total \emph{R}epeatability and \emph{R}eproducibility. 48\% of the variance is due to 35\% \rOut{repeatability} (i.e. variation from the gage itself) and 13\% reproducibility (i.e. effect of operator and the interaction between operator and part). It can be seen from the AnOVa table that an interaction between parts and operators is not existing. The remaining 52\% (51.7 in column \rOut{VarCompContrib}) of variation stems from differences between parts taken from the process (i.e. process inherent variation) which can be seen also in the \emph{Measurement by Part} plot. The variaton for measurements taken by one operator is roughly equal for all three operators (\emph{Measurement by Operator}) although operator C seems to produce values that are most of the time larger than the values from the other operators (\emph{Interaction Operator: Part}).
+
+Besides this interpretation of the results critical values (see table \ref{tab:gageCrit}) for totalRR also refered to as GRR\footnote{Gage Repeatability Reproducibility} are used within industry. However, a measurement system should never be judged by critical values alone.
+
+\begin{table}[htbp]
+\caption{critical values for judging the suitability of measurement system}
+\label{tab:gageCrit}
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+Contribution of \rOut{total RR} & Capabability\\
+\midrule
+$\leq 0.1$	& suitable\\
+ $<0.1$ and $< 0.3$ & limited suitability depending upon circumstances\\
+$\geq 0.3$  & not suitable\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+\paragraph*{Checking for interaction}
+The interaction plot provides a visual check of possible interactions between Operator and Part. For each Operator the average measurement value is shown as a function of the part number. Crossing lines indicate that operators are assigning different readings to identical depending on the combination of Operator and Part. Different readings means in the case of an interaction between Operator and Part that on average sometimes smaller or bigger values are assigned depending on the combination of Operator and Part. In this case, lines are practically not crossing but Operator C seems to systematically assign larger readings to the parts than his colleagues.
+
+\paragraph*{Operators}
+To check for an operator dependent effect, measurements are plotted grouped by operators in form of boxplots. Boxplots that differ in size or location might indicate e.g. possible different procedures within the measurement process, which then lead to a systematic difference in the readings. In this case one might discuss a possible effect for operator C which is also supported by the interaction plot.
+
+\paragraph*{Inherent process variation}
+Within this plot Measurements are grouped by operator. Due to the repeated measurements by different Operators per Part an insight into the process is given. A line connecting the mean of the measurements of each part provides an insight into the inherent process variation. Each part is measured number of operator times number of measurements per part.
+
+\paragraph*{Components of variation}
+In order to understand the output of a Gage R\&R study formula \ref{form:gageRR} should be referenced. The variance component \rOut{totalRR} (\rOut{VarComp} column) represents the total \emph{R}epeatability and \emph{R}eproducibility. Since variances are simply added 1.664 is the sum of 1.209 (\rOut{repeatability} given by $\sigma^2_{Error}$) and 0.455 (\rOut{reproducibility}). Reproducibility itself is the sum of \rOut{Operator} ($\sigma^2_{Operator}$) and \rOut{Operator:Part} ($\sigma^2_{Parts\times Operator}$). Since there's no interaction Reproducibility amounts to 0.455. \rOut{Part to Part} amounts to 1.781. Together with the total of repeatability and reproducibility this gives $\sigma^2_{Total} = 3.446$
+
+\subsubsection{Relation to the Measurement Systems Terminology}
+The Measurement Systems Analysis Manual \cite{MSA.2010}uses a specific Terminology for the terms \rOut{repeatability}, \rOut{reproducibility}, \rOut{Operator}, \rOut{Part to Part}, \rOut{totalRR} and the interaction \rOut{Operator:Part}. The objective of this paragraph is to give a short overview of these terms and how they relate to the terms used in the \rOut{gageRR} methods of the qualityTools package.
+\begin{description}
+\item[EV] stands for Equipment Variation which is the variation due to the \rOut{repeatability}
+\item[AV] stands for Appraiser Variation which is the variation due to the \rOut{operator}s.
+\item[INT] stands for the interaction Appraiser:Part which is the \rOut{Operator:Part} interaction
+\item[GRR] stands for Gage Repeatability\&Reproducibility and refers to the variation introduced by the measurement system. The equivalent to this term is \rOut{totalRR} which is the sum of \rOut{repeatability} and \rOut{reproducibility}.
+\item[PV] stands for Part Variation which relates to \rOut{Part to Part} 
+\end{description}
+
 \pagebreak
 
 
@@ -378,16 +484,11 @@ Suppose a process has 5 factors A, B, C, D and E. The yield (i.e. response) of t
 
 <<echo=TRUE>>=
 set.seed(1234)
-#fdo - factorial design object
-fdo = facDesign(k = 3, centerCube = 4)
-#optional
-names(fdo) = c("Factor 1", "Factor 2", "Factor 3")
-#optional
-lows(fdo) = c(80, 120, 1)
-#optional
-highs(fdo) = c(120, 140, 2)
-#information about the factorial design
-summary(fdo)
+fdo = facDesign(k = 3, centerCube = 4) #fdo - factorial design object
+names(fdo) = c("Factor 1", "Factor 2", "Factor 3") #optional
+lows(fdo) = c(80, 120, 1) #optional
+highs(fdo) = c(120, 140, 2) #optional
+summary(fdo) #information about the factorial design
 @
 
 
@@ -742,7 +843,7 @@ Blocking is another relevant feature and can be achieved by the \Remph{blocking}
 
 \subsection{Desirabilites}
 
-Many problems involve the simultaneous optimization of more than one response variable. Optimization can be achieved by either maximizing or minimizing the value of the response or by trying to set the response on a specific target. Optimization using the Desirabilities approach \cite{Der80}, the (predicted) values of the response variables are transformed into values within the interval [0,1] using three different desirability methods for the three different optimization criterias (i.e. minimize, maximize, target). Each value of a response variable can be assigned a specific desirability, optimizing more than one response variable. The geometric mean of the specific desirabilities characterizes the overall desirability.
+Many problems involve the simultaneous optimization of more than one response variable. Optimization can be achieved by either maximizing or minimizing the value of the response or by trying to set the response on a specific target. Optimization using the Desirabilities approach \cite{Derringer.1980}, the (predicted) values of the response variables are transformed into values within the interval [0,1] using three different desirability methods for the three different optimization criterias (i.e. minimize, maximize, target). Each value of a response variable can be assigned a specific desirability, optimizing more than one response variable. The geometric mean of the specific desirabilities characterizes the overall desirability.
 
 \begin{align}
 \sqrt[n]{\prod_{i=1}^n {d_i}}
@@ -793,7 +894,7 @@ plot(d1, col = 2); plot(d3, col = 2)
 
 \subsection{Using desirabilities together with designed experiments}
 
-The \Remph{desirability} methodology is supported by the factorial design objects. The output of the \Remph{desirability} method can be stored in the design object, so that information that belongs to each other is stored in the same place (i.e. the design itself). In the following few R lines a designed experiment that uses desirabilities will be shown. The data used comes from \cite{Der80}.
+The \Remph{desirability} methodology is supported by the factorial design objects. The output of the \Remph{desirability} method can be stored in the design object, so that information that belongs to each other is stored in the same place (i.e. the design itself). In the following few R lines a designed experiment that uses desirabilities will be shown. The data used comes from \cite{Derringer.1980}.
 Four responses y1, y2, y3, and y4 were defined. Factors used in this experiment were silica, silan, and sulfur with high factor settings of  1.7, 60, 2.8 and low factor settings of 0.7, 40, 1.8. It was desired to have y1 and y2 maximized and y3 and y4 set on a specific target (see below).
 
 First of all the corresponding design that was used in the paper is created using the method \Remph{rsmDesign} of the qualityTools package. Then we use the \Remph{randomize} method to obtain the standard order of the design.
@@ -841,7 +942,7 @@ The desirabilities need to be defined with the names of the response variables i
 desires(ddo)=d1; desires(ddo)=d2; desires(ddo)=d3; desires(ddo)=d4
 @
 
-Fits are set as in \cite{Der80} using the fits methods of the qualityTools package.
+Fits are set as in \cite{Derringer.1980} using the fits methods of the qualityTools package.
 
 <<echo=TRUE, results=hide>>=
 fits(ddo) = lm(y1 ~ A+B+C+A:B+A:C+B:C+I(A^2)+I(B^2)+I(C^2), data = ddo)
@@ -850,7 +951,7 @@ fits(ddo) = lm(y3 ~ A+B+C+A:B+A:C+B:C+I(A^2)+I(B^2)+I(C^2), data = ddo)
 fits(ddo) = lm(y4 ~ A+B+C+A:B+A:C+B:C+I(A^2)+I(B^2)+I(C^2), data = ddo)
 @
 
-The overall optimum can now be calculated using the method \Remph{optimum} of the qualityTools package giving the same factor settings as stated in \cite{Der80} for an overall desirability of 0.58 and individual desirabilities of 0.187, 1, 0.664, 0.934 for y1, y2, y3 and y4.
+The overall optimum can now be calculated using the method \Remph{optimum} of the qualityTools package giving the same factor settings as stated in \cite{Derringer.1980} for an overall desirability of 0.58 and individual desirabilities of 0.187, 1, 0.664, 0.934 for y1, y2, y3 and y4.
 
 <<echo=TRUE>>=
 optimum(ddo, type = "optim")
@@ -931,6 +1032,21 @@ effectPlot(tdo, col = 2)
 \label{fig:taguchiEffectPlot}
 \end{center}\end{figure}
 
+\section{Session Information}
+The version number of R and packages loaded for generating the vignette were:
+<<echo=TRUE>>=
+sessionInfo()
+@
+
+\section{R-Code in this Vignette}
+All of the R-Code used in this vignette can be found in the RCode.R file.
+
+<<echo=FALSE, results=hide,split=TRUE>>= 
+Stangle(file="qualityTools.rnw", output="RCode.R", annotate=FALSE) 
+@ 
+
+
+%\lstinputlisting[emptylines=0]{RCode.R} 
 
 \clearpage
 
@@ -938,8 +1054,10 @@ effectPlot(tdo, col = 2)
 %\input{anhang}
 
 \clearpage
+
+
 %einkommentieren fr Literaturverzeichnis
-\bibliographystyle{gerplain}
+\bibliographystyle{alphadin}
 \bibliography{vignette}
 
 \nocite{*} %damit alle und nicht nur im Text zitierte Literaturangaben angegeben werden
