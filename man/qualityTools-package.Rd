@@ -1,5 +1,5 @@
 \name{qualityTools-package}
-\Rdversion{1.1}
+\Rdversion{1.2}
 \alias{qualityTools-package}
 \alias{qualityTools}
 \docType{package}
@@ -8,7 +8,8 @@ Statistical Methods for Quality Sciences
 }
 %\Description
 \description{
-Package contains methods associated with the (\strong{D})\bold{efine} (\strong{M})\bold{easure} (\strong{A})\bold{nalyze} (\strong{I})\bold{mprove} and (\strong{C})\bold{ontrol} (i.e. \bold{DMAIC}) cycle of the Six Sigma Quality Management methodology.
+This Package contains methods associated with the (\strong{D})\bold{efine} (\strong{M})\bold{easure} (\strong{A})\bold{nalyze} (\strong{I})\bold{mprove} and (\strong{C})\bold{
+ontrol} (i.e. \bold{DMAIC}) cycle of the Six Sigma Quality Management methodology.
 
 \enumerate{
 \item \bold{Define:} Pareto Chart
@@ -23,17 +24,18 @@ Package contains methods associated with the (\strong{D})\bold{efine} (\strong{M
 }
 }
 
+
 \details{
 \tabular{ll}{
 Package: \tab qualityTools\cr
 Type: \tab Package\cr
-Version: \tab 0.7\cr
+Version: \tab 0.76\cr
 Date: \tab 2010-02-01\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }}
 
-\note{This package is used for teaching and is to be revised in the next months.}
+\note{This package is used for teaching.}
 
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}\cr
@@ -52,6 +54,8 @@ example(gageRR)
 example(facDesign)
 %%example(normalPlot)
 example(fracDesign)
+example(effectPlot)
+example(taguchiDesign)
 example(rsmDesign)
 example(paretoPlot)
 example(wirePlot)

@@ -60,8 +60,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de
 temp = gageRRDesign(Operators = 3,3,3)
 
 #set the response i.e. Measurements
-set.seed(4756)
-response(temp)  = rnorm(27, 20)
+response(temp)  = rnorm(27)
 
 #perform a Gage R&R
 gdo = gageRR(temp)

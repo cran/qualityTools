@@ -5,6 +5,8 @@
 \alias{as.data.frame,desOpt-method}
 \alias{as.data.frame,facDesign-method}
 \alias{as.data.frame,mixDesign-method}
+\alias{as.data.frame,taguchiDesign-method}
+\alias{as.data.frame,steepAscent-method}
 \alias{as.data.frame,gageRR-method}
 \title{Methods for Function as.data.frame in Package base}
 \description{Methods for function \code{as.data.frame} in Package base}
@@ -27,6 +29,14 @@ object of class facDesign
 }
 
 \item{\code{signature(x = "mixDesign")}}{
+object of class mixDesign
+}
+
+\item{\code{signature(x = "taguchiDesign")}}{
+object of class mixDesign
+}
+
+\item{\code{signature(x = "steepAscent")}}{
 object of class mixDesign
 }
 

@@ -7,6 +7,8 @@
 \alias{units<-,facDesign-method}
 \alias{units,mixDesign-method}
 \alias{units<-,mixDesign-method}
+\alias{units,taguchiDesign-method}
+\alias{units<-,taguchiDesign-method}
 \title{Get and set methods}
 \description{Get and set the \code{units} for the factors in an object of class facDesign}
 
@@ -28,6 +30,9 @@ Get and set the \code{units} for the factors in an object of class facDesign
 }
 \item{\code{signature(x = "mixDesign")}}{
 Get and set the \code{units} for the factors in an object of class mixDesign
+}
+\item{\code{signature(x = "taguchiDesign")}}{
+Get and set the \code{units} for the factors in an object of class taguchiDesign
 }
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}

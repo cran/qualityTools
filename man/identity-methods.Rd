@@ -3,6 +3,7 @@
 \alias{identity}
 \alias{identity-methods}
 \alias{identity,facDesign-method}
+\alias{identity,taguchiDesign-method}
 \title{Get method}
 \description{Calculates the alias table for a fractional factorial design and prints an easy to read summary of the defining relations such as 'I = ABCD' for a standard 2^(4-1) factorial design.}
 
@@ -20,6 +21,9 @@
 \section{Methods}{
 \describe{
 \item{\code{signature(x = "facDesign")}}{
+Calculates the alias table for a fractional factorial design and prints an easy to read summary of the defining relations such as 'I = ABCD' for a standard 2^(4-1) factorial design.
+}
+\item{\code{signature(x = "taguchiDesign")}}{
 Calculates the alias table for a fractional factorial design and prints an easy to read summary of the defining relations such as 'I = ABCD' for a standard 2^(4-1) factorial design.
 }
 }}

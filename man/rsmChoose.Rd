@@ -16,7 +16,7 @@ Useful Central Composite Designs with orthogonal blocking and near rotatability
 object of class facDesign
 }
 \references{
-Response Surface Methodology (2009) Myers, Montgomery, Anderson-Cook p.329, table 7.5
+Response Surface Methodology.(2009) Myers, Montgomery, Anderson-Cook p.329, table 7.5
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
