@@ -280,8 +280,8 @@ gageRR = function(gdo, method = "crossed", sigma = 5.15,
                 MSe = model["Residuals", "Mean Sq"]
             else warning("missing Residuals in model")
             Cb = Ca = Cab = Cerror = 0
-            Cb = (MSb - MSab)/(numA * numMPP)
-            Ca = (MSa - MSab)/(numB * numMPP)
+            Cb = (MSb - MSe)/(numA * numMPP)
+            Ca = (MSa - MSe)/(numB * numMPP)
             Cab = 0
             Cerror = (MSe)
             gdo@RedANOVA = redFit

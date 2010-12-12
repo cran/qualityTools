@@ -51,7 +51,7 @@ pcr = function(x, distribution = "normal", lsl, usl,
     lineCol = "red", lineType = "solid", specCol = "black", specWidth = 2, 
     cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...) {
     DB = FALSE
-    require(MASS)
+    require(MASS, quietly = TRUE)
     par.orig <- par(c("mar", "oma", "mfrow"))
     on.exit(par(par.orig))
     parList = list(...)
