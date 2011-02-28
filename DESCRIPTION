@@ -1,7 +1,7 @@
 Package: qualityTools
 Type: Package
 Title: Statistical Methods for Quality Science
-Version: 1.31.1
+Version: 1.41
 Date: 12-10-2010
 Author: Thomas Roth
 Maintainer: Thomas Roth <thomas.roth@tu-berlin.de>
@@ -25,6 +25,6 @@ LazyLoad: yes
 Depends: R(>= 2.9.0), graphics, methods
 Imports: graphics
 Suggests: MASS, methods
+Packaged: 2011-02-27 20:24:49 UTC; roth
 Repository: CRAN
-Date/Publication: 2011-02-18 19:18:22
-Packaged: 2011-02-14 22:47:18 UTC; ripley
+Date/Publication: 2011-02-28 09:29:38

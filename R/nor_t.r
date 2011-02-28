@@ -1,6 +1,5 @@
-normalPlot = function(fdo, threeWay = FALSE, na.last = NA, 
-    alpha = 0.05, sig.col = c("red1", "red2", "red3"), main, 
-    ylim, xlim, xlab, ylab, pch, ...) {
+normalPlot = function(fdo, threeWay = FALSE, na.last = NA, alpha = 0.05, sig.col = c("red1", "red2", "red3"), 
+    main, ylim, xlim, xlab, ylab, pch, ...) {
     DB = FALSE
     old.par <- par(no.readonly = TRUE)
     on.exit(par(old.par))
@@ -35,8 +34,7 @@ normalPlot = function(fdo, threeWay = FALSE, na.last = NA,
         effect = 2 * coefs
         if (all(is.na(effect))) 
             stop("effects could not be calculated")
-        sig = summary(lm.1)$coefficients[, "Pr(>|t|)"][-pmatch("(Intercept)", 
-            names(coef(lm.1)))]
+        sig = summary(lm.1)$coefficients[, "Pr(>|t|)"][-pmatch("(Intercept)", names(coef(lm.1)))]
         effect.list[[j]] = effect
         df.resid = df.residual(lm.1)
         nc = nrow(centerCube(fdo))
@@ -111,11 +109,9 @@ normalPlot = function(fdo, threeWay = FALSE, na.last = NA,
         params$col = sig.col
         do.call(plot, params)
         text(sQ[1:mid], tQ[1:mid], names(sQ)[1:mid], pos = 4)
-        text(sQ[(mid + 1):last], tQ[(mid + 1):last], names(sQ)[(mid + 
-            1):last], pos = 2)
+        text(sQ[(mid + 1):last], tQ[(mid + 1):last], names(sQ)[(mid + 1):last], pos = 2)
         if (df.resid > 0) 
-            legend("topleft", legend = leg.txt, col = leg.col, 
-                pch = pch, inset = 0.02)
+            legend("topleft", legend = leg.txt, col = leg.col, pch = pch, inset = 0.02)
         xq = quantile(effect, prob = c(0.25, 0.75))
         yq = c(0.25, 0.75)
     }
@@ -126,8 +122,7 @@ normalPlot = function(fdo, threeWay = FALSE, na.last = NA,
     slope <- diff(yq)/diff(xq)
     int <- yq[1] - slope * xq[1]
     if (!is.infinite(slope)) {
-        params = .lfkp(parList, c(formals(abline), list(lwd = 1, 
-            col = 1)))
+        params = .lfkp(parList, c(formals(abline), list(lwd = 1, col = 1)))
         params$a = int
         params$b = slope
         if (!(is.null(params$col[2]) || is.na(params$col[2]))) 

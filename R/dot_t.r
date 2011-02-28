@@ -1,5 +1,4 @@
-dotPlot = function(x, group, xlim, ylim, col, xlab, 
-    ylab, pch, cex, breaks, stacked = TRUE, ...) {
+dotPlot = function(x, group, xlim, ylim, col, xlab, ylab, pch, cex, breaks, stacked = TRUE, ...) {
     DB = FALSE
     pch.size = "O"
     grouped = TRUE
@@ -24,8 +23,7 @@ dotPlot = function(x, group, xlim, ylim, col, xlab,
     if (missing(col) || length(unique(group)) > length(col)) 
         col = 1:length(unique(group))
     if (missing(breaks)) {
-        plot(1, 1, xlim = xlim, ylim = ylim, type = "n", axes = FALSE, 
-            cex = cex, xlab = xlab, ylab = ylab)
+        plot(1, 1, xlim = xlim, ylim = ylim, type = "n", axes = FALSE, cex = cex, xlab = xlab, ylab = ylab)
         slotSizeX = strwidth(pch.size, units = "user", cex = cex)
         if (DB) 
             print(paste("slotSizeX:", slotSizeX))
@@ -34,15 +32,13 @@ dotPlot = function(x, group, xlim, ylim, col, xlab,
         temp2 = numeric(length(temp1) + 2)
         temp2[2:(length(temp1) + 1)] = temp1
         temp2[1] = temp2[1] - 1.01 * diff(c(temp1[1], temp1[2]))
-        temp2[length(temp2)] = rev(temp1)[1] + 1.01 * diff(c(temp1[1], 
-            temp1[2]))
+        temp2[length(temp2)] = rev(temp1)[1] + 1.01 * diff(c(temp1[1], temp1[2]))
         temp2 = temp2 * span + min(x)
         temp = min(x) + ppoints(span/slotSizeX) * span
         breaks = numeric(length(temp) + 2)
         breaks[2:(length(temp) + 1)] = temp
         breaks[1] = temp[1] - diff(c(temp[1], temp[2])) * 1.001
-        breaks[length(breaks)] = rev(temp)[1] + diff(c(temp[1], 
-            temp[2])) * 1.001
+        breaks[length(breaks)] = rev(temp)[1] + diff(c(temp[1], temp[2])) * 1.001
         breaks = temp2
     }
     slotSizeY = strheight(pch.size, units = "user", cex = cex)
@@ -53,8 +49,7 @@ dotPlot = function(x, group, xlim, ylim, col, xlab,
     temp2 = numeric(length(temp1) + 2)
     temp2[2:(length(temp1) + 1)] = temp1
     temp2[1] = temp2[1] - 1.01 * diff(c(temp1[1], temp1[2]))
-    temp2[length(temp2)] = rev(temp1)[1] + 1.01 * diff(c(temp1[1], 
-        temp1[2]))
+    temp2[length(temp2)] = rev(temp1)[1] + 1.01 * diff(c(temp1[1], temp1[2]))
     yVec = temp2 * span + min(ylim)
     if (yVec[1] < 0) 
         yVec = yVec + abs(yVec[1])
@@ -104,8 +99,7 @@ dotPlot = function(x, group, xlim, ylim, col, xlab,
     if (grouped && !stacked) {
         groupIndex = unique(group)
         par(mfrow = c(length(groupIndex), 1))
-        for (i in groupIndex) dotPlot(x[group == i], xlim = xlim, 
-            breaks = breaks, cex = cex, xlab = xlab, ylab = ylab, 
+        for (i in groupIndex) dotPlot(x[group == i], xlim = xlim, breaks = breaks, cex = cex, xlab = xlab, ylab = ylab, 
             col = col, pch = pch, ...)
     }
     else {
@@ -114,8 +108,7 @@ dotPlot = function(x, group, xlim, ylim, col, xlab,
             mat = matrix(mat, nrow = 1)
         if (DB) 
             print(mat)
-        plot(1, 1, xlim = xlim, ylim = ylim, type = "n", cex = cex, 
-            xlab = xlab, ylab = ylab, ...)
+        plot(1, 1, xlim = xlim, ylim = ylim, type = "n", cex = cex, xlab = xlab, ylab = ylab, ...)
         for (i in 1:nrow(mat)) {
             x = hMids[!is.na(mat[i, ])]
             y = rep(i * 0.3, times = length(x))

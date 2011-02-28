@@ -1,11 +1,9 @@
-setClass(Class = "steepAscent", representation = representation(name = "character", 
-    X = "data.frame", response = "data.frame"))
+setClass(Class = "steepAscent", representation = representation(name = "character", X = "data.frame", response = "data.frame"))
 setMethod("response", "steepAscent", function(object) {
     out = object@response
     return(out)
 })
-setReplaceMethod("response", "steepAscent", function(object, 
-    value) {
+setReplaceMethod("response", "steepAscent", function(object, value) {
     if (is.vector(value)) {
         temp = data.frame(value)
         names(temp) = deparse(substitute(value))
@@ -24,35 +22,29 @@ setReplaceMethod("response", "steepAscent", function(object,
     }
     stop(paste(deparse(substitute(value)), " needs to be a vector or data.frame"))
 })
-setMethod("[", signature(x = "steepAscent", i = "ANY", 
-    j = "ANY"), function(x, i, j) {
+setMethod("[", signature(x = "steepAscent", i = "ANY", j = "ANY"), function(x, i, j) {
     bound = ncol(x@X)
     if (j <= bound) 
         x@X[i, j]
     else x@response[i, j - bound]
 })
-setMethod("as.data.frame", "steepAscent", function(x, 
-    row.names = NULL, optional = FALSE, ...) {
+setMethod("as.data.frame", "steepAscent", function(x, row.names = NULL, optional = FALSE, ...) {
     return(cbind(x@X, x@response))
 })
-as.data.frame.steepAscent = function(x, row.names = NULL, 
-    optional = FALSE, ...) {
+as.data.frame.steepAscent = function(x, row.names = NULL, optional = FALSE, ...) {
     return(cbind(x@X, x@response))
 }
-setMethod("show", signature(object = "steepAscent"), 
-    function(object) {
-        print(as.data.frame(object))
-    })
+setMethod("show", signature(object = "steepAscent"), function(object) {
+    print(as.data.frame(object))
+})
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-setMethod("plot", signature(x = "steepAscent"), function(x, 
-    y, ...) {
+setMethod("plot", signature(x = "steepAscent"), function(x, y, ...) {
     Delta = (x@X)$Delta
     frame = cbind(Delta, response(x))
     names(frame) = c("Delta", names(response(x)))
     plot(frame, ...)
 })
-steepAscent = function(factors, response, size = 0.2, 
-    steps = 5, data) {
+steepAscent = function(factors, response, size = 0.2, steps = 5, data) {
     DB = FALSE
     if (missing(data)) 
         return("missing an object of class 'facDesign'")
@@ -102,17 +94,14 @@ steepAscent = function(factors, response, size = 0.2,
     initial = ncol(frameOut)
     for (i in seq(along = factors)) {
         frameOut[, i + initial] = x[i] * 0:steps
-        names(frameOut)[i + initial] = paste(factors[i], ".coded", 
-            collapse = "", sep = "")
+        names(frameOut)[i + initial] = paste(factors[i], ".coded", collapse = "", sep = "")
         if (DB) 
             print(factors[i])
     }
     initial = ncol(frameOut)
     for (i in seq(along = factors)) {
-        frameOut[, i + initial] = code2real(lows(fdo)[[factors[i]]], 
-            highs(fdo)[[factors[i]]], x[i] * 0:steps)
-        names(frameOut)[i + initial] = paste(factors[i], ".real", 
-            collapse = "", sep = "")
+        frameOut[, i + initial] = code2real(lows(fdo)[[factors[i]]], highs(fdo)[[factors[i]]], x[i] * 0:steps)
+        names(frameOut)[i + initial] = paste(factors[i], ".real", collapse = "", sep = "")
         if (DB) 
             print(factors[i])
     }
@@ -121,8 +110,7 @@ steepAscent = function(factors, response, size = 0.2,
     response(soa) = rep(NA, times = nrow(frameOut))
     names(response(soa)) = deparse(substitute(response))
     cat("\n")
-    cat(paste("Steepest Ascent for", deparse(substitute(data)), 
-        "\n"))
+    cat(paste("Steepest Ascent for", deparse(substitute(data)), "\n"))
     cat("\n")
     print(format(frameOut, digits = 3))
     invisible(soa)

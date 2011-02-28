@@ -1,12 +1,9 @@
-setClass(Class = "mixDesign", representation = representation(name = "character", 
-    factors = "list", total = "numeric", lower = "numeric", design = "data.frame", 
-    designType = "character", pseudo = "data.frame", response = "data.frame", 
-    Type = "data.frame", block = "data.frame", runOrder = "data.frame", 
-    standardOrder = "data.frame", desireVal = "list", desirability = "list", 
-    fits = "data.frame"))
+setClass(Class = "mixDesign", representation = representation(name = "character", factors = "list", total = "numeric", 
+    lower = "numeric", design = "data.frame", designType = "character", pseudo = "data.frame", response = "data.frame", 
+    Type = "data.frame", block = "data.frame", runOrder = "data.frame", standardOrder = "data.frame", desireVal = "list", 
+    desirability = "list", fits = "data.frame"))
 setMethod("factors", "mixDesign", function(x) x@factors)
-setReplaceMethod("factors", "mixDesign", function(x, 
-    value) {
+setReplaceMethod("factors", "mixDesign", function(x, value) {
     if (length(value) != ncol(x@pseudo)) 
         stop("\nNumber of factors doesn't match with number of columns for factorial Design\n")
     x@factors <- value
@@ -15,32 +12,25 @@ setReplaceMethod("factors", "mixDesign", function(x,
 setMethod("names", "mixDesign", function(x) {
     return(sapply(x@factors, names))
 })
-setReplaceMethod("names", "mixDesign", function(x, 
-    value) {
+setReplaceMethod("names", "mixDesign", function(x, value) {
     for (i in 1:length(x@factors)) names(x@factors[[i]]) = as.character(value[i])
     x
 })
-setMethod("as.data.frame", "mixDesign", function(x, 
-    row.names = NULL, optional = FALSE) {
-    frameOut = cbind(x@standardOrder, x@runOrder, x@Type, x@pseudo, 
-        x@response)
+setMethod("as.data.frame", "mixDesign", function(x, row.names = NULL, optional = FALSE) {
+    frameOut = cbind(x@standardOrder, x@runOrder, x@Type, x@pseudo, x@response)
     return(frameOut)
 })
-as.data.frame.mixDesign = function(x, row.names = NULL, 
-    optional = FALSE, ...) {
-    frameOut = cbind(x@standardOrder, x@runOrder, x@Type, x@pseudo, 
-        x@response)
+as.data.frame.mixDesign = function(x, row.names = NULL, optional = FALSE, ...) {
+    frameOut = cbind(x@standardOrder, x@runOrder, x@Type, x@pseudo, x@response)
     return(frameOut)
 }
-setMethod("show", signature(object = "mixDesign"), 
-    function(object) {
-        print(format(as.data.frame(object), digits = 4))
-    })
+setMethod("show", signature(object = "mixDesign"), function(object) {
+    print(format(as.data.frame(object), digits = 4))
+})
 setMethod("response", "mixDesign", function(object) {
     return(object@response)
 })
-setReplaceMethod("response", "mixDesign", function(object, 
-    value) {
+setReplaceMethod("response", "mixDesign", function(object, value) {
     print(deparse(substitute(value)))
     if (!is.numeric(value) & !is.data.frame(value)) 
         stop("vector or data.frame must be given")
@@ -63,12 +53,10 @@ setReplaceMethod("response", "mixDesign", function(object,
     Type = mdo@Type
     temp = as.character(as.data.frame(mdo)$Type)
     tab = table(temp)
-    nums = data.frame(matrix(tab, nrow = 4, ncol = length(tab), 
-        byrow = TRUE))
+    nums = data.frame(matrix(tab, nrow = 4, ncol = length(tab), byrow = TRUE))
     nums[1:2, ] = NA
     nums[4, ] = c(nrow(Type), rep("", length(tab) - 1))
-    row.names(nums) = c("Unique", "Replicates", "Sub Total", 
-        "Total")
+    row.names(nums) = c("Unique", "Replicates", "Sub Total", "Total")
     names(nums) = names(tab)
     for (i in names(tab)) {
         sSet = pseudo[Type == i, ]
@@ -79,8 +67,7 @@ setReplaceMethod("response", "mixDesign", function(object,
         }
         else {
             for (j in 1:nrow(usSet)) {
-                uCount1 = sum(apply(apply(sSet, 1, "==", usSet[j, 
-                  ]), 2, "all") * 1)
+                uCount1 = sum(apply(apply(sSet, 1, "==", usSet[j, ]), 2, "all") * 1)
                 if (j == 1) {
                   uCount2 = uCount1
                   nums["Replicates", i] = uCount1
@@ -95,82 +82,71 @@ setReplaceMethod("response", "mixDesign", function(object,
     cat("\n")
     print(nums)
 }
-setMethod("show", signature(object = "mixDesign"), 
-    function(object) {
-        print(as.data.frame(object))
-    })
+setMethod("show", signature(object = "mixDesign"), function(object) {
+    print(as.data.frame(object))
+})
 setMethod(".nfp", "mixDesign", function(object) {
     x = factors(object)
     if (is.list(x) && length(x[[1]]) > 0) {
         numAttr = length(attributes(x[[1]]))
         .numFac = length(x)
-        frameOut = data.frame(matrix(ncol = .numFac, nrow = (numAttr - 
-            1)))
+        frameOut = data.frame(matrix(ncol = .numFac, nrow = (numAttr - 1)))
         for (i in 1:(numAttr - 1)) {
             charVec = character(0)
             for (j in 1:.numFac) {
-                charVec = c(charVec, names(attributes(x[[1]])[i]), 
-                  "\t\t")
+                charVec = c(charVec, names(attributes(x[[1]])[i]), "\t\t")
                 frameOut[i, j] = attributes(x[[j]])[[i]]
             }
         }
         names(frameOut) = names(x)
-        rownames(frameOut) = names(attributes(x[[1]]))[1:(numAttr - 
-            1)]
+        rownames(frameOut) = names(attributes(x[[1]]))[1:(numAttr - 1)]
     }
     else {
         stop("no list given or length of list < 1")
     }
     print(frameOut)
 })
-setMethod("summary", signature(object = "mixDesign"), 
-    function(object) {
-        cat(paste("Simplex", toupper(object@designType), "Design"))
-        cat("\n")
-        cat("Information about the factors:\n\n")
-        .nfp(object)
-        cat("\n-----------\n")
-        cat("\n")
-        .npp(object)
-        cat("\n-----------\n")
-        cat("\n")
-        cat("Information about the constraints:\n\n")
-        lower = object@lower
-        temp = character(0)
-        for (i in seq(along = lower)) temp = c(temp, paste(LETTERS[i], 
-            ">=", lower[i]))
-        cat(temp)
-        cat("\n")
-        cat("\n-----------\n")
-        cat("\n")
-        times = nrow(object@pseudo)
-        pseudo = format(object@pseudo, digits = 2)
-        design = format(object@design, digits = 2)
-        amount = design
-        if (object@total[2] != 1) 
-            amount = format(object@design * object@total[2], 
-                digits = 2)
-        temp = c("                             ", "PseudoComponent", 
-            "_|_", "Proportion", "_|_", "Amount")
-        cat(temp)
-        cat("\n")
-        cat("\n")
-        temp = cbind(pseudo, `_` = rep(" ", times = times), `|` = rep("|", 
-            times = times), `_` = rep(" ", times = times), design)
-        temp = cbind(temp, `_` = rep(" ", times = times), `|` = rep("|", 
-            times = times), `_` = rep(" ", times = times), amount)
-        temp = cbind(object@standardOrder, object@runOrder, object@Type, 
-            `|` = rep("|", times = times), temp, `|` = rep("|", 
-                times = times), object@response)
-        show(temp)
-        cat("\n-----------\n")
-        cat("\n")
-        cat(paste("Mixture Total:", object@total[1], "equals", 
-            object@total[2]))
-        cat("\n")
-        cat("\n")
-        invisible(as.data.frame(object))
-    })
+setMethod("summary", signature(object = "mixDesign"), function(object) {
+    cat(paste("Simplex", toupper(object@designType), "Design"))
+    cat("\n")
+    cat("Information about the factors:\n\n")
+    .nfp(object)
+    cat("\n-----------\n")
+    cat("\n")
+    .npp(object)
+    cat("\n-----------\n")
+    cat("\n")
+    cat("Information about the constraints:\n\n")
+    lower = object@lower
+    temp = character(0)
+    for (i in seq(along = lower)) temp = c(temp, paste(LETTERS[i], ">=", lower[i]))
+    cat(temp)
+    cat("\n")
+    cat("\n-----------\n")
+    cat("\n")
+    times = nrow(object@pseudo)
+    pseudo = format(object@pseudo, digits = 2)
+    design = format(object@design, digits = 2)
+    amount = design
+    if (object@total[2] != 1) 
+        amount = format(object@design * object@total[2], digits = 2)
+    temp = c("                             ", "PseudoComponent", "_|_", "Proportion", "_|_", "Amount")
+    cat(temp)
+    cat("\n")
+    cat("\n")
+    temp = cbind(pseudo, `_` = rep(" ", times = times), `|` = rep("|", times = times), `_` = rep(" ", times = times), 
+        design)
+    temp = cbind(temp, `_` = rep(" ", times = times), `|` = rep("|", times = times), `_` = rep(" ", times = times), amount)
+    temp = cbind(object@standardOrder, object@runOrder, object@Type, `|` = rep("|", times = times), temp, `|` = rep("|", 
+        times = times), object@response)
+    show(temp)
+    cat("\n-----------\n")
+    cat("\n")
+    cat(paste("Mixture Total:", object@total[1], "equals", object@total[2]))
+    cat("\n")
+    cat("\n")
+    invisible(as.data.frame(object))
+})
 setMethod("units", "mixDesign", function(x) {
     return(sapply(factors(x), .unit))
 })
@@ -187,10 +163,8 @@ setMethod("highs", "mixDesign", function(object) {
     }
     return(listOut)
 })
-setReplaceMethod("highs", "mixDesign", function(object, 
-    value) {
-    for (i in seq(along = object@factors)) if (length(value) > 
-        1) 
+setReplaceMethod("highs", "mixDesign", function(object, value) {
+    for (i in seq(along = object@factors)) if (length(value) > 1) 
         .high(object@factors[[i]]) = value[i]
     else .high(object@factors[[i]]) = value[1]
     return(object)
@@ -202,8 +176,7 @@ setMethod("lows", "mixDesign", function(object) {
     }
     return(listOut)
 })
-setReplaceMethod("lows", "mixDesign", function(object, 
-    value) {
+setReplaceMethod("lows", "mixDesign", function(object, value) {
     for (i in seq(along = object@factors)) {
         if (length(value) > 1) 
             .low(object@factors[[i]]) = value[i]
@@ -254,9 +227,8 @@ setReplaceMethod("lows", "mixDesign", function(object,
     return(frameOut)
 }
 .simplexCentroid(4)
-mixDesign = function(p, n = 3, type = "lattice", center = TRUE, 
-    axial = FALSE, delta, replicates = 1, lower, total = 1, randomize, 
-    seed) {
+mixDesign = function(p, n = 3, type = "lattice", center = TRUE, axial = FALSE, delta, replicates = 1, lower, 
+    total = 1, randomize, seed) {
     DB = FALSE
     frameOut = NA
     out = new("mixDesign")
@@ -353,13 +325,11 @@ mixDesign = function(p, n = 3, type = "lattice", center = TRUE,
         repFrame = frameOut[i, ]
         if (all(frameOut[i, ] == frameOut[i, 1])) 
             typFrame = data.frame(Type = "center")
-        else typFrame = data.frame(Type = paste(typ, "-blend", 
-            sep = ""))
+        else typFrame = data.frame(Type = paste(typ, "-blend", sep = ""))
         if (times >= 1) {
             for (j in 1:times) {
                 repFrame = rbind(repFrame, frameOut[i, ])
-                typFrame = rbind(typFrame, data.frame(Type = paste(typ, 
-                  "-blend", sep = "")))
+                typFrame = rbind(typFrame, data.frame(Type = paste(typ, "-blend", sep = "")))
             }
         }
         frameOutCopy = rbind(frameOutCopy, repFrame)
@@ -396,8 +366,7 @@ mixDesign = function(p, n = 3, type = "lattice", center = TRUE,
         }
         names(center) = names(frameOut)
         frameOut = rbind(frameOut, center)
-        Type = rbind(Type, data.frame(Type = rep("center", times + 
-            1)))
+        Type = rbind(Type, data.frame(Type = rep("center", times + 1)))
         if (DB) 
             print(frameOut)
     }
@@ -419,8 +388,7 @@ mixDesign = function(p, n = 3, type = "lattice", center = TRUE,
         }
         names(axial) = names(frameOut)
         frameOut = rbind(frameOut, axial)
-        Type = rbind(Type, data.frame(Type = rep("axial", (times + 
-            1) * p)))
+        Type = rbind(Type, data.frame(Type = rep("axial", (times + 1) * p)))
         if (DB) {
             print(frameOut)
             print(Type)
@@ -429,8 +397,7 @@ mixDesign = function(p, n = 3, type = "lattice", center = TRUE,
     StandOrder = 1:nrow(frameOut)
     RunOrder = StandOrder
     if (randomize) {
-        RunOrder = sample(1:nrow(frameOut), nrow(frameOut), replace = FALSE, 
-            prob = NULL)
+        RunOrder = sample(1:nrow(frameOut), nrow(frameOut), replace = FALSE, prob = NULL)
     }
     frameOut = frameOut[order(RunOrder), ]
     row.names(frameOut) = frameOut$RunOrder
@@ -442,8 +409,7 @@ mixDesign = function(p, n = 3, type = "lattice", center = TRUE,
     design = frameOut
     design[, ] = NA
     for (i in 1:ncol(frameOut)) {
-        design[, i] = frameOut[, i] * (total[1] - sum(lower)) + 
-            lower[i]
+        design[, i] = frameOut[, i] * (total[1] - sum(lower)) + lower[i]
     }
     out@design = design
     listFac = vector("list", p)
