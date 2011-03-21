@@ -18,9 +18,9 @@
     }
     return(out)
 }
-mvPlot = function(y, factor1, factor2, factor3, factor4, fun = mean, points = TRUE, connect = TRUE, col = c(1, 
-    2, 3, 4), pch = c(1, 2, 3, 4), xlim, ylim, main, main.sub, horiz = FALSE, lwd.b = 1, lwd.w = 1, pch.b = 15, pch.w = 17, 
-    col.w = 2, col.b = 1, ...) {
+mvPlot = function(y, factor1, factor2, factor3, factor4, fun = mean, points = TRUE, connect = TRUE, 
+    col = c(1, 2, 3, 4), pch = c(1, 2, 3, 4), xlim, ylim, main, main.sub, horiz = FALSE, lwd.b = 1, lwd.w = 1, 
+    pch.b = 15, pch.w = 17, col.w = 2, col.b = 1, ...) {
     old.par <- par(no.readonly = TRUE)
     on.exit(par(old.par))
     if (missing(ylim)) 
@@ -44,9 +44,9 @@ mvPlot = function(y, factor1, factor2, factor3, factor4, fun = mean, points = TR
             y = temp
             print(factor2)
             print(factor1)
-            .mv2Plot(y = y, factor1, factor2, fun = fun, points = points, connect = connect, col = col, pch = pch, xlim = xlim, 
-                ylim = ylim, main, main.sub = main.sub, horiz = horiz, lwd.b = lwd.b, lwd.w = lwd.w, pch.b = pch.b, pch.w = pch.w, 
-                col.w = col.w, col.b = col.b, ...)
+            .mv2Plot(y = y, factor1, factor2, fun = fun, points = points, connect = connect, col = col, pch = pch, 
+                xlim = xlim, ylim = ylim, main, main.sub = main.sub, horiz = horiz, lwd.b = lwd.b, lwd.w = lwd.w, 
+                pch.b = pch.b, pch.w = pch.w, col.w = col.w, col.b = col.b, ...)
         }
         else {
             if (!is.vector(factor1) | !is.vector(factor2) | !is.vector(factor3)) 
@@ -64,9 +64,9 @@ mvPlot = function(y, factor1, factor2, factor3, factor4, fun = mean, points = TR
             temp = list(y)
             names(temp) = deparse(substitute(y))
             y = temp
-            .mv3Plot(y, factor1, factor2, factor3, fun = fun, points = points, connect = connect, col = col, pch = pch, 
-                xlim = xlim, ylim, horiz = horiz, main, main.sub, lwd.b = lwd.b, lwd.w = lwd.w, pch.b = pch.b, pch.w = pch.w, 
-                col.w = col.w, col.b = col.b, ...)
+            .mv3Plot(y, factor1, factor2, factor3, fun = fun, points = points, connect = connect, col = col, 
+                pch = pch, xlim = xlim, ylim, horiz = horiz, main, main.sub, lwd.b = lwd.b, lwd.w = lwd.w, 
+                pch.b = pch.b, pch.w = pch.w, col.w = col.w, col.b = col.b, ...)
         }
     else {
         if (!is.vector(factor1) | !is.vector(factor2) | !is.vector(factor3) | !is.vector(factor4)) 
@@ -87,14 +87,14 @@ mvPlot = function(y, factor1, factor2, factor3, factor4, fun = mean, points = TR
         temp = list(y)
         names(temp) = deparse(substitute(y))
         y = temp
-        .mv4Plot(y, factor1, factor2, factor3, factor4, fun = fun, points = points, connect = connect, col = col, pch = pch, 
-            xlim = xlim, ylim, horiz = horiz, main, main.sub, lwd.b = lwd.b, lwd.w = lwd.w, pch.b = pch.b, pch.w = pch.w, 
-            col.w = col.w, col.b = col.b, ...)
+        .mv4Plot(y, factor1, factor2, factor3, factor4, fun = fun, points = points, connect = connect, col = col, 
+            pch = pch, xlim = xlim, ylim, horiz = horiz, main, main.sub, lwd.b = lwd.b, lwd.w = lwd.w, pch.b = pch.b, 
+            pch.w = pch.w, col.w = col.w, col.b = col.b, ...)
     }
     invisible()
 }
-.mv4Plot = function(y, factor1, factor2, factor3, factor4, fun, points, connect, col, pch, xlim, ylim, horiz, 
-    main, main.sub, lwd.b, lwd.w, pch.b, pch.w, col.w, col.b, DB = FALSE, ...) {
+.mv4Plot = function(y, factor1, factor2, factor3, factor4, fun, points, connect, col, pch, xlim, 
+    ylim, horiz, main, main.sub, lwd.b, lwd.w, pch.b, pch.w, col.w, col.b, DB = FALSE, ...) {
     old.par <- par(no.readonly = TRUE)
     on.exit(par(old.par))
     colNum = length(unique(factor1[[1]]))
@@ -136,16 +136,16 @@ mvPlot = function(y, factor1, factor2, factor3, factor4, fun = mean, points = TR
             names(f1Part) = names(factor3)
             f2Part = list(split1Mat[[j]][, 4])
             names(f2Part) = names(factor4)
-            .mv2Plot(y = yPart, factor1 = f1Part, factor2 = f2Part, fun = fun, points = points, connect = connect, main, 
-                main.sub, col = col, pch = pch, xlim = xlim, ylim = ylim, horiz = horiz, lwd.b = lwd.b, lwd.w = lwd.w, 
-                pch.b = pch.b, pch.w = pch.w, col.w = col.w, col.b = col.b, ...)
+            .mv2Plot(y = yPart, factor1 = f1Part, factor2 = f2Part, fun = fun, points = points, connect = connect, 
+                main, main.sub, col = col, pch = pch, xlim = xlim, ylim = ylim, horiz = horiz, lwd.b = lwd.b, 
+                lwd.w = lwd.w, pch.b = pch.b, pch.w = pch.w, col.w = col.w, col.b = col.b, ...)
             main.sub = NA
         }
     }
     invisible()
 }
-.mv3Plot = function(y, factor1, factor2, factor3, fun, points, connect, col, pch, xlim, ylim, main, main.sub, 
-    lwd.b, lwd.w, pch.b, pch.w, col.w, col.b, DB = FALSE, ...) {
+.mv3Plot = function(y, factor1, factor2, factor3, fun, points, connect, col, pch, xlim, ylim, main, 
+    main.sub, lwd.b, lwd.w, pch.b, pch.w, col.w, col.b, DB = FALSE, ...) {
     old.par <- par(no.readonly = TRUE)
     on.exit(par(old.par))
     colNum = length(unique(factor1[[1]]))
@@ -178,15 +178,15 @@ mvPlot = function(y, factor1, factor2, factor3, factor4, fun = mean, points = TR
         names(f1Part) = names(factor2)
         f2Part = list(split1Mat[[i]][, 3])
         names(f2Part) = names(factor3)
-        .mv2Plot(y = yPart, factor1 = f1Part, factor2 = f2Part, fun = fun, points = points, connect = connect, col = col, 
-            pch = pch, ylim = ylim, xlim = xlim, main, main.sub = main.sub, lwd.b = lwd.b, lwd.w = lwd.w, pch.b = pch.b, 
-            pch.w = pch.w, col.w = col.w, col.b = col.b, ...)
+        .mv2Plot(y = yPart, factor1 = f1Part, factor2 = f2Part, fun = fun, points = points, connect = connect, 
+            col = col, pch = pch, ylim = ylim, xlim = xlim, main, main.sub = main.sub, lwd.b = lwd.b, lwd.w = lwd.w, 
+            pch.b = pch.b, pch.w = pch.w, col.w = col.w, col.b = col.b, ...)
         main.sub = NA
     }
     invisible()
 }
-.mv2Plot = function(y, factor1, factor2, fun, points, connect, horiz, main, main.sub, col, pch, xlim, ylim, 
-    xlab, ylab, cex = 1, lwd.b, lwd.w, pch.b, pch.w, col.w, col.b, DB = FALSE, ...) {
+.mv2Plot = function(y, factor1, factor2, fun, points, connect, horiz, main, main.sub, col, pch, 
+    xlim, ylim, xlab, ylab, cex = 1, lwd.b, lwd.w, pch.b, pch.w, col.w, col.b, DB = FALSE, ...) {
     old.par <- par(no.readonly = TRUE)
     on.exit(par(old.par))
     f1Name = NA
@@ -280,14 +280,14 @@ mvPlot = function(y, factor1, factor2, factor3, factor4, fun = mean, points = TR
         xlim = .xlimcalc(matComplete$f2c)
     if (horiz) {
         ylim = c(min(ylim), 1.15 * max(ylim))
-        with(matComplete, plot(f2c, y, main = main, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, col = f1col, pch = f1pch, 
-            axes = FALSE, ...))
+        with(matComplete, plot(f2c, y, main = main, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, col = f1col, 
+            pch = f1pch, axes = FALSE, ...))
         legend("top", title = f1Name, legend = levFac1, pch = pch, col = col, horiz = TRUE)
     }
     else {
         par(mar = c(5, 4, 4, 6) + 0.1)
-        with(matComplete, plot(f2c, y, main = main, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, col = f1col, pch = f1pch, 
-            axes = FALSE, ...))
+        with(matComplete, plot(f2c, y, main = main, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, col = f1col, 
+            pch = f1pch, axes = FALSE, ...))
         xCoord = par("usr")[2] + 0.02 * diff(range(par("usr")[2], par("usr")[1]))
         legend(xCoord, par("usr")[4], title = f1Name, legend = levFac1, pch = pch, col = col, xpd = TRUE)
     }

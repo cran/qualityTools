@@ -33,9 +33,11 @@ plot(gdo)
 
 
 #line 301 "qualityTools.rnw"
-#line 295 "qualityTools.rnw#from line#301#"
+#line 295 "qualityTools.rnw#from line#301#starts at#294#"
 #visualization of Gage RnR
 plot(gdo)
+#line 296 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 302 "qualityTools.rnw"
 
 
@@ -55,7 +57,7 @@ pcr(weib, "weibull", usl = 20)
 
 
 #line 401 "qualityTools.rnw"
-#line 382 "qualityTools.rnw#from line#401#"
+#line 382 "qualityTools.rnw#from line#401#starts at#381#"
 set.seed(1234)
 #generate some data
 norm = rnorm(20, mean = 20)
@@ -63,13 +65,17 @@ norm = rnorm(20, mean = 20)
 weib = rweibull(20, shape = 2, scale = 8)
 #process capability
 pcr(norm, "normal", lsl = 17, usl = 23)
+#line 388 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 402 "qualityTools.rnw"
 
 
 #line 407 "qualityTools.rnw"
-#line 391 "qualityTools.rnw#from line#407#"
+#line 391 "qualityTools.rnw#from line#407#starts at#390#"
 #process cabapility
 pcr(weib, "weibull", usl = 20)
+#line 392 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 408 "qualityTools.rnw"
 
 
@@ -83,9 +89,11 @@ qqPlot(weib, "weibull"); qqPlot(weib, "normal")
 
 
 #line 432 "qualityTools.rnw"
-#line 426 "qualityTools.rnw#from line#432#"
+#line 426 "qualityTools.rnw#from line#432#starts at#425#"
 par(mfrow = c(1,2))
 qqPlot(weib, "weibull"); qqPlot(weib, "normal")
+#line 427 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 433 "qualityTools.rnw"
 
 
@@ -95,9 +103,11 @@ ppPlot(norm, "weibull"); ppPlot(norm, "normal")
 
 
 #line 447 "qualityTools.rnw"
-#line 441 "qualityTools.rnw#from line#447#"
+#line 441 "qualityTools.rnw#from line#447#starts at#440#"
 par(mfrow = c(1,2))
 ppPlot(norm, "weibull"); ppPlot(norm, "normal")
+#line 442 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 448 "qualityTools.rnw"
 
 
@@ -135,14 +145,18 @@ interactionPlot(fdo)
 
 
 #line 532 "qualityTools.rnw"
-#line 520 "qualityTools.rnw#from line#532#"
+#line 520 "qualityTools.rnw#from line#532#starts at#519#"
 effectPlot(fdo, classic = TRUE)
+#line 520 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 533 "qualityTools.rnw"
 
 
 #line 538 "qualityTools.rnw"
-#line 523 "qualityTools.rnw#from line#538#"
+#line 523 "qualityTools.rnw#from line#538#starts at#522#"
 interactionPlot(fdo)
+#line 523 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 539 "qualityTools.rnw"
 
 
@@ -156,8 +170,10 @@ paretoPlot(fdo)
 
 
 #line 564 "qualityTools.rnw"
-#line 559 "qualityTools.rnw#from line#564#"
+#line 559 "qualityTools.rnw#from line#564#starts at#558#"
 paretoPlot(fdo)
+#line 559 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 565 "qualityTools.rnw"
 
 
@@ -168,10 +184,12 @@ contourPlot(A, B, yield, data = fdo)
 
 
 #line 580 "qualityTools.rnw"
-#line 573 "qualityTools.rnw#from line#580#"
+#line 573 "qualityTools.rnw#from line#580#starts at#572#"
 par(mfrow = c(1,2))
 wirePlot(A, B, yield, data = fdo)
 contourPlot(A, B, yield, data = fdo)
+#line 575 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 581 "qualityTools.rnw"
 
 
@@ -192,8 +210,10 @@ fracChoose()
 
 
 #line 628 "qualityTools.rnw"
-#line 623 "qualityTools.rnw#from line#628#"
+#line 623 "qualityTools.rnw#from line#628#starts at#622#"
 fracChoose()
+#line 623 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 629 "qualityTools.rnw"
 
 
@@ -214,10 +234,12 @@ contourPlot(A, B, y2, data = fdo, form = "y2~A+B+C+A*B")
 
 
 #line 662 "qualityTools.rnw"
-#line 655 "qualityTools.rnw#from line#662#"
+#line 655 "qualityTools.rnw#from line#662#starts at#654#"
 par(mfrow = c(1,2))
 wirePlot(A, B, yield, data = fdo, form = "yield~A+B+C+A*B")
 contourPlot(A, B, y2, data = fdo, form = "y2~A+B+C+A*B")
+#line 657 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 663 "qualityTools.rnw"
 
 
@@ -228,10 +250,12 @@ wirePlot(A,B,y2, data = fdo, factors = list(C=1), form = "y2~A*B*C")
 
 
 #line 678 "qualityTools.rnw"
-#line 671 "qualityTools.rnw#from line#678#"
+#line 671 "qualityTools.rnw#from line#678#starts at#670#"
 par(mfrow = c(1,2))
 wirePlot(A,B,y2, data = fdo, factors = list(C=-1), form = "y2~A*B*C")
 wirePlot(A,B,y2, data = fdo, factors = list(C=1), form = "y2~A*B*C")
+#line 673 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 679 "qualityTools.rnw"
 
 
@@ -253,10 +277,12 @@ plot(sao, type = "b", col = 2)
 
 
 #line 711 "qualityTools.rnw"
-#line 704 "qualityTools.rnw#from line#711#"
+#line 704 "qualityTools.rnw#from line#711#starts at#703#"
 predicted = simProc(sao[,5], sao[,6])
 response(sao) = predicted 
 plot(sao, type = "b", col = 2)
+#line 706 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 712 "qualityTools.rnw"
 
 
@@ -296,10 +322,12 @@ contourPlot(A,B,yield2,form="yield2~A*B+I(A^2)+I(B^2)",data=rsdo)
 
 
 #line 774 "qualityTools.rnw"
-#line 767 "qualityTools.rnw#from line#774#"
+#line 767 "qualityTools.rnw#from line#774#starts at#766#"
 par(mfrow=c(1,2))
 wirePlot(A,B,yield2,form="yield2~A*B+I(A^2)+I(B^2)",data=rsdo,theta=-70)
 contourPlot(A,B,yield2,form="yield2~A*B+I(A^2)+I(B^2)",data=rsdo)
+#line 769 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 775 "qualityTools.rnw"
 
 
@@ -323,8 +351,10 @@ rsdo = rsmChoose()
 
 
 #line 815 "qualityTools.rnw"
-#line 810 "qualityTools.rnw#from line#815#"
+#line 810 "qualityTools.rnw#from line#815#starts at#809#"
 rsdo = rsmChoose()
+#line 810 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 816 "qualityTools.rnw"
 
 
@@ -349,9 +379,11 @@ plot(d1, col = 2); plot(d3, col = 2)
 
 
 #line 889 "qualityTools.rnw"
-#line 883 "qualityTools.rnw#from line#889#"
+#line 883 "qualityTools.rnw#from line#889#starts at#882#"
 par(mfrow = c(1,2))
 plot(d1, col = 2); plot(d3, col = 2)
+#line 884 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 890 "qualityTools.rnw"
 
 
@@ -423,10 +455,12 @@ wirePlot3(A, B, C, elongation, data=mdo, form="quadratic", theta=-170)
 
 
 #line 993 "qualityTools.rnw"
-#line 986 "qualityTools.rnw#from line#993#"
+#line 986 "qualityTools.rnw#from line#993#starts at#985#"
 par(mfrow=c(1,2))
 contourPlot3(A, B, C, elongation, data = mdo, form = "quadratic")
 wirePlot3(A, B, C, elongation, data=mdo, form="quadratic", theta=-170)
+#line 988 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 994 "qualityTools.rnw"
 
 
@@ -445,9 +479,11 @@ effectPlot(tdo, col = 2)
 
 
 #line 1029 "qualityTools.rnw"
-#line 1023 "qualityTools.rnw#from line#1029#"
+#line 1023 "qualityTools.rnw#from line#1029#starts at#1022#"
 response(tdo) = rnorm(9)
 effectPlot(tdo, col = 2)
+#line 1024 "#end named chunk#"
+invisible(.Last.value) # End of chunk marker
 #line 1030 "qualityTools.rnw"
 
 

@@ -71,8 +71,8 @@ distribution = function(x, distribution = "weibull", start, ...) {
     return(distrColl)
 }
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim, ylab, line.col, line.width, 
-    box = TRUE, ...) {
+setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim, ylab, line.col, 
+    line.width, box = TRUE, ...) {
     object = x
     xVals = object@x
     parameters = object@parameters
@@ -116,8 +116,8 @@ setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim,
     hist(xVals, freq = FALSE, xlab = xlab, ylab = ylab, xlim = xlim, ylim = ylim, main = main, ...)
     lines(xPoints, yPoints, col = line.col, lwd = line.width)
     abline(h = 0)
-    legend("topright", c(paste(c(names(parameters), "A", "p"), ": ", c(format(parameters, digits = 3), format(A, digits = 3), 
-        format(p, digits = 3))), sep = " "), inset = 0.02)
+    legend("topright", c(paste(c(names(parameters), "A", "p"), ": ", c(format(parameters, digits = 3), format(A, 
+        digits = 3), format(p, digits = 3))), sep = " "), inset = 0.02)
     if (box) {
         box()
     }
@@ -143,8 +143,8 @@ setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim,
     invisible(list(xlim = x, ylim = y))
 }
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-setMethod("plot", signature(x = "distrCollection"), function(x, y, xlab, ylab, xlim, ylim, line.col, line.width, 
-    ...) {
+setMethod("plot", signature(x = "distrCollection"), function(x, y, xlab, ylab, xlim, ylim, line.col, 
+    line.width, ...) {
     y = NULL
     object = x
     distrList = object@distr
@@ -201,8 +201,8 @@ qqPlot = function(x, y, main, xlab, ylab, start, ...) {
     theoretical.quantiles = NULL
     xs = sort(x)
     distribution = tolower(y)
-    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", "negative binomial", 
-        "poisson")
+    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", 
+        "negative binomial", "poisson")
     if (is.character(distribution)) {
         qFun = .charToDistFunc(distribution, type = "q")
         if (is.null(qFun)) 
@@ -271,8 +271,8 @@ qqPlot = function(x, y, main, xlab, ylab, start, ...) {
     }
     invisible(list(x = theoretical.quantiles, y = xs))
 }
-ppPlot = function(x, distribution, probs, main, xlab, ylab, xlim, ylim, grid = TRUE, box = TRUE, stats = TRUE, 
-    start, ...) {
+ppPlot = function(x, distribution, probs, main, xlab, ylab, xlim, ylim, grid = TRUE, box = TRUE, 
+    stats = TRUE, start, ...) {
     DB = FALSE
     if (!require(MASS)) 
         stop("Package MASS needs to be installed!")
@@ -321,8 +321,8 @@ ppPlot = function(x, distribution, probs, main, xlab, ylab, xlim, ylim, grid = T
         }
         invisible()
     }
-    distWhichNeedParameters = c("weibull", "gamma", "logistic", "exponential", "f", "geometric", "chi-squared", "negative binomial", 
-        "poisson")
+    distWhichNeedParameters = c("weibull", "gamma", "logistic", "exponential", "f", "geometric", "chi-squared", 
+        "negative binomial", "poisson")
     if (is.character(distribution)) {
         qFun = .charToDistFunc(distribution, type = "q")
         pFun = .charToDistFunc(distribution, type = "p")

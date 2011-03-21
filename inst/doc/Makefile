@@ -9,4 +9,4 @@ pdf: 	qualityTools.tex
 
 clean:
 	rm -f *.aux *.eps *.log *.out *.tex *.toc *.bbl
-	rm -f Rplots.ps qualityTools-*
+	rm -f Rplots.ps qualityTools-* 

@@ -1,5 +1,5 @@
-wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, zlab, form = "fit", 
-    phi, theta, ticktype, col = 1, steps, factors, fun, plot) {
+wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, zlab, 
+    form = "fit", phi, theta, ticktype, col = 1, steps, factors, fun, plot) {
     DB = FALSE
     form = form
     fact = NULL
@@ -10,7 +10,8 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, bo
     lm.1 = NULL
     if (!is.function(col)) {
         if (identical(col, 1)) 
-            col = colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
+            col = colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", 
+                "red", "#7F0000"))
         if (identical(col, 2)) 
             col = colorRampPalette(c("blue", "white", "red"), space = "Lab")
         if (identical(col, 3)) 
@@ -158,8 +159,9 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, bo
     if (plot) {
         if (missing(zlim)) 
             zlim = range(mat)
-        persp(xVec, yVec, mat, main = main, sub = sub, xlab = xlab, ylab = ylab, xlim = xlim, ylim = ylim, zlim = zlim, 
-            zlab = zlab, col = color[facetcol], border = border, ticktype = ticktype, phi = phi, theta = theta)
+        persp(xVec, yVec, mat, main = main, sub = sub, xlab = xlab, ylab = ylab, xlim = xlim, ylim = ylim, 
+            zlim = zlim, zlab = zlab, col = color[facetcol], border = border, ticktype = ticktype, phi = phi, 
+            theta = theta)
         if (is.function(col)) {
             zlim = range(mat)
             leglevel = pretty(zlim, 6)
@@ -177,9 +179,9 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, bo
     invisible(list(x = xVec, y = yVec, z = mat))
 }
 .mfc = function(x = seq(0, 1, length.out = nrow(z)), y = seq(0, 1, length.out = ncol(z)), z, xlim = range(x, 
-    finite = TRUE), ylim = range(y, finite = TRUE), zlim = range(z, finite = TRUE), levels = pretty(zlim, nlevels), nlevels = 20, 
-    color.palette = cm.colors, col = color.palette(length(levels) - 1), plot.title, plot.axes, key.title, key.axes, asp = NA, 
-    xaxs = "i", yaxs = "i", las = 1, axes = TRUE, frame.plot = axes, ...) {
+    finite = TRUE), ylim = range(y, finite = TRUE), zlim = range(z, finite = TRUE), levels = pretty(zlim, nlevels), 
+    nlevels = 20, color.palette = cm.colors, col = color.palette(length(levels) - 1), plot.title, plot.axes, 
+    key.title, key.axes, asp = NA, xaxs = "i", yaxs = "i", las = 1, axes = TRUE, frame.plot = axes, ...) {
     if (missing(z)) {
         if (!missing(x)) {
             if (is.list(x)) {
@@ -208,7 +210,8 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, bo
     mar[2L] <- 1
     mar = c(4.1, 4.1, 4.1, 4.1)
     par(mar = mar)
-    plot(1, 1, type = "n", axes = FALSE, xlim, ylim, xlab = "", ylab = "", main = "", xaxs = xaxs, yaxs = yaxs, asp = asp)
+    plot(1, 1, type = "n", axes = FALSE, xlim, ylim, xlab = "", ylab = "", main = "", xaxs = xaxs, yaxs = yaxs, 
+        asp = asp)
     if (!is.matrix(z) || nrow(z) <= 1L || ncol(z) <= 1L) 
         stop("no proper 'z' matrix specified")
     if (!is.double(z)) 
@@ -222,8 +225,8 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, bo
     temp[leglevel < 0] = "-"
     temp[leglevel == 0] = " "
     legpretty = paste(temp, legpretty, sep = "")
-    legend("topright", inset = 0.02, legend = paste(">", legpretty), col = legcol, bg = "white", pt.cex = 1.5, cex = 0.75, 
-        pch = 15)
+    legend("topright", inset = 0.02, legend = paste(">", legpretty), col = legcol, bg = "white", pt.cex = 1.5, 
+        cex = 0.75, pch = 15)
     if (missing(plot.axes)) {
         if (axes) {
             title(main = "", xlab = "", ylab = "")
@@ -239,8 +242,8 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, bo
     else plot.title
     invisible()
 }
-contourPlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, zlab, form = "fit", 
-    ticktype, col = 1, steps, factors, fun) {
+contourPlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, zlab, 
+    form = "fit", ticktype, col = 1, steps, factors, fun) {
     DB = FALSE
     form = form
     fact = NULL
@@ -251,7 +254,8 @@ contourPlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab,
     lm.1 = NULL
     if (!is.function(col)) {
         if (identical(col, 1)) 
-            col = colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
+            col = colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", 
+                "red", "#7F0000"))
         if (identical(col, 2)) 
             col = colorRampPalette(c("blue", "white", "red"), space = "Lab")
         if (identical(col, 3)) 
