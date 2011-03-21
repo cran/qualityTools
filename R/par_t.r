@@ -1,5 +1,5 @@
-paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.last = NA, alpha = 0.05, 
-    xlim, ylim, xlab, ylab, main, ...) {
+paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.last = NA, alpha = 0.05, xlim, 
+    ylim, xlab, ylab, main, ...) {
     DB = FALSE
     ylimMissing = FALSE
     if (missing(ylim)) 
@@ -58,8 +58,7 @@ paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.l
                     ylim <- (range(c(0, abs(effect), 1.3 * ME))) * 1.1
                   else ylim <- (range(c(effect, -1.3 * ME, 1.3 * ME))) * 1.1
                 if (abs) {
-                  xVals = barplot(abs(effect), las = 2, main = main, xlab = xlab, ylim = ylim, ylab = ylab, 
-                    ...)
+                  xVals = barplot(abs(effect), las = 2, main = main, xlab = xlab, ylim = ylim, ylab = ylab, ...)
                   abline(h = ME, col = "red")
                   abline(h = SME, col = "red")
                   try(axis(4, at = ME, labels = round(ME, 3), las = 2), silent = T)
@@ -78,8 +77,7 @@ paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.l
                 }
                 if (length(xVals) >= 1) 
                   for (i in 1:length(xVals)) {
-                    text(xVals[i], effect[i] + max(ylim) * sign(effect[i]) * 0.05, format(round(effect[i], 
-                      3)))
+                    text(xVals[i], effect[i] + max(ylim) * sign(effect[i]) * 0.05, format(round(effect[i], 3)))
                   }
                 if (DB) 
                   print(paste("MSE:", ME, "SME:", SME))
@@ -116,8 +114,7 @@ paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.l
                 effect = effect[order(abs(effect), na.last = TRUE, decreasing = decreasing)]
                 effect = round(effect, 3)
                 if (abs) {
-                  xVals = barplot(abs(effect), las = 2, main = main, xlab = xlab, ylim = ylim, ylab = ylab, 
-                    ...)
+                  xVals = barplot(abs(effect), las = 2, main = main, xlab = xlab, ylim = ylim, ylab = ylab, ...)
                   if (length(xVals) >= 1) 
                     for (i in 1:length(xVals)) {
                       text(xVals[i], abs(effect[i] + max(ylim) * sign(effect[i]) * 0.05), format(effect[i]))

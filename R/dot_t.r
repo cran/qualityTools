@@ -99,8 +99,8 @@ dotPlot = function(x, group, xlim, ylim, col, xlab, ylab, pch, cex, breaks, stac
     if (grouped && !stacked) {
         groupIndex = unique(group)
         par(mfrow = c(length(groupIndex), 1))
-        for (i in groupIndex) dotPlot(x[group == i], xlim = xlim, breaks = breaks, cex = cex, xlab = xlab, 
-            ylab = ylab, col = col, pch = pch, ...)
+        for (i in groupIndex) dotPlot(x[group == i], xlim = xlim, breaks = breaks, cex = cex, xlab = xlab, ylab = ylab, 
+            col = col, pch = pch, ...)
     }
     else {
         mat = mat[1:cutOff, ]
