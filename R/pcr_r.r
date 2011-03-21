@@ -41,9 +41,8 @@
     else y = (x^lambda - 1)/(lambda * ((prod(x, na.rm = TRUE)^(1/length(na.omit(x))))^(lambda - 1)))
     return(sd(y))
 }
-pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda, main, xlim, ylim, grouping = NULL, 
-    std.dev = NULL, conf.level = 0.9973002, start, lineWidth = 2, lineCol = "red", lineType = "solid", specCol = "black", 
-    specWidth = 2, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...) {
+pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda, main, xlim, ylim, grouping = NULL, std.dev = NULL, conf.level = 0.9973002, 
+    start, lineWidth = 2, lineCol = "red", lineType = "solid", specCol = "black", specWidth = 2, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...) {
     DB = FALSE
     require(MASS, quietly = TRUE)
     par.orig <- par(c("mar", "oma", "mfrow"))
@@ -102,8 +101,7 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
         print(paste("confHigh:", confHigh))
         print(paste("confLow:", confLow))
     }
-    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", "negative binomial", 
-        "poisson")
+    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", "negative binomial", "poisson")
     if (is.character(distribution)) {
         qFun = .charToDistFunc(distribution, type = "q")
         pFun = .charToDistFunc(distribution, type = "p")
