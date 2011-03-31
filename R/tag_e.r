@@ -1,7 +1,8 @@
 .NAMES = LETTERS[c(1:8, 10:26)]
-setClass(Class = "taguchiDesign", representation = representation(name = "character", factors = "list", design = "data.frame", 
-    designType = "character", replic = "data.frame", response = "data.frame", Type = "data.frame", block = "data.frame", 
-    runOrder = "data.frame", standardOrder = "data.frame", desireVal = "list", desirability = "list", fits = "data.frame"))
+setClass(Class = "taguchiDesign", representation = representation(name = "character", factors = "list", 
+    design = "data.frame", designType = "character", replic = "data.frame", response = "data.frame", Type = "data.frame", 
+    block = "data.frame", runOrder = "data.frame", standardOrder = "data.frame", desireVal = "list", desirability = "list", 
+    fits = "data.frame"))
 setClass("taguchiFactor", representation = representation(values = "ANY", name = "character", unit = "character", 
     type = "character"), prototype = prototype(values = NA, name = " ", unit = " ", type = "numeric"))
 setGeneric("values", function(object) standardGeneric("values"))
@@ -173,7 +174,8 @@ taguchiDesign = function(design, randomize = TRUE, replicates = 1) {
             odo@replic = data.frame(Replicate = odo@replic[order(RunOrder), 1])
             row.names(odo@design) = odo@design$RunOrder
             odo@runOrder = data.frame(RunOrder = data.frame(RunOrder = RunOrder)[order(RunOrder), ])
-            odo@standardOrder = data.frame(StandOrder = data.frame(StandOrder = StandOrder)[order(RunOrder), ])
+            odo@standardOrder = data.frame(StandOrder = data.frame(StandOrder = StandOrder)[order(RunOrder), 
+                ])
             odo@response = data.frame(y = rep(NA, nrow(odo@design)))
             tfList = vector("list", ncol(design))
             for (i in seq(along = tfList)) tfList[i] = new("taguchiFactor")
@@ -219,22 +221,23 @@ taguchiChoose = function(factors1 = 0, factors2 = 0, level1 = 0, level2 = 0, ia 
         ss = list()
         for (i in seq(along = .oaList)) {
             li = .oaList[[i]]
-            if (li$factors1 >= factors1 & li$factors2 >= factors2 & (li$levels1 == level1 | li$levels1 == level2) & (li$levels2 == 
-                level2 | li$levels2 == level1) & li$anzahl_spalten >= Anzahl_Spalten) 
+            if (li$factors1 >= factors1 & li$factors2 >= factors2 & (li$levels1 == level1 | li$levels1 == level2) & 
+                (li$levels2 == level2 | li$levels2 == level1) & li$anzahl_spalten >= Anzahl_Spalten) 
                 ss[i] = li$id
         }
         out = as.character(ss)
         out = out[out != "NULL"]
         if (length(out) > 0) {
-            cat(paste(factors1, "factors on", level1, "levels and", factors2, "factors on", level2, "levels with", ia, 
-                "desired interactions to be estimated\n"))
+            cat(paste(factors1, "factors on", level1, "levels and", factors2, "factors on", level2, "levels with", 
+                ia, "desired interactions to be estimated\n"))
             cat("\n")
             cat("Possible Designs:\n")
             cat("\n")
             cat(paste(out, sep = " | "))
             cat("\n")
             cat("\n")
-            cat(paste("Use taguchiDesign(\"", out[1], "\") or different to create a taguchi design object\n", sep = ""))
+            cat(paste("Use taguchiDesign(\"", out[1], "\") or different to create a taguchi design object\n", 
+                sep = ""))
         }
         else {
             cat("No Design Found\n")

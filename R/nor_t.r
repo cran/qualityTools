@@ -1,5 +1,5 @@
-normalPlot = function(fdo, threeWay = FALSE, na.last = NA, alpha = 0.05, sig.col = c("red1", "red2", "red3"), 
-    main, ylim, xlim, xlab, ylab, pch, ...) {
+normalPlot = function(fdo, threeWay = FALSE, na.last = NA, alpha = 0.05, sig.col = c("red1", "red2", 
+    "red3"), main, ylim, xlim, xlab, ylab, pch, ...) {
     DB = FALSE
     old.par <- par(no.readonly = TRUE)
     on.exit(par(old.par))

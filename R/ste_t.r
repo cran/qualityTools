@@ -1,4 +1,5 @@
-setClass(Class = "steepAscent", representation = representation(name = "character", X = "data.frame", response = "data.frame"))
+setClass(Class = "steepAscent", representation = representation(name = "character", X = "data.frame", 
+    response = "data.frame"))
 setMethod("response", "steepAscent", function(object) {
     out = object@response
     return(out)
