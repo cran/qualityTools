@@ -94,7 +94,7 @@
 \begin{titlepage}
 
 \begin{center}
-\includegraphics[width=0.75\textwidth]{Bilder/qualityToolsGrafik.pdf}
+\includegraphics[width=0.4\textwidth]{Bilder/qualityToolsGrafik.pdf}
 \par
 \vspace{1cm}
 \huge{\textbf{Working with the qualityTools package}}

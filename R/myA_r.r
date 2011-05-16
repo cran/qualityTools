@@ -160,8 +160,8 @@ print.adtest = function(x, digits = 4, quote = TRUE, prefix = "", ...) {
         }
     }
     if (!is.null(x$conf.int)) {
-        cat(format(100 * attr(x$conf.int, "conf.level")), "percent confidence interval:\n", format(c(x$conf.int[1L], 
-            x$conf.int[2L])), "\n")
+        cat(format(100 * attr(x$conf.int, "conf.level")), "percent confidence interval:\n", format(c(x$conf.int[1L], x$conf.int[2L])), 
+            "\n")
     }
     if (!is.null(x$estimate)) {
         cat("sample estimates:\n")

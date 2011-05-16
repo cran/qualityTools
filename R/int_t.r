@@ -3,10 +3,10 @@
         stop("factor names should be single characters only")
     return((1:26)[LETTERS[1:26] == LETTER])
 }
-.testFun = function(x.factor, trace.factor, response, fun = mean, type = c("l", "p", "b"), legend = TRUE, 
-    trace.label = deparse(substitute(trace.factor)), fixed = FALSE, xlab = deparse(substitute(x.factor)), ylab = ylabel, 
-    ylim = range(cellNew, na.rm = TRUE), lty = nc:1, col = 1, pch = c(1L:9, 0, letters), xpd = NULL, leg.bg = par("bg"), 
-    leg.bty = "o", xtick = FALSE, xaxt = par("xaxt"), axes = TRUE, title = "", ...) {
+.testFun = function(x.factor, trace.factor, response, fun = mean, type = c("l", "p", "b"), legend = TRUE, trace.label = deparse(substitute(trace.factor)), 
+    fixed = FALSE, xlab = deparse(substitute(x.factor)), ylab = ylabel, ylim = range(cellNew, na.rm = TRUE), lty = nc:1, 
+    col = 1, pch = c(1L:9, 0, letters), xpd = NULL, leg.bg = par("bg"), leg.bty = "o", xtick = FALSE, xaxt = par("xaxt"), 
+    axes = TRUE, title = "", ...) {
     ylabel <- paste(deparse(substitute(fun)), "of ", deparse(substitute(response)))
     type <- match.arg(type)
     cellNew <- tapply(response, list(x.factor, trace.factor), fun)
@@ -31,8 +31,8 @@
     xlim <- range(xvals)
     xleg <- xlim[2L] + 0.05 * diff(xlim)
     xlim <- xlim + c(-0.2/nr, if (legend) 0.2 + 0.02 * nch else 0.2/nr) * diff(xlim)
-    matplot(xvals, cellNew, ..., type = type, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, axes = axes, 
-        xaxt = "n", col = col, lty = lty, pch = pch)
+    matplot(xvals, cellNew, ..., type = type, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, axes = axes, xaxt = "n", 
+        col = col, lty = lty, pch = pch)
     if (axes && xaxt != "n") {
         axisInt <- function(x, main, sub, lwd, bg, log, asp, ...) axis(1, x, ...)
         mgp. <- par("mgp")
@@ -76,8 +76,8 @@
     xlim <- range(xvals)
     xleg <- xlim[2] + 0.05 * diff(xlim)
     xlim <- xlim + c(-0.2/nr, if (legend) 0.3 + 0.02 * nch else 0.3/nr) * diff(xlim)
-    matplot(xvals, cells, ..., type = type, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, axes = axes, 
-        xaxt = "n", col = col, lty = lty, pch = pch)
+    matplot(xvals, cells, ..., type = type, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, axes = axes, xaxt = "n", 
+        col = col, lty = lty, pch = pch)
     if (axes && xaxt != "n") {
         axisInt <- function(x, main, sub, lwd, bg, log, asp, ...) axis(1, x, ...)
         mgp. <- par("mgp")
@@ -109,10 +109,10 @@
     }
     return(list(xvals, xlabs))
 }
-.interactionPlotOld = function(x.factor, trace.factor, response, fun = mean, type = c("l", "p", 
-    "b"), legend = TRUE, trace.label = deparse(substitute(trace.factor)), fixed = FALSE, xlab = deparse(substitute(x.factor)), 
-    ylab = ylabel, ylim = range(cells, na.rm = TRUE), lty = nc:1, col = 1, pch = c(1:9, 0, letters), xpd = NULL, 
-    leg.bg = par("bg"), leg.bty = "n", xtick = FALSE, xaxt = par("xaxt"), axes = TRUE, ...) {
+.interactionPlotOld = function(x.factor, trace.factor, response, fun = mean, type = c("l", "p", "b"), legend = TRUE, 
+    trace.label = deparse(substitute(trace.factor)), fixed = FALSE, xlab = deparse(substitute(x.factor)), ylab = ylabel, 
+    ylim = range(cells, na.rm = TRUE), lty = nc:1, col = 1, pch = c(1:9, 0, letters), xpd = NULL, leg.bg = par("bg"), 
+    leg.bty = "n", xtick = FALSE, xaxt = par("xaxt"), axes = TRUE, ...) {
     ylabel <- paste(deparse(substitute(fun)), "of ", deparse(substitute(response)))
     type <- match.arg(type)
     cells <- tapply(response, list(x.factor, trace.factor), fun)
@@ -137,8 +137,8 @@
     xlim <- range(xvals)
     xleg <- xlim[2] + 0.05 * diff(xlim)
     xlim <- xlim + c(-0.2/nr, if (legend) 0.2 + 0.02 * nch else 0.2/nr) * diff(xlim)
-    matplot(xvals, cells, ..., type = type, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, axes = axes, 
-        xaxt = "n", col = col, lty = lty, pch = pch)
+    matplot(xvals, cells, ..., type = type, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, axes = axes, xaxt = "n", 
+        col = col, lty = lty, pch = pch)
     if (axes && xaxt != "n") {
         axisInt <- function(x, main, sub, lwd, bg, log, asp, ...) axis(1, x, ...)
         mgp. <- par("mgp")
@@ -195,8 +195,7 @@ interactionPlot = function(fdo = NULL, y = NULL, response = NULL, fun = mean, ma
             facName2 = combMat[1, 1]
             facName1 = combMat[2, 1]
             temp = with(cbind(y, x), .testFun(eval(parse(text = facName2)), eval(parse(text = facName1)), xlab = facName1, 
-                response = y, trace.label = facName1, ylim = range(y), axes = F, fun, title = facName1, col = col, 
-                ...))
+                response = y, trace.label = facName1, ylim = range(y), axes = F, fun, title = facName1, col = col, ...))
             tempList = parList
             tempList$col = 1
             tempList$lwd = 1
@@ -233,9 +232,8 @@ interactionPlot = function(fdo = NULL, y = NULL, response = NULL, fun = mean, ma
                   cat(paste(i, "\t", c(rowNum, colNum)))
                 }
                 par(mfg = c(rowNum, colNum))
-                temp = with(cbind(x, y), .testFun(eval(parse(text = facName2)), eval(parse(text = facName1)), 
-                  response = y, trace.label = facName1, ylim = range(y), axes = F, fun = fun, title = facName1, 
-                  col = col, ...))
+                temp = with(cbind(x, y), .testFun(eval(parse(text = facName2)), eval(parse(text = facName1)), response = y, 
+                  trace.label = facName1, ylim = range(y), axes = F, fun = fun, title = facName1, col = col, ...))
                 if (colNum == numFac) {
                   tempList = parList
                   tempList$col = 1

@@ -139,19 +139,19 @@ rsmChoose = function() {
     par(oma = c(4, 4, 4, 4))
     for (i in 1:6) for (j in 1:9) {
         par(mfg = c(i, j))
-        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n", xlab = "", 
-            ylab = "", bg = "red", fg = "green")
+        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n", xlab = "", ylab = "", 
+            bg = "red", fg = "green")
         box()
     }
     for (i in seq(along = rsmList)) {
         temp = rsmList[[i]]
         par(mfg = c(temp$row, temp$col))
         par(mfg = c(temp$row, temp$col))
-        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n", xlab = "", 
-            ylab = "", bg = "red", fg = "green")
+        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n", xlab = "", ylab = "", 
+            bg = "red", fg = "green")
         rect(0, 0, 1, 1, col = colPalette[2^((temp$k) - (temp$p))])
-        text(0.1, 0.9, paste("N =", 2^((temp$k) - (temp$p)) + temp$cc * (temp$blocks - 1) + temp$cs + (temp$k + 
-            temp$p) * 2), adj = c(0, 1), cex = 1.25)
+        text(0.1, 0.9, paste("N =", 2^((temp$k) - (temp$p)) + temp$cc * (temp$blocks - 1) + temp$cs + (temp$k + temp$p) * 
+            2), adj = c(0, 1), cex = 1.25)
         text(0.1, 0.75, paste("k =", temp$k), adj = c(0, 1), cex = 1.25)
         text(0.1, 0.6, paste("p =", temp$p), adj = c(0, 1), cex = 1.25)
         text(0.1, 0.45, ".centerPoints", adj = c(0, 1), cex = 1.25)
