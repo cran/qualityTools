@@ -1,5 +1,5 @@
-setClass(Class = "desirability", representation = representation(response = "character", low = "numeric", high = "numeric", 
-    target = "ANY", scale = "numeric", importance = "numeric"))
+setClass(Class = "desirability", representation = representation(response = "character", low = "numeric", high = "numeric", target = "ANY", scale = "numeric", 
+    importance = "numeric"))
 desirability = function(response, low, high, target = "max", scale = c(1, 1), importance = 1, constraints) {
     if (low >= high) 
         stop("the lower bound must be greater than the high bound!")
@@ -7,8 +7,7 @@ desirability = function(response, low, high, target = "max", scale = c(1, 1), im
         stop("the scale parameter must be greater than zero!")
     if (!is.numeric(target) & !identical(tolower(target), "min") & !identical(tolower(target), "max")) 
         stop("target needs to be \"min\", \"max\" or a numeric value")
-    return(new("desirability", response = deparse(substitute(response)), low = low, high = high, target = target, scale = scale, 
-        importance = importance))
+    return(new("desirability", response = deparse(substitute(response)), low = low, high = high, target = target, scale = scale, importance = importance))
 }
 .desireFun = function(low, high, target = "max", scale = c(1, 1), importance = 1) {
     DB = FALSE
@@ -67,8 +66,7 @@ setMethod("show", signature(object = "desirability"), function(object) {
     cat("\n")
 })
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-setMethod("plot", signature(x = "desirability"), function(x, y, scale, main, xlab, ylab, type, col, numPoints = 500, 
-    ...) {
+setMethod("plot", signature(x = "desirability"), function(x, y, scale, main, xlab, ylab, type, col, numPoints = 500, ...) {
     xm1 = NULL
     xm2 = NULL
     ym = NULL
@@ -101,10 +99,8 @@ setMethod("plot", signature(x = "desirability"), function(x, y, scale, main, xla
         xm1 = mean(par("usr")[c(1, 2)])
         ym1 = yVals[max((1:numPoints)[xVals <= xm1])]
         if (identical(x@target, "max")) 
-            text(xm1 + 0.025 * diff(range(par("usr")[1:2])), ym1 - 0.025 * diff(range(par("usr")[3:4])), paste("scale =", 
-                scale[1]), adj = c(0, 0))
-        else text(xm1 + 0.025 * diff(range(par("usr")[1:2])), ym1 + 0.025 * diff(range(par("usr")[3:4])), paste("scale =", 
-            scale[1]), adj = c(0, 1))
+            text(xm1 + 0.025 * diff(range(par("usr")[1:2])), ym1 - 0.025 * diff(range(par("usr")[3:4])), paste("scale =", scale[1]), adj = c(0, 0))
+        else text(xm1 + 0.025 * diff(range(par("usr")[1:2])), ym1 + 0.025 * diff(range(par("usr")[3:4])), paste("scale =", scale[1]), adj = c(0, 1))
     }
     out = list(x = xVals, y = yVals)
     names(out) = c(x@response, "desirability")
@@ -191,8 +187,8 @@ overall = function(fdo, steps = 20, constraints, ...) {
     }
     return(yDes)
 }
-setClass(Class = "desOpt", representation = representation(facCoded = "list", facReal = "list", responses = "list", 
-    desirabilities = "list", overall = "numeric", all = "data.frame", fdo = "facDesign"))
+setClass(Class = "desOpt", representation = representation(facCoded = "list", facReal = "list", responses = "list", desirabilities = "list", overall = "numeric", 
+    all = "data.frame", fdo = "facDesign"))
 as.data.frame.desOpt = function(x, row.names = NULL, optional = FALSE, ...) {
     return(x@all)
 }
@@ -284,8 +280,7 @@ optimum = function(fdo, constraints, steps = 25, type = "grid", start, ...) {
             print(paste("lower:", lower))
             print(paste("upper:", upper))
         }
-        temp = optim(par = start, optDes, method = "L-BFGS-B", lower = lower, upper = upper, control = list(fnscale = -1, 
-            maxit = 1000))
+        temp = optim(par = start, optDes, method = "L-BFGS-B", lower = lower, upper = upper, control = list(fnscale = -1, maxit = 1000))
         facCoded = as.list(temp$par)
         names(facCoded) = names(names(fdo))
         desOpt@facCoded = facCoded

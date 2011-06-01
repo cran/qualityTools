@@ -1,6 +1,6 @@
-setClass("gageRR", representation = representation(X = "data.frame", ANOVA = "aov", RedANOVA = "aov", method = "character", 
-    Estimates = "list", Varcomp = "list", Sigma = "numeric", GageName = "character", GageTolerance = "numeric", DateOfStudy = "character", 
-    PersonResponsible = "character", Comments = "character", b = "factor", a = "factor", y = "numeric", facNames = "character"))
+setClass("gageRR", representation = representation(X = "data.frame", ANOVA = "aov", RedANOVA = "aov", method = "character", Estimates = "list", Varcomp = "list", 
+    Sigma = "numeric", GageName = "character", GageTolerance = "numeric", DateOfStudy = "character", PersonResponsible = "character", Comments = "character", 
+    b = "factor", a = "factor", y = "numeric", facNames = "character"))
 setMethod("show", signature(object = "gageRR"), function(object) {
     print(as.data.frame(object))
 })
@@ -48,9 +48,8 @@ setReplaceMethod("sigma", "gageRR", function(x, value) {
     return(x)
 })
 .aip = function(x.factor, trace.factor, response, fun = mean, type = c("l", "p", "b"), legend = FALSE, trace.label = deparse(substitute(trace.factor)), 
-    fixed = FALSE, xlab = deparse(substitute(x.factor)), ylab = ylabel, ylim = range(cellNew, na.rm = TRUE), lty = nc:1, 
-    col = 1, pch = c(1L:9, 0, letters), xpd = NULL, leg.bg = par("bg"), leg.bty = "o", xtick = FALSE, xaxt = par("xaxt"), 
-    axes = TRUE, title = "", ...) {
+    fixed = FALSE, xlab = deparse(substitute(x.factor)), ylab = ylabel, ylim = range(cellNew, na.rm = TRUE), lty = nc:1, col = 1, pch = c(1L:9, 0, letters), 
+    xpd = NULL, leg.bg = par("bg"), leg.bty = "o", xtick = FALSE, xaxt = par("xaxt"), axes = TRUE, title = "", ...) {
     ylabel <- paste(deparse(substitute(fun)), "of ", deparse(substitute(response)))
     type <- match.arg(type)
     cellNew <- tapply(response, list(x.factor, trace.factor), fun)
@@ -75,8 +74,7 @@ setReplaceMethod("sigma", "gageRR", function(x, value) {
     xlim <- range(xvals)
     xleg <- xlim[2L] + 0.05 * diff(xlim)
     xlim <- xlim + c(-0.2/nr, if (legend) 0.2 + 0.02 * nch else 0.2/nr) * diff(xlim)
-    matplot(xvals, cellNew, ..., type = type, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, axes = axes, xaxt = "n", 
-        col = col, lty = lty, pch = pch)
+    matplot(xvals, cellNew, ..., type = type, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, axes = axes, xaxt = "n", col = col, lty = lty, pch = pch)
     if (axes && xaxt != "n") {
         axisInt <- function(x, main, sub, lwd, bg, log, asp, ...) axis(1, x, ...)
         mgp. <- par("mgp")
@@ -147,10 +145,9 @@ gageRRDesign = function(Operators = 3, Parts = 10, Measurements = 3, method = "c
         print(o)
     }
     if (randomize) 
-        outFrame = data.frame(StandardOrder = 1:length(Measurement), RunOrder = sample(1:length(Measurement), length(Measurement)), 
-            Operator = factor(o), Part = factor(p), Measurement)
-    else outFrame = data.frame(StandardOrder = 1:length(Measurement), RunOrder = 1:length(Measurement), Operator = factor(o), 
-        Part = factor(p), Measurement)
+        outFrame = data.frame(StandardOrder = 1:length(Measurement), RunOrder = sample(1:length(Measurement), length(Measurement)), Operator = factor(o), Part = factor(p), 
+            Measurement)
+    else outFrame = data.frame(StandardOrder = 1:length(Measurement), RunOrder = 1:length(Measurement), Operator = factor(o), Part = factor(p), Measurement)
     outFrame = outFrame[order(outFrame$RunOrder), ]
     gageRRObj = new("gageRR")
     gageRRObj@facNames = c(yName, aName, bName, abName)
@@ -165,8 +162,7 @@ gageRRDesign = function(Operators = 3, Parts = 10, Measurements = 3, method = "c
     gageRRObj@X = outFrame
     return(gageRRObj)
 }
-gageRR = function(gdo, method = "crossed", sigma = 5.15, alpha = 0.25, DM = NULL, HM = NULL, tolerance = NULL, 
-    dig = 3, ...) {
+gageRR = function(gdo, method = "crossed", sigma = 5.15, alpha = 0.25, DM = NULL, HM = NULL, tolerance = NULL, dig = 3, ...) {
     yName = names(gdo)[5]
     aName = names(gdo)[3]
     bName = names(gdo)[4]
@@ -208,8 +204,7 @@ gageRR = function(gdo, method = "crossed", sigma = 5.15, alpha = 0.25, DM = NULL
         bTob = Cb
         totalVar = Cb + Ca + Cab + Cerror
         estimates = list(Cb = Cb, Ca = Ca, Cab = Cab, Cerror = Cerror)
-        varcomp = list(totalRR = totalRR, repeatability = repeatability, reproducibility = reproducibility, bTob = bTob, 
-            totalVar = totalVar)
+        varcomp = list(totalRR = totalRR, repeatability = repeatability, reproducibility = reproducibility, bTob = bTob, totalVar = totalVar)
         gdo@Estimates = estimates
         gdo@Varcomp = varcomp
     }
@@ -269,8 +264,7 @@ gageRR = function(gdo, method = "crossed", sigma = 5.15, alpha = 0.25, DM = NULL
         bTob = Cb
         totalVar = Cb + Ca + Cab + Cerror
         estimates = list(Cb = Cb, Ca = Ca, Cab = Cab, Cerror = Cerror)
-        varcomp = list(totalRR = totalRR, repeatability = repeatability, reproducibility = reproducibility, a = Ca, a_b = Cab, 
-            bTob = bTob, totalVar = totalVar)
+        varcomp = list(totalRR = totalRR, repeatability = repeatability, reproducibility = reproducibility, a = Ca, a_b = Cab, bTob = bTob, totalVar = totalVar)
         gdo@Estimates = estimates
         gdo@Varcomp = varcomp
     }
@@ -292,8 +286,7 @@ gageRR = function(gdo, method = "crossed", sigma = 5.15, alpha = 0.25, DM = NULL
     Source[Source == "a"] = paste("  ", aName)
     Source[Source == "bTob"] = bTobName
     VarComp = round(as.numeric(gdo@Varcomp[c(1:length(gdo@Varcomp))]), 3)
-    Contribution = round(as.numeric(gdo@Varcomp[c(1:length(gdo@Varcomp))])/as.numeric(gdo@Varcomp[length(gdo@Varcomp)]), 
-        3)
+    Contribution = round(as.numeric(gdo@Varcomp[c(1:length(gdo@Varcomp))])/as.numeric(gdo@Varcomp[length(gdo@Varcomp)]), 3)
     VarComp = t(data.frame(gdo@Varcomp))
     VarCompContrib = VarComp/gdo@Varcomp$totalVar
     Stdev = sqrt(VarComp)
@@ -343,8 +336,7 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
     temp = NULL
     Source = names(gdo@Varcomp)
     VarComp = round(as.numeric(gdo@Varcomp[c(1:length(gdo@Varcomp))]), 3)
-    Contribution = round(as.numeric(gdo@Varcomp[c(1:length(gdo@Varcomp))])/as.numeric(gdo@Varcomp[length(gdo@Varcomp)]), 
-        3)
+    Contribution = round(as.numeric(gdo@Varcomp[c(1:length(gdo@Varcomp))])/as.numeric(gdo@Varcomp[length(gdo@Varcomp)]), 3)
     VarComp = t(data.frame(gdo@Varcomp))
     VarCompContrib = VarComp/gdo@Varcomp$totalVar
     Stdev = sqrt(VarComp)
@@ -384,8 +376,8 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
     else ylab1 = ylab[1]
     argList = list(...)
     redList = argList[names(argList) != "cex"]
-    mybp = do.call(barplot, c(list(t(contribFrame), xlab = xlab1, ylab = ylab1, main = main1, names.arg = rep("", 4), 
-        axes = F, beside = T, ylim = c(0, 1.3 * ymax), col = col[1:numBars]), redList))
+    mybp = do.call(barplot, c(list(t(contribFrame), xlab = xlab1, ylab = ylab1, main = main1, names.arg = rep("", 4), axes = F, beside = T, ylim = c(0, 1.3 * 
+        ymax), col = col[1:numBars]), redList))
     axis(1, at = colMeans(mybp), labels = names(as.data.frame(t(contribFrame))), ...)
     axis(2, ...)
     box()
@@ -423,8 +415,7 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         boxplot(split(gdo[, yName], gdo[, aName]), col = colVec, xlab = xlab3, ylab = ylab3, main = main3, ...)
         mByOp = split(gdo[, 5], as.numeric(gdo[, 3]))
         lines(sort(as.numeric(factor(names(mByOp)))), lapply(mByOp, mean)[sort(names(mByOp))], lwd = lwd)
-        points(sort(as.numeric(factor(names(mByOp)))), lapply(mByOp, median)[sort(names(mByOp))], lwd = lwd, pch = 13, 
-            cex = 2)
+        points(sort(as.numeric(factor(names(mByOp)))), lapply(mByOp, median)[sort(names(mByOp))], lwd = lwd, pch = 13, cex = 2)
         agg = aggregate(gdo[, yName], list(gdo[, bName], gdo[, aName]), FUN = mean)
         tab = table(agg[, 2])
         sgSize = tab[1]
@@ -436,8 +427,7 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         values = c(UCL, xm, LCL)
         old.par = par()$mar
         par(mar = c(5.1, 4.1, 4.1, 10.1))
-        plot(agg[, 3], type = "n", axes = FALSE, xlab = aName, ylab = expression(bar(x)), main = expression(paste(bar(x), 
-            " Chart")))
+        plot(agg[, 3], type = "n", axes = FALSE, xlab = aName, ylab = expression(bar(x)), main = expression(paste(bar(x), " Chart")))
         box()
         abline(h = xm, col = 3)
         abline(h = UCL, col = 2)
@@ -446,8 +436,7 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         axis(4, at = c(xm, UCL, LCL), labels = c("", "", ""))
         text(length(agg[, 3]) + length(agg[, 3]) * 0.075, LCL, paste("LCL =", round(LCL, 2)), adj = 0, srt = 0, xpd = TRUE)
         text(length(agg[, 3]) + length(agg[, 3]) * 0.075, UCL, paste("UCL =", round(UCL, 2)), adj = 0, srt = 0, xpd = TRUE)
-        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, xm, substitute(bar(x) == xm, list(xm = round(xm, 2))), adj = 0, 
-            srt = 0, xpd = TRUE)
+        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, xm, substitute(bar(x) == xm, list(xm = round(xm, 2))), adj = 0, srt = 0, xpd = TRUE)
         par(mar = old.par)
         j = 1
         for (i in 1:length(tab)) {
@@ -472,8 +461,7 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         else ylab4 = ylab[4]
         old.par = par()$mar
         par(mar = c(5.1, 4.1, 4.1, 10.1))
-        .aip(gdo[, 4], gdo[, 3], response = gdo[, 5], xlab = xlab4, ylab = ylab4, main = main4, col = col, type = "b", 
-            title = names(gdo)[3], ...)
+        .aip(gdo[, 4], gdo[, 3], response = gdo[, 5], xlab = xlab4, ylab = ylab4, main = main4, col = col, type = "b", title = names(gdo)[3], ...)
         par(mar = old.par)
         D3 = c(0, 0, 0, 0, 0, 0.076, 0.136, 0.184, 0.223, 0.256, 0.284, 0.308, 0.329, 0.348)
         D4 = c(0, 3.267, 2.574, 2.282, 2.115, 2.004, 1.924, 1.864, 1.816, 1.777, 1.744, 1.716, 1.692, 1.671, 1.652)
@@ -497,8 +485,7 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         abline(h = LCL, col = 2)
         text(length(agg[, 3]) + length(agg[, 3]) * 0.075, LCL, paste("LCL =", round(LCL, 2)), adj = 0, srt = 0, xpd = TRUE)
         text(length(agg[, 3]) + length(agg[, 3]) * 0.075, UCL, paste("UCL =", round(UCL, 2)), adj = 0, srt = 0, xpd = TRUE)
-        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, Rm, substitute(bar(R) == Rm, list(Rm = round(Rm, 2))), adj = 0, 
-            srt = 0, xpd = TRUE)
+        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, Rm, substitute(bar(R) == Rm, list(Rm = round(Rm, 2))), adj = 0, srt = 0, xpd = TRUE)
         j = 1
         for (i in 1:length(tab)) {
             lines(j:(j + tab[i] - 1), agg[j:(j + tab[i] - 1), 3])
@@ -569,8 +556,7 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         values = c(UCL, xm, LCL)
         old.par = par()$mar
         par(mar = c(5.1, 4.1, 4.1, 10.1))
-        plot(agg[, 3], type = "n", axes = FALSE, xlab = aName, ylab = expression(bar(x)), main = expression(paste(bar(x), 
-            " Chart")))
+        plot(agg[, 3], type = "n", axes = FALSE, xlab = aName, ylab = expression(bar(x)), main = expression(paste(bar(x), " Chart")))
         box()
         abline(h = xm, col = 3)
         abline(h = UCL, col = 2)
@@ -579,8 +565,7 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         axis(4, at = c(xm, UCL, LCL), labels = c("", "", ""))
         text(length(agg[, 3]) + length(agg[, 3]) * 0.075, LCL, paste("LCL =", round(LCL, 2)), adj = 0, srt = 0, xpd = TRUE)
         text(length(agg[, 3]) + length(agg[, 3]) * 0.075, UCL, paste("UCL =", round(UCL, 2)), adj = 0, srt = 0, xpd = TRUE)
-        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, xm, substitute(bar(x) == xm, list(xm = round(xm, 2))), adj = 0, 
-            srt = 0, xpd = TRUE)
+        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, xm, substitute(bar(x) == xm, list(xm = round(xm, 2))), adj = 0, srt = 0, xpd = TRUE)
         par(mar = old.par)
         j = 1
         for (i in 1:length(tab)) {
@@ -614,8 +599,7 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         abline(h = LCL, col = 2)
         text(length(agg[, 3]) + length(agg[, 3]) * 0.075, LCL, paste("LCL =", round(LCL, 2)), adj = 0, srt = 0, xpd = TRUE)
         text(length(agg[, 3]) + length(agg[, 3]) * 0.075, UCL, paste("UCL =", round(UCL, 2)), adj = 0, srt = 0, xpd = TRUE)
-        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, Rm, substitute(bar(R) == Rm, list(Rm = round(Rm, 2))), adj = 0, 
-            srt = 0, xpd = TRUE)
+        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, Rm, substitute(bar(R) == Rm, list(Rm = round(Rm, 2))), adj = 0, srt = 0, xpd = TRUE)
         j = 1
         for (i in 1:length(tab)) {
             lines(j:(j + tab[i] - 1), agg[j:(j + tab[i] - 1), 3])

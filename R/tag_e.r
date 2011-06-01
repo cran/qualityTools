@@ -1,9 +1,9 @@
 .NAMES = LETTERS[c(1:8, 10:26)]
-setClass(Class = "taguchiDesign", representation = representation(name = "character", factors = "list", design = "data.frame", 
-    designType = "character", replic = "data.frame", response = "data.frame", Type = "data.frame", block = "data.frame", 
-    runOrder = "data.frame", standardOrder = "data.frame", desireVal = "list", desirability = "list", fits = "data.frame"))
-setClass("taguchiFactor", representation = representation(values = "ANY", name = "character", unit = "character", 
-    type = "character"), prototype = prototype(values = NA, name = " ", unit = " ", type = "numeric"))
+setClass(Class = "taguchiDesign", representation = representation(name = "character", factors = "list", design = "data.frame", designType = "character", 
+    replic = "data.frame", response = "data.frame", Type = "data.frame", block = "data.frame", runOrder = "data.frame", standardOrder = "data.frame", desireVal = "list", 
+    desirability = "list", fits = "data.frame"))
+setClass("taguchiFactor", representation = representation(values = "ANY", name = "character", unit = "character", type = "character"), prototype = prototype(values = NA, 
+    name = " ", unit = " ", type = "numeric"))
 setGeneric("values", function(object) standardGeneric("values"))
 setGeneric("values<-", function(object, value) standardGeneric("values<-"))
 setMethod("values", "taguchiDesign", function(object) {
@@ -219,15 +219,14 @@ taguchiChoose = function(factors1 = 0, factors2 = 0, level1 = 0, level2 = 0, ia 
         ss = list()
         for (i in seq(along = .oaList)) {
             li = .oaList[[i]]
-            if (li$factors1 >= factors1 & li$factors2 >= factors2 & (li$levels1 == level1 | li$levels1 == level2) & (li$levels2 == 
-                level2 | li$levels2 == level1) & li$anzahl_spalten >= Anzahl_Spalten) 
+            if (li$factors1 >= factors1 & li$factors2 >= factors2 & (li$levels1 == level1 | li$levels1 == level2) & (li$levels2 == level2 | li$levels2 == level1) & 
+                li$anzahl_spalten >= Anzahl_Spalten) 
                 ss[i] = li$id
         }
         out = as.character(ss)
         out = out[out != "NULL"]
         if (length(out) > 0) {
-            cat(paste(factors1, "factors on", level1, "levels and", factors2, "factors on", level2, "levels with", ia, 
-                "desired interactions to be estimated\n"))
+            cat(paste(factors1, "factors on", level1, "levels and", factors2, "factors on", level2, "levels with", ia, "desired interactions to be estimated\n"))
             cat("\n")
             cat("Possible Designs:\n")
             cat("\n")
