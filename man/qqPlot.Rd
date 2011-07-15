@@ -7,9 +7,9 @@ Quantile-Quantile Plots for various distributions
 }
 \description{
 qqPlot creates a QQ plot of the values in x including a line which passes through the first and third quartiles. Supported distributions are beta", "cauchy", "chi-squared", "exponential", "f", "gamma", "geometric", "log-normal", "lognormal", "logistic", "negative binomial", "normal", "Poisson", "t" and "weibull"
-}
+}      
 \usage{
-qqPlot(x, y, main, xlab, ylab, start, ...)
+qqPlot(x, y, main, xlab, ylab, xlim, ylim, border = "red", start, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -28,7 +28,16 @@ graphical parameter
   \item{ylab}{
 graphical parameter
 }
-  \item{start}{
+\item{xlim}{
+graphical parameter
+}
+\item{ylim}{
+graphical parameter
+}
+\item{border}{
+color of line
+}
+\item{start}{
 A named list giving the parameters to be fitted with initial values. Must be supplied for some distribution. (see Details)
 }
   \item{\dots}{
