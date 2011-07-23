@@ -12,8 +12,29 @@ taguchiDesign(design, randomize = TRUE, replicates = 1)
 }
 
 \arguments{
-  \item{design}{
-character - L4_2 L8_2 L9_3 L12_2 L16_2 L16_4 L18_2_3 L25_5 L27_3 L32_2 L32_2_4 L36_2_3_a L36_2_3_b L50_2_5 L8_4_2 L16_4_2_a L16_4_2_b L16_4_2_c L16_4_2_d L18_6_3
+  \item{design}{design needs to be one of the following characters, which specifies the
+                 orthogonal array of the taguchi design:
+   \itemize{\item \dQuote{L4_2} for three two-level factors                  \cr
+           \item \dQuote{L8_2} for seven two-level factors                   \cr
+           \item \dQuote{L9_3} for four three-level factors                  \cr
+           \item \dQuote{L12_2} for 11 two-level factors                     \cr
+           \item \dQuote{L16_2} for 16 two-level factors                     \cr
+           \item \dQuote{L16_4} for 16 four-level factors                    \cr
+           \item \dQuote{L18_2_3} for one two-level and seven three-level factors \cr
+           \item \dQuote{L25_5} for six five-level factors                   \cr
+           \item \dQuote{L27_3} for 13 three-level factors                   \cr
+           \item \dQuote{L32_2} for 32 two-level factors                     \cr    ### Funktioniert nicht?!?
+           \item \dQuote{L32_2_4} for one two-level factor and nine four-level factors \cr
+           \item \dQuote{L36_2_3_a} for 11 two-level factors and 12 three-level factors \cr
+           \item \dQuote{L36_2_3_b} for three two-level factors and 13 three-level factors \cr
+           \item \dQuote{L50_2_5} for one two-level factor and eleven five-level factors \cr
+           \item \dQuote{L8_4_2} for one four-level factor and four two-level factors \cr
+           \item \dQuote{L16_4_2_a} for one four-level factor and 12 two-level factors \cr
+           \item \dQuote{L16_4_2_b} for two four-level factors and nine two-level factors \cr
+           \item \dQuote{L16_4_2_c} for three four-level factors and six two-level factors \cr
+           \item \dQuote{L16_4_2_d} for five four-level factors and two two-level factors \cr
+           \item \dQuote{L18_6_3} for one six-level factors and six three-level factors \cr
+}                   
 }
   \item{randomize}{
 TRUE/FALSE - randomizes the RunOrder of the design

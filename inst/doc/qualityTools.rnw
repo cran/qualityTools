@@ -27,6 +27,7 @@
 \usepackage{ragged2e}
 \usepackage[pdftitle={Working with the qualityTools package},pdfauthor={Thomas Roth}, pdfsubject={A brief illustration of the R package qualityTools for teaching Quality Science related statistical methods with regard to the Six Sigma Quality Management methodology},pdfkeywords={Process Capability, Distribution Fitting, Gage R\&R, Design of Experiments, Desirability, factorial design, fractional factorial design, response surface design, response surface methods, mixture designs, taguchi designs, simultaneous optimization of mulitple response variables, QQPlot, Probability Plot}]{hyperref}
 \usepackage{amsmath,amsfonts,amssymb}
+\usepackage[]{natbib}
 \usepackage{marvosym}
 \usepackage{keystroke}
 \usepackage{blindtext}          % Erzeugung von Textpassagen
@@ -196,7 +197,7 @@ Besides this use case, pareto charts are also used for visualizing the effect si
 \section{qualityTools in MEASURE} \label{sec:measure}
 \marginpar{\includegraphics[width=1.5cm]{Bilder/M.pdf}}
 
-Collecting data involves the use of measurement systems often referred to as gages. In order to make a statement regarding the quality, i.e. the degree in which a set of inherent characteristics meets requirements, of a product\cite{DIN07}, the capability of the measurement system used needs to be validated.
+Collecting data involves the use of measurement systems often referred to as gages. In order to make a statement regarding the quality, i.e. the degree in which a set of inherent characteristics meets requirements, of a product\cite{ISO21747}, the capability of the measurement system used needs to be validated.
 
 Gages can have two types of impairments:
 
@@ -364,7 +365,7 @@ The Measurement Systems Analysis Manual \cite{MSA.2010}uses a specific Terminolo
 
 \subsection{Process Capability}
 
-Besides the capability of a measurement system, often the capability of a process is of interest or needs to be assessed e.g. as part of a supplier customer relationship in industry. Process Capability Indices basically tells one how much of the tolerance range is being used by common cause variation of the considered process. Using these techniques one can state how many units (e. g. products) are expected to fall outside the tolerance range (i.e. defective regarding the requirements determined before) if for instance production continues without intervention. It also gives insights into where to center the process if shifting is possible and meaningful in terms of costs. There are three indices which are also defined in the corresponding ISO 21747:2006 document\cite{DIN07} .
+Besides the capability of a measurement system, often the capability of a process is of interest or needs to be assessed e.g. as part of a supplier customer relationship in industry. Process Capability Indices basically tells one how much of the tolerance range is being used by common cause variation of the considered process. Using these techniques one can state how many units (e. g. products) are expected to fall outside the tolerance range (i.e. defective regarding the requirements determined before) if for instance production continues without intervention. It also gives insights into where to center the process if shifting is possible and meaningful in terms of costs. There are three indices which are also defined in the corresponding ISO 21747:2006 document\cite{ISO21747} .
 
 \begin{align}
 c_p &= \frac{USL - LSL}{Q_{0.99865} - Q_{0.00135}}\\
@@ -553,18 +554,20 @@ summary(lm.1)
 @
 
 
-The effects of A and B as well as the interaction A:B are identified to be significant. A Pareto plot of the standardized effects visualizes these findings and can be created with the \Remph{paretoPlot} method of the qualityTools package (figure \ref{fig:paretoPlot}).
+The effects of A and B as well as the interaction A:B are identified to be significant. A Pareto plot of the standardized effects visualizes these findings and can be created with the \Remph{paretoPlot} method of the qualityTools package (figure \ref{fig:paretoNormalPlot}). Another visualization technique commonly found is a normal plot using the \Remph{normalPlot} method of the qualityTools package.
 
 <<ParetPlot, echo=TRUE, results=hide>>=
+par(mfrow = c(1,2))
 paretoPlot(fdo)
+normalPlot(fdo)
 @
 
 \begin{figure}[htbp]\begin{center}
 <<fig=TRUE, echo=FALSE, results=hide, width=14, height=7>>=
 <<ParetPlot>>
 @
-\caption{pareto plot of the standardized effects}
-\label{fig:paretoPlot}
+\caption{pareto plot of the standardized effects and normal plot of the coefficients}
+\label{fig:paretoNormalPlot}
 \end{center}\end{figure}
 
 The relation between the factors A and B can be visualized as 3D representation in form of a wireframe or contour plot using the \Remph{wirePlot} and \Remph{contourPlot} method of the qualityTools package (figure \ref{fig:multipleResponsePlot1}). Again, no further transformation of the data is needed!
@@ -1057,7 +1060,8 @@ Stangle(file="qualityTools.rnw", output="RCode.r", annotate=FALSE)
 
 
 %einkommentieren fr Literaturverzeichnis
-\bibliographystyle{alphadin}
+%\bibliographystyle{alphadin}
+\bibliographystyle{natdin}
 \bibliography{vignette}
 
 \nocite{*} %damit alle und nicht nur im Text zitierte Literaturangaben angegeben werden

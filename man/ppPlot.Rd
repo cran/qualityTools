@@ -9,7 +9,7 @@ Probability Plots for various distributions
 ppPlot creates a Probability plot of the values in x including a line. Supported distributions are beta", "cauchy", "chi-squared", "exponential", "f", "gamma", "geometric", "log-normal", "lognormal", "logistic", "negative binomial", "normal", "Poisson", "t" and "weibull".
 }
 \usage{
-ppPlot(x, distribution, probs, main, xlab, ylab, xlim, ylim, grid = TRUE, box = TRUE, stats = TRUE, start, ...)
+ppPlot(x, distribution, probs, main, xlab, ylab, xlim, ylim, border = "red", grid = TRUE, box = TRUE, stats = TRUE, start, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -37,6 +37,10 @@ graphical parameter
   \item{ylim}{
 graphical parameter
 }
+\item{border}{
+color of line
+}
+
   \item{grid}{
 add a grid to the current plot
 }

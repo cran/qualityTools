@@ -8,7 +8,7 @@ Half-Normal plot
 function to generate a half-normal plot of the factor effects for an object of class facDesign
 }
 \usage{
-normalPlot(fdo, threeWay = FALSE, na.last = NA, alpha = 0.05, sig.col = c("red1", "red2", "red3"), main, ylim, xlim, xlab, ylab, pch, ...)
+normalPlot(fdo, threeWay = FALSE, na.last = NA, alpha = 0.05, sig.col = c("red1", "red2", "red3"), main, ylim, xlim, xlab, ylab, pch, col, border = "red", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -45,6 +45,13 @@ graphical parameter
   \item{pch}{
 graphical parameter
 }
+\item{col}{
+graphical parameter
+}
+\item{border}{
+graphical parameter
+}
+
   \item{\dots}{
 further graphical parameters
 }

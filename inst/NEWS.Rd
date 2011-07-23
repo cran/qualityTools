@@ -4,8 +4,19 @@
 \section{Changes in version 0.87 (1.41)}{
   \itemize{
   
+    \item 14. Jul 2011: included the calculation of lambda for a boxcox transformation in function pcr.
+    Only specified specification limits are plotted.
+    fraction nonconforming are calculated in percentages and ppm
+    \item 13. Jul 2011: reference line for Quantil-Quantil and Probability Plots changed
+    Anderson Darling test now reports the name of the dataset passed from method pcr
+    Reference line of QQ-Plot within method pcr changed
+    \item 12. Jul 2011: reference line for normalPlot changed
+    Included color coding of sigfnifican effects
+    \item 11. Jul 2011: added parameters xlim, ylim and border for qqPlot
+    Added parameter border for ppPlot
+    
     \item 21. Mar 2011: added missing documentation for S4 classes. 
-    Included a visualley more appealing DMAIC cycle in the vignette
+    Included a visually more appealing DMAIC cycle in the vignette
 
     \item 26. Feb 2011: Updated the vignette to explain the usage and scope of
     the cg method.

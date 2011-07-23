@@ -1,7 +1,10 @@
 .myADTest = function(x, distribution, ...) {
+    require(MASS, quietly = TRUE)
     if (missing(distribution)) 
         distribution = "normal"
-    data.name = deparse(substitute(x))
+    data.name = names(x)
+    if (is.data.frame(x)) 
+        x = x[, 1]
     dots = list(...)
     parameter = NULL
     smaller = TRUE
@@ -160,7 +163,8 @@ print.adtest = function(x, digits = 4, quote = TRUE, prefix = "", ...) {
         }
     }
     if (!is.null(x$conf.int)) {
-        cat(format(100 * attr(x$conf.int, "conf.level")), "percent confidence interval:\n", format(c(x$conf.int[1L], x$conf.int[2L])), "\n")
+        cat(format(100 * attr(x$conf.int, "conf.level")), "percent confidence interval:\n", format(c(x$conf.int[1L], x$conf.int[2L])), 
+            "\n")
     }
     if (!is.null(x$estimate)) {
         cat("sample estimates:\n")
