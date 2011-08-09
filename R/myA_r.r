@@ -26,6 +26,10 @@
     else {
         pFun = match.fun(distribution)
     }
+    if (identical(distribution, "log-normal")) {
+        x = log(x)
+        distribution = "normal"
+    }
     if (length(dots) == 0) {
         fittedDistr = fitdistr(x, distribution)
         parameter = fittedDistr$estimate
@@ -97,7 +101,6 @@
             pval = 0.01
     }
     if (identical(distribution, "exponential")) {
-        tableValue = TRUE
         AExp = A * (1 + 0.6/n)
         pval = NA
         if (0.95 < AExp) {
@@ -142,24 +145,31 @@
     }
     if (identical(distribution, "gamma")) {
         tableValue = TRUE
-        gammaDF = data.frame(c(1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, Inf), c(0.486, 0.477, 0.475, 0.473, 0.472, 0.472, 0.471, 0.471, 0.471, 0.47, 0.47, 0.47), 
-            c(0.657, 0.643, 0.639, 0.637, 0.635, 0.635, 0.634, 0.633, 0.633, 0.632, 0.632, 0.631), c(0.786, 0.768, 0.762, 0.759, 0.758, 0.757, 0.755, 0.754, 
-                0.754, 0.754, 0.753, 0.752), c(0.917, 0.894, 0.886, 0.883, 0.881, 0.88, 0.878, 0.877, 0.876, 0.876, 0.875, 0.873), c(1.092, 1.062, 1.052, 1.048, 
-                1.045, 1.043, 1.041, 1.04, 1.039, 1.038, 1.037, 1.035), c(1.227, 1.19, 1.178, 1.173, 1.17, 1.168, 1.165, 1.164, 1.163, 1.162, 1.161, 1.159))
+        gammaDF = data.frame(c(1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, Inf), c(0.486, 0.477, 0.475, 0.473, 0.472, 0.472, 
+            0.471, 0.471, 0.471, 0.47, 0.47, 0.47), c(0.657, 0.643, 0.639, 0.637, 0.635, 0.635, 0.634, 0.633, 0.633, 0.632, 
+            0.632, 0.631), c(0.786, 0.768, 0.762, 0.759, 0.758, 0.757, 0.755, 0.754, 0.754, 0.754, 0.753, 0.752), c(0.917, 
+            0.894, 0.886, 0.883, 0.881, 0.88, 0.878, 0.877, 0.876, 0.876, 0.875, 0.873), c(1.092, 1.062, 1.052, 1.048, 
+            1.045, 1.043, 1.041, 1.04, 1.039, 1.038, 1.037, 1.035), c(1.227, 1.19, 1.178, 1.173, 1.17, 1.168, 1.165, 1.164, 
+            1.163, 1.162, 1.161, 1.159))
         names(gammaDF) = c("m", 0.75, 0.9, 0.95, 0.975, 0.99, 0.995)
-        critCheck <- gammaDF[min(which(gammaDF$m >= parameter["shape"])), 2:length(gammaDF)] >= A
+        critCheck <- gammaDF[min(which(gammaDF$m >= parameter["shape"])), 2:length(gammaDF)] > A
         if (any(critCheck)) {
             firPos <- min(which(critCheck))
+        }
+        else {
+            firPos <- length(gammaDF)
+        }
+        if (firPos == 1) {
+            pValue <- 1 - as.numeric(names(gammaDF)[2])
+            pval = pValue
+            pValue <- paste(">", pValue)
+            smaller = FALSE
+        }
+        else {
             pValue <- 1 - as.numeric(names(gammaDF)[firPos])
             pval = pValue
             pValue <- paste("<=", pValue)
             smaller = TRUE
-        }
-        else {
-            pValue <- 1 - as.numeric(names(gammaDF)[length(gammaDF)])
-            pval = pValue
-            pValue <- paste(">", pValue)
-            smaller = FALSE
         }
     }
     out = list()
@@ -193,8 +203,6 @@ print.adtest = function(x, digits = 4, quote = TRUE, prefix = "", ...) {
         out <- c(out, paste(names(x$parameter), "=", format(round(x$parameter, 3))))
     if (!is.null(x$p.value)) {
         fp <- format.pval(x$p.value, digits = digits)
-        if (is.null(x$smaller)) 
-            out <- c(out, paste("p-value", if (substr(fp, 1L, 1L) == "<") fp else paste("=", fp)))
         if (x$tableValue) {
             if (x$smaller) 
                 out <- c(out, paste("p-value", if (substr(fp, 1L, 1L) == "<") fp else paste("<=", fp)))
@@ -216,7 +224,8 @@ print.adtest = function(x, digits = 4, quote = TRUE, prefix = "", ...) {
         }
     }
     if (!is.null(x$conf.int)) {
-        cat(format(100 * attr(x$conf.int, "conf.level")), "percent confidence interval:\n", format(c(x$conf.int[1L], x$conf.int[2L])), "\n")
+        cat(format(100 * attr(x$conf.int, "conf.level")), "percent confidence interval:\n", format(c(x$conf.int[1L], x$conf.int[2L])), 
+            "\n")
     }
     if (!is.null(x$estimate)) {
         cat("sample estimates:\n")

@@ -12,6 +12,8 @@
 \alias{response<-,steepAscent-method}
 \alias{response,gageRR-method}
 \alias{response<-,gageRR-method}
+\alias{response,MSALinearity-method}
+\alias{response<-,MSALinearity-method}
 
 \title{Get and set methods}
 \description{Set or get the response for a \code{facDesign}, \code{mixDesign}, \code{gageDesign} or \code{taguchiDesign} object}
@@ -27,6 +29,8 @@
 \S4method{response}{taguchiDesign}(object) <- value
 \S4method{response}{steepAscent}(object)
 \S4method{response}{steepAscent}(object) <- value
+\S4method{response}{MSALinearity}(object)
+\S4method{response}{MSALinearity}(object) <- value
 }
 
 \arguments{
@@ -38,6 +42,10 @@
 
 \section{Methods}{
 \describe{
+
+\item{\code{signature(object = "MSALinearity")}}{
+Function to create the respone for an object of class MSALinearity
+}
 
 \item{\code{signature(object = "facDesign")}}{
 response is a generic accessor function, and response<- is a generic replacement function. The default methods get and set the "response" attribute of a "facDesign" object.
