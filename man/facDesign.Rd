@@ -17,7 +17,7 @@ facDesign generates 2^k full factorial designs.
 }
 \value{an object of class facDesign}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
-\seealso{\code{\link{fracDesign}}}
+\seealso{\code{\link{facDesign}}, \code{\link{rsmDesign}}, \code{\link{taguchiDesign}}}
 \examples{
 vp.full = facDesign(k = 3)                  #returns a 2^3 full factorial design
 response(vp.full) = rnorm(2^3)              #generate some random response

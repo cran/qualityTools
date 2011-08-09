@@ -23,7 +23,7 @@ taguchiDesign(design, randomize = TRUE, replicates = 1)
            \item \dQuote{L18_2_3} for one two-level and seven three-level factors \cr
            \item \dQuote{L25_5} for six five-level factors                   \cr
            \item \dQuote{L27_3} for 13 three-level factors                   \cr
-           \item \dQuote{L32_2} for 32 two-level factors                     \cr    ### Funktioniert nicht?!?
+           \item \dQuote{L32_2} for 32 two-level factors                     \cr    
            \item \dQuote{L32_2_4} for one two-level factor and nine four-level factors \cr
            \item \dQuote{L36_2_3_a} for 11 two-level factors and 12 three-level factors \cr
            \item \dQuote{L36_2_3_b} for three two-level factors and 13 three-level factors \cr
@@ -49,15 +49,12 @@ an overview of possible taguchi designs is possible with \code{\link{taguchiChoo
 \value{
 an object of class \link{taguchiDesign}
 }
-\references{
-TODO:
-
-}
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
-TODO: Plackett Burmann, Fisher and Rao Note
+Box, Bisgard S. G.E.P.; Fung, C. A.: An explanation and critique of taguchis
+contributions to quality engineering. In: Quality and Reliability Engineering International (1988)
 }
 
 

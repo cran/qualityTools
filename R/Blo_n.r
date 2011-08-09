@@ -214,20 +214,28 @@ randomize = function(fdo, random.seed, so = FALSE) {
     return(fdo)
 }
 blocking = function(fdo, blocks, BoR = FALSE, random.seed, useTable = "rsm", gen) {
+    override = FALSE
     if (missing(random.seed)) {
         runif(1)
         random.seed = .Random.seed[sample(1:626, 1)]
     }
     if (missing(gen)) 
         gen = NULL
-    if (blocks < 1) 
-        blocks = 1
-    if (blocks == 1) {
-        block(fdo)[, 1] = 1
+    if (blocks <= 1) {
+        Block = data.frame(Block = rep(1, nrow(fdo)))
+        block(fdo) = Block
         fdo = randomize(fdo, random.seed = random.seed)
         return(fdo)
     }
     if (nrow(star(fdo)) > 0 | nrow(centerStar(fdo)) > 0) {
+        if (blocks == 2) {
+            override = TRUE
+            fdo = randomize(fdo, so = TRUE)
+            numB1 = nrow(cube(fdo)) + nrow(centerCube(fdo))
+            numB2 = nrow(fdo) - numB1
+            block(fdo) = data.frame(Block = c(rep(1, numB1), rep(2, numB2)))
+            blockGen(fdo) = data.frame(B1 = rep(NA, nrow(fdo)))
+        }
         if (blocks %in% c(2, 3, 5, 9, 17)) 
             blocks = blocks - 1
         else stop("Blocking not possible")
@@ -238,16 +246,18 @@ blocking = function(fdo, blocks, BoR = FALSE, random.seed, useTable = "rsm", gen
     }
     if (is.null(gen)) 
         gen = .blockInteractions(fdo, blocks, useTable)
-    if (is.null(gen)) {
+    if (is.null(gen) & !override) {
         cat("\n")
         cat(paste("Blocking in", blocks, "blocks not possible!"))
         cat("\n")
         return(fdo)
     }
-    .blockGenCol = .blockGenCol(gen, fdo)
-    .blockCol = .blockCol(.blockGenCol)
-    block(fdo) = .blockCol
-    blockGen(fdo) = .blockGenCol
+    if (!override) {
+        .blockGenCol = .blockGenCol(gen, fdo)
+        .blockCol = .blockCol(.blockGenCol)
+        block(fdo) = .blockCol
+        blockGen(fdo) = .blockGenCol
+    }
     numCC = nrow(centerCube(fdo))
     if (numCC > 0) {
         ccFrame = as.data.frame(matrix(0, nrow = numCC, ncol = ncol(cube(fdo))))

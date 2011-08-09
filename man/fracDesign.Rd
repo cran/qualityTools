@@ -19,7 +19,7 @@ fracDesign generates 2^k full- or fractional factorial designs.
 }
 \value{an object of class facDesign}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
-\seealso{\code{\link{facDesign}}}
+\seealso{\code{\link{facDesign}}, \code{\link{rsmDesign}}, \code{\link{taguchiDesign}}}
 \examples{
 vp.full = facDesign(k = 3)                  #returns a 2^3 full factorial design
 vp.full = blocking(vp.full, 2)              #design in 2 blocks

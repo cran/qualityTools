@@ -372,7 +372,7 @@ c_p &= \frac{USL - LSL}{Q_{0.99865} - Q_{0.00135}}\\
 \nonumber \\
 c_{pkL} &= \frac{Q_{0.5} - LSL}{Q_{0.5} - Q_{0.00135}}\\
 \nonumber\\
-c_{pkU} &= \frac{USL - Q_{0.5}}{Q_{0.5} - Q_{0.00135}}
+c_{pkU} &= \frac{USL - Q_{0.5}}{Q_{0.99865} - Q_{0.5}}
 \end{align}
 
 $c_p$ is the potential process capability giving one the process capability that could be achieved if the process can be centered within specification limits\footnote{USL - Upper Specification Limit\\LSL - Lower Specification Limit} and $c_{pk}$ is the actual process capability which incorporates the location of the distribution (i.e. the center) of the characteristic within the specification limits. For one sided specification limits $c_{pkL}$ and $c_{pkU}$ exist with $c_{pk}$ being equal to the smallest capability index. As one can imagine in addition the location of the distribution of the characteristic the shape of the distribution is relevant too. Assessing the fit of a specific distribution for given data can be done via probability plots (\Remph{ppPlot}) and quantile-quantile plots (\Remph{qqPlot}), as well as formal test methods like the Anderson Darling Test.
@@ -497,16 +497,16 @@ The response of this fictional process is given by the \Remph{simProc} method of
 
 <<echo=TRUE, results=hide>>=
 #set first value
-yield = simProc(x1 = 80, x2 = 120, x3 = 1)
+yield = simProc(x1 = 120, x2 = 140, x3 = 2)
 @
 
 Setting all the yield of this artificial black box process gives a very long line of R-Code.
 
 <<echo=TRUE, results=hide>>=
-yield = c(simProc(80,120, 1),simProc(120,120, 2),simProc(120,140, 2),
-simProc(80,140, 1),simProc(120,120, 1),simProc(120,140, 1),
-simProc(80,120, 2),simProc(80,140, 2), simProc(90,130, 1.5),
-simProc(90,130, 1.5),simProc(90,130, 1.5), simProc(90,130, 1.5))
+yield = c(simProc(120,140, 2),simProc(80,120, 2),simProc(120,120, 2),
+simProc(80,140, 2),simProc(120,140, 1),simProc(80,120, 1),
+simProc(90,130, 1.5),simProc(120,120, 1), simProc(90,130, 1.5),
+simProc(90,130, 1.5),simProc(90,130, 1.5), simProc(80,140, 1))
 @
 
 Assigning the yield to the factorial design can be done using the \Remph{response} method.
@@ -737,8 +737,9 @@ highs(fdo2) = c(155, 175)
 and the yield is calculated by using the \Remph{simProc} and assigned to the design with the help of the generic \Remph{response} method of the qualityTools package.
 
 <<echo=TRUE, results=hide>>=
-yield = c(simProc(134,155), simProc(155,155), simProc(134,175),
-simProc(155,175),simProc(144,165), simProc(144,165), simProc(144,165))
+yield = c(simProc(144,165), simProc(134,175), simProc(155,155),
+simProc(144,165), simProc(134,155), simProc(155,175),
+simProc(144,165))
 response(fdo2) = yield
 @
 

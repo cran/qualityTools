@@ -4,6 +4,9 @@
 \section{Changes in version 0.87 (1.41)}{
   \itemize{
   
+    \item 04.08.2011: fixed expected fraction nonconforming calculation (ppm) in method pcr
+    corrected the calculation of standard deviation based on subgroups
+    \item 27. Jul 2011: in vignette, corrected typo in formula for c_pu i.e. capability for process capability regarding upper specification limit
     \item 14. Jul 2011: included the calculation of lambda for a boxcox transformation in function pcr.
     Only specified specification limits are plotted.
     fraction nonconforming are calculated in percentages and ppm
