@@ -1,6 +1,6 @@
-\name{pcr}
+\name{cp}
 \Rdversion{1.1}
-\alias{pcr}
+\alias{cp}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Process Capability Indices
@@ -9,7 +9,7 @@ Process Capability Indices
 Calculates the process capability cp, cpk, cpkL (onesided) and cpkU (onesided) for a given dataset and distribution. A histogramm with a density curve is displayed along with the specification limits and a Quantile-Quantile Plot for the specified distribution. Lower-, upper and total fraction of nonconforming entities are calculated. Box Cox Transformations are supported as well as the calculation of Anderson Darling Test Statistics. 
 }
 \usage{
-pcr(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda, main, xlim, ylim, grouping = NULL, std.dev = NULL,  conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", lineType = "solid", specCol = "red3", specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...)
+cp(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda, main, xlim, ylim, grouping = NULL, std.dev = NULL,  conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", lineType = "solid", specCol = "red3", specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...)
 }
 \arguments{
   \item{x}{
@@ -118,13 +118,13 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \examples{
 x = rweibull(30, 2, 8) +100
 #process capability for a weibull distribution
-pcr(x, "weibull", lsl = 100, usl = 117)
+cp(x, "weibull", lsl = 100, usl = 117)
 
 #box cox transformation and one sided
-pcr(x, boxcox = TRUE, lsl = 1)
+cp(x, boxcox = TRUE, lsl = 1)
 
 #process capability assuming a normal distribution
-pcr(x, "normal", lsl = 0, usl = 17)
+cp(x, "normal", lsl = 0, usl = 17)
 
 #process capability for a normal distribution and data in subgroups
 #some artificial data with shifted means in subgroups
@@ -134,6 +134,6 @@ x = c(rnorm(5, mean = 1), rnorm(5, mean = 2), rnorm(5, mean = 0))
 group = c(rep(1,5), rep(2,5), rep(3,5))
                                                                     
 #calculate process capability
-pcr(x, grouping = group) #compare to sd(x)
+cp(x, grouping = group) #compare to sd(x)
 
 }

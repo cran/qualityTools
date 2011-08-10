@@ -1,5 +1,4 @@
-setClass("distr", representation(x = "vector", name = "character", parameters = "numeric", sd = "numeric", 
-    n = "numeric", loglik = "numeric"))
+setClass("distr", representation(x = "vector", name = "character", parameters = "numeric", sd = "numeric", n = "numeric", loglik = "numeric"))
 setClass("distrCollection", representation(distr = "list"))
 setMethod("[", signature(x = "distrCollection", i = "ANY"), function(x, i, drop = missing) {
     x@distr[i]
@@ -48,8 +47,8 @@ distribution = function(x, distribution = "weibull", start, ...) {
         stop("Package MASS needs to be installed!")
     if (is.character(distribution)) 
         distribution = tolower(distribution)
-    allDistr = c("beta", "cauchy", "chi-squared", "exponential", "f", "gamma", "geometric", "log-normal", "logistic", 
-        "negative binomial", "normal", "poisson", "t", "weibull")
+    allDistr = c("beta", "cauchy", "chi-squared", "exponential", "f", "gamma", "geometric", "log-normal", "logistic", "negative binomial", "normal", "poisson", 
+        "t", "weibull")
     if (distribution %in% allDistr) 
         distrVec = distribution
     else distrVec = c("normal")
@@ -71,8 +70,7 @@ distribution = function(x, distribution = "weibull", start, ...) {
     return(distrColl)
 }
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim, ylab, line.col, line.width, 
-    box = TRUE, ...) {
+setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim, ylab, line.col, line.width, box = TRUE, ...) {
     object = x
     xVals = object@x
     parameters = object@parameters
@@ -116,8 +114,8 @@ setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim,
     hist(xVals, freq = FALSE, xlab = xlab, ylab = ylab, xlim = xlim, ylim = ylim, main = main, ...)
     lines(xPoints, yPoints, col = line.col, lwd = line.width)
     abline(h = 0)
-    legend("topright", c(paste(c(names(parameters), "A", "p"), ": ", c(format(parameters, digits = 3), format(A, digits = 3), 
-        format(p, digits = 3))), sep = " "), inset = 0.02)
+    legend("topright", c(paste(c(names(parameters), "A", "p"), ": ", c(format(parameters, digits = 3), format(A, digits = 3), format(p, digits = 3))), sep = " "), 
+        inset = 0.02)
     if (box) {
         box()
     }
@@ -143,8 +141,7 @@ setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim,
     invisible(list(xlim = x, ylim = y))
 }
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-setMethod("plot", signature(x = "distrCollection"), function(x, y, xlab, ylab, xlim, ylim, line.col, line.width, 
-    ...) {
+setMethod("plot", signature(x = "distrCollection"), function(x, y, xlab, ylab, xlim, ylim, line.col, line.width, ...) {
     y = NULL
     object = x
     distrList = object@distr
@@ -201,8 +198,7 @@ qqPlot = function(x, y, main, xlab, ylab, xlim, ylim, border = "red", start, ...
     theoretical.quantiles = NULL
     xs = sort(x)
     distribution = tolower(y)
-    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", "negative binomial", 
-        "poisson")
+    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", "negative binomial", "poisson")
     if (is.character(distribution)) {
         qFun = .charToDistFunc(distribution, type = "q")
         if (is.null(qFun)) 
@@ -268,10 +264,10 @@ qqPlot = function(x, y, main, xlab, ylab, xlim, ylim, border = "red", start, ...
     do.call(abline, params)
     invisible(list(x = theoretical.quantiles, y = xs, int = params$a, slope = params$b))
 }
-ppPlot = function(x, distribution, probs, main, xlab, ylab, xlim, ylim, border = "red", grid = TRUE, box = TRUE, 
-    stats = TRUE, start, ...) {
-    DB = TRUE
+ppPlot = function(x, distribution, probs, main, xlab, ylab, xlim, ylim, border = "red", grid = TRUE, box = TRUE, stats = TRUE, start, ...) {
+    DB = FALSE
     conf.level = 0.95
+    conf.lines = TRUE
     if (!require(MASS)) 
         stop("Package MASS needs to be installed!")
     if (!(is.numeric(x) | (class(x) == "distrCollection"))) 
@@ -319,11 +315,11 @@ ppPlot = function(x, distribution, probs, main, xlab, ylab, xlim, ylim, border =
         }
         invisible()
     }
-    distWhichNeedParameters = c("weibull", "gamma", "logistic", "exponential", "f", "geometric", "chi-squared", "negative binomial", 
-        "poisson")
+    distWhichNeedParameters = c("weibull", "gamma", "logistic", "exponential", "f", "geometric", "chi-squared", "negative binomial", "poisson")
     if (is.character(distribution)) {
         qFun = .charToDistFunc(distribution, type = "q")
         pFun = .charToDistFunc(distribution, type = "p")
+        dFun = .charToDistFunc(distribution, type = "d")
         if (is.null(qFun)) 
             stop(paste(deparse(substitute(y)), "distribution could not be found!"))
     }
@@ -340,18 +336,18 @@ ppPlot = function(x, distribution, probs, main, xlab, ylab, xlim, ylim, border =
         parameter = fittedDistr$estimate
         parameter = .lfkp(as.list(parameter), formals(qFun))
         params = .lfkp(parList, formals(qFun))
-        print(params)
         parameter = .lfrm(as.list(parameter), params)
         print(parameter)
         parameter = c(parameter, params)
-        print(parameter)
         if (DB) {
             print(qFun)
             print(as.list(parameter))
             print(list(probs))
         }
         y = do.call(qFun, c(list(ppoints(x1)), as.list(parameter)))
-        print(range(y))
+        yc = do.call(qFun, c(list(ppoints(x1)), as.list(parameter)))
+        cv = do.call(dFun, c(list(yc), as.list(parameter)))
+        print(cv)
         axisAtY = do.call(qFun, c(list(probs), as.list(parameter)))
         yq = do.call(qFun, c(list(c(0.25, 0.75)), as.list(parameter)))
         xq = quantile(x1, probs = c(0.25, 0.75))

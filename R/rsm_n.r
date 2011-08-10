@@ -27,7 +27,7 @@
     }
     return(.starFrame)
 }
-rsmDesign = function(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs = 1, faceCentered = FALSE) {
+rsmDesign = function(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs = 1, fp = 1, sp = 1, faceCentered = FALSE) {
     DB = FALSE
     if (blocks > 2^(k - 1) + 1) 
         stop("Blocking not possible")
@@ -65,7 +65,7 @@ rsmDesign = function(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs =
         print(cs)
         print(blocks)
     }
-    fdo = facDesign(k = k)
+    fdo = facDesign(k = k, replicates = fp)
     if (cc > 0) {
         temp = as.data.frame(matrix(0, nrow = cc, ncol = ncol(cube(fdo))))
         names(temp) = names(cube(fdo))
@@ -73,9 +73,17 @@ rsmDesign = function(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs =
         if (DB) 
             print("centerCube")
     }
+    if (DB) 
+        print("star not added")
     temp = .starFrame(k, alpha)
-    names(temp) = names(cube(fdo))
-    star(fdo) = temp
+    starportion = data.frame()
+    for (i in 1:sp) {
+        starportion = rbind(temp, starportion)
+    }
+    names(starportion) = names(cube(fdo))
+    star(fdo) = starportion
+    if (DB) 
+        print("star added")
     if (cs > 0) {
         temp = as.data.frame(matrix(0, nrow = cs, ncol = ncol(cube(fdo))))
         names(temp) = names(cube(fdo))
@@ -139,19 +147,16 @@ rsmChoose = function() {
     par(oma = c(4, 4, 4, 4))
     for (i in 1:6) for (j in 1:9) {
         par(mfg = c(i, j))
-        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n", xlab = "", ylab = "", 
-            bg = "red", fg = "green")
+        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n", xlab = "", ylab = "", bg = "red", fg = "green")
         box()
     }
     for (i in seq(along = rsmList)) {
         temp = rsmList[[i]]
         par(mfg = c(temp$row, temp$col))
         par(mfg = c(temp$row, temp$col))
-        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n", xlab = "", ylab = "", 
-            bg = "red", fg = "green")
+        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n", xlab = "", ylab = "", bg = "red", fg = "green")
         rect(0, 0, 1, 1, col = colPalette[2^((temp$k) - (temp$p))])
-        text(0.1, 0.9, paste("N =", 2^((temp$k) - (temp$p)) + temp$cc * (temp$blocks - 1) + temp$cs + (temp$k + temp$p) * 
-            2), adj = c(0, 1), cex = 1.25)
+        text(0.1, 0.9, paste("N =", 2^((temp$k) - (temp$p)) + temp$cc * (temp$blocks - 1) + temp$cs + (temp$k + temp$p) * 2), adj = c(0, 1), cex = 1.25)
         text(0.1, 0.75, paste("k =", temp$k), adj = c(0, 1), cex = 1.25)
         text(0.1, 0.6, paste("p =", temp$p), adj = c(0, 1), cex = 1.25)
         text(0.1, 0.45, ".centerPoints", adj = c(0, 1), cex = 1.25)

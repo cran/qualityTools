@@ -1,7 +1,6 @@
-setClass(Class = "mixDesign", representation = representation(name = "character", factors = "list", total = "numeric", 
-    lower = "numeric", design = "data.frame", designType = "character", pseudo = "data.frame", response = "data.frame", 
-    Type = "data.frame", block = "data.frame", runOrder = "data.frame", standardOrder = "data.frame", desireVal = "list", 
-    desirability = "list", fits = "data.frame"))
+setClass(Class = "mixDesign", representation = representation(name = "character", factors = "list", total = "numeric", lower = "numeric", design = "data.frame", 
+    designType = "character", pseudo = "data.frame", response = "data.frame", Type = "data.frame", block = "data.frame", runOrder = "data.frame", standardOrder = "data.frame", 
+    desireVal = "list", desirability = "list", fits = "data.frame"))
 setMethod("factors", "mixDesign", function(x) x@factors)
 setReplaceMethod("factors", "mixDesign", function(x, value) {
     if (length(value) != ncol(x@pseudo)) 
@@ -134,11 +133,9 @@ setMethod("summary", signature(object = "mixDesign"), function(object) {
     cat(temp)
     cat("\n")
     cat("\n")
-    temp = cbind(pseudo, `_` = rep(" ", times = times), `|` = rep("|", times = times), `_` = rep(" ", times = times), 
-        design)
+    temp = cbind(pseudo, `_` = rep(" ", times = times), `|` = rep("|", times = times), `_` = rep(" ", times = times), design)
     temp = cbind(temp, `_` = rep(" ", times = times), `|` = rep("|", times = times), `_` = rep(" ", times = times), amount)
-    temp = cbind(object@standardOrder, object@runOrder, object@Type, `|` = rep("|", times = times), temp, `|` = rep("|", 
-        times = times), object@response)
+    temp = cbind(object@standardOrder, object@runOrder, object@Type, `|` = rep("|", times = times), temp, `|` = rep("|", times = times), object@response)
     show(temp)
     cat("\n-----------\n")
     cat("\n")
@@ -227,8 +224,7 @@ setReplaceMethod("lows", "mixDesign", function(object, value) {
     return(frameOut)
 }
 .simplexCentroid(4)
-mixDesign = function(p, n = 3, type = "lattice", center = TRUE, axial = FALSE, delta, replicates = 1, lower, 
-    total = 1, randomize, seed) {
+mixDesign = function(p, n = 3, type = "lattice", center = TRUE, axial = FALSE, delta, replicates = 1, lower, total = 1, randomize, seed) {
     DB = FALSE
     frameOut = NA
     out = new("mixDesign")

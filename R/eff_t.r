@@ -1,7 +1,6 @@
-.m.interaction.plot = function(x.factor, trace.factor, response, fun = mean, type = c("l", "p", "b"), legend = TRUE, 
-    trace.label = deparse(substitute(trace.factor)), fixed = FALSE, xlab = deparse(substitute(x.factor)), ylab = ylabel, 
-    ylim = range(cells, na.rm = TRUE), lty = nc:1, col = 1, pch = c(1L:9, 0, letters), xpd = NULL, leg.bg = par("bg"), 
-    leg.bty = "n", xtick = FALSE, xaxt = par("xaxt"), axes = TRUE, ...) {
+.m.interaction.plot = function(x.factor, trace.factor, response, fun = mean, type = c("l", "p", "b"), legend = TRUE, trace.label = deparse(substitute(trace.factor)), 
+    fixed = FALSE, xlab = deparse(substitute(x.factor)), ylab = ylabel, ylim = range(cells, na.rm = TRUE), lty = nc:1, col = 1, pch = c(1L:9, 0, letters), xpd = NULL, 
+    leg.bg = par("bg"), leg.bty = "n", xtick = FALSE, xaxt = par("xaxt"), axes = TRUE, ...) {
     ylabel <- paste(deparse(substitute(fun)), "of ", deparse(substitute(response)))
     type <- match.arg(type)
     cells <- tapply(response, list(x.factor, trace.factor), fun)
@@ -27,8 +26,7 @@
     xlim <- range(xvals)
     xleg <- xlim[2L] + 0.05 * diff(xlim)
     xlim <- xlim + c(-0.2/nr, if (legend) 0.2 + 0.02 * nch else 0.2/nr) * diff(xlim)
-    matplot(xvals, cells, ..., type = type, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, axes = axes, xaxt = "n", 
-        col = col, lty = lty, pch = pch)
+    matplot(xvals, cells, ..., type = type, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, axes = axes, xaxt = "n", col = col, lty = lty, pch = pch)
     if (axes && xaxt != "n") {
         axisInt <- function(x, main, sub, lwd, bg, log, asp, ...) axis(1, x, ...)
         mgp. <- par("mgp")
@@ -60,10 +58,10 @@
     }
     invisible(xvals)
 }
-setGeneric("effectPlot", def = function(object, factors, fun = mean, single = FALSE, points = FALSE, classic = FALSE, 
-    axes = TRUE, lty, xlab, ylab, main, ylim, ...) standardGeneric("effectPlot"))
-setMethod(effectPlot, signature(object = "facDesign"), function(object, factors, fun = mean, single = FALSE, 
-    points = FALSE, classic = FALSE, axes = TRUE, lty, xlab, ylab, main, ylim, ...) {
+setGeneric("effectPlot", def = function(object, factors, fun = mean, single = FALSE, points = FALSE, classic = FALSE, axes = TRUE, lty, xlab, ylab, 
+    main, ylim, ...) standardGeneric("effectPlot"))
+setMethod(effectPlot, signature(object = "facDesign"), function(object, factors, fun = mean, single = FALSE, points = FALSE, classic = FALSE, axes = TRUE, 
+    lty, xlab, ylab, main, ylim, ...) {
     oldMar = par("mar")
     oldOma = par("oma")
     oldMfrow = par("mfrow")
@@ -151,8 +149,8 @@ setMethod(effectPlot, signature(object = "facDesign"), function(object, factors,
                 par(oma = c(-0.1, 4, 4, 1) + 0.1)
             }
             if (classic) {
-                .m.interaction.plot(x.factor = X[, factors[i]], trace.factor = rep(0, nrow(X)), response = Y[, j], lty = lty, 
-                  ylim = ylim, xlab = xlab, fun = fun, ylab = ylab, legend = FALSE, axes = FALSE, main = " ", ...)
+                .m.interaction.plot(x.factor = X[, factors[i]], trace.factor = rep(0, nrow(X)), response = Y[, j], lty = lty, ylim = ylim, xlab = xlab, fun = fun, 
+                  ylab = ylab, legend = FALSE, axes = FALSE, main = " ", ...)
                 grid(NA, 2)
                 axis(1, at = X[, factors[i]])
                 if (i == 1) 
@@ -161,8 +159,8 @@ setMethod(effectPlot, signature(object = "facDesign"), function(object, factors,
                 title(main, outer = TRUE)
             }
             else {
-                .m.interaction.plot(x.factor = X[, factors[i]], trace.factor = rep(0, nrow(X)), response = Y[, j], lty = lty, 
-                  ylim = ylim, xlab = xlab, fun = fun, ylab = ylab, legend = FALSE, axes = axes, main = main, ...)
+                .m.interaction.plot(x.factor = X[, factors[i]], trace.factor = rep(0, nrow(X)), response = Y[, j], lty = lty, ylim = ylim, xlab = xlab, fun = fun, 
+                  ylab = ylab, legend = FALSE, axes = axes, main = main, ...)
                 grid(NA, 2)
             }
             if (points) 
@@ -172,8 +170,8 @@ setMethod(effectPlot, signature(object = "facDesign"), function(object, factors,
         nextResponse = TRUE
     }
 })
-setMethod(effectPlot, signature(object = "taguchiDesign"), function(object, factors, fun = mean, single = FALSE, 
-    points = FALSE, classic = FALSE, axes = TRUE, lty, xlab, ylab, main, ylim, ...) {
+setMethod(effectPlot, signature(object = "taguchiDesign"), function(object, factors, fun = mean, single = FALSE, points = FALSE, classic = FALSE, 
+    axes = TRUE, lty, xlab, ylab, main, ylim, ...) {
     oldMar = par("mar")
     oldOma = par("oma")
     oldMfrow = par("mfrow")
@@ -260,8 +258,8 @@ setMethod(effectPlot, signature(object = "taguchiDesign"), function(object, fact
                 par(oma = c(-0.1, 4, 4, 1) + 0.1)
             }
             if (classic) {
-                .m.interaction.plot(x.factor = X[, factors[i]], trace.factor = rep(0, nrow(X)), response = Y[, j], lty = lty, 
-                  ylim = ylim, xlab = xlab, fun = fun, ylab = ylab, legend = FALSE, axes = FALSE, main = " ", ...)
+                .m.interaction.plot(x.factor = X[, factors[i]], trace.factor = rep(0, nrow(X)), response = Y[, j], lty = lty, ylim = ylim, xlab = xlab, fun = fun, 
+                  ylab = ylab, legend = FALSE, axes = FALSE, main = " ", ...)
                 grid(NA, 2)
                 axis(1, at = X[, factors[i]])
                 if (i == 1) 
@@ -270,8 +268,8 @@ setMethod(effectPlot, signature(object = "taguchiDesign"), function(object, fact
                 title(main, outer = TRUE)
             }
             else {
-                .m.interaction.plot(x.factor = X[, factors[i]], trace.factor = rep(0, nrow(X)), response = Y[, j], lty = lty, 
-                  ylim = ylim, xlab = xlab, fun = fun, ylab = ylab, legend = FALSE, axes = axes, main = main, ...)
+                .m.interaction.plot(x.factor = X[, factors[i]], trace.factor = rep(0, nrow(X)), response = Y[, j], lty = lty, ylim = ylim, xlab = xlab, fun = fun, 
+                  ylab = ylab, legend = FALSE, axes = axes, main = main, ...)
                 grid(NA, 2)
             }
             if (points) 

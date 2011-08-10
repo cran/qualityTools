@@ -4,6 +4,7 @@
     else stop("n needs to be bigger than 1 and smaller than 342")
 }
 .sdSg = function(x, grouping = NULL, method = c("NOWEIGHT", "MVLUE", "RMSDF"), na.rm = TRUE, DB = TRUE) {
+    DB = FALSE
     if (!is.data.frame(x) && !is.vector(x) && is.numeric(x)) 
         stop("x needs to be either a data.frame or a vector and numeric")
     if (is.null(grouping)) 
@@ -11,23 +12,27 @@
     else grouping = as.data.frame(grouping)
     group = unique(grouping)
     sdVec = numeric(length = length(group))
-    for (i in 1:length(group)) {
-        if (is.data.frame(x)) {
-            temp = x[group[i] == grouping[, 1], ]
-            sdVec[i] = sd(temp, na.rm = T)/.c4(length(temp[!is.na(temp)]))
-        }
-        if (is.vector(x)) {
-            temp = x[group[i] == grouping[, 1]]
-            sdVec[i] = sd(temp, na.rm = T)/.c4(length(temp[!is.na(temp)]))
+    for (i in 1:nrow(group)) {
+        if (is.data.frame(x)) 
+            temp = x[group[i, 1] == grouping[, 1], ]
+        if (is.vector(x)) 
+            temp = x[group[i, 1] == grouping[, 1]]
+        sdVec[i] = sd(temp, na.rm = T)/.c4(length(temp[!is.na(temp)]))
+        if (DB) {
+            print(group[i, 1])
+            print(temp)
+            print(length(temp[!is.na(temp)]))
         }
     }
-    if (DB == TRUE) 
+    if (DB) {
         print(paste("std.dev: ", mean(sdVec)))
+        print(sdVec)
+    }
     return((mean(sdVec)))
 }
-pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda, main, xlim, ylim, grouping = NULL, 
-    std.dev = NULL, conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", lineType = "solid", specCol = "red3", 
-    specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...) {
+.sdSg(1:10, grouping = c(1, 1, 1, 1, 1, 5, 5, 5, 5, 5))
+pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda, main, xlim, ylim, grouping = NULL, std.dev = NULL, conf.level = 0.9973002, 
+    start, lineWidth = 1, lineCol = "red", lineType = "solid", specCol = "red3", specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...) {
     DB = FALSE
     data.name = deparse(substitute(x))
     require(MASS, quietly = TRUE)
@@ -105,8 +110,7 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
         print(paste("confHigh:", confHigh))
         print(paste("confLow:", confLow))
     }
-    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", "negative binomial", 
-        "poisson")
+    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", "negative binomial", "poisson")
     if (is.character(distribution)) {
         qFun = .charToDistFunc(distribution, type = "q")
         pFun = .charToDistFunc(distribution, type = "p")
@@ -130,7 +134,9 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     }
     paramsList = c(paramsList, .lfkp(parList, formals(qFun)))
     if (distribution == "normal") {
+        paramsList$mean = center
         paramsList$sd = std.dev
+        estimates = paramsList
     }
     if (boxcox) {
         if (!is.null(lsl)) 
@@ -141,10 +147,6 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
             target = target^lambda
     }
     if (is.null(lsl) && is.null(usl)) {
-        if (distribution == "normal") {
-            paramsList$mean = center
-            paramsList$sd = std.dev
-        }
         paramsList$p = confLow
         lsl = do.call(qFun, paramsList)
         paramsList$p = confHigh
@@ -193,13 +195,9 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
         xlim <- xlim + diff(xlim) * c(-0.2, 0.2)
     }
     xVec <- seq(min(xlim), max(xlim), length = 200)
-    if (distribution == "normal") 
-        yVec <- dnorm(xVec, center, std.dev)
-    else {
-        dParamsList = .lfkp(paramsList, formals(dFun))
-        dParamsList$x = xVec
-        yVec = do.call(dFun, dParamsList)
-    }
+    dParamsList = .lfkp(paramsList, formals(dFun))
+    dParamsList$x = xVec
+    yVec = do.call(dFun, dParamsList)
     histObj <- hist(x[, 1], plot = FALSE)
     if (missing(ylim)) {
         ylim <- range(histObj$density, yVec)
@@ -223,8 +221,7 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     if (!is.null(usl)) 
         axis(side = 3, at = usl, labels = paste("USL =", format(usl, digits = 3)), col = specCol)
     if (!is.null(lsl) && !is.null(usl)) 
-        axis(side = 3, at = c(lsl, usl), labels = c(paste("LSL =", format(lsl, digits = 3)), paste("USL =", format(usl, 
-            digits = 3))), col = specCol)
+        axis(side = 3, at = c(lsl, usl), labels = c(paste("LSL =", format(lsl, digits = 3)), paste("USL =", format(usl, digits = 3))), col = specCol)
     if (!is.null(target)) 
         text(target, max(ylim), "TARGET", pos = 1, col = cex.col, cex = cex.text)
     title(main = main, outer = TRUE)
@@ -264,7 +261,12 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     text(2.3, rev(index)[2], "A", pos = 2, cex = cex.val)
     text(2, rev(index)[2], paste("=", format(A, digits = 3)), pos = 4, cex = cex.val)
     text(2.3, rev(index)[3], "p", pos = 2, cex = cex.val)
-    text(2, rev(index)[3], paste("=", format(p, digits = 3)), pos = 4, cex = cex.val)
+    if (!is.null(adTestStats$smaller) && adTestStats$smaller) 
+        text(2, rev(index)[3], paste("<", format(p, digits = 3)), pos = 4, cex = cex.val)
+    if (!is.null(adTestStats$smaller) && !adTestStats$smaller) 
+        text(2, rev(index)[3], paste(">=", format(p, digits = 3)), pos = 4, cex = cex.val)
+    if (is.null(adTestStats$smaller)) 
+        text(2, rev(index)[3], paste("=", format(p, digits = 3)), pos = 4, cex = cex.val)
     text(2.3, rev(index)[1], "n", pos = 2, cex = cex.val)
     text(2, rev(index)[1], paste("=", numObs), pos = 4, cex = cex.val)
     j = 1
@@ -294,13 +296,13 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     text(0.05, 3, expression(ppm), pos = 4, cex = cex.val)
     text(0.05, 2, expression(ppm), pos = 4, cex = cex.val)
     text(0.05, 1, expression(ppm), pos = 4, cex = cex.val)
-    text(0.35, 3, paste("=", format(ppt * 1e+05, digits = 6)), pos = 4, cex = cex.val)
+    text(0.35, 3, paste("=", format(ppt * 1e+06, digits = 6)), pos = 4, cex = cex.val)
     if (is.null(ppl)) 
         text(0.35, 2, paste("= 0"), pos = 4, cex = cex.val)
-    else text(0.35, 2, paste("=", format(ppl * 1e+05, digits = 6)), pos = 4, cex = cex.val)
+    else text(0.35, 2, paste("=", format(ppl * 1e+06, digits = 6)), pos = 4, cex = cex.val)
     if (is.null(ppu)) 
         text(0.35, 1, paste("= 0"), pos = 4, cex = cex.val)
-    else text(0.35, 1, paste("=", format(ppu * 1e+05, digits = 6)), pos = 4, cex = cex.val)
+    else text(0.35, 1, paste("=", format(ppu * 1e+06, digits = 6)), pos = 4, cex = cex.val)
     par(mar = c(0, 0, 3, 0))
     plot(c(-1, 1), c(0.5, 5), type = "n", axes = FALSE)
     box()
@@ -318,6 +320,7 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     }
     else text(-1, 1, paste("ppm =", 0), pos = 4, cex = cex.val)
     text(-1, 3, paste("ppm =", obsL + obsU), pos = 4, cex = cex.val)
-    invisible(list(lambda = lambda, cp = cp, cpk = cpk, cpl = cpl, cpu = cpu, ppt = ppt, ppl = ppl, ppu = ppu, A = A, 
-        usl = usl, lsl = lsl, target = target))
-} 
+    print(adTestStats)
+    invisible(list(lambda = lambda, cp = cp, cpk = cpk, cpl = cpl, cpu = cpu, ppt = ppt, ppl = ppl, ppu = ppu, A = A, usl = usl, lsl = lsl, target = target))
+}
+cp = pcr 

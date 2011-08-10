@@ -1,5 +1,5 @@
-normalPlot = function(fdo, threeWay = FALSE, na.last = NA, alpha = 0.05, sig.col = c("red1", "red2", "red3"), 
-    main, ylim, xlim, xlab, ylab, pch, col, border = "red", ...) {
+normalPlot = function(fdo, threeWay = FALSE, na.last = NA, alpha = 0.05, sig.col = c("red1", "red2", "red3"), main, ylim, xlim, xlab, ylab, pch, 
+    col, border = "red", ...) {
     DB = FALSE
     require(MASS, quietly = TRUE)
     old.par <- par(no.readonly = TRUE)
@@ -115,8 +115,7 @@ normalPlot = function(fdo, threeWay = FALSE, na.last = NA, alpha = 0.05, sig.col
         params$col = p.col
         do.call(plot, params)
         xp = c(qnorm(0.1), qnorm(0.99))
-        yp = c(qnorm(0.1, mean = estimates$estimate[["mean"]], sd = estimates$estimate[["sd"]]), qnorm(0.99, mean = estimates$estimate[["mean"]], 
-            sd = estimates$estimate[["sd"]]))
+        yp = c(qnorm(0.1, mean = estimates$estimate[["mean"]], sd = estimates$estimate[["sd"]]), qnorm(0.99, mean = estimates$estimate[["mean"]], sd = estimates$estimate[["sd"]]))
         slope = (yp[2] - yp[1])/(xp[2] - xp[1])
         int = yp[1] - slope * xp[1]
         abline(a = int, b = slope, col = border)
