@@ -7,6 +7,7 @@
 \alias{plot,distrCollection-method}
 \alias{plot,gageRR-method}
 \alias{plot,steepAscent-method}
+\alias{plot,MSALinearity-method}
 \title{Methods for Function plot in Package `graphics'}
 \description{Methods for function \code{plot} in Package `graphics'}
 
@@ -20,6 +21,10 @@
 
 \section{Methods}{
 \describe{
+
+\item{\code{signature(x = "MSALinearity")}}{
+object of class MSALinearity
+}
 
 \item{\code{signature(x = "ANY")}}{
 ANY 

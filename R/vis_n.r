@@ -1,5 +1,5 @@
-wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, zlab, form = "fit", phi, theta, ticktype, col = 1, steps, 
-    factors, fun, plot) {
+wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, zlab, form = "fit", 
+    phi, theta, ticktype, col = 1, steps, factors, fun, plot) {
     DB = FALSE
     form = form
     fact = NULL
@@ -158,8 +158,8 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, bo
     if (plot) {
         if (missing(zlim)) 
             zlim = range(mat)
-        persp(xVec, yVec, mat, main = main, sub = sub, xlab = xlab, ylab = ylab, xlim = xlim, ylim = ylim, zlim = zlim, zlab = zlab, col = color[facetcol], 
-            border = border, ticktype = ticktype, phi = phi, theta = theta)
+        persp(xVec, yVec, mat, main = main, sub = sub, xlab = xlab, ylab = ylab, xlim = xlim, ylim = ylim, zlim = zlim, 
+            zlab = zlab, col = color[facetcol], border = border, ticktype = ticktype, phi = phi, theta = theta)
         if (is.function(col)) {
             zlim = range(mat)
             leglevel = pretty(zlim, 6)
@@ -170,14 +170,16 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, bo
             temp[leglevel < 0] = "-"
             temp[leglevel == 0] = " "
             legpretty = paste(temp, legpretty, sep = "")
-            legend("topright", inset = 0.02, legend = paste(">", legpretty), col = legcol, bg = "white", pt.cex = 1.5, cex = 0.75, pch = 15)
+            legend("topright", inset = 0.02, legend = paste(">", legpretty), col = legcol, bg = "white", pt.cex = 1.5, 
+                cex = 0.75, pch = 15)
         }
     }
     invisible(list(x = xVec, y = yVec, z = mat))
 }
-.mfc = function(x = seq(0, 1, length.out = nrow(z)), y = seq(0, 1, length.out = ncol(z)), z, xlim = range(x, finite = TRUE), ylim = range(y, finite = TRUE), 
-    zlim = range(z, finite = TRUE), levels = pretty(zlim, nlevels), nlevels = 20, color.palette = cm.colors, col = color.palette(length(levels) - 1), plot.title, 
-    plot.axes, key.title, key.axes, asp = NA, xaxs = "i", yaxs = "i", las = 1, axes = TRUE, frame.plot = axes, ...) {
+.mfc = function(x = seq(0, 1, length.out = nrow(z)), y = seq(0, 1, length.out = ncol(z)), z, xlim = range(x, 
+    finite = TRUE), ylim = range(y, finite = TRUE), zlim = range(z, finite = TRUE), levels = pretty(zlim, nlevels), nlevels = 20, 
+    color.palette = cm.colors, col = color.palette(length(levels) - 1), plot.title, plot.axes, key.title, key.axes, asp = NA, 
+    xaxs = "i", yaxs = "i", las = 1, axes = TRUE, frame.plot = axes, ...) {
     if (missing(z)) {
         if (!missing(x)) {
             if (is.list(x)) {
@@ -220,7 +222,8 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, bo
     temp[leglevel < 0] = "-"
     temp[leglevel == 0] = " "
     legpretty = paste(temp, legpretty, sep = "")
-    legend("topright", inset = 0.02, legend = paste(">", legpretty), col = legcol, bg = "white", pt.cex = 1.5, cex = 0.75, pch = 15)
+    legend("topright", inset = 0.02, legend = paste(">", legpretty), col = legcol, bg = "white", pt.cex = 1.5, cex = 0.75, 
+        pch = 15)
     if (missing(plot.axes)) {
         if (axes) {
             title(main = "", xlab = "", ylab = "")
@@ -236,8 +239,8 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, bo
     else plot.title
     invisible()
 }
-contourPlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, zlab, form = "fit", ticktype, col = 1, steps, factors, 
-    fun) {
+contourPlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, zlab, form = "fit", 
+    ticktype, col = 1, steps, factors, fun) {
     DB = FALSE
     form = form
     fact = NULL

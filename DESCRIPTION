@@ -1,7 +1,7 @@
 Package: qualityTools
 Type: Package
 Title: Statistical Methods for Quality Science
-Version: 1.46
+Version: 1.47
 Date: 2011-08-09
 Author: Thomas Roth
 Maintainer: Thomas Roth <thomas.roth@tu-berlin.de>
@@ -21,10 +21,11 @@ Description: This is a package for teaching statistical methods in the
         teaching the statistical methodology used in the Quality
         Sciences.
 License: GPL-2
+URL: http://www.r-qualitytools.org
 LazyLoad: yes
 Depends: R(>= 2.9.0), graphics, methods
 Imports: graphics
 Suggests: MASS, methods
-Packaged: 2011-08-09 17:40:57 UTC; roth
+Packaged: 2011-08-12 14:41:26 UTC; roth
 Repository: CRAN
-Date/Publication: 2011-08-10 05:50:25
+Date/Publication: 2011-08-12 16:36:08

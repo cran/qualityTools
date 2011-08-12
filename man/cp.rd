@@ -16,7 +16,7 @@ cp(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda, main, x
 numeric vector
 }
   \item{distribution}{
-character string such as "weibull"
+character string such as "normal", "log-normal", "exponential", "logistic", "gamma", "weibull", "cauchy", "beta", "chi-squared", "f", "t", "geometric", "poisson", "negative-binomial"
 }
   \item{lsl}{
 lower specification limit
@@ -82,7 +82,7 @@ other graphical parameters
 }
 }
 \details{
-Distribution fitting is deligated to function fitdistr of the R-package MASS as well as the calculation of lambda for the Box Cox Transformation. cpk is always min(cpK, cpL).
+Distribution fitting is deligated to function fitdistr of the R-package MASS as well as the calculation of lambda for the Box Cox Transformation. p-values for Anderson Darling Test are reported for the most important distributions. cpk is always min(cpK, cpL).
 \itemize{
 \item pt stands for total fraction nonconforming\cr
 \item pu stands for upper fraction nonconforming\cr

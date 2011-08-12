@@ -31,8 +31,9 @@
     return((mean(sdVec)))
 }
 .sdSg(1:10, grouping = c(1, 1, 1, 1, 1, 5, 5, 5, 5, 5))
-pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda, main, xlim, ylim, grouping = NULL, std.dev = NULL, conf.level = 0.9973002, 
-    start, lineWidth = 1, lineCol = "red", lineType = "solid", specCol = "red3", specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...) {
+pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda, main, xlim, ylim, grouping = NULL, 
+    std.dev = NULL, conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", lineType = "solid", specCol = "red3", 
+    specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...) {
     DB = FALSE
     data.name = deparse(substitute(x))
     require(MASS, quietly = TRUE)
@@ -74,6 +75,11 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     yVec = numeric(0)
     if (is.vector(x)) 
         x = as.data.frame(x)
+    if (identical(distribution, "log-normal")) {
+        x = log(x)
+        distribution = "normal"
+        data.name = paste("log(", data.name, ")", sep = "")
+    }
     if (boxcox) {
         distribution = "normal"
         if (length(lambda) >= 2) {
@@ -110,7 +116,8 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
         print(paste("confHigh:", confHigh))
         print(paste("confLow:", confLow))
     }
-    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", "negative binomial", "poisson")
+    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", "negative binomial", 
+        "poisson")
     if (is.character(distribution)) {
         qFun = .charToDistFunc(distribution, type = "q")
         pFun = .charToDistFunc(distribution, type = "p")
@@ -221,7 +228,8 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     if (!is.null(usl)) 
         axis(side = 3, at = usl, labels = paste("USL =", format(usl, digits = 3)), col = specCol)
     if (!is.null(lsl) && !is.null(usl)) 
-        axis(side = 3, at = c(lsl, usl), labels = c(paste("LSL =", format(lsl, digits = 3)), paste("USL =", format(usl, digits = 3))), col = specCol)
+        axis(side = 3, at = c(lsl, usl), labels = c(paste("LSL =", format(lsl, digits = 3)), paste("USL =", format(usl, 
+            digits = 3))), col = specCol)
     if (!is.null(target)) 
         text(target, max(ylim), "TARGET", pos = 1, col = cex.col, cex = cex.text)
     title(main = main, outer = TRUE)
@@ -321,6 +329,7 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     else text(-1, 1, paste("ppm =", 0), pos = 4, cex = cex.val)
     text(-1, 3, paste("ppm =", obsL + obsU), pos = 4, cex = cex.val)
     print(adTestStats)
-    invisible(list(lambda = lambda, cp = cp, cpk = cpk, cpl = cpl, cpu = cpu, ppt = ppt, ppl = ppl, ppu = ppu, A = A, usl = usl, lsl = lsl, target = target))
+    invisible(list(lambda = lambda, cp = cp, cpk = cpk, cpl = cpl, cpu = cpu, ppt = ppt, ppl = ppl, ppu = ppu, A = A, 
+        usl = usl, lsl = lsl, target = target))
 }
 cp = pcr 

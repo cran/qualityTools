@@ -8,6 +8,7 @@
 \alias{as.data.frame,taguchiDesign-method}
 \alias{as.data.frame,steepAscent-method}
 \alias{as.data.frame,gageRR-method}
+\alias{as.data.frame,MSALinearity-method}
 \title{Methods for Function as.data.frame in Package base}
 \description{Methods for function \code{as.data.frame} in Package base}
 
@@ -15,6 +16,9 @@
 
 \section{Methods}{
 \describe{
+
+\item{\code{signature(x = "MSALinearity")}}{
+object of class MSALinearity}
 
 \item{\code{signature(x = "ANY")}}{
 ANY

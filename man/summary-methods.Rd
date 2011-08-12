@@ -7,6 +7,7 @@
 \alias{summary,mixDesign-method}
 \alias{summary,taguchiDesign-method}
 \alias{summary,gageRR-method}
+\alias{summary,MSALinearity-method}
 \title{Methods for Function summary in Package `base'}
 \description{Methods for function \code{summary} in Package `base'}
 \section{Methods}{
@@ -14,6 +15,10 @@
 
 \item{\code{signature(object = "ANY")}}{
 ANY
+}
+
+\item{\code{signature(object = "MSALinearity")}}{
+object of class MSALinearity
 }
 
 \item{\code{signature(object = "distrCollection")}}{

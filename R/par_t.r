@@ -1,4 +1,5 @@
-paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.last = NA, alpha = 0.05, xlim, ylim, xlab, ylab, main, ...) {
+paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.last = NA, alpha = 0.05, xlim, 
+    ylim, xlab, ylab, main, ...) {
     DB = FALSE
     ylimMissing = FALSE
     if (missing(ylim)) 
@@ -84,8 +85,8 @@ paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.l
             else {
                 if (missing(main)) 
                   main = "Standardized main effects and interactions"
-                effect = ((summary(lm.1)$coefficients[-pmatch("(Intercept)", names(coef(lm.1))), 1])/(summary(lm.1)$coefficients[-pmatch("(Intercept)", names(coef(lm.1))), 
-                  2]))
+                effect = ((summary(lm.1)$coefficients[-pmatch("(Intercept)", names(coef(lm.1))), 1])/(summary(lm.1)$coefficients[-pmatch("(Intercept)", 
+                  names(coef(lm.1))), 2]))
                 if (all(is.na(effect))) 
                   stop("effects could not be calculated")
                 effect = effect[!is.na(effect)]
