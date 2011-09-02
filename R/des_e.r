@@ -12,6 +12,8 @@ desirability = function(response, low, high, target = "max", scale = c(1, 1), im
 }
 .desireFun = function(low, high, target = "max", scale = c(1, 1), importance = 1) {
     DB = FALSE
+    if (importance > 10 | importance < 0.1) 
+        stop("importance needs to be in [0.1, 10]")
     if (low >= high) 
         stop("the lower bound must be greater than the high bound!")
     if (any(scale <= 0)) 
@@ -24,7 +26,7 @@ desirability = function(response, low, high, target = "max", scale = c(1, 1), im
             d = rep(0, length(y))
             d[y >= low & y <= target] = ((y[y >= low & y <= target] - low)/(target - low))^scale[1]
             d[y >= target & y <= high] = ((y[y >= target & y <= high] - high)/(target - high))^scale[2]
-            return(d)
+            return(d^importance)
         }
         return(out)
     }
@@ -36,7 +38,7 @@ desirability = function(response, low, high, target = "max", scale = c(1, 1), im
             d[y > high] = 0
             d[y < low] = 1
             d[y >= low & y <= high] = ((y[y >= low & y <= high] - high)/(low - high))^scale[1]
-            return(d)
+            return(d^importance)
         }
         return(out)
     }
@@ -48,7 +50,7 @@ desirability = function(response, low, high, target = "max", scale = c(1, 1), im
             d[y < low] = 0
             d[y > high] = 1
             d[y >= low & y <= high] = ((y[y >= low & y <= high] - low)/(high - low))^scale[1]
-            return(d)
+            return(d^importance)
         }
         return(out)
     }
@@ -112,6 +114,7 @@ setMethod("plot", signature(x = "desirability"), function(x, y, scale, main, xla
 })
 overall = function(fdo, steps = 20, constraints, ...) {
     DB = FALSE
+    importances = list()
     cs = list()
     if (!missing(constraints)) 
         cs = constraints
@@ -158,6 +161,7 @@ overall = function(fdo, steps = 20, constraints, ...) {
         obj = desList[[y]]
         dFun = .desireFun(obj@low, obj@high, obj@target, obj@scale, obj@importance)
         lm.y = fitList[[y]]
+        importances[[y]] = desires(fdo)[[y]]@importance
         yHat = predict(lm.y, newdata = newdata, ...)
         yDes = dFun(yHat)
         dFrame[, y] = yDes
@@ -168,7 +172,8 @@ overall = function(fdo, steps = 20, constraints, ...) {
             print(dFrame)
         }
     }
-    overall = apply(dFrame, 1, prod)^(1/length(yCharSet))
+    geomFac = 1/sum(unlist(importances))
+    overall = apply(dFrame, 1, prod)^geomFac
     dFrame[, "overall"] = overall
     dFrame = cbind(out, dFrame)
     invisible(dFrame)
@@ -213,13 +218,21 @@ setMethod("as.data.frame", "desOpt", function(x, row.names = NULL, optional = FA
     csOut[names(cs2)] = cs2[names(cs2)]
     return(csOut)
 }
+.dHelp = function(model, dFun) {
+    lm1 = model
+    d1 = dFun
+    out = function(newdata) {
+        return(d1(predict(lm1, newdata = newdata)))
+    }
+    return(out)
+}
 optimum = function(fdo, constraints, steps = 25, type = "grid", start, ...) {
     DB = FALSE
     if (missing(fdo)) 
         stop("missing fdo!")
     X = as.data.frame(fdo)
     numFac = length(names(fdo))
-    if (!(type %in% c("grid", "optim"))) {
+    if (!(type %in% c("grid", "optim", "gosolnp"))) {
         warning(paste("type =", deparse(substitute(type)), "not found --> using type = \"grid\""))
         type = "grid"
     }
@@ -242,6 +255,48 @@ optimum = function(fdo, constraints, steps = 25, type = "grid", start, ...) {
     desirabilities = NA
     overall = NA
     setList = list()
+    dList = list()
+    importances = list()
+    yCharSet = intersect(names(desires(fdo)), names(fits(fdo)))
+    for (y in yCharSet) {
+        obj = desires(fdo)[[y]]
+        dFun = .desireFun(obj@low, obj@high, obj@target, obj@scale, obj@importance)
+        lm.y = fits(fdo)[[y]]
+        importances[[y]] = desires(fdo)[[y]]@importance
+        dList[[y]] = .dHelp(lm.y, dFun)
+    }
+    geomFac = 1/sum(unlist(importances))
+    dAll = function(X) {
+        newdata = data.frame(t(X))
+        names(newdata) = LETTERS[1:ncol(newdata)]
+        return(prod(unlist(lapply(dList, do.call, list(newdata = newdata))))^geomFac)
+    }
+    dAllRsolnp = function(X) {
+        newdata = data.frame(t(X))
+        names(newdata) = LETTERS[1:ncol(newdata)]
+        return(-prod(unlist(lapply(dList, do.call, list(newdata = newdata))))^geomFac)
+    }
+    if (type == "optim") {
+        print(lower)
+        print(upper)
+        temp = optim(par = start, dAll, method = "L-BFGS-B", lower = lower, upper = upper, control = list(fnscale = -1, 
+            maxit = 1000))
+        facCoded = as.list(temp$par)
+        names(facCoded) = names(names(fdo))
+        desOpt@facCoded = facCoded
+        overall = temp$value
+        desirabilities = .desHelp(fdo, desOpt@facCoded)
+    }
+    if (type == "gosolnp") {
+        if (!require(Rsolnp, quietly = TRUE)) 
+            stop("Package Rsolnp needs to be installed!")
+        temp = gosolnp(fun = dAllRsolnp, LB = lower, UB = upper)
+        facCoded = as.list(temp$pars)
+        names(facCoded) = names(names(fdo))
+        desOpt@facCoded = facCoded
+        overall = -rev(temp$values)[1]
+        desirabilities = .desHelp(fdo, desOpt@facCoded)
+    }
     if (type == "grid") {
         dVals = overall(fdo = fdo, constraints = constraints, steps = steps)
         index = order(dVals[, "overall"], decreasing = TRUE)[1]
@@ -249,48 +304,6 @@ optimum = function(fdo, constraints, steps = 25, type = "grid", start, ...) {
         desOpt@facCoded = as.list(dVals[index, names(names(fdo))])
         desirabilities = as.list(dVals[index, names(response(fdo))])
         overall = dVals[index, "overall"]
-    }
-    if (type == "optim") {
-        optDes = function(vec) {
-            DB = FALSE
-            l = as.list(vec)
-            names(l) = LETTERS[1:length(vec)]
-            newdata = data.frame(l)
-            if (DB) 
-                print(paste("newdata:", newdata))
-            fitList = fits(fdo)
-            if (length(fitList) < 1) 
-                stop(paste("no fits found in fits(", deparse(substitute(fdo)), ")"), sep = "")
-            desList = desires(fdo)
-            if (length(desList) < 1) 
-                stop(paste("no desirabilities found in desires(", deparse(substitute(fdo)), ")"), sep = "")
-            yCharSet = intersect(names(desires(fdo)), names(fits(fdo)))
-            dFrame = data.frame(matrix(NA, nrow = nrow(newdata), ncol = length(yCharSet) + 1))
-            names(dFrame) = c(yCharSet, "overall")
-            dFrame[, "overall"] = -Inf
-            for (y in yCharSet) {
-                obj = desList[[y]]
-                dFun = .desireFun(obj@low, obj@high, obj@target, obj@scale, obj@importance)
-                lm.y = fitList[[y]]
-                yHat = predict(lm.y, newdata = newdata)
-                yDes = dFun(yHat)
-                dFrame[, y] = yDes
-            }
-            overall = apply(dFrame[, -ncol(dFrame)], 1, prod)^(1/length(yCharSet))
-            dFrame[, "overall"] = overall
-            return(dFrame[, "overall"])
-        }
-        if (DB) {
-            print(paste("lower:", lower))
-            print(paste("upper:", upper))
-        }
-        temp = optim(par = start, optDes, method = "L-BFGS-B", lower = lower, upper = upper, control = list(fnscale = -1, 
-            maxit = 1000))
-        facCoded = as.list(temp$par)
-        names(facCoded) = names(names(fdo))
-        desOpt@facCoded = facCoded
-        overall = temp$value
-        desirabilities = .desHelp(fdo, desOpt@facCoded)
     }
     for (i in names(desOpt@facCoded)) {
         desOpt@facReal[[i]] = code2real(lows(fdo)[[i]], highs(fdo)[[i]], desOpt@facCoded[[i]])

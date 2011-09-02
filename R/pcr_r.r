@@ -31,9 +31,9 @@
     return((mean(sdVec)))
 }
 .sdSg(1:10, grouping = c(1, 1, 1, 1, 1, 5, 5, 5, 5, 5))
-pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda, main, xlim, ylim, grouping = NULL, 
-    std.dev = NULL, conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", lineType = "solid", specCol = "red3", 
-    specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...) {
+pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda = c(-5, 5), main, xlim, 
+    ylim, grouping = NULL, std.dev = NULL, conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", lineType = "solid", 
+    specCol = "red3", specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...) {
     DB = FALSE
     data.name = deparse(substitute(x))
     require(MASS, quietly = TRUE)
@@ -83,8 +83,7 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     if (boxcox) {
         distribution = "normal"
         if (length(lambda) >= 2) {
-            lambda = c(min(lambda), max(lambda))
-            temp = boxcox(x[, 1] ~ 1, lambda = lambda, plotit = FALSE)
+            temp = boxcox(x[, 1] ~ 1, lambda = seq(min(lambda), max(lambda), 1/10), plotit = FALSE)
             i = order(temp$y, decreasing = TRUE)[1]
             lambda = temp$x[i]
         }
