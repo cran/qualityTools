@@ -266,7 +266,7 @@ gageRR = function(gdo, method = "crossed", sigma = 5.15, alpha = 0.25, DM = NULL
         totalRR = Ca + Cab + Cerror
         repeatability = Cerror
         reproducibility = Ca + Cab
-        bTob = Cb
+        bTob = max(0, Cb)
         totalVar = Cb + Ca + Cab + Cerror
         estimates = list(Cb = Cb, Ca = Ca, Cab = Cab, Cerror = Cerror)
         varcomp = list(totalRR = totalRR, repeatability = repeatability, reproducibility = reproducibility, a = Ca, a_b = Cab, 

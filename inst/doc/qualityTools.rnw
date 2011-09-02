@@ -168,7 +168,7 @@ However, a classical visualization technique that is used in this phase and avai
 
 Suppose a company is investigating non compliant units (products). 120 units were investigated and 6 different types of defects (qualitative data) were found. The defects are named A to F. The defects data can be found in defects.
 
-<<fig=FALSE, echo=FALSE>>=
+<<fig=FALSE, echo=FALSE, width = 7, height = 7>>=
 library(qualityTools)
 @
 

@@ -6,7 +6,7 @@
 Optimal factor settings 
 }
 \description{
-Calculates the best factors settings with regard to defined desirabilities and constraints. Two approaches are currently supported, (I) evaluating (all) possible factor settings and (II) using the function \code{\link{optim}}. Using optim \code{\link{optim}} initial values for the factors to be optimized over can be set via start.
+Calculates the best factors settings with regard to defined desirabilities and constraints. Two approaches are currently supported, (I) evaluating (all) possible factor settings and (II) using the function \code{\link{optim}} or gosolnp of the Rsolnp package. Using optim \code{\link{optim}} initial values for the factors to be optimized over can be set via start. The optimality of the solution depends critically on the starting parameters which is why it is recommended to use \sQuote{type="gosolnp"} although calculation takes a while.
 }
 \usage{
 optimum(fdo, constraints, steps = 25, type = "grid", start, ...)
@@ -23,7 +23,7 @@ constraints for the factors such as list(A = c(-2,1), B = c(0, 0.8))
 number of grid points per factor if type = "grid"
 }
   \item{type}{
-type of search "grid" or "optim" see DESCRIPTION
+type of search "grid","optim" or "gosolnp" see DESCRIPTION
 }
   \item{start}{
 initial values for the factors to be optimized over.
@@ -34,14 +34,12 @@ initial values for the factors to be optimized over.
 }
 }
 \details{
-start should be defined in cases where type = "optim" fails to calculate the best factor setting
+It is recommened to use \sQuote{type="gosolnp"}. Derringer and Suich (1994) desirabilities do not have continuous first derivatives, more precisely they have points where their derivatives do not exist, start should be defined in cases where \sQuote{type = "optim"} fails to calculate the best factor setting.
 }
 \value{
 an object of class desOpt
 }
-\references{
-see \code{\link{optim}}
-}
+
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
@@ -50,6 +48,9 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 
 \seealso{
 \code{\link{optim}}
+\code{\link{desirability}}
+\code{\link{desires}}
+\code{\link[Rsolnp]{gosolnp}}
 }
 \examples{
 #BEWARE BIG EXAMPLE --Simultaneous Optimization of Several Response Variables--

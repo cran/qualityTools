@@ -9,7 +9,7 @@ Process Capability Indices
 Calculates the process capability cp, cpk, cpkL (onesided) and cpkU (onesided) for a given dataset and distribution. A histogramm with a density curve is displayed along with the specification limits and a Quantile-Quantile Plot for the specified distribution. Lower-, upper and total fraction of nonconforming entities are calculated. Box Cox Transformations are supported as well as the calculation of Anderson Darling Test Statistics. 
 }
 \usage{
-cp(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda, main, xlim, ylim, grouping = NULL, std.dev = NULL,  conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", lineType = "solid", specCol = "red3", specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...)
+cp(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda = c(-5,5), main, xlim, ylim, grouping = NULL, std.dev = NULL,  conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", lineType = "solid", specCol = "red3", specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...)
 }
 \arguments{
   \item{x}{
