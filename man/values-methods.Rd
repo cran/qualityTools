@@ -15,7 +15,7 @@ Methods for function \code{values}
 \S4method{values}{taguchiDesign}(object) <- value
 }
 \arguments{
-\item{object}{a taguchiDesign object}
+\item{object}{a \code{\link{taguchiDesign}} object}
 \item{value}{a list of values}
 }
 
@@ -24,8 +24,10 @@ Methods for function \code{values}
 \describe{
 
 \item{\code{signature(object = "taguchiDesign")}}{
-Get and set the \code{values} for the factors in an object of class taguchiDesign
+Get and set the \code{values} for the factors in an object of class \code{\link{taguchiDesign}}.
 }
 }}
 \keyword{methods}
-
+\seealso{
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+}

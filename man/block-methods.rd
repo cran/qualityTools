@@ -13,7 +13,7 @@
 \S4method{block}{facDesign}(object) <- value
 }
 \arguments{
-\item{object}{a `facDesign' object}
+\item{object}{a \code{facDesign} object}
 \item{value}{data.frame or vector}
 }
 
@@ -22,15 +22,19 @@
 \section{Methods}{
 \describe{
 \item{\code{signature(x = "facDesign")}}{
-Get and set the Blocking structure for a 'facDesign' object 
+Get and set the Blocking structure for a \code{facDesign} object. 
 }
 }}
 
 \note{\code{block} is to be rewritten}
 
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
-\seealso{\code{\link{response}}, \code{\link{facDesign}}}
+\seealso{
+\code{\link{response}} \cr
+\code{\link{facDesign}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+}
 \examples{
-fdo = facDesign(k = 3)  #NA in response column
+fdo = facDesign(k = 3)    #NA in response column
 block(fdo)
 }                                              

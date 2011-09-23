@@ -6,7 +6,7 @@
 Gage R&R - Gage Repeatability and Reproducibility
 }
 \description{
-Performs a Gage R&R analysis for an object of class gageRR
+Performs a Gage R&R analysis for an object of class \code{\link{gageRR}}.
 }
 \usage{                             
 gageRR(gdo, method = "crossed", sigma = 5.15, alpha = 0.25, DM = NULL, HM = NULL,
@@ -15,48 +15,60 @@ gageRR(gdo, method = "crossed", sigma = 5.15, alpha = 0.25, DM = NULL, HM = NULL
 
 \arguments{
   \item{gdo}{
-object of class gageRR
+needs to be an object of class \code{\link{gageRR}}.
 }
   \item{method}{
-"crossed" which is the typical design for performing a Measurement Systems
-Analysis using Gage Repeatability and Reproducibility or "nested" which is used
+\dQuote{crossed} which is the typical design for performing a Measurement Systems
+Analysis using Gage Repeatability and Reproducibility or \dQuote{nested} which is used
  for destructive testing (i.e. the same part cannot be measured twice). Operators  
  measure each a different sample of parts under the premise that the parts of each
- batch are alike.
+ batch are alike. \cr
+ By default \code{method} is set to \dQuote{crossed}.
 }
-\item{sigma}{ number of sigmas; for sigma=6 this relates to 99.73 percent representing the full spread of a normal distribution function (i.e. pnorm(3) - pnorm(-3)). Another popular setting sigma=5.15 relates to 99 percent (i.e. pnorm(2.575) - pnorm(-2.575)).
+\item{sigma}{ numeric value giving the number of sigmas.\cr
+ For sigma=6 this relates to 99.73 percent representing the full spread of a normal distribution function (i.e. pnorm(3) - pnorm(-3)).\cr
+ Another popular setting sigma=5.15 relates to 99 percent (i.e. \code{pnorm(2.575) - pnorm(-2.575)}).
+ By default \code{sigma} is set to \sQuote{5.15}.
 }
   \item{alpha}{
-alpha value for discarding the interaction Operator:Part and fitting a non-interaction model. 
+alpha value for discarding the interaction Operator:Part and fitting a non-interaction model.
+By default \code{alpha} is set to \sQuote{0.25}. 
 }
   \item{DM}{
-%%     ~~Describe \code{DM} here~~
+By default \code{DM} is set to \sQuote{NULL}.
 }
   \item{HM}{
-%%     ~~Describe \code{HM} here~~
+By default \code{HM} is set to \sQuote{NULL}.
 }
   \item{tolerance}{
-Tolerance for the measured parts. This is required to calculate the Process to Tolerance Ratio.
+numeric value giving the tolerance for the measured parts. This is required to calculate the Process to Tolerance Ratio.\cr
+By default \code{tolerance} is set to \sQuote{NULL}.
 }
 \item{dig}{
-number of significant digits for \code{\link{format}}.
+numeric value giving the number of significant digits for \code{\link{format}}.\cr
+By default \code{dig} is set to \sQuote{3}.
 }
   \item{\dots}{
-further graphical parameters
+further graphical parameters(see \code{\link{par}}
 }
 }
 \value{
-returns an object of class gageRR and shows typical Gage Repeatability and Reproducibility Output including Process to Tolerance Ratios and the number of distinctive categories (i.e. ndc) the measurement system is able to discriminate with the tested setting.
+\code{gageRR()} returns an object of class \code{gageRR} and shows typical Gage Repeatability and Reproducibility Output including Process to Tolerance Ratios and the number of distinctive categories (i.e. ndc) the measurement system is able to discriminate with the tested setting.
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de
 }
 }
-
+\note{
+ For an example in context which shows the usage of the function \code{gageRR()} 
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S3.html#SS2}.
+}
 \seealso{
-\code{\link{gageRRDesign}} 
-\code{\link{response}} 
-\code{\link{cg}} 
+\code{\link{gageRRDesign}}\cr 
+\code{\link{response}}       \cr
+\code{\link{cg}}                \cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S3.html#SS2}
+
 }
 \examples{
 #create a crossed Gage R&R Design

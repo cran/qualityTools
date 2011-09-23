@@ -6,14 +6,14 @@
 \alias{types,facDesign-method}
 \alias{types<-,facDesign-method}
 \title{Get and set methods}
-\description{Get and set the \code{types} for the factors in an object of class facDesign}
+\description{Get and set the \code{types} for the factors in an object of class \code{\link{facDesign}}.}
 
 \usage{
 \S4method{types}{facDesign}(x)
 \S4method{types}{facDesign}(x) <- value
 }
 \arguments{
-\item{x}{a `facDesign' object}
+\item{x}{a \code{\link{facDesign}} object}
 \item{value}{data.frame or vector}
 }
 
@@ -22,11 +22,17 @@
 \section{Methods}{
 \describe{
 \item{\code{signature(x = "facDesign")}}{
-Get and set the \code{types} for the factors in an object of class facDesign
+Get and set the \code{types} for the factors in an object of class \code{\link{facDesign}}.
 }
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
-\seealso{\code{\link{factors}}, \code{\link{lows}},\code{\link{highs}},\code{\link{types}}}
+\seealso{
+\code{\link{factors}}\cr
+\code{\link{lows}}\cr
+\code{\link{highs}}\cr
+\code{\link{types}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/}
+}
 \examples{
 fdo = fracDesign(k = 3)  #NA in response column
 summary(fdo)

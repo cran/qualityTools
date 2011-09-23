@@ -13,13 +13,16 @@ confounds(x, depth = 2)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-object of class facDesign
+ needs to be an object of class \code{\link{facDesign}}.
 }
   \item{depth}{
-numeric - up to depth-way confounded interactions are printed
+ numeric value - up to depth-way confounded interactions are printed
 }
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
+}
+\seealso{
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
 }
 

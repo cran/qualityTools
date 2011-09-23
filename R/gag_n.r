@@ -262,6 +262,7 @@ gageRR = function(gdo, method = "crossed", sigma = 5.15, alpha = 0.25, DM = NULL
         }
         gdo@method = "crossed"
         Ca = max(0, Ca)
+        Cb = max(0, Cb)
         Cab = max(0, Cab)
         totalRR = Ca + Cab + Cerror
         repeatability = Cerror
@@ -425,11 +426,13 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         lines(sort(as.numeric(factor(names(mByOp)))), lapply(mByOp, mean)[sort(names(mByOp))], lwd = lwd)
         points(sort(as.numeric(factor(names(mByOp)))), lapply(mByOp, median)[sort(names(mByOp))], lwd = lwd, pch = 13, 
             cex = 2)
-        agg = aggregate(gdo[, yName], list(gdo[, bName], gdo[, aName]), FUN = mean)
+        agg = aggregate(gdo[, yName], list(gdo[, aName], gdo[, bName]), FUN = mean)
         tab = table(agg[, 2])
         sgSize = tab[1]
         aggSd = aggregate(gdo[, yName], list(gdo[, bName], gdo[, aName]), FUN = sd)
+        tab = table(aggSd[, 2])
         sm = mean(aggSd[, 3])
+        aggMean = aggregate(gdo[, yName], list(gdo[, bName], gdo[, aName]), FUN = mean)
         xm = mean(agg[, 3])
         UCL = xm + ((3 * sm)/(.c4(sgSize) * sqrt(sgSize)))
         LCL = xm - ((3 * sm)/(.c4(sgSize) * sqrt(sgSize)))
@@ -451,8 +454,8 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         par(mar = old.par)
         j = 1
         for (i in 1:length(tab)) {
-            lines(j:(j + tab[i] - 1), agg[j:(j + tab[i] - 1), 3])
-            points(j:(j + tab[i] - 1), agg[j:(j + tab[i] - 1), 3])
+            lines(j:(j + tab[i] - 1), aggMean[j:(j + tab[i] - 1), 3])
+            points(j:(j + tab[i] - 1), aggMean[j:(j + tab[i] - 1), 3])
             if (i < length(tab)) 
                 abline(v = j + tab[i] - 1 + 0.5, lty = 2)
             axis(1, at = j, labels = names(tab[i]))
@@ -480,17 +483,18 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         helpRange = function(x) {
             return(diff(range(x)))
         }
-        agg = aggregate(gdo[, yName], list(gdo[, bName], gdo[, aName]), FUN = helpRange)
-        Rm = mean(agg[, 3])
-        tab = table(agg[, 2])
-        sgSize = tab[1]
+        aggForLimits = aggregate(gdo[, yName], list(gdo[, aName], gdo[, bName]), FUN = helpRange)
+        Rm = mean(aggForLimits[, 3])
         UCL = D4[sgSize] * Rm
         LCL = D3[sgSize] * Rm
+        agg = aggregate(gdo[, yName], list(gdo[, bName], gdo[, aName]), FUN = helpRange)
+        tab = table(agg[, 2])
+        sgSize = tab[1]
         old.par = par()$mar
         par(mar = c(5.1, 4.1, 4.1, 10.1))
         plot(agg[, 3], ylim = c(0, max(max(agg[, 3]), UCL)), type = "n", xlab = aName, ylab = "R", axes = FALSE, main = "R Chart")
         axis(2)
-        axis(4, at = c(xm, UCL, LCL), labels = c("", "", ""))
+        axis(4, at = c(Rm, UCL, LCL), labels = c("", "", ""))
         box()
         abline(h = Rm, col = 3)
         abline(h = UCL, col = 2)
@@ -511,6 +515,7 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         par(mar = old.par)
     }
     else {
+        print("nested")
         main2 = NA
         if (missing(main) || is.na(main[2])) 
             main2 = paste(yName, "By", bName, "Within", aName)
@@ -558,73 +563,8 @@ setMethod("plot", signature(x = "gageRR"), function(x, y, main, xlab, ylab, col,
         mByOp = split(gdo[, 5], as.numeric(gdo[, 3]))
         lines(sort(as.numeric(factor(names(mByOp)))), lapply(mByOp, mean)[sort(names(mByOp))], lwd = lwd)
         points(sort(as.numeric(factor(names(mByOp)))), lapply(mByOp, mean)[sort(names(mByOp))], lwd = lwd, pch = 13, cex = 2)
-        agg = aggregate(gdo[, yName], list(gdo[, bName], gdo[, aName]), FUN = mean)
-        tab = table(agg[, 2])
-        sgSize = tab[1]
-        aggSd = aggregate(gdo[, yName], list(gdo[, bName], gdo[, aName]), FUN = sd)
-        sm = mean(aggSd[, 3])
-        xm = mean(agg[, 3])
-        UCL = xm + ((3 * sm)/(.c4(sgSize) * sqrt(sgSize)))
-        LCL = xm - ((3 * sm)/(.c4(sgSize) * sqrt(sgSize)))
-        values = c(UCL, xm, LCL)
-        old.par = par()$mar
-        par(mar = c(5.1, 4.1, 4.1, 10.1))
-        plot(agg[, 3], type = "n", axes = FALSE, xlab = aName, ylab = expression(bar(x)), main = expression(paste(bar(x), 
-            " Chart")))
-        box()
-        abline(h = xm, col = 3)
-        abline(h = UCL, col = 2)
-        abline(h = LCL, col = 2)
-        axis(2)
-        axis(4, at = c(xm, UCL, LCL), labels = c("", "", ""))
-        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, LCL, paste("LCL =", round(LCL, 2)), adj = 0, srt = 0, xpd = TRUE)
-        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, UCL, paste("UCL =", round(UCL, 2)), adj = 0, srt = 0, xpd = TRUE)
-        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, xm, substitute(bar(x) == xm, list(xm = round(xm, 2))), adj = 0, 
-            srt = 0, xpd = TRUE)
-        par(mar = old.par)
-        j = 1
-        for (i in 1:length(tab)) {
-            lines(j:(j + tab[i] - 1), agg[j:(j + tab[i] - 1), 3])
-            points(j:(j + tab[i] - 1), agg[j:(j + tab[i] - 1), 3])
-            if (i < length(tab)) 
-                abline(v = j + tab[i] - 1 + 0.5, lty = 2)
-            axis(1, at = j, labels = names(tab[i]))
-            j = j + tab[i]
-        }
         plot(1, 1, type = "n", axes = FALSE, xlab = NA, ylab = NA, main = NA)
-        D3 = c(0, 0, 0, 0, 0, 0.076, 0.136, 0.184, 0.223, 0.256, 0.284, 0.308, 0.329, 0.348)
-        D4 = c(0, 3.267, 2.574, 2.282, 2.115, 2.004, 1.924, 1.864, 1.816, 1.777, 1.744, 1.716, 1.692, 1.671, 1.652)
-        helpRange = function(x) {
-            return(diff(range(x)))
-        }
-        agg = aggregate(gdo[, yName], list(gdo[, bName], gdo[, aName]), FUN = helpRange)
-        Rm = mean(agg[, 3])
-        tab = table(agg[, 2])
-        sgSize = tab[1]
-        UCL = D4[sgSize] * Rm
-        LCL = D3[sgSize] * Rm
-        old.par = par()$mar
-        par(mar = c(5.1, 4.1, 4.1, 10.1))
-        plot(agg[, 3], ylim = c(0, max(max(agg[, 3]), UCL)), type = "n", xlab = aName, ylab = "R", axes = FALSE, main = "R Chart")
-        axis(2)
-        axis(4, at = c(xm, UCL, LCL), labels = c("", "", ""))
-        box()
-        abline(h = Rm, col = 3)
-        abline(h = UCL, col = 2)
-        abline(h = LCL, col = 2)
-        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, LCL, paste("LCL =", round(LCL, 2)), adj = 0, srt = 0, xpd = TRUE)
-        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, UCL, paste("UCL =", round(UCL, 2)), adj = 0, srt = 0, xpd = TRUE)
-        text(length(agg[, 3]) + length(agg[, 3]) * 0.075, Rm, substitute(bar(R) == Rm, list(Rm = round(Rm, 2))), adj = 0, 
-            srt = 0, xpd = TRUE)
-        j = 1
-        for (i in 1:length(tab)) {
-            lines(j:(j + tab[i] - 1), agg[j:(j + tab[i] - 1), 3])
-            points(j:(j + tab[i] - 1), agg[j:(j + tab[i] - 1), 3])
-            if (i < length(tab)) 
-                abline(v = j + tab[i] - 1 + 0.5, lty = 2)
-            axis(1, at = j, labels = names(tab[i]))
-            j = j + tab[i]
-        }
-        par(mar = old.par)
+        plot(1, 1, type = "n", axes = FALSE, xlab = NA, ylab = NA, main = NA)
+        plot(1, 1, type = "n", axes = FALSE, xlab = NA, ylab = NA, main = NA)
     }
 }) 

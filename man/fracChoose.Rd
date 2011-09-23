@@ -3,29 +3,31 @@
 \alias{fracChoose}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Choosing a fractional or full factorial design from a table
+Choosing a fractional or full factorial design from a table.
 }
 \description{
 Designs displayed are the classic minimum abberation designs. Choosing a design is done by clicking with the mouse into the appropriate field.
-
 }
 \usage{
 fracChoose()
 }
 
 \value{
-an object of class facDesign
+\code{fracChoose()} returns an object of class \code{\link{facDesign}}.
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
-Statistics for Experimenters (2005) Box, Hunter, Hunter p.272, table 6.22
+ For an example in context which shows the usage of the function \code{fracChoose()}  
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS2}.
 }
 
 \seealso{
-\code{\link{facDesign}}
-\code{\link{fracDesign}}
-\code{\link{rsmChoose}}
-\code{\link{rsmDesign}}
+\code{\link{facDesign}} \cr
+\code{\link{fracDesign}}\cr
+\code{\link{rsmChoose}} \cr
+\code{\link{rsmDesign}} \cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS2} \cr
+Statistics for Experimenters (2005) Box, Hunter, Hunter p.272, table 6.22
 }

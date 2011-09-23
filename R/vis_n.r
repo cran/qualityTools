@@ -239,8 +239,8 @@ wirePlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, bo
     else plot.title
     invisible()
 }
-contourPlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, zlab, form = "fit", 
-    ticktype, col = 1, steps, factors, fun) {
+contourPlot = function(x, y, z, data = NULL, xlim, ylim, main, xlab, ylab, form = "fit", col = 1, steps, factors, 
+    fun) {
     DB = FALSE
     form = form
     fact = NULL
@@ -332,8 +332,6 @@ contourPlot = function(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab,
         stop(paste("invalid formula", form))
     if (is.null(lm.1)) 
         lm.1 = lm(form, data = fdo)
-    if (missing(sub)) 
-        sub = deparse(formula(lm.1))
     if (DB) 
         print(lm.1)
     dcList = vector(mode = "list", length = length(names(fdo)))

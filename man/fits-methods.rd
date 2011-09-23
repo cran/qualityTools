@@ -13,21 +13,22 @@
 \S4method{fits}{facDesign}(x) <- value
 }
 \arguments{
-  \item{x}{an object of class facDesign}
-  \item{value}{an object of class lm}
+  \item{x}{an object of class \code{\link{facDesign}}.}
+  \item{value}{an object of class \code{link{lm}}.}
 }
 
 \section{Methods}{
 \describe{
 \item{\code{signature(objectc = "facDesign")}}{
-Get and set the \code{fits} for an object of class facDesign
+Get and set the \code{fits} for an object of class \code{\link{facDesign}}.
 }
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \seealso{
-\code{\link{desires}},
-\code{\link{desirability}}
-\code{\link{rsmDesign}}
+\code{\link{desires}}\cr
+\code{\link{desirability}}\cr
+\code{\link{rsmDesign}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS1}
 
 }
 \examples{

@@ -12,55 +12,69 @@ effectPlot(object, factors, fun = mean, single = FALSE, points = FALSE, classic 
 
 \arguments{
   \item{object}{
-a facDesign or taguchiDesign object
+needs to be an object of class \code{\link{facDesign}} or \code{\link{taguchiDesign}}.
 }
   \item{factors}{
-for which factor is the effectPlot to be created
+for which factor is the effectPlot to be created.
 }
   \item{fun}{
-a function for the construction of the effectPlot such as \code{\link{mean}}, \code{link{median}}
+a function for the construction of the effectPlot such as \code{\link{mean}}, \code{link{median}},etc.\cr
+By default \code{fun} is set to \code{\link{mean}}. 
 }
   \item{single}{
-if TRUE device region can be set up using for instance par(mfrow = c(2,2))
+logical value. If \sQuote{TRUE} device region can be set up using for instance \code{par(mfrow = c(2,2))}.\cr
+By default \code{single} is set to \sQuote{FALSE}.
 }
   \item{points}{
-if TRUE points are shown in addition to fun values
+logical value. If \sQuote{TRUE} points are shown in addition to values out of \code{fun}.\cr
+By default \code{points} is set to \sQuote{FALSE}.
 }
   \item{axes}{
-TRUE by default
+logical value indicating wheter the axes should be drawn or not.\cr
+\sQuote{TRUE} by default.
 }
   \item{classic}{
-TRUE by default to create an effectPlot as depicted in most textbooks
+logical value. \sQuote{TRUE} creates an effectPlot as depicted in most textbooks.\cr
+By default \code{classic} is set to \sQuote{FALSE}.
 }
   \item{lty}{
-line type used
+numerical value which specifies the line type used.
 }
   \item{xlab}{
-label for x-axis
+a title for the x axis: \code{\link{title}}. 
 }
   \item{ylab}{
-label for y-axis
+a title for the y axis: \code{\link{title}}. 
 }
   \item{main}{
-title
+an overall title for the plot: see \code{\link{title}}.
 }
   \item{ylim}{
-limits for y-axis
+vector giving the range of the y-axis.
 }
   \item{\dots}{
-further graphical parameters
+Arguments to be passed to methods, such as graphical parameters (see \code{\link{par}}). 
 }
 }
-
-
+ 
 \details{
-effectPlot uses an altered version of the base function interaction.plot to draw each effectPlot. 
+effectPlot uses an altered version of the base function \code{\link{interaction.plot}} to draw each effectPlot. 
 }
 
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 
+\note{
+ For an example in context which shows the usage of the function \code{effectPlot()} to an object of class \code{\link{facDesign}} or an object of class \code{\link{taguchiDesign}}, 
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS1}.
+}
+
 \seealso{
-\code{\link{interactionPlot}}, \code{\link{paretoPlot}},\code{\link{facDesign}}, \code{\link{response}},\code{\link{normalPlot}}
+\code{\link{interactionPlot}}\cr
+\code{\link{paretoPlot}}\cr
+\code{\link{facDesign}}\cr
+\code{\link{response}}\cr
+\code{\link{normalPlot}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS1}
 }
 \examples{
 #effectPlot for a 2^k factorial design

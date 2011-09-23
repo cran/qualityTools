@@ -5,8 +5,8 @@ citHeader("To cite package 'qualityTools' in publications use:")
      vers <- paste("R package version", meta$Version)
 
 citEntry(entry="Manual",
-     title = "qualityTools: Statistics in Quality Science.",
+     title = "qualityTools: A Package for Teaching Statistics in Quality Science.",
      author = personList(as.person("Thomas Roth")),
      year = year,
      note = vers,
-     textVersion = paste("Thomas Roth (",year,"). qualityTools: Statistics in Quality Science.",vers, ".", sep=" "))
+     textVersion = paste("Thomas Roth (",year,"). qualityTools: A Package for Teaching Statistics in Quality Science.",vers, ".", sep=" "))

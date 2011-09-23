@@ -4,7 +4,7 @@
 \alias{mixDesign-class}
 \title{Class "mixDesign"}
 \description{
-mixDesign class for simplex lattice and simplex centroid mixture designs with optional center points and augmented points
+mixDesign class for simplex lattice and simplex centroid mixture designs with optional center points and augmented points.
 }
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("mixDesign", ...)}.

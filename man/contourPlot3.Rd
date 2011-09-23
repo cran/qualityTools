@@ -8,103 +8,96 @@ function to create a ternary plot (contour plot) for an object of class mixDesig
 This function creates a ternary plot (contour plot) for mixture designs (i.e. object of class mixDesign)
 }
 \usage{
-contourPlot3(x, y, z, response, data = NULL, xlim, ylim, zlim, main, xlab, ylab, zlab, border, sub, form = "linear", phi, theta, ticktype, col = 1, col.text, cex.axis, axes = TRUE, steps, factors, fun, plot)
+contourPlot3(x, y, z, response, data = NULL, main, xlab, ylab, zlab, border, form = "linear", col = 1, col.text, cex.axis, axes = TRUE, steps, factors)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-factor 1 of the \code{\link{mixDesign}} object
+factor 1 of the \code{\link{mixDesign}} object.
 }
   \item{y}{
-factor 2 of the \code{\link{mixDesign}} object
+factor 2 of the \code{\link{mixDesign}} object.
 }
   \item{z}{
-factor 3 of the \code{\link{mixDesign}} object
+factor 3 of the \code{\link{mixDesign}} object.
 }
   \item{response}{
-the response of the \code{\link{mixDesign}} object
+the response of the \code{\link{mixDesign}} object.
 }
   \item{data}{
-the \code{\link{mixDesign}} object
-}
-  \item{xlim}{
-
-}
-  \item{ylim}{
-
-}
-  \item{zlim}{
-
+the \code{\link{mixDesign}} object from which x,y,z and the response are taken.
 }
   \item{main}{
-
+ giving an overall title for the plot: see \code{\link{title}}. 
 }
   \item{xlab}{
-
+ giving a title for the x axis : see \code{\link{title}}. 
 }
   \item{ylab}{
-
+ giving a title for the y axis : see \code{\link{title}}. 
 }
   \item{zlab}{
-
+ giving a title for the z axis : see \code{\link{title}}. 
 }
   \item{border}{
-
-}
-  \item{sub}{
-
+ numeric or character (for example \dQuote{red}) value specifying the color of the surroundimg the ternary plot.\cr
+ By default \code{border} is set to \dQuote{white}
 }
   \item{form}{
-"linear", "quadratic", "fullCubic", "specialCubic", or formula such as y ~ A + B + C
-}
-  \item{phi}{
-
-}
-  \item{theta}{
-
-}
-  \item{ticktype}{
-
+a character string or a formula with the syntax \dQuote{y ~ A + B +C}.\cr
+If \code{form} is a character string it has to be one out of the following: 
+\itemize{ 
+  \item \dQuote{linear}
+  \item \dQuote{quadratic}
+  \item \dQuote{fullCubic}
+  \item \dQuote{specialCubic}
+  }  
+How the \code{form} influences the output is described in the reference listed below.\cr
+By default \code{form} is set as \dQuote{linear}.
 }
   \item{col}{
-a color or color.palette
+a predefined (1, 2, 3 or 4) or self defined \code{\link{colorRampPalette}}.
 }
   \item{col.text}{
-
+a numerical value or a character string (like \dQuote{red}) giving the color oft the inscription of the axes.\cr
+The default value for \code{col.text} is \sQuote{1}.
 }
   \item{cex.axis}{
-
+numerical value giving the size of the inscription of the axes. \cr
+The default value \code{cex.axis} is \sQuote{1}.
 }
   \item{axes}{
-
+logical value specifying whether the axes should be plotted or not. \cr
+By default \code{axes} is set to \sQuote{TRUE}.
 }
   \item{steps}{
-resolution of the plot (number of rows for the square matrix)
+resolution of the plot (number of rows for the square matrix), also number of grid points per factor.\cr
+By default \code{steps} = 25.
 }
   \item{factors}{
-list of factors for categorizing with setting in case there are more than 3 factors (not yet implemented)
-}
-  \item{fun}{
-
-}
-  \item{plot}{
-if FALSE no plot is being produced
+list of factors for categorizing with setting in case there are more than 3 factors (not yet implemented).
 }
 }
 \value{
-a matrix containing NA's and numerics}
+\code{contourPlot3} returns an invisible matrix containing the response values as NA's and numerics.
+}
 \references{
-Myers; Montgomery; Anderson-Cook (2009) Response Surface Methodology - Wiley
+MYERS, Raymond H.; MONTGOMERY, Douglas C.; ANDERSON-COOK, Christine M.: Response Surface Methodology. New York: WILEY ,2009
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
-this method is still under construction
+This method is still under construction! \cr
+For an example in context which shows the usage of the function \code{contourPlot3()} to an object of class \code{\link{mixDesign}}, 
+please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS9}.
 }
 
 \seealso{
-\code{\link{wirePlot3}}
+\code{\link{wirePlot3}}  \cr
+\code{\link{mixDesign}}  \cr
+\code{\link{colorRampPalette}}  \cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS9}
 }
 \examples{
 #yarn example p.564 Response Surface Methodology
@@ -119,5 +112,4 @@ contourPlot3(A, B, C, elongation, data = mdo, form = "linear")
 contourPlot3(A, B, C, elongation, data = mdo, form = "quadratic", col = 2)
 contourPlot3(A, B, C, elongation, data = mdo, form = "elongation ~ I(A^2) - B:A + I(C^2)", col = 3)
 contourPlot3(A, B, C, elongation, data = mdo, form = "quadratic", col = colorRampPalette(c("yellow", "white", "red")))
-
 }

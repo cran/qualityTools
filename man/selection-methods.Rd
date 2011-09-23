@@ -8,8 +8,8 @@
 \alias{[<-,facDesign-method}
 \alias{[,gageRR-method}
 \alias{[,nonStructure-method}
-\title{Methods for Function [ in Package `base'}
-\description{Methods for function \code{[} in Package `base'}
+\title{Methods for Function [ in Package base}
+\description{Methods for function \code{[} in Package \code{base}.}
 \section{Methods}{
 \describe{
 
@@ -18,20 +18,20 @@ ANY
 }
 
 \item{\code{signature(x = "distrCollection")}}{
-object of class distrCollection
+object of class \code{distrCollection}.
 }
 
 \item{\code{signature(x = "facDesign")}}{
-object of class facDesign
+object of class \code{\link{facDesign}}.
 }
 
 \item{\code{signature(x = "steepAscent")}}{
-object of class steepAscent
+object of class \code{\link{steepAscent}}.
 }
 
 
 \item{\code{signature(x = "gageRR")}}{
-object fo class gageRR
+object fo class \code{\link{gageRR}}.
 }
 
 \item{\code{signature(x = "nonStructure")}}{
@@ -40,3 +40,6 @@ nonStructure
 }}
 \keyword{methods}
 
+\seealso{
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
+}

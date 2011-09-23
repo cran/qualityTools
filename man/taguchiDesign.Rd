@@ -5,7 +5,7 @@
 Taguchi Designs
 }
 \description{
-Creates a taguchi design 
+Creates a taguchi design. 
 }
 \usage{
 taguchiDesign(design, randomize = TRUE, replicates = 1)
@@ -37,30 +37,37 @@ taguchiDesign(design, randomize = TRUE, replicates = 1)
 }                   
 }
   \item{randomize}{
-TRUE/FALSE - randomizes the RunOrder of the design
+logical value (\sQuote{TRUE}/\sQuote{FALSE}) - randomizes the RunOrder of the design.\cr
+By default \code{randomize} is set to \sQuote{TRUE}.
 }
   \item{replicates}{
-Integer - number of replicates
+Integer giving the number of replicates.
 }
 }
 \details{
-an overview of possible taguchi designs is possible with \code{\link{taguchiChoose}}
+an overview of possible taguchi designs is possible with \code{\link{taguchiChoose}}.
 }
 \value{
-an object of class \link{taguchiDesign}
+\code{taguchiDesign} returns an object of class \code{\link{taguchiDesign}}.
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
-\note{
-Box, Bisgard S. G.E.P.; Fung, C. A.: An explanation and critique of taguchis
+\note{For an example in context which shows the usage of the function \code{\link{taguchiDesign}} 
+please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS10}.}
+\references{
+Box, Bisgard S.G.E.P.; Fung, C. A.: An explanation and critique of taguchis
 contributions to quality engineering. In: Quality and Reliability Engineering International (1988)
 }
 
 
 
 \seealso{
-\code{\link{facDesign}} for 2^k factorial designs; \code{\link{rsmDesign}} for response surface designs; \code{\link{fracDesign}} for fractional factorial design; \code{\link{gageRRDesign}} for gage designs
+\code{\link{facDesign}} for 2^k factorial designs\cr
+\code{\link{rsmDesign}} for response surface designs\cr
+\code{\link{fracDesign}} for fractional factorial design\cr
+\code{\link{gageRRDesign}} for gage designs           \cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS10}
 }
 \examples{
 tdo = taguchiDesign("L9_3")
@@ -69,9 +76,6 @@ names(tdo) = c("Factors", "Are", "Documented", "In The Design")
 response(tdo) = rnorm(9)
 summary(tdo)
 effectPlot(tdo)
-
-
-
 }
 \keyword{design}
 

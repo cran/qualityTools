@@ -6,14 +6,14 @@
 \alias{runOrd<-,facDesign-method}
                         
 \title{Get and set methods}
-\description{Get and set the runOrd for a 'facDesign' x}
+\description{Get and set the runOrd for a \code{\link{facDesign}} x.}
 \usage{
 \S4method{runOrd}{facDesign}(x)
 \S4method{runOrd}{facDesign}(x) <- value
 }
 
 \arguments{
-\item{x}{a `facDesign' object}
+\item{x}{a \code{\link{facDesign}} object}
 \item{value}{new runOrd vector}
 }
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
@@ -24,6 +24,9 @@
 %%  ~~describe this method here~~
 }
 }}
+\seealso{
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+}
 \examples{
 fdo = facDesign(k = 3)  #NA in response column
 runOrd(fdo)

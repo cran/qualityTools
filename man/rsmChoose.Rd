@@ -13,18 +13,21 @@ rsmChoose()
 Useful Central Composite Designs with orthogonal blocking and near rotatability
 }
 \value{
-object of class facDesign
+object of class \code{\link{facDesign}}.
 }
 \references{
-Response Surface Methodology.(2009) Myers, Montgomery, Anderson-Cook p.329, table 7.5
+MYERS, R.H.; MONTGOMERY, D.C.; ANDERSON-COOK, C.M.: Response Surface Methodology p.329, table 7.5. New Jersey: Wiley,2009.
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
-
+\note{
+for an example for usage please visit \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS6}.
+}
 \seealso{
-\code{\link{fracChoose}}
-\code{\link{rsmDesign}}
+\code{\link{fracChoose}}\cr
+\code{\link{rsmDesign}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS6}
 }
 
 

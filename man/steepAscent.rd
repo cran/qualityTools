@@ -5,7 +5,7 @@
 Steepest Ascent
 }
 \description{
-\code{\link{steepAscent}} is a method to calculate the steepest ascent for a facDesign object
+\code{steepAscent} is a method to calculate the steepest ascent for a \code{\link{facDesign}} object.
 }
 \usage{
 steepAscent(factors, response, size = 0.2, steps = 5, data)
@@ -13,26 +13,28 @@ steepAscent(factors, response, size = 0.2, steps = 5, data)
 
 \arguments{
   \item{factors}{
-list - vector of factor names (coded) to be included in calculation, first factor is reference factor
+list containing vector of factor names (coded) to be included in calculation, first factor is the reference factor.
 }
   \item{response}{
-character - response given in data
+character - response given in data.
 }
   \item{size}{
-numeric - step size in coded units for the first factor given in factors
+numeric integer value giving the step size in coded units for the first factor given in factors.\cr
+By default \code{size} is set to \sQuote{0.2}.
 }
   \item{steps}{
-integer - number of steps
+numeric integer value giving the number of steps.     \cr
+By default \code{step} is set to \sQuote{5}.
 }
   \item{data}{
-fdo - an object of class facDesign
+needs to be an object of class \code{\link{facDesign}}.
 }
 }
 \details{
 A first order model is fitted for the factors given in factors. Based on the step size given the steepest ascent is calculated.
 }
 \value{
-an object of class steepAscent
+\code{steepAscent} returns an object of class \code{\link{steepAscent}}.
 }
 \references{
 \url{http://www.itl.nist.gov/div898/handbook/pri/section5/pri5311.htm}
@@ -41,11 +43,13 @@ an object of class steepAscent
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
-This is the steepest ascent for a single response considering main effects only.
+This is the steepest ascent for a single response considering main effects only.\cr
+For an example in context which shows the usage of the function \code{steepAscent()} to an object of class \code{\link{facDesign}}, 
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS5}.
 }
-
 \seealso{
-\code{\link{desires}} for multiple response optimization usign desirabilities.
+\code{\link{desires}} for multiple response optimization usign desirabilities\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS5}
 }
 \examples{
 #Example from References

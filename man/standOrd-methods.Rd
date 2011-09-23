@@ -7,7 +7,7 @@
                         
 \title{Get and set method}
 \description{
-Get and set the standard order of a factorial design
+Get and set the standard order of a factorial design.
 }
 
 \usage{
@@ -16,7 +16,7 @@ Get and set the standard order of a factorial design
 }
 
 \arguments{
-\item{x}{a `facDesign' object}
+\item{x}{a \code{\link{facDesign}} object}
 \item{value}{new standOrd vector}
 }
 
@@ -31,3 +31,7 @@ So far used internally only.
 }}
 \keyword{methods}
 \keyword{ ~~ other possible keyword(s) ~~ }
+
+\seealso{
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
+}

@@ -14,12 +14,12 @@ gageLin(object, conf.level = 0.95, ylim, col, pch, lty = c(1, 2), stats = TRUE, 
 }
 \arguments{
   \item{object}{
-   an object of class \dQuote{MSALinearity}. To create such an object see \code{\link{gageLinDesign}}.
+   an object of class \code{MSALinearity}. To create such an object see \code{\link{gageLinDesign}}.
 }
   \item{conf.level}{
-   an numeric value between \dQuote{0} and \dQuote{1}, giving the confidence intervall
+   an numeric value between \sQuote{0} and \sQuote{1}, giving the confidence intervall
    for the analysis. \cr
-   Default value: \dQuote{0.95}
+   Default value: \sQuote{0.95}
 }
   \item{ylim}{
    a vector with two entries, giving the minimum and the maximum of the y-axis.
@@ -29,7 +29,7 @@ gageLin(object, conf.level = 0.95, ylim, col, pch, lty = c(1, 2), stats = TRUE, 
    the second gives the color of the points for the mean bias, the third gives the color
    fo the straight interpolation line and the fourth gives the color for the lines 
    representing the confidence interval. If one of the values is missing or negative 
-   the points or lines are not plotted. \dQuote{col} is by default \dQuote{c(1,2,1,4)} 
+   the points or lines are not plotted. \code{col} is by default \sQuote{c(1,2,1,4)} 
 }
   \item{pch}{
    a vector with two numeric or single character entries giving the symbols for the
@@ -39,18 +39,18 @@ gageLin(object, conf.level = 0.95, ylim, col, pch, lty = c(1, 2), stats = TRUE, 
   \item{lty}{
    a vector with two entries giving the line-style for the interpolating line and the 
    confidence interval lines. For detailed information to the entries please see
-   \code{\link{par}}. The default value for \dQuote{lty} is \dQuote{c(1,2)}.
+   \code{\link{par}}. The default value for \code{lty} is \sQuote{c(1,2)}.
 }
   \item{stats}{
-   a logigal value. If \dQuote{TRUE} (default) the function returns all calculated 
+   a logigal value. If \sQuote{TRUE} (default) the function returns all calculated 
    information.
 }
   \item{plot}{
-   a logigal value. If \dQuote{TRUE} (default) the function deliver a plot.
+   a logigal value. If \sQuote{TRUE} (default) the function deliver a plot.
 }
 }
 \value{
-The Function returns an object of class \sQuote{MSALinearity} which can be used
+The function returns an object of class \code{MSALinearity} which can be used
 with e.g. \code{\link{plot}} or \code{\link{summary}}.
 }
 \references{
@@ -68,6 +68,7 @@ with e.g. \code{\link{plot}} or \code{\link{summary}}.
   \code{\link{gageLinDesign}}  \cr
   \code{\link{response}} \cr
   \code{\link{edit}}\cr
+  \url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
 }
 \examples{
 A=c(2.7,2.5,2.4,2.5,2.7,2.3,2.5,2.5,2.4,2.4,2.6,2.4)  # Results of single runs

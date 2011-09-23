@@ -3,7 +3,6 @@
 \docType{class}
 \alias{desOpt-class}
 
-
 \title{Class "desOpt"}
 \description{
 desOpt Class

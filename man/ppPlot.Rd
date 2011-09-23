@@ -6,7 +6,7 @@
 Probability Plots for various distributions
 }
 \description{
-ppPlot creates a Probability plot of the values in x including a line. Supported distributions are beta", "cauchy", "chi-squared", "exponential", "f", "gamma", "geometric", "log-normal", "lognormal", "logistic", "negative binomial", "normal", "Poisson", "t" and "weibull".
+\code{ppPlot} creates a Probability plot of the values in x including a line. 
 }
 \usage{
 ppPlot(x, distribution, probs, main, xlab, ylab, xlim, ylim, border = "red", grid = TRUE, box = TRUE, stats = TRUE, start, ...)
@@ -14,66 +14,93 @@ ppPlot(x, distribution, probs, main, xlab, ylab, xlim, ylim, border = "red", gri
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-the sample for ppPlot
+vector containing the sample for \code{ppPlot}.
 }
   \item{distribution}{
-a character specifying the distribution for the Probability plot
+character string specifying the distribution of x. The function \code{ppPlot} will support the following character strings for \code{distribution}:
+  \itemize{
+   \item \dQuote{beta}
+   \item \dQuote{cauchy}
+   \item \dQuote{chi-squared}
+   \item \dQuote{exponential}
+   \item \dQuote{f}
+   \item \dQuote{gamma}
+   \item \dQuote{geometric}
+   \item \dQuote{log-normal}
+   \item \dQuote{lognormal}
+   \item \dQuote{logistic}
+   \item \dQuote{negative binomial}
+   \item \dQuote{normal}
+   \item \dQuote{Poisson}
+   \item \dQuote{t}
+   \item \dQuote{weibull}
+}
+By default \code{distribution} is set to \dQuote{normal}.
 }
   \item{probs}{
-percentages for the y axis
+vector containing the percentages for the y axis. All the values need to be between \sQuote{0} and \sQuote{1}\cr
+If \code{probs} is missing it will be calculated internally.
 }
   \item{main}{
-graphical parameter
+an overall title for the plot: see \code{\link{title}}.
 }
   \item{xlab}{
-graphical parameter
+a title for the x axis: \code{\link{title}}.
 }
   \item{ylab}{
-graphical parameter
+a title for the y axis: \code{\link{title}}.
 }
   \item{xlim}{
-graphical parameter
+vector giving the range of the x-axis.
 }
   \item{ylim}{
-graphical parameter
+vector giving the range of the y-axis.
 }
 \item{border}{
-color of line
+numerical value or single character string giving the color of interpolation line.\cr
+By default \code{border} is set to \dQuote{red}.
 }
-
   \item{grid}{
-add a grid to the current plot
+logical value, deciding whether a grid will be added to the current plot.\cr
+By default \code{grid} is set to \sQuote{TRUE}.
 }
   \item{box}{
-%%     ~~Describe \code{box} here~~
+logical value, deciding whether a box is drawn to around the current plot.\cr
+By default \code{box} is set to \sQuote{TRUE}.
 }
   \item{stats}{
-%%     ~~Describe \code{stats} here~~
+logical value deciding whether \code{ppPlot} returns the values listed under value.\cr
+By default \code{stats} is set to \sQuote{TRUE}.
 }
   \item{start}{
 A named list giving the parameters to be fitted with initial values. Must be supplied for some distribution. (see Details)
 }
   \item{\dots}{
-further graphical parameters (see \code{\link{par}})
+further graphical parameters (see \code{\link{par}}).
 }
 }
 \details{
-Distribution fitting is deligated to function fitdistr of the R-package MASS
+Distribution fitting is deligated to function \code{\link{fitdistr}} of the R-package MASS.
 }
 \value{
-a list 
-\item{x}{coordinates}
-\item{y}{coordinates}
-\item{int}{Intercept}
-\item{slope}{slope}
+\code{ppPlot} returns a list containing the following: \cr
+ x - x coordinates\cr
+ y - y coordinates   \cr
+ int - Intercept        \cr
+ slope - slope            
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 
+\note{
+ For an example in context which shows the usage of the function \code{ppPlot()}  
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S4.html#SS1.SSS3}.
+}
 
 \seealso{
-fitdistr in R-package MASS~
+\code{\link{fitdistr}} in R-package MASS\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S4.html#SS1.SSS3}
 }
 \examples{
 #set up the plotting window for 6 plots

@@ -5,7 +5,9 @@
 Overall Desirability
 }
 \description{
-This is a function to calculate the desirability for each response as well as the overall desirability. The resulting data.frame can be used to plot the overall as well as the desirabilities for each response. This function serves for a visualization of the desirability approach for multiple response optimization.
+This is a function to calculate the desirability for each response as well as the overall desirability.\cr
+The resulting \code{\link{data.frame}} can be used to plot the overall as well as the desirabilities for each response. \cr
+This function serves for a visualization of the desirability approach for multiple response optimization.
 }
 \usage{
 overall(fdo, steps = 20, constraints, ...)
@@ -13,29 +15,30 @@ overall(fdo, steps = 20, constraints, ...)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{fdo}{
-object of class facDesign containing fits and desirabilities}
+needs to be an object of class \code{\link{facDesign}} containing \code{\link{fits}} and \code{\link{desires}}}
   \item{steps}{
-numeric - points per factor to be evaluated --> specifies the grid size
+numeric value - points per factor to be evaluated --> specifies also the grid size.
 }
   \item{constraints}{
-list - constraints for the factors in coded values such as list(A > 0.5,  B < 0.2) 
+list - constraints for the factors in coded values such as list(A > 0.5,  B < 0.2). 
 }
   \item{\dots}{
-...
+further arguments.
 }
 }
 \value{
-data.frame with a column for each factor, desirability for each response and a column for the overall desirability  }
+\code{overall} returns a \code{\link{data.frame}} with a column for each factor, desirability for each response and a column for the overall desirability.}
 \references{
-see \code{\link{desirability}}
+see \code{\link{desirability}}.
 }
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 
 
 \seealso{
-\code{\link{facDesign}},
-\code{\link{rsmDesign}},
-\code{\link{desirability}},
+\code{\link{facDesign}}\cr
+\code{\link{rsmDesign}}\cr
+\code{\link{desirability}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS8}
 }
 \examples{
 #arbitrary example with random data!!!

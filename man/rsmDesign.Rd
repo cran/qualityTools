@@ -13,52 +13,60 @@ rsmDesign(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs = 1,  fp = 1
 }
 \arguments{
   \item{k}{
-number of factors
+integer value giving the number of factors. By default \code{k} has the value \sQuote{3}.
 }
   \item{p}{
-number of additional factors in the response surface design by aliasing effects
+integer value giving the number of additional factors in the response surface design by aliasing effects.\cr
+By default \code{p} has the value \sQuote{0}.
 }
   \item{alpha}{
-value of alpha "rotatable", "orthogonal" or "both". If "both" values for cc and cs will be DISCARDED
+character string - alpha shoud be \dQuote{rotatable} (default), \dQuote{orthogonal} or \dQuote{both}. If \dQuote{both} values for cc and cs will be DISCARDED.
 }
 \item{blocks}{
-number of blocks in the response surface design
+integer value giving the number of blocks in the response surface design.\cr
+By default \code{blocks} has the value \sQuote{1}.
 }
 \item{cc}{
-number of centerpoints (per block) in the cube portion (i.e. the factorial 2^k design) of the response surface design. Replications of centerpoints in the cube portion can be set with this.
+integer value giving the number of centerpoints (per block) in the cube portion (i.e. the factorial 2^k design) of the response surface design.\cr
+Replications of centerpoints in the cube portion can be set with this.By default \code{cc} has the value \sQuote{1}.
 }
 \item{cs}{
-number of centerpoints in the star portion (alpha) of the response surface design.
-Replications of centerpoints in the star portion can be set with this.
+integer value giving the number of centerpoints in the star portion (alpha) of the response surface design.\cr
+Replications of centerpoints in the star portion can be set with this. By default \code{cs} has the value \sQuote{1}.
 }
 \item{fp}{
-number of replications per factorial point (i.e. corner points e.g. (-1,1)) 
+integer value giving the number of replications per factorial point (i.e. corner points e.g. (-1,1)).\cr
+By default \code{fp} has the value \sQuote{1}. 
 }
-
 \item{sp}{
-number of replications per star point (i.e. alpha) 
+integer value giving the number of replications per star point (i.e. alpha).\cr
+By default \code{sp} has the value \sQuote{1}. 
 }
-
 \item{faceCentered}{
-faceCentered response surface design or not (i.e. alpha = 1)
+logical value wheter to use a faceCentered response surface design or not (i.e. alpha = 1).\cr
+By default \code{faceCentered} has the value \sQuote{FALSE}.
 }
 }
 \details{
 Generated designs consist of a cube, centerCube, star and a centerStar portion. The replication structure can be set with the parameters cc (centerCube), cs (centerStar), fp (factorialPoints) and sp (starPoints). 
 }
 \value{
-object of class facDesign
+\code{rsmDesign} returns an object of class \code{\link{facDesign}}.
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
-
+\note{
+ For an example in context which shows the usage of the function \code{rsmDesign()}
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS6}.
+}
 
 \seealso{
-\code{\link{facDesign}}
-\code{\link{fracDesign}}
-\code{\link{fracChoose}}
-\code{\link{rsmChoose}}
+\code{\link{facDesign}}\cr
+\code{\link{fracDesign}}\cr
+\code{\link{fracChoose}}\cr
+\code{\link{rsmChoose}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS6}
 }
 \examples{
 #central composite design for 2 factors with 2 blocks, alpha = 1.41, 5 centerpoints in the cube portion and 3 centerpoints in the star portion
@@ -75,6 +83,4 @@ rsmDesign(k = 2, blocks = 2, alpha = "both")
 #makes a total of 37 factor combinations
 rsdo = rsmDesign(k = 3, blocks = 1, alpha = 2, cc = 2, cs = 1, fp = 2, sp = 3)
 nrow(rsdo) #37
-
-
 }

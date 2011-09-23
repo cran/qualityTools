@@ -13,20 +13,22 @@
 \S4method{blockGen}{facDesign}(object) <- value
 }
 \arguments{
-\item{object}{a `facDesign' object}
+\item{object}{a \code{\link{facDesign}} object}
 \item{value}{data.frame or vector}
 }
-
-
 
 \section{Methods}{
 \describe{
 \item{\code{signature(x = "facDesign")}}{
-Get and set the generators for blocking
+Get and set the generators for blocking.
 }
 }}
 
 \note{\code{blockGen} is to be rewritten}
 
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
-\seealso{\code{\link{response}}, \code{\link{facDesign}}}
+\seealso{
+\code{\link{response}} \cr
+\code{\link{facDesign}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+}
