@@ -16,7 +16,7 @@
 \alias{response<-,MSALinearity-method}
 
 \title{Get and set methods}
-\description{Set or get the response for a \code{facDesign}, \code{mixDesign}, \code{gageDesign} or \code{taguchiDesign} object}
+\description{Set or get the response for a \code{\link{facDesign}}, \code{\link{mixDesign}}, \code{\link{gageRRDesign}} or \code{\link{taguchiDesign}} object.}
 
 \usage{
 \S4method{response}{facDesign}(object)
@@ -34,49 +34,51 @@
 }
 
 \arguments{
-\item{object}{a \code{facDesign}, \code{mixDesign}, \code{gageDesign} or \code{taguchiDesign} object}
+\item{object}{a \code{facDesign}, \code{mixDesign}, \code{gageRRDesign} or \code{taguchiDesign} object}
 \item{value}{new response vector}
 }
-
-
 
 \section{Methods}{
 \describe{
 
 \item{\code{signature(object = "MSALinearity")}}{
-Function to create the respone for an object of class MSALinearity
+Function to create the respone for an object of class \code{MSALinearity}.
 }
 
 \item{\code{signature(object = "facDesign")}}{
-response is a generic accessor function, and response<- is a generic replacement function. The default methods get and set the "response" attribute of a "facDesign" object.
-value must be of same length as nrow(object). If value is shorter/longer than nrow(object) the setting of the response will fail.
+response is a generic accessor function, and response<- is a generic replacement function. The default methods get and set the \code{\link{response}} attribute of a \code{\link{facDesign}} object.\cr
+Value must be of same length as \code{nrow(object)}. If value is shorter/longer than \code{nrow(object)} the setting of the response will fail.
 }
 
 \item{\code{signature(object = "mixDesign")}}{
-response is a generic accessor function, and response<- is a generic replacement function. The default methods get and set the "response" attribute of a "mixDesign" object.
-value must be of same length as nrow(object). If value is shorter/longer than nrow(object) the setting of the response will fail.
+\code{\link{response}} is a generic accessor function, and \code{response<-} is a generic replacement function. The default methods get and set the \code{\link{response}} attribute of a \code{\link{mixDesign}} object.\cr
+Value must be of same length as \code{nrow(object)}. If value is shorter/longer than \code{nrow(object)} the setting of the response will fail.
 }
 
 \item{\code{signature(object = "gageRR")}}{
-response is a generic accessor function, and response<- is a generic replacement function. The default methods get and set the "response" attribute of "gageDesign" object.
-value must be of same length as nrow(object). If value is shorter/longer than nrow(object) the setting of the response will fail.
+\code{\link{response}} is a generic accessor function, and \code{response<-} is a generic replacement function. The default methods get and set the \code{\link{response}} attribute of \code{\link{gageRRDesign}} object.\cr
+Value must be of same length as \code{nrow(object)}. If value is shorter/longer than \code{nrow(object)} the setting of the response will fail.
 }
 
 \item{\code{signature(object = "taguchiDesign")}}{
-response is a generic accessor function, and response<- is a generic replacement function. The default methods get and set the "response" attribute of "taguchiDesign" object.
-value must be of same length as nrow(object). If value is shorter/longer than nrow(object) the setting of the response will fail.
+\code{\link{response}} is a generic accessor function, and \code{response<-} is a generic replacement function. The default methods get and set the \code{\link{response}} attribute of \code{\link{taguchiDesign}} object.
+value must be of same length as \code{nrow(object)}. If value is shorter/longer than \code{nrow(object)} the setting of the response will fail.
 }
-
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 
-\seealso{\code{\link{factors}}, \code{\link{fracDesign}},\code{\link{taguchiDesign}},\code{\link{mixDesign}}}
+\seealso{\code{\link{factors}}\cr
+\code{\link{fracDesign}}\cr
+\code{\link{taguchiDesign}}\cr
+\code{\link{mixDesign}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+}
 
 \examples{
-fdo = fracDesign(k = 3)  #NA in response column
+fdo = fracDesign(k = 3)   #NA in response column
 fdo
-y = rnorm(8) #response
-response(fdo) = y#2^k numeric values in response column
+y = rnorm(8)              #response
+response(fdo) = y         #2^k numeric values in response column
 fdo
 }
 

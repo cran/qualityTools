@@ -18,7 +18,7 @@ gageLinDesign(ref, n = 5)
 }
 }
 \value{
-The Function returns an object of the class MSALinearity.
+The Function returns an object of the class \code{MSALinearity}.
 }
 \author{
      Thomas Roth: thomas.roth@tu-berlin.de \cr
@@ -31,6 +31,7 @@ The results for the single should be entered with the help of \code{\link{respon
   \code{\link{gageLin}}  \cr
   \code{\link{response}} \cr
   \code{\link{edit}}\cr
+  \url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
 }
 \examples{
 

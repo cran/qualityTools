@@ -4,7 +4,8 @@
 Axial Design
 }
 \description{
-starDesign is a function to create the star portion of a response surface design. The \code{\link{starDesign}} function can be used to create a star portion of a response surface design for a sequential assembly strategy. One can either specify k and p and alpha and cs and cc OR simply simply pass an object of class \code{\link{facDesign}} to the data. In the latter an object of class facDesign otherwise a list containing the axial runs and centerpoints is returned.
+starDesign is a function to create the star portion of a response surface design. The \code{\link{starDesign}} function can be used to create a star portion of a response surface design for a sequential assembly strategy.\cr
+One can either specify k and p and alpha and cs and cc OR simply simply pass an object of class \code{\link{facDesign}} to the data. In the latter an object of class \code{\link{facDesign}} otherwise a list containing the axial runs and centerpoints is returned.
 }
 \usage{
 starDesign(k, p = 0, alpha = c("both", "rotatable", "orthogonal"), cs, cc, data)
@@ -12,37 +13,43 @@ starDesign(k, p = 0, alpha = c("both", "rotatable", "orthogonal"), cs, cc, data)
 
 \arguments{
   \item{k}{
-integer - number of factors
+integer value giving number of factors.
 }
   \item{p}{
-integer - number of factors via aliasing
+integer vaue giving the number of factors via aliasing.\cr
+By default set to \sQuote{0}.
 }
   \item{alpha}{
-if no numeric value is given defaults to both i.e. orthogonality and rotatibility
+if no numeric value is given defaults to \dQuote{both} i.e. \dQuote{orthogonality} and \dQuote{rotatibility} which can be set as character strings too.
 }
   \item{cs}{
-integer - number of centerpoints in the star portion of the design
+integer value giving the number of centerpoints in the star portion of the design.
 }
   \item{cc}{
-integer - number of centerpoints in the cube portion of the design
+integer value giving the number of centerpoints in the cube portion of the design.
 }
   \item{data}{
-optional - an object of class facDesign
+optional - an object of class \code{\link{facDesign}}.
 }
 }
 \value{
-a \code{\link{facDesign}} object if an object of class \code{\link{facDesign}} is given
-or a list containing entries for axial runs and center points in the cube and the star portion of a design
+\code{starDesign} returns a \code{\link{facDesign}} object if an object of class \code{\link{facDesign}} is given
+or a list containing entries for axial runs and center points in the cube and the star portion of a design.
 }
 \references{
-Response Surface Methodology (2009) Myers, Montgomery, Anderson-Cook
+MYERS, R.H.; MONTGOMERY, D.C.; ANDERSON-COOK, C.M.: Response Surface Methodology. New Jersey: Wiley,2009.
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 
 \seealso{
-\code{\link{facDesign}} for 2^k factorial designs,\code{\link{fracDesign}} for 2^k-p fractional factorial designs,\code{\link{rsmDesign}} for response surface designs, \code{\link{mixDesign}} for mixture designs or \code{\link{taguchiDesign}} for taguchi designs
+\code{\link{facDesign}} for 2^k factorial designs\cr
+\code{\link{fracDesign}} for 2^k-p fractional factorial designs\cr
+\code{\link{rsmDesign}} for response surface designs\cr
+\code{\link{mixDesign}} for mixture designs\cr
+\code{\link{taguchiDesign}} for taguchi designs\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
 }
 \examples{
 #Example 1 - sequential assembly

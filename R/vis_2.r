@@ -1,5 +1,5 @@
-contourPlot3 = function(x, y, z, response, data = NULL, xlim, ylim, zlim, main, xlab, ylab, zlab, border, sub, 
-    form = "linear", phi, theta, ticktype, col = 1, col.text, cex.axis, axes = TRUE, steps, factors, fun, plot) {
+contourPlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, border, form = "linear", col = 1, 
+    col.text, cex.axis, axes = TRUE, steps, factors) {
     DB = FALSE
     out = list()
     mdo = data
@@ -7,8 +7,6 @@ contourPlot3 = function(x, y, z, response, data = NULL, xlim, ylim, zlim, main, 
     y.c = deparse(substitute(y))
     z.c = deparse(substitute(z))
     r.c = deparse(substitute(response))
-    if (missing(plot)) 
-        plot = TRUE
     if (missing(col)) 
         col = 1
     if (missing(col.text)) 
@@ -23,14 +21,8 @@ contourPlot3 = function(x, y, z, response, data = NULL, xlim, ylim, zlim, main, 
         xlab = x.c
     if (missing(zlab)) 
         zlab = z.c
-    if (missing(ticktype)) 
-        ticktype = "detailed"
     if (missing(border)) 
         border = "white"
-    if (missing(phi)) 
-        phi = 30
-    if (missing(theta)) 
-        theta = -30
     if (missing(factors)) 
         factors = NULL
     if (missing(steps)) 
@@ -131,8 +123,8 @@ contourPlot3 = function(x, y, z, response, data = NULL, xlim, ylim, zlim, main, 
     mtext(zlab, 1, at = 1.025, cex = 1.5)
     invisible(mat)
 }
-wirePlot3 = function(x, y, z, response, data = NULL, xlim, ylim, zlim, main, xlab, ylab, zlab, border, sub, 
-    form = "linear", phi, theta, ticktype, col = 1, col.text, cex.axis, axes = TRUE, steps, factors, fun, plot) {
+wirePlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, form = "linear", phi, theta, col = 1, 
+    steps, factors) {
     DB = FALSE
     out = list()
     mdo = data
@@ -140,14 +132,8 @@ wirePlot3 = function(x, y, z, response, data = NULL, xlim, ylim, zlim, main, xla
     y.c = deparse(substitute(y))
     z.c = deparse(substitute(z))
     r.c = deparse(substitute(response))
-    if (missing(plot)) 
-        plot = TRUE
     if (missing(col)) 
         col = 1
-    if (missing(col.text)) 
-        col.text = 1
-    if (missing(cex.axis)) 
-        cex.axis = 1
     if (missing(main)) 
         main = paste("Response Surface for", r.c)
     if (missing(ylab)) 
@@ -156,10 +142,6 @@ wirePlot3 = function(x, y, z, response, data = NULL, xlim, ylim, zlim, main, xla
         xlab = x.c
     if (missing(zlab)) 
         zlab = z.c
-    if (missing(ticktype)) 
-        ticktype = "detailed"
-    if (missing(border)) 
-        border = "white"
     if (missing(phi)) 
         phi = 30
     if (missing(theta)) 

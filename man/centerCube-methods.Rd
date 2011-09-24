@@ -13,20 +13,21 @@
 \S4method{centerCube}{facDesign}(x) <- value
 }
 \arguments{
-\item{x}{a `facDesign' object}
+\item{x}{a \code{\link{facDesign}} object}
 \item{value}{data.frame or vector}
 }
 
 \section{Methods}{
 \describe{
 \item{\code{signature(objectc = "facDesign")}}{
-Get and set the \code{centerCube} for the factors in an object of class facDesign. So far used internally.
+Get and set the \code{\link{centerCube}} for the factors in an object of class \code{\link{facDesign}}. So far used internally.
 }
 }}
 \seealso{
-\code{\link{centerStar}},
-\code{\link{cube}},
-\code{\link{star}},
+\code{\link{centerStar}} \cr
+\code{\link{cube}} \cr
+\code{\link{star}} \cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
 
 }
 \examples{

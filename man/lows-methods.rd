@@ -8,7 +8,7 @@
 \alias{lows,mixDesign-method}
 \alias{lows<-,mixDesign-method}
 \title{Get and set methods}
-\description{Get and set the \code{lows} for the factors in an object of class facDesign}
+\description{Get and set the \code{lows} for the factors in an object of class \code{\link{facDesign}}.}
 
 \usage{
 \S4method{lows}{facDesign}(object)
@@ -18,21 +18,26 @@
 
 }
 \arguments{
-\item{object}{a `facDesign'  or `mixDesign' object}
-\item{value}{data.frame or vector}
+\item{object}{a \code{\link{facDesign}}  or \code{\link{mixDesign}} object.}
+\item{value}{data.frame or vector.}
 }
 
 \section{Methods}{
 \describe{
 \item{\code{signature(object = "facDesign")}}{
-Get and set the \code{lows} for the factors in an object of class facDesign
+Get and set the \code{lows} for the factors in an object of class \code{\link{facDesign}}.
 }
 \item{\code{signature(object = "mixDesign")}}{
-Get and set the \code{lows} for the factors in an object of class mixDesign
+Get and set the \code{lows} for the factors in an object of class \code{\link{mixDesign}}.
 }
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
-\seealso{\code{\link{factors}}, \code{\link{lows}},\code{\link{lows}},\code{\link{types}}}
+\seealso{\code{\link{factors}}\cr
+\code{\link{lows}}\cr
+\code{\link{lows}}\cr
+\code{\link{types}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
+}
 \examples{
 fdo = facDesign(k=3)
 lows(fdo) = c(10, 160, 1)

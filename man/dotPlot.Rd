@@ -6,7 +6,7 @@
 Function to create a dot plot 
 }
 \description{
-dotPlot creates a dot plot. For data in groups the dotPlot is displayed stacked in one or not-stacked in different plot regions .
+dotPlot creates a dot plot. For data in groups the dotPlot is displayed stacked in one or not-stacked in different plot regions.
 }
 \usage{
 dotPlot(x, group, xlim, ylim, col, xlab, ylab, pch, cex, breaks, stacked = TRUE, ...)
@@ -14,46 +14,47 @@ dotPlot(x, group, xlim, ylim, col, xlab, ylab, pch, cex, breaks, stacked = TRUE,
 
 \arguments{
   \item{x}{
-numeric values
+vector with numeric values which should be plotted.
 }
   \item{group}{
-grouping vector
+(optional) vector for grouping the values (see examples).
 }
   \item{xlim}{
-limits of the x-axis
+vector giving the lower and upper limit of the x-axis.
 }
   \item{ylim}{
-limits of the y-axis
+vector giving the lower and upper limit of the y-axis.
 }
   \item{col}{
-colors for the different groups in the dot plot
+vector containing numeric values or strings for different colors for the groups in the dot plot.
 }
   \item{xlab}{
-a title for the x axis
+a title for the x axis: \code{\link{title}}.
 }
   \item{ylab}{
-a title for the y axis
+a title for the y axis: \code{\link{title}}.
 }
   \item{pch}{
-an integer specifying a symbol or a single character to be used for plotting points for the different groups in the dot plot
+a vector of integers specifying symbols or a single character to be used for plotting points for the different groups in the dot plot.
 }
   \item{cex}{
-the amount by which points and symbols should be magnified relative to the default
+the amount by which points and symbols should be magnified relative to the default.
 }
   \item{breaks}{
-a vector giving the breakpoints for the binning of the values in x
+a vector giving the breakpoints for the binning of the values in x.
 }
   \item{stacked}{
-stacked dot plot or not
+a logical vector specifying whether the single groups should be plotted in a stacked dot plot or in a single one.
+By default \code{stacked} is set to \sQuote{TRUE}.
 }
   \item{\dots}{
-further graphical parameters (see \code{\link{par}})}
+further graphical parameters (see \code{\link{par}})}.
 }
 \details{
 values in x are assigned to the bins defined by breaks. The actual binning is done using hist.
 }
 \value{
-a matrix containing NA's and numeric values representing values in a bin. The number of bins is given by the number of columns of the matrix
+\code{dotPlot} a invisible matrix containing NA's and numeric values representing values in a bin. The number of bins is given by the number of columns of the matrix.
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
@@ -62,8 +63,9 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{hist}},
-\code{\link{boxplot}}
+\code{\link{hist}}\cr
+\code{\link{boxplot}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S4.html}
 }
 \examples{
 #create some data and grouping

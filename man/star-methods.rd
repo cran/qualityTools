@@ -14,22 +14,23 @@
 }
 \arguments{
 \item{x}{a `facDesign' object}
-\item{value}{data.frame holding the star portion}
+\item{value}{\code{\link{data.frame}} holding the star portion.}
 }
-
-
 
 \section{Methods}{
 \describe{
 \item{\code{signature(x = "facDesign")}}{
-Get and set the \code{star} for the factors in an object of class facDesign. Could be used to exchange a default star portion with a specific one. So far used internally.
+Get and set the \code{star} for the factors in an object of class \code{\link{facDesign}}.\cr
+Could be used to exchange a default star portion with a specific one. So far used internally.
 }
 }}
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \seealso{
-\code{\link{rsmDesign}},\code{\link{rsmChoose}}
+\code{\link{rsmDesign}}\cr
+\code{\link{rsmChoose}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
 }
 \examples{
 design = rsmDesign(k = 3) #rotatable response surface design with 3 factors

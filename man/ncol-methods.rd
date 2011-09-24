@@ -4,13 +4,13 @@
 \alias{ncol-methods}
 \alias{ncol,facDesign-method}
 \title{Get method}
-\description{Get the number of columns for a facDesign object}
+\description{Get the number of columns for a \code{\link{facDesign}} object}
 
 \usage{
 \S4method{ncol}{facDesign}(x)
 }
 \arguments{
-\item{x}{a `facDesign' object}
+\item{x}{a \code{\link{facDesign}} object}
 }
 
 \value{numeric - number of columns}
@@ -18,10 +18,11 @@
 \section{Methods}{
 \describe{
 \item{\code{signature(x = "facDesign")}}{
-Get the number of columns for a facDesign object
+Get the number of columns for a \code{\link{facDesign}} object.
 }
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \seealso{
-\code{\link{nrow}}
+\code{\link{nrow}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
 }

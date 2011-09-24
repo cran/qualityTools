@@ -8,7 +8,7 @@
 \alias{highs,mixDesign-method}
 \alias{highs<-,mixDesign-method}
 \title{Get and set methods}
-\description{Get and set the \code{highs} for the factors in an object of class facDesign and mixDesign} 
+\description{Get and set the \code{highs} for the factors in an object of class \code{\link{facDesign}} and \code{\link{mixDesign}}.} 
 
 \usage{
 \S4method{highs}{facDesign}(object)
@@ -18,7 +18,7 @@
 
 }
 \arguments{
-\item{object}{a `facDesign' or `mixDesign' object}
+\item{object}{a \code{facDesign} or \code{\link{mixDesign}} object}
 \item{value}{data.frame or vector}
 }
 
@@ -27,16 +27,22 @@
 \section{Methods}{
 \describe{
 \item{\code{signature(objectc = "facDesign")}}{
-Get and set the \code{highs} for the factors in an object of class facDesign
+Get and set the \code{highs} for the factors in an object of class \code{\link{facDesign}}.
 }
 
 \item{\code{signature(object = "mixDesign")}}{
-Get and set the \code{highs} for the factors in an object of class mixDesign
+Get and set the \code{highs} for the factors in an object of class \code{\link{mixDesign}}.
 }
 
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
-\seealso{\code{\link{factors}}, \code{\link{lows}},\code{\link{highs}},\code{\link{types}}}
+\seealso{
+\code{\link{factors}}\cr
+\code{\link{lows}}\cr
+\code{\link{highs}}\cr
+\code{\link{types}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+}
 \examples{
 fdo = facDesign(k=3)
 lows(fdo) = c(10, 160, 1)

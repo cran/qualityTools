@@ -22,25 +22,31 @@
 
 }
 \arguments{
-\item{x}{a `facDesign', 'taguchiDesign' or `mixDesign' object}
-\item{value}{new factors (used internally)}
+\item{x}{a \code{\link{facDesign}}, \code{\link{taguchiDesign}} or \code{\link{mixDesign}} object.}
+\item{value}{new factors (used internally).}
 }
 
 \section{Methods}{
 \describe{
 \item{\code{signature(object = "facDesign")}}{
-Get and set the \code{factors} in an object of class facDesign
+Get and set the \code{factors} in an object of class \code{\link{facDesign}}.
 }
 \item{\code{signature(object = "mixDesign")}}{
-Get and set the \code{factors} in an object of class mixDesign
+Get and set the \code{factors} in an object of class \code{link{mixDesign}}.
 }
 \item{\code{signature(object = "taguchiDesign")}}{
-Get and set the \code{factors} in an object of class taguchiDesign
+Get and set the \code{factors} in an object of class \code{\link{taguchiDesign}}.
 }
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
-\seealso{\code{\link{factors}}, \code{\link{factors}},\code{\link{factors}},\code{\link{types}}, \code{\link{response}}, \code{\link{facDesign}}}
-
+\seealso{\code{\link{factors}}\cr
+\code{\link{factors}}\cr
+\code{\link{factors}}\cr
+\code{\link{types}}\cr
+\code{\link{response}}\cr
+\code{\link{facDesign}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS1}
+}
 \examples{
 fdo = facDesign(k = 3)  #NA in response column
 factors(fdo)

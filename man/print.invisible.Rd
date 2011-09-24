@@ -4,23 +4,25 @@
 Print Function
 }
 \description{
-Generic S3 function for objects of class invisible
+Generic S3 function for objects of class \code{\link{invisible}}.
 }
 \usage{
 print.invisible(x, ...)
 }
 \arguments{
   \item{x}{
-an object of class invisible}
+needs to be an object of class \code{\link{invisible}}.}
   \item{\dots}{
-further arguments
+further arguments passed to or from other methods.
 }
 }
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 
 \note{
-print.invisible is used to hide the internals of the method \code{\link{simProc}}
+\code{print.invisible} is used to hide the internals of the method \code{\link{simProc}}.
 }
 \seealso{
-\code{\link{simProc}}
+\code{\link{simProc}}\cr
+\code{\link{print.default}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/}
 }

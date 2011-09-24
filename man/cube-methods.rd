@@ -13,24 +13,23 @@
 \S4method{cube}{facDesign}(x) <- value
 }
 \arguments{
-\item{x}{a `facDesign' object}
+\item{x}{a \code{facDesign} object}
 \item{value}{data.frame or vector}
 }
-
-
-
 \section{Methods}{
 \describe{
 \item{\code{signature(objectc = "facDesign")}}{
-Get and set the \code{cube} for the factors in an object of class facDesign. So far used internally.
+Get and set the \code{cube} for the factors in an object of class \code{\link{facDesign}}. So far used internally.
 }
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \seealso{
-\code{\link{facDesign}},
-\code{\link{fracDesign}},
-\code{\link{rsmDesign}},
-\code{\link{star}}
+\code{\link{facDesign}}\cr
+\code{\link{fracDesign}}\cr
+\code{\link{rsmDesign}}\cr
+\code{\link{star}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+
 }
 \examples{
 rsdo = rsmDesign(k = 3, alpha = 2)

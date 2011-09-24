@@ -6,7 +6,7 @@
 \alias{tolerance,gageRR-method}
 \alias{tolerance<-,gageRR-method}
 \title{Get and set methods}
-\description{Get and set the \code{tolerance} for an object of class gageRR}
+\description{Get and set the \code{tolerance} for an object of class \code{\link{gageRR}}.}
 
 \usage{
 \S4method{tolerance}{gageRR}(x)
@@ -22,15 +22,18 @@
 \section{Methods}{
 \describe{
 \item{\code{signature(objectc = "gageRR")}}{
-Get and set the \code{tolerance} for an object of class gageRR
+Get and set the \code{tolerance} for an object of class \code{\link{gageRR}}.
 }
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 
-\seealso{\code{\link{gageRRDesign}}}
+\seealso{
+\code{\link{gageRRDesign}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/}
+}
 \examples{
 x = gageRRDesign(Operators = 3, Parts = 10, Measurements = 3)
-tolerance(x)  #default 6tolerance
-tolerance(x) =  100 #100 units
+tolerance(x)                                                  #default 6tolerance
+tolerance(x) = 100                                            #100 units
 tolerance(x)
 }

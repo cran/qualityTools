@@ -8,8 +8,8 @@
 \alias{plot,gageRR-method}
 \alias{plot,steepAscent-method}
 \alias{plot,MSALinearity-method}
-\title{Methods for Function plot in Package `graphics'}
-\description{Methods for function \code{plot} in Package `graphics'}
+\title{Methods for Function plot in Package \code{graphics}}
+\description{Methods for function \code{\link{plot}} in Package \code{graphics}}
 
 %\usage{
 %\S4method{plot}{desirability}(x, y = NULL, scale, main, xlab, ylab, type, col, numPoints = 500, ...)
@@ -23,7 +23,7 @@
 \describe{
 
 \item{\code{signature(x = "MSALinearity")}}{
-object of class MSALinearity
+object of class \code{MSALinearity}.
 }
 
 \item{\code{signature(x = "ANY")}}{
@@ -31,28 +31,30 @@ ANY
 }
 
 \item{\code{signature(x = "desirability")}}{
-object of class desirability
+object of class \code{\link{desirability}}.
 }
 
 \item{\code{signature(x = "distr")}}{
-object of class distr
+object of class \code{distr}.
 }
 
 \item{\code{signature(x = "distrCollection")}}{
-object of class distrCollection
+object of class \code{distrCollection}.
 }
 
 \item{\code{signature(x = "steepAscent")}}{
-object of class distrCollection
+object of class \code{distrCollection}.
 }
 
 \item{\code{signature(x = "gageRR")}}{
-object of class gageRR
+object of class \code{\link{gageRR}}.
 }
 }}
 
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
-
+\seealso{
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+}
 \keyword{methods}
 
 

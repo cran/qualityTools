@@ -11,12 +11,15 @@ Methods for function \code{effectPlot}
 \describe{
 
 \item{\code{signature(object = "facDesign")}}{
-function to create an effect plot for an object of class facDesign
+function to create an effect plot for an object of class \code{\link{facDesign}}.
 }
 
 \item{\code{signature(object = "taguchiDesign")}}{
-function to create an effect plot for an object of class taguchiDesign
+function to create an effect plot for an object of class \code{\link{taguchiDesign}}.
 }
 }}
+\seealso{
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+}
 \keyword{methods}
 \keyword{design}

@@ -14,46 +14,53 @@ blocking(fdo, blocks, BoR = FALSE, random.seed, useTable = "rsm", gen)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{fdo}{
-an object of class facDesign
+ needs to be an object of class \code{\link{facDesign}}.
 }
   \item{blocks}{
-number of blocks 
+ numerical value giving the number of blocks. 
 }
   \item{BoR}{
-blocking on replicates (TRUE/FALSE)
+ logical value indicating whether the replicates should be blocked or not. \cr
+ By default \code{BoR} is set to \sQuote{FALSE}.
 }
   \item{random.seed}{
-random.seed for randimization within blocks
+ numerical variable for \code{\link{set.seed}} to generate repeatable results for randimization within blocks.
 }
   \item{useTable}{
-which table to use \dQuote{rms} - table from first reference or \dQuote{calc} - table calculated by qualityTools 
+ character indicating which table to use. The follwing options will be accepted: \cr
+ \itemize{ 
+  \item \dQuote{rms} - table from reference
+  \item \dQuote{calc} - table calculated by qualityTools
+  }
 }
-
   \item{gen}{
-generator to use
+ giving the generator that will be used.
 }
 }
 \value{
-an object of class facDesign with blocking structure
+ The function \code{blocking()} returns a an object of class facDesign with blocking structure.
 }
 \references{
-H. MYERS, Raymond; C. MONTGOMERY, Douglas; M.ANDERSON-COOK, Christine: Response Surface Methodology. WILEY 3rd ed. (2009)
+MYERS, Raymond H.; MONTGOMERY, Douglas C.; ANDERSON-COOK, Christine M.: Response Surface Methodology. New York: WILEY ,2009
 }
-
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
-\code{blocking} is still buggy at this time and Blocking on Replicates is not yet implemented and Blocking requires k >= 3 factors. This will change soon.
+\code{blocking} is still buggy at this time and Blocking on Replicates is not yet implemented and Blocking requires k >= 3 factors. This will change soon.\cr
+ For an example in context which shows the effect of applying \code{blocking()} to 
+ an object of class \code{\link{facDesign}}, please read the vignette for the package 
+ \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS6.SSS3}.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{facDesign}}
+\code{\link{facDesign}} \cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS6.SSS3}
+
 }
 \examples{
-
 #create a 2^3 full factorial design
 fdo = facDesign(k = 3)
 

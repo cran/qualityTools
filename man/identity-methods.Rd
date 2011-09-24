@@ -11,7 +11,7 @@
 \S4method{identity}{facDesign}(x)
 }
 \arguments{
-\item{x}{a `facDesign' object}
+\item{x}{a \code{\link{facDesign}} or \code{\link{taguchiDesign}} object}
 }
 
 \value{
@@ -21,17 +21,18 @@
 \section{Methods}{
 \describe{
 \item{\code{signature(x = "facDesign")}}{
-Calculates the alias table for a fractional factorial design and prints an easy to read summary of the defining relations such as 'I = ABCD' for a standard 2^(4-1) factorial design.
+Calculates the alias table for a fractional factorial design and prints an easy to read summary of the defining relations such as \sQuote{I = ABCD} for a standard 2^(4-1) factorial design.
 }
 \item{\code{signature(x = "taguchiDesign")}}{
-Calculates the alias table for a fractional factorial design and prints an easy to read summary of the defining relations such as 'I = ABCD' for a standard 2^(4-1) factorial design.
+Calculates the alias table for a fractional taguchi design and prints an easy to read summary of the defining relations such as \sQuote{I = ABC} for a standard \dQuote{L4_2} taguchi design.
 }
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \seealso{
-\code{\link{aliasTable}},
-\code{\link{fracDesign}},
-\code{\link{fracChoose}}
+\code{\link{aliasTable}}\cr
+\code{\link{fracDesign}}\cr
+\code{\link{fracChoose}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
 }
 \examples{
 #generate a 2^(4-1) factorial design by assigning the interaction ABC to the factor D

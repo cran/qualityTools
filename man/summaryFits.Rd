@@ -5,7 +5,7 @@
 Fit Summary 
 }
 \description{
-Function to give an overview of fitted linear models for objects of class facDesign
+Function to give an overview of fitted linear models for objects of class \code{\link{facDesign}}.
 }
 \usage{
 summaryFits(fdo, lmFit = TRUE, curvTest = TRUE, origFit = TRUE)
@@ -13,16 +13,18 @@ summaryFits(fdo, lmFit = TRUE, curvTest = TRUE, origFit = TRUE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{fdo}{
-object of class facDesign
+needs to be an object of class \code{\link{facDesign}}.
 }
   \item{lmFit}{
-TRUE/FALSE - take the fits from the object fdo
+logical value deciding whether the fits from the object fdo should be taken or not.\cr
+By default \code{lmFit} is set to \sQuote{TRUE}.
 }
   \item{curvTest}{
-TRUE/FALSE - do curvature tests
+logical value deciding wheter curvature tests will be performed or not.\cr
+By default \code{curvTest} is set to \sQuote{TRUE}.
 }
   \item{origFit}{
-TRUE/FALSS - display the fits in original values (as opposed to coded values)
+logical value. If \sQuote{TRUE} (default) the original values of the fits will be displayed.
 }
 }
 \author{
@@ -30,6 +32,9 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
 This is BETA!
+}
+\seealso{
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/}
 }
 
 

@@ -1,8 +1,8 @@
 Package: qualityTools
 Type: Package
 Title: Statistical Methods for Quality Science
-Version: 1.48
-Date: 2011-09-02
+Version: 1.49
+Date: 2011-09-23
 Author: Thomas Roth
 Maintainer: Thomas Roth <thomas.roth@tu-berlin.de>
 Description: This Package contains methods associated with the Define,
@@ -31,6 +31,6 @@ LazyLoad: yes
 Depends: R(>= 2.9.0), graphics, methods
 Imports: graphics
 Suggests: MASS, Rsolnp, methods
-Packaged: 2011-09-02 16:37:24 UTC; roth
+Packaged: 2011-09-23 16:40:16 UTC; roth
 Repository: CRAN
-Date/Publication: 2011-09-02 18:26:09
+Date/Publication: 2011-09-24 06:43:07

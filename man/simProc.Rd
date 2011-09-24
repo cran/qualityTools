@@ -13,16 +13,16 @@ simProc(x1, x2, x3, noise = TRUE)
 
 \arguments{
   \item{x1}{
-numeric - values for factor 1
+numeric vector containing the values for factor 1.
 }
   \item{x2}{
-numeric - values for factor 2
+numeric vector containing the values for factor 2.
 }
   \item{x3}{
-numeric - values for factor 3
+numeric vector containing the values for factor 3.
 }
   \item{noise}{
-TRUE/FALSE - should noise be added
+logical value deciding whether noise should be added or not. Default setting is \sQuote{FALSE}.
 }
 }
 
@@ -31,14 +31,20 @@ factor 1 is best within [40, 250]; factor 2 within [90, 240]
 }
 
 \value{
-a numeric value within the range [0,1]
-
+\code{simProc} returns a numeric value within the range [0,1].
 }
 
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
+\note{
+ For an example in context which shows the usage of the function \code{simProc()}
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS1.}
+}
 
 \seealso{
-\code{\link{facDesign}} for 2^k factorial designs; \code{\link{rsmDesign}} for response surface designs; \code{\link{fracDesign}} for fractional factorial design
+\code{\link{facDesign}} for 2^k factorial designs\cr
+\code{\link{rsmDesign}} for response surface designs\cr
+\code{\link{fracDesign}} for fractional factorial design\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS1}
 }
 \examples{
 simProc(120, 140, 1)

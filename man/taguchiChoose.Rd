@@ -11,26 +11,28 @@ taguchiChoose(factors1 = 0, factors2 = 0, level1 = 0, level2 = 0, ia = 0)
 }
 \arguments{
   \item{factors1}{
-number of factors on level1
+integer number of factors on level1. By default set to \sQuote{0}.
 }
   \item{factors2}{
-number of factors on level2
+integer number of factors on level2. By default set to \sQuote{0}.
 }
   \item{level1}{
-number of levels for factors1
+integer number of levels for factors1.
 }
   \item{level2}{
-number of levels for factors2
+integer number of levels for factors2. By default set to \sQuote{0}
 }
   \item{ia}{
-number of interactions
+integer number of interactions. . By default set to \sQuote{0}.
 }
 }
 \details{
-\code{\link{taguchiChoose}} returns possible taguchi designs. Specifying the number of factor1 factors with level1 levels (factors1 = 2, level1 = 3 means 2 factors with 3 factor levels) and factor2 factors with level2 levels and desired interactions one or more taguchi designs are suggested. If all parameters are set to 0, a matrix of possible taguchi designs is shown.
+\code{\link{taguchiChoose}} returns possible taguchi designs.\cr
+Specifying the number of factor1 factors with level1 levels (factors1 = 2, level1 = 3 means 2 factors with 3 factor levels) and factor2 factors with level2 levels and desired interactions one or more taguchi designs are suggested.\cr
+If all parameters are set to 0, a matrix of possible taguchi designs is shown.
 }
 \value{
-an object of class \code{\link{taguchiDesign}}
+\code{taguchiChoose} returns an object of class \code{\link{taguchiDesign}}.
 }
 \references{
 \url{http://www.york.ac.uk/depts/maths/tables/taguchi_table.htm}}
@@ -40,7 +42,11 @@ It is recommended to consult a textbook on taguchi methods to be fully aware of 
 }
 
 \seealso{
-\code{\link{facDesign}} for 2^k factorial designs; \code{\link{rsmDesign}} for response surface designs; \code{\link{fracDesign}} for fractional factorial design; \code{\link{gageRRDesign}} for gage designs
+\code{\link{facDesign}} for 2^k factorial designs\cr
+\code{\link{rsmDesign}} for response surface designs\cr
+\code{\link{fracDesign}} for fractional factorial design\cr
+\code{\link{gageRRDesign}} for gage designs            \cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/}
 }
 \examples{
 taguchiChoose()

@@ -8,8 +8,8 @@
 \alias{summary,taguchiDesign-method}
 \alias{summary,gageRR-method}
 \alias{summary,MSALinearity-method}
-\title{Methods for Function summary in Package `base'}
-\description{Methods for function \code{summary} in Package `base'}
+\title{Methods for Function summary in Package base}
+\description{Methods for function \code{summary} in Package \code{base}.}
 \section{Methods}{
 \describe{
 
@@ -18,32 +18,34 @@ ANY
 }
 
 \item{\code{signature(object = "MSALinearity")}}{
-object of class MSALinearity
+object of class \code{MSALinearity}.
 }
 
 \item{\code{signature(object = "distrCollection")}}{
-object of class distrCollection
+object of class \code{distrCollection}.
 }
 
 \item{\code{signature(object = "facDesign")}}{
-object of class facDesign
+object of class \code{\link{facDesign}}.
 }
 
 \item{\code{signature(object = "mixDesign")}}{
-object of class mixDesign
+object of class \code{\link{mixDesign}}.
 }
 
 \item{\code{signature(object = "taguchiDesign")}}{
-object of class taguchiDesign
+object of class \code{\link{taguchiDesign}}.
 }
 
 
 \item{\code{signature(object = "gageRR")}}{
-object of class gageRR
+object of class \code{\link{gageRR}}.
 }
 }}
 
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 
 \keyword{methods}
-
+\seealso{
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/}
+}

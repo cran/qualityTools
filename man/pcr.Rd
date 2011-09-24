@@ -6,86 +6,108 @@
 Process Capability Indices
 }
 \description{
-Calculates the process capability cp, cpk, cpkL (onesided) and cpkU (onesided) for a given dataset and distribution. A histogramm with a density curve is displayed along with the specification limits and a Quantile-Quantile Plot for the specified distribution. Lower-, upper and total fraction of nonconforming entities are calculated. Box-Cox Transformations are supported as well as the calculation of Anderson Darling Test Statistics. 
+Calculates the process capability cp, cpk, cpkL (onesided) and cpkU (onesided) for a given dataset and distribution. \cr
+A histogramm with a density curve is displayed along with the specification limits and a Quantile-Quantile Plot for the specified distribution.\cr
+Lower-, upper and total fraction of nonconforming entities are calculated. Box-Cox Transformations are supported as well as the calculation of Anderson Darling Test Statistics. 
 }
 \usage{
 pcr(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda = c(-5,5), main, xlim, ylim, grouping = NULL, std.dev = NULL,  conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", lineType = "solid", specCol = "red3", specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...)
 }
 \arguments{
   \item{x}{
-numeric vector
+numeric vector containing the values for which the process capability should be calculated.
 }
   \item{distribution}{
-character string such as "normal", "log-normal", "exponential", "logistic", "gamma", "weibull", "cauchy", "beta", "chi-squared", "f", "t", "geometric", "poisson", "negative-binomial"
+character string specifying the distribution of x. The function \code{cp} will accept the following caracter strings for \code{distribution}:
+\itemize{
+  \item \dQuote{normal}
+  \item \dQuote{log-normal}
+  \item \dQuote{exponential}
+  \item \dQuote{logistic}
+  \item \dQuote{gamma}
+  \item \dQuote{weibull}
+  \item \dQuote{cauchy}
+  \item \dQuote{beta}
+  \item \dQuote{f}
+  \item \dQuote{t}
+  \item \dQuote{geometric}
+  \item \dQuote{poisson}
+  \item \dQuote{negative-binomial}
+}
+By default \code{distribution} is set to \dQuote{normal}.
 }
   \item{lsl}{
-lower specification limit
+numeric value for the lower specification limit.
 }
   \item{usl}{
-upper specification limit
+numeric value for the upper specification limit.
 }
   \item{target}{
-(optional) target value 
+(optional) numeric value giving the target value. 
 }
   \item{boxcox}{
-perform a Box-Cox transformation (default is FALSE)
+logical value specifying whether a Box-Cox transformation should be performed or not. \cr
+By default \code{boxcox} is set to \sQuote{FALSE}.
 }
   \item{lambda}{
-lambda for the boxcox transformation, default is to have the function estimate lambda. In this case lambda is restricted  to an interval of [-5,5]. For a single value lambda takes this value, for a vector the min(vector) and max(vector) are taken as a user specific interval for estimation of lambda
+(optional) lambda for the transformation, default is to have the function estimate lambda. 
 }
   \item{main}{
-main
+an overall title for the plot: see \code{\link{title}}.
 }
   \item{xlim}{
-xlim
+vector giving the range of the x-axis.
 }
   \item{ylim}{
-ylim
+vector giving the range of the y-axis.
 }
   \item{grouping}{
 (optional) If grouping is given the standard deviation is calculated as mean standard deviation of the specified subgroups corrected by the factor c4 and expected fraction of nonconforming is calculated using this standard deviation.
 }
   \item{std.dev}{
-(optional) historical standard devation (only for normal distribution)
+(optional) historical standard devation (only provided for normal distribution!).
 }
-  \item{conf.level}{ defaults to 99.73\% which is the reference interval bounded by the 99.865\% and 0.135\% quantile. 
+  \item{conf.level}{
+numeric value between \sQuote{0} and \sQuote{1} giving the confidence interval.\cr 
+By default \code{conf.level} is 0.9973 (99.73\%) which is the reference interval bounded by the 99.865\% and 0.135\% quantile. 
 }
   \item{start}{
-A named list giving the parameters to be fitted with initial values. Must be supplied for some distribution. (see Details)
+a named list giving the parameters to be fitted with initial values. Must be supplied for some distribution (see Details).
 }
   \item{lineWidth}{
-the width of the line for the density curve
+a numeric value specifying the width of the line for the density curve.
 }
   \item{lineCol}{
-the color of the line for the density curve
+numerical value or character string (like \dQuote{red}) specifying the color of the line for the density curve.
 }
   \item{lineType}{
-the line Type e.g. "dashed", "solid", etc.
+character string specifying the line type e.g. \dQuote{dashed}, \dQuote{solid}, etc.
 }
   \item{specCol}{
-col for the specification limits
+numerical value or character string specifying the color for the specification limits.
 }
   \item{specWidth}{
-lwd for the specification limits
+numerical value specifying the line width for the specification limits.
 }
   \item{cex.text}{
-cex for lsl, usl and target
+numerical value specifying the cex for lsl, usl and target.
 }
   \item{cex.val}{
-cex for the process capability ratios
+numerical value specifying the cex for the process capability ratios.
 }
   \item{cex.col}{
-col for lsl, usl and target 
+numerical value or character string specifying the color for lsl, usl and target. 
 }
   \item{\dots}{
-other graphical parameters
+some other graphical parameters.
 }
 }
 \value{
-The Function returns a list with \sQuote{lambda}, \sQuote{cp}, \sQuote{cpl}, \sQuote{cpu}, \sQuote{ppt}, \sQuote{ppl}, \sQuote{ppu}, \sQuote{A}, \sQuote{usl}, \sQuote{lsl}, \sQuote{target}.
+The function \code{pcr} returns a list with \code{lambda}, \code{cp}, \code{cpl}, \code{cpu}, \code{ppt}, \code{ppl}, \code{ppu}, \code{A}, \code{usl}, \code{lsl}, \code{target}.
 }
 \details{
-Distribution fitting is deligated to function fitdistr of the R-package MASS as well as the calculation of lambda for the Box Cox Transformation. p-values for Anderson Darling Test are reported for the most important distributions. cpk is always min(cpK, cpL).
+Distribution fitting is deligated to function \code{\link{fitdistr}} of the R-package \code{MASS} as well as the calculation of lambda for the Box Cox Transformation. p-values for Anderson Darling Test are reported for the most important distributions.\cr
+cpk is always min(cpK, cpL).
 \itemize{
 \item pt stands for total fraction nonconforming\cr
 \item pu stands for upper fraction nonconforming\cr
@@ -102,16 +124,20 @@ In case no specification limits are given, \sQuote{lsl} and \sQuote{usl} are cal
 } 
 
 \note{
-At this point there's no distinction made between process performance P_pk and process capability. The latter implies a process that is in statistical contro whereas process performance is estimated for a process that might not have been demonstrated to be in a state of statistical control.
-Currently work is bein done to support the usage of three parameter weibull, loglogistic and gamman distribution.
+At this point there's no distinction made between process performance P_pk and process capability.\cr
+The latter implies a process that is in statistical contro whereas process performance is estimated for a process that might not have been demonstrated to be in a state of statistical control.\cr
+Currently work is being done to support the usage of three parameter weibull, loglogistic and gamma distribution.\cr
+For a detailed example which shows the usage of the function \code{cp()} please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S4.html}.
 }
 
 \references{
-ISO/TR 22514-4 (2007) Statistical methods in process management - capability and performance - part 4: process capability estimates and performance.
-ISO 21747 (2006). Statistical methods - Process performance and capability statistics for measured quality characteristics.
-Mittag, H.-J. and H. Rinne (1999). Prozessfaehigkeitsmessung fuer die industrielle Praxis. Muenchen: Hanser.
-Kotz, Samuel; Lovelace, Cynthia R.: Process capability indices in theory and practice. London;, New York : Arnold, 1998
-Proces Capability Statistics for Non-Normal Distributions in R \url{http://www.r-qualitytools.org/useR2011/ProcessCapabilityInR.pdf}
+\itemize{
+ \item ISO(2006). Statistical methods - Process performance and capability statistics for measured quality characteristics (ISO 21747).
+ \item ISO/TR(2007).Statistical methods in process management - capability and performance - part 4: process capability estimates and performance (ISO/TR 22514-4). 
+ \item MITTAG, H.-J.; RINNE, H.: Prozessfaehigkeitsmessung fuer die industrielle Praxis. Muinch: Hanser, 1999.
+ \item KOTZ, Samuel; LOVELACE, Cynthia R.: Process capability indices in theory and practice. London,New York: Arnold, 1998.
+ \item Process Capability Statistics for Non-Normal Distributions in R \url{http://www.r-qualitytools.org/useR2011/ProcessCapabilityInR.pdf}
+}
 }
 
 \author{
@@ -119,8 +145,9 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 
 \seealso{
-\code{\link{qqPlot}},
-\code{\link{ppPlot}}
+\code{\link{qqPlot}}\cr
+\code{\link{ppPlot}}\cr
+\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S4.html}
 }
 \examples{
 x = rweibull(30, 2, 8) +100

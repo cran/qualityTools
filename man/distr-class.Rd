@@ -3,7 +3,6 @@
 \docType{class}
 \alias{distr-class}
 
-
 \title{Class "distr"}
 \description{
 distr Class
