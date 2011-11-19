@@ -3,18 +3,22 @@
         sqrt(2/(n - 1)) * (factorial(n/2 - 1)/factorial((n - 1)/2 - 1))
     else stop("n needs to be bigger than 1 and smaller than 342")
 }
-.sdSg = function(x, grouping = NULL, method = c("NOWEIGHT", "MVLUE", "RMSDF"), na.rm = TRUE, DB = TRUE) {
+.sdSg = function(x, grouping = NULL, method = c("NOWEIGHT", "MVLUE", "RMSDF"), na.rm = TRUE, 
+    DB = TRUE) {
     DB = FALSE
     if (!is.data.frame(x) && !is.vector(x) && is.numeric(x)) 
         stop("x needs to be either a data.frame or a vector and numeric")
-    if (is.null(grouping)) 
-        return(sd(x))
+    if (is.null(grouping)) {
+        if (is.data.frame(x)) 
+            return(sd(x[, 1]))
+        else return(sd(x))
+    }
     else grouping = as.data.frame(grouping)
     group = unique(grouping)
     sdVec = numeric(length = length(group))
     for (i in 1:nrow(group)) {
         if (is.data.frame(x)) 
-            temp = x[group[i, 1] == grouping[, 1], ]
+            temp = x[group[i, 1] == grouping[, 1], 1]
         if (is.vector(x)) 
             temp = x[group[i, 1] == grouping[, 1]]
         sdVec[i] = sd(temp, na.rm = T)/.c4(length(temp[!is.na(temp)]))
@@ -31,9 +35,10 @@
     return((mean(sdVec)))
 }
 .sdSg(1:10, grouping = c(1, 1, 1, 1, 1, 5, 5, 5, 5, 5))
-pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda = c(-5, 5), main, xlim, 
-    ylim, grouping = NULL, std.dev = NULL, conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", lineType = "solid", 
-    specCol = "red3", specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...) {
+pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda = c(-5, 
+    5), main, xlim, ylim, grouping = NULL, std.dev = NULL, conf.level = 0.9973002, start, lineWidth = 1, 
+    lineCol = "red", lineType = "solid", specCol = "red3", specWidth = 1, cex.text = 2, cex.val = 1.5, 
+    cex.col = "darkgray", ...) {
     DB = FALSE
     data.name = deparse(substitute(x))
     require(MASS, quietly = TRUE)
@@ -93,7 +98,7 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     if (!is.null(grouping)) 
         if (is.vector(grouping)) 
             grouping = as.data.frame(grouping)
-    center = mean(x)
+    center = colMeans(x)
     if (!is.null(x) & !is.null(grouping)) {
         if (nrow(x) != nrow(grouping)) 
             stop(paste("length of ", deparse(substitute(grouping)), " differs from length of ", varName))
@@ -101,7 +106,8 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     if (missing(main)) 
         if (boxcox) 
             main = paste("Process Capability using box cox transformation for", varName)
-        else main = paste("Process Capability using", as.character(distribution), "distribution for", varName)
+        else main = paste("Process Capability using", as.character(distribution), "distribution for", 
+            varName)
     if (is.null(std.dev)) {
         if (is.null(grouping)) 
             std.dev = .sdSg(x)
@@ -115,8 +121,8 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
         print(paste("confHigh:", confHigh))
         print(paste("confLow:", confLow))
     }
-    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", "negative binomial", 
-        "poisson")
+    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", 
+        "chi-squared", "negative binomial", "poisson")
     if (is.character(distribution)) {
         qFun = .charToDistFunc(distribution, type = "q")
         pFun = .charToDistFunc(distribution, type = "p")
@@ -227,8 +233,8 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     if (!is.null(usl)) 
         axis(side = 3, at = usl, labels = paste("USL =", format(usl, digits = 3)), col = specCol)
     if (!is.null(lsl) && !is.null(usl)) 
-        axis(side = 3, at = c(lsl, usl), labels = c(paste("LSL =", format(lsl, digits = 3)), paste("USL =", format(usl, 
-            digits = 3))), col = specCol)
+        axis(side = 3, at = c(lsl, usl), labels = c(paste("LSL =", format(lsl, digits = 3)), paste("USL =", 
+            format(usl, digits = 3))), col = specCol)
     if (!is.null(target)) 
         text(target, max(ylim), "TARGET", pos = 1, col = cex.col, cex = cex.text)
     title(main = main, outer = TRUE)
@@ -279,7 +285,8 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     j = 1
     for (i in 3:(3 + length(estimates) - 1)) {
         try(text(2.3, rev(index)[i + 1], names(estimates)[[j]], pos = 2, cex = cex.val), silent = TRUE)
-        try(text(2, rev(index)[i + 1], paste("=", format(estimates[[j]], digits = 3)), pos = 4, cex = cex.val), silent = TRUE)
+        try(text(2, rev(index)[i + 1], paste("=", format(estimates[[j]], digits = 3)), pos = 4, cex = cex.val), 
+            silent = TRUE)
         j = j + 1
     }
     qqPlot(x[, 1], y = distribution, ylab = "", main = "", axes = F)
@@ -328,7 +335,7 @@ pcr = function(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lam
     else text(-1, 1, paste("ppm =", 0), pos = 4, cex = cex.val)
     text(-1, 3, paste("ppm =", obsL + obsU), pos = 4, cex = cex.val)
     print(adTestStats)
-    invisible(list(lambda = lambda, cp = cp, cpk = cpk, cpl = cpl, cpu = cpu, ppt = ppt, ppl = ppl, ppu = ppu, A = A, 
-        usl = usl, lsl = lsl, target = target))
+    invisible(list(lambda = lambda, cp = cp, cpk = cpk, cpl = cpl, cpu = cpu, ppt = ppt, ppl = ppl, 
+        ppu = ppu, A = A, usl = usl, lsl = lsl, target = target))
 }
 cp = pcr 

@@ -29,7 +29,7 @@ Get and set the \code{tolerance} for an object of class \code{\link{gageRR}}.
 
 \seealso{
 \code{\link{gageRRDesign}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/}
+\url{http://www.r-qualitytools.org}
 }
 \examples{
 x = gageRRDesign(Operators = 3, Parts = 10, Measurements = 3)

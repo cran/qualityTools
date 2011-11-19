@@ -30,7 +30,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \seealso{
 \code{\link{rsmDesign}}\cr
 \code{\link{rsmChoose}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
+\url{http://www.r-qualitytools.org}
 }
 \examples{
 design = rsmDesign(k = 3) #rotatable response surface design with 3 factors

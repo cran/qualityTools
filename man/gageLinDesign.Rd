@@ -31,7 +31,7 @@ The results for the single should be entered with the help of \code{\link{respon
   \code{\link{gageLin}}  \cr
   \code{\link{response}} \cr
   \code{\link{edit}}\cr
-  \url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
+  \url{http://www.r-qualitytools.org}
 }
 \examples{
 

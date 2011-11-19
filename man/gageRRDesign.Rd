@@ -50,13 +50,13 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
  For an example in context which shows the usage of the function \code{gageRRDesign()} 
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S3.html##SS2}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Measure.html}.
 }
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
  \code{\link{gageRR}}\cr
- \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S3.html#SS2}
+ \url{http://www.r-qualitytools.org/Measure.html}
 }
 \examples{
 #create a Gage R&R Design

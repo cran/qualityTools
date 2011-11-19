@@ -28,7 +28,7 @@ Get and set the \code{fits} for an object of class \code{\link{facDesign}}.
 \code{\link{desires}}\cr
 \code{\link{desirability}}\cr
 \code{\link{rsmDesign}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS1}
+\url{http://www.r-qualitytools.org/Improve.html}
 
 }
 \examples{

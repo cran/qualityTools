@@ -41,7 +41,7 @@ Get and set the \code{highs} for the factors in an object of class \code{\link{m
 \code{\link{lows}}\cr
 \code{\link{highs}}\cr
 \code{\link{types}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }
 \examples{
 fdo = facDesign(k=3)

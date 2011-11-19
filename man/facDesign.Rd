@@ -9,7 +9,7 @@ facDesign(k = 3, replicates = 1, blocks = 1, centerCube = 0)
 \arguments{
 \item{k}{numeric value giving the number of factors. By default \code{k} is set to \sQuote{3}.}
 \item{replicates}{numeric value giving the number of replicates per factor combination. By default \code{replicates} is set to \sQuote{1}.}
-\item{blocks}{numeric value giving the number of blocks. By default \code{blocks} is set to \sQuote{1}.}
+\item{blocks}{numeric value giving the number of blocks. By default \code{blocks} is set to \sQuote{1}. Blocking is only performed for \code{k} greater 2.}
 \item{centerCube}{numeric value giving the number of centerpoints within the 2^k design. By default \code{centerCube} is set to \sQuote{0}.}
 }
 \details{
@@ -18,12 +18,12 @@ facDesign(k = 3, replicates = 1, blocks = 1, centerCube = 0)
 \value{The function \code{\link{facDesign}} returns an object of class \code{\link{facDesign}}.}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \note{For an example in context which shows the usage of the function \code{\link{facDesign}} 
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS1}.}
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.}
 \seealso{
-\code{\link{facDesign}}\cr
+\code{\link{fracDesign}}\cr
 \code{\link{rsmDesign}}\cr
 \code{\link{taguchiDesign}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS1}}
+\url{http://www.r-qualitytools.org/Improve.html}}
 \examples{
 vp.full = facDesign(k = 3)                                 #returns a 2^3 full factorial design
 response(vp.full) = rnorm(2^3)                             #generate some random response

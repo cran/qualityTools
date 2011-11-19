@@ -36,7 +36,7 @@ The function \code{as.data.frame.facDesign} returns a data frame.
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \seealso{
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }
 
 

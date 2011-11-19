@@ -62,7 +62,7 @@ NULL}
 
 \note{
  For a more detailed example which shows the usage of \code{normalPlot()} in context please read the vignette for the package 
- \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html}.
+ \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
@@ -70,7 +70,7 @@ NULL}
 \seealso{
 \code{\link{facDesign}}\cr
 \code{\link{paretoPlot}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html}
+\url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
 fdo = facDesign(k=3, replicates = 2)  #factorial design

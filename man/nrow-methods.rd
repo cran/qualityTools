@@ -24,5 +24,5 @@ Get the number of rows for a \code{\link{facDesign}} object.
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \seealso{
 \code{\link{nrow}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }

@@ -33,5 +33,5 @@ So far used internally only.
 \keyword{ ~~ other possible keyword(s) ~~ }
 
 \seealso{
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
+\url{http://www.r-qualitytools.org}
 }

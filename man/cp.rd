@@ -119,7 +119,7 @@ cpk is always min(cpK, cpL).
 \note{
 At this point there's no distinction made between process performance P_pk and process capability.\cr
 The latter implies a process that is in statistical contro whereas process performance is estimated for a process that might not have been demonstrated to be in a state of statistical control.\cr
-For a detailed example which shows the usage of the function \code{cp()} please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S4.html}.
+For a detailed example which shows the usage of the function \code{cp()} please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Analyze.html}.
 }
 
 \references{
@@ -137,7 +137,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \seealso{
 \code{\link{qqPlot}}\cr
 \code{\link{ppPlot}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S4.html}
+\url{http://www.r-qualitytools.org/Analyze.html}
 }
 \examples{
 x = rweibull(30, 2, 8) +100

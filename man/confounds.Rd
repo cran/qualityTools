@@ -23,6 +23,6 @@ confounds(x, depth = 2)
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \seealso{
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }
 

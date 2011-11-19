@@ -32,7 +32,7 @@ DERRINGER, G.; SUICH, R. 'Simulaneous Optimization of Several Response Variables
 \code{\link{desirability}}\cr
 \code{\link{fits}}\cr
 \code{\link{optimum}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }
 \examples{
 #create a response surface design

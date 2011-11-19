@@ -54,7 +54,7 @@ an overview of possible taguchi designs is possible with \code{\link{taguchiChoo
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{For an example in context which shows the usage of the function \code{\link{taguchiDesign}} 
-please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS10}.}
+please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.}
 \references{
 Box, Bisgard S.G.E.P.; Fung, C. A.: An explanation and critique of taguchis
 contributions to quality engineering. In: Quality and Reliability Engineering International (1988)
@@ -67,7 +67,7 @@ contributions to quality engineering. In: Quality and Reliability Engineering In
 \code{\link{rsmDesign}} for response surface designs\cr
 \code{\link{fracDesign}} for fractional factorial design\cr
 \code{\link{gageRRDesign}} for gage designs           \cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS10}
+\url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
 tdo = taguchiDesign("L9_3")

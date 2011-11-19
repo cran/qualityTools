@@ -53,7 +53,7 @@ object of class \code{\link{gageRR}}.
 
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \seealso{
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }
 \keyword{methods}
 

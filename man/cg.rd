@@ -105,13 +105,13 @@ cg(x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, type, col, pch, x
 \note{
  Support for other distributions than normal might be included later in an update.\cr
  For a more detailed example which shows the usage \code{cg()} please read the vignette for the package 
- \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S3.html#SS2}.
+ \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Measure.html}.
 }
 
 \seealso{
   \code{\link{plot}} \cr
   \code{\link{par}} \cr
-  \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S3.html#SS2}
+  \url{http://www.r-qualitytools.org/Measure.html}
 }
 \examples{                                            
 cg(rnorm(125,mean = 10.01 ,sd = 0.1), target = 10, tolerance = c(8,12))                    #simple example with default values

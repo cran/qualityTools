@@ -35,14 +35,14 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \note{
  For a more detailed example which shows the effect of applying \code{aliasTable()} to 
  an object of class \code{\link{facDesign}}, please read the vignette for the package 
- \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS2}.
+ \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
 
 \seealso{
 %\code{\link{confounds}},
 \code{\link{fracDesign}},       \cr
 \code{\link{fracChoose}},       \cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS2}
+\url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
 fracFac = fracDesign(k = 3, gen = "C = AB")                                 #create a fractional factorial design

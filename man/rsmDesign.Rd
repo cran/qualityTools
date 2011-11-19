@@ -58,7 +58,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
  For an example in context which shows the usage of the function \code{rsmDesign()}
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS6}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
 
 \seealso{
@@ -66,7 +66,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \code{\link{fracDesign}}\cr
 \code{\link{fracChoose}}\cr
 \code{\link{rsmChoose}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS6}
+\url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
 #central composite design for 2 factors with 2 blocks, alpha = 1.41, 5 centerpoints in the cube portion and 3 centerpoints in the star portion

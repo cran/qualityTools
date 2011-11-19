@@ -68,7 +68,7 @@ with e.g. \code{\link{plot}} or \code{\link{summary}}.
   \code{\link{gageLinDesign}}  \cr
   \code{\link{response}} \cr
   \code{\link{edit}}\cr
-  \url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
+  \url{http://www.r-qualitytools.org}
 }
 \examples{
 A=c(2.7,2.5,2.4,2.5,2.7,2.3,2.5,2.5,2.4,2.4,2.6,2.4)  # Results of single runs

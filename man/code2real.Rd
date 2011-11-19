@@ -27,5 +27,5 @@ code2real(low, high, codedValue)
 code2real(160, 200, 0)
 }
 \seealso{
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }

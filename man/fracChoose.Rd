@@ -20,7 +20,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
  For an example in context which shows the usage of the function \code{fracChoose()}  
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS2}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
 
 \seealso{
@@ -28,6 +28,6 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \code{\link{fracDesign}}\cr
 \code{\link{rsmChoose}} \cr
 \code{\link{rsmDesign}} \cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS2} \cr
+\url{http://www.r-qualitytools.org/Improve.html} \cr
 Statistics for Experimenters (2005) Box, Hunter, Hunter p.272, table 6.22
 }

@@ -28,7 +28,7 @@ Get and set the \code{cube} for the factors in an object of class \code{\link{fa
 \code{\link{fracDesign}}\cr
 \code{\link{rsmDesign}}\cr
 \code{\link{star}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 
 }
 \examples{

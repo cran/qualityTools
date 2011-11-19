@@ -36,7 +36,7 @@ Get and set the \code{lows} for the factors in an object of class \code{\link{mi
 \code{\link{lows}}\cr
 \code{\link{lows}}\cr
 \code{\link{types}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
+\url{http://www.r-qualitytools.org}
 }
 \examples{
 fdo = facDesign(k=3)

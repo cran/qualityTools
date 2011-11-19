@@ -25,7 +25,6 @@
 \usepackage{framed}
 \usepackage{array,booktabs,dcolumn, multirow}  %schoene Tabelle
 \usepackage{ragged2e}
-\usepackage[pdftitle={Working with the qualityTools package},pdfauthor={Thomas Roth}, pdfsubject={A brief illustration of the R package qualityTools for teaching Quality Science related statistical methods with regard to the Six Sigma Quality Management methodology},pdfkeywords={Process Capability, Distribution Fitting, Gage R\&R, Design of Experiments, Desirability, factorial design, fractional factorial design, response surface design, response surface methods, mixture designs, taguchi designs, simultaneous optimization of mulitple response variables, QQPlot, Probability Plot}]{hyperref}
 \usepackage{amsmath,amsfonts,amssymb}
 \usepackage[]{natbib}
 \usepackage{marvosym}
@@ -34,6 +33,10 @@
 \usepackage{layout}
 \usepackage{subfigure}
 \usepackage{listings}
+
+\usepackage[pdftitle={Working with the qualityTools package},pdfauthor={Thomas Roth}, pdfsubject={This document contains a brief illustration of the R package qualityTools for teaching Quality Science related statistical methods with regard to the Six Sigma methodology and Quality Management.},pdfkeywords={Process Capability Analysis for normal and non-normal distributions in R, Distribution Fitting and Identification in R, Anderson Darling Goodness of Fit Test for normal and non-normal distributions in R, Measurement Systems Analysis in R,  Gage R\&R in R, Repeatability and Reproducibility studies in R, Gage Capapbility in R, Design of Experiments in R, Desirability, factorial designs in R, fractional factorial designs in R, confounding and alias structure, response surface designs in R, sequential assembly of central composite designs in R, rotatibility and orthogonality and blocking, response surface methods, mixture designs in R, taguchi designs in R, simultaneous optimization of multiple response variables in R, QQPlot, Probability Plot, Six Sigma in R, OC-Curves in R, Operation Characteristic, Define, Measure, Analyze, Improve and Control of the Six Sigma approach, Methods for Measurement, analysis and improvement as part of the Continual Improvement of the quality management system}, colorlinks=true, linkcolor=red2]{hyperref}
+
+
 \setkeys{Gin}{width=\textwidth}
 
 
@@ -100,7 +103,7 @@
 \vspace{1cm}
 \huge{\textbf{Working with the qualityTools package}}
 \\[1ex]
-\large{\textbf{A short introduction}}
+\large{\textbf{A short introduction\footnote{An updated version of this document can be found under \url{http://www.r-qualitytools.org}}}}
 \\[1ex]
 \Large{Thomas Roth}
 \\[1ex]

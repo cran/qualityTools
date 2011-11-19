@@ -28,5 +28,5 @@ By default \code{so} is set to \sQuote{FALSE}.
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \seealso{
- \url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
+ \url{http://www.r-qualitytools.org}
 }

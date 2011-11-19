@@ -26,7 +26,8 @@ Get and set the \code{sigma} for an object of class \code{\link{gageRR}}.
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \seealso{
 \code{\link{gageRRDesign}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}}
+\url{http://www.r-qualitytools.org}
+}
 \examples{
 x = gageRRDesign(Operators = 3, Parts = 10, Measurements = 3)
 sigma(x)  #default 6sigma

@@ -1,6 +1,7 @@
 .NAMES = LETTERS[c(1:8, 10:26)]
-setClass("doeFactor", representation = representation(low = "ANY", high = "ANY", name = "character", unit = "character", 
-    type = "character"), prototype = prototype(low = -1, high = 1, name = "", unit = "", type = "numeric"))
+setClass("doeFactor", representation = representation(low = "ANY", high = "ANY", name = "character", 
+    unit = "character", type = "character"), prototype = prototype(low = -1, high = 1, name = "", 
+    unit = "", type = "numeric"))
 setGeneric(".low", function(object) standardGeneric(".low"))
 setGeneric(".low<-", function(x, value) standardGeneric(".low<-"))
 setMethod(".low", "doeFactor", function(object) unlist(object@low))
@@ -62,10 +63,10 @@ setMethod("show", signature(object = "doeFactor"), function(object) {
     cat("type: ", .type(object), "\n")
     cat("\n")
 })
-setClass(Class = "facDesign", representation = representation(name = "character", factors = "list", cube = "data.frame", 
-    star = "data.frame", centerCube = "data.frame", centerStar = "data.frame", generator = "ANY", response = "data.frame", 
-    block = "data.frame", blockGen = "data.frame", runOrder = "data.frame", standardOrder = "data.frame", desireVal = "list", 
-    desirability = "list", fits = "list"))
+setClass(Class = "facDesign", representation = representation(name = "character", factors = "list", 
+    cube = "data.frame", star = "data.frame", centerCube = "data.frame", centerStar = "data.frame", 
+    generator = "ANY", response = "data.frame", block = "data.frame", blockGen = "data.frame", runOrder = "data.frame", 
+    standardOrder = "data.frame", desireVal = "list", desirability = "list", fits = "list"))
 setGeneric(".nfp", function(object) standardGeneric(".nfp"))
 setMethod(".nfp", "facDesign", function(object) {
     x = factors(object)
@@ -151,7 +152,8 @@ setMethod("[", signature(x = "facDesign", i = "ANY", j = "ANY"), function(x, i, 
     out = fdo
     cube(out) = oldIndex[newIndex[1:nrow(cube)]]
 }
-setReplaceMethod("[", signature(x = "facDesign", i = "ANY", j = "ANY"), function(x, i, j, value) {
+setReplaceMethod("[", signature(x = "facDesign", i = "ANY", j = "ANY"), function(x, i, 
+    j, value) {
     print(paste("setting values via [", i, ",", j, " ]  is not supported"))
     print("Use response() to set the values of the response!")
     return(x)
@@ -306,7 +308,8 @@ setReplaceMethod("star", "facDesign", function(x, value) {
     oldBlock = block(x)
     newBlock = data.frame(oldBlock[1:lenFirst, ])
     names(newBlock) = names(oldBlock)
-    naFrame = as.data.frame(matrix(rep(max(newBlock) + 1, times = ncol(oldBlock) * nrow(newDf)), ncol = ncol(oldBlock)))
+    naFrame = as.data.frame(matrix(rep(max(newBlock) + 1, times = ncol(oldBlock) * nrow(newDf)), 
+        ncol = ncol(oldBlock)))
     names(naFrame) = names(oldBlock)
     restBlock = data.frame(oldBlock[-c(1:(lenFirst + nrow(oldDf))), ])
     names(restBlock) = names(oldBlock)
@@ -485,7 +488,8 @@ setReplaceMethod("centerStar", "facDesign", function(x, value) {
     oldBlock = block(x)
     newBlock = data.frame(oldBlock[1:lenRest, ])
     names(newBlock) = names(block(x))
-    naFrame = as.data.frame(matrix(rep(max(block(x)[1:nrow(cube(x)), ]) + 1, times = ncol(block(x)) * nrow(newDf)), ncol = ncol(block(x))))
+    naFrame = as.data.frame(matrix(rep(max(block(x)[1:nrow(cube(x)), ]) + 1, times = ncol(block(x)) * 
+        nrow(newDf)), ncol = ncol(block(x))))
     names(naFrame) = names(oldBlock)
     restBlock = data.frame(oldBlock[-c(1:(lenRest + nrow(oldDf))), ])
     names(restBlock) = names(oldBlock)
@@ -512,8 +516,8 @@ setReplaceMethod("response", "facDesign", function(object, value) {
         stop("vector or data.frame expected!")
     if (is.vector(value) && (is.numeric(value) || is.na(value))) {
         if (nrow(response(object)) != length(value)) 
-            stop(paste("Number of rows for Design does not equal length of vector ", nrow(object), " != ", length(value), 
-                " "))
+            stop(paste("Number of rows for Design does not equal length of vector ", nrow(object), 
+                " != ", length(value), " "))
         object@response <- data.frame(value)
         object@response[index, ] <- value
         names(object@response) = make.names(deparse(substitute(value)))
@@ -540,8 +544,8 @@ setReplaceMethod("blockGen", "facDesign", function(object, value) {
         stop("vector or data.frame expected!")
     if (is.vector(value) && (is.numeric(value) || is.na(value))) {
         if (nrow(object) != length(value)) 
-            stop(paste("Number of rows for Design does not equal length of vector ", nrow(object), " != ", length(value), 
-                " "))
+            stop(paste("Number of rows for Design does not equal length of vector ", nrow(object), 
+                " != ", length(value), " "))
         object@blockGen <- as.data.frame(value)
         names(blockGen(object)) = deparse(substitute(value))
         object
@@ -566,8 +570,8 @@ setReplaceMethod("block", "facDesign", function(object, value) {
         stop("vector or data.frame expected!")
     if (is.vector(value) && (is.numeric(value) || is.na(value))) {
         if (nrow(object) != length(value)) 
-            stop(paste("Number of rows for Design does not equal length of vector ", nrow(object), " != ", length(value), 
-                " "))
+            stop(paste("Number of rows for Design does not equal length of vector ", nrow(object), 
+                " != ", length(value), " "))
         object@block <- as.data.frame(value)
         names(block(object)) = deparse(substitute(value))
         object
@@ -615,7 +619,8 @@ setReplaceMethod("names", "facDesign", function(x, value) {
     for (i in 1:length(x@factors)) names(x@factors[[i]]) = as.character(value[i])
     x
 })
-setMethod("as.data.frame", "facDesign", function(x, row.names = NULL, optional = FALSE, ...) {
+setMethod("as.data.frame", "facDesign", function(x, row.names = NULL, optional = FALSE, 
+    ...) {
     if (!is.null(cube(x))) {
         frameOut = cube(x)
     }
@@ -850,11 +855,14 @@ confounds = function(x, depth = 2) {
                 isect = intersect(ident, combMat[, i])
                 conf = setdiff(ident, isect)
                 conf = sort(c(conf, setdiff(combMat[, i], isect)))
-                effect1 = c(effect1, paste(sort(names(x)[as.numeric((combMat[, i]))]), sep = "", collapse = ""))
+                effect1 = c(effect1, paste(sort(names(x)[as.numeric((combMat[, i]))]), sep = "", 
+                  collapse = ""))
                 effect2 = c(effect2, paste(sort(names(x)[conf]), sep = "", collapse = ""))
                 if (DB) {
-                  cat("Effect(s) ", as.numeric((combMat[, i])), " aliased with Effect(s)", conf, "\n")
-                  cat("Effect(s)", names(x)[as.numeric((combMat[, i]))], " aliased with Effects ", names(x)[conf], "\n")
+                  cat("Effect(s) ", as.numeric((combMat[, i])), " aliased with Effect(s)", conf, 
+                    "\n")
+                  cat("Effect(s)", names(x)[as.numeric((combMat[, i]))], " aliased with Effects ", 
+                    names(x)[conf], "\n")
                 }
             }
         }
@@ -889,8 +897,8 @@ confounds = function(x, depth = 2) {
     }
     cat("\nAlias Structure:\n")
     for (i in 1:length(effect1)) {
-        if ((length(strsplit(effect1[i], split = character(0))[[1]]) <= depth) && (length(strsplit(effect2[i], split = character(0))[[1]]) <= 
-            depth)) 
+        if ((length(strsplit(effect1[i], split = character(0))[[1]]) <= depth) && (length(strsplit(effect2[i], 
+            split = character(0))[[1]]) <= depth)) 
             cat(effect1[i], "\tis confounded with\t", effect2[i], "\n")
         if (identical(depth, "all")) 
             cat(effect1[i], "\tis confounded with\t", effect2[i], "\n")
