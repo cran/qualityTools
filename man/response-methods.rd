@@ -71,7 +71,7 @@ value must be of same length as \code{nrow(object)}. If value is shorter/longer 
 \code{\link{fracDesign}}\cr
 \code{\link{taguchiDesign}}\cr
 \code{\link{mixDesign}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }
 
 \examples{

@@ -25,7 +25,7 @@
 }
 }}
 \seealso{
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }
 \examples{
 fdo = facDesign(k = 3)  #NA in response column

@@ -61,13 +61,13 @@ Thomas Roth \email{thomas.roth@tu-berlin.de
 }
 \note{
  For an example in context which shows the usage of the function \code{gageRR()} 
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S3.html#SS2}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Measure.html}.
 }
 \seealso{
 \code{\link{gageRRDesign}}\cr 
 \code{\link{response}}       \cr
 \code{\link{cg}}                \cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S3.html#SS2}
+\url{http://www.r-qualitytools.org/Measure.html}
 
 }
 \examples{

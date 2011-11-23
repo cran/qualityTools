@@ -45,11 +45,11 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \note{
 This is the steepest ascent for a single response considering main effects only.\cr
 For an example in context which shows the usage of the function \code{steepAscent()} to an object of class \code{\link{facDesign}}, 
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS5}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
 \seealso{
 \code{\link{desires}} for multiple response optimization usign desirabilities\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS5}
+\url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
 #Example from References

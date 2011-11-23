@@ -81,7 +81,7 @@ This function can be used to display the desirability of each response by specif
 
 \note{
  For an example in context which shows the usage of the function \code{contourPlot()} to an object of class \code{\link{facDesign}}, 
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
@@ -91,7 +91,7 @@ This function can be used to display the desirability of each response by specif
 \code{\link{filled.contour}} \cr
 \code{\link{persp}} \cr
 \code{link{colorRampPalette}} \cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html}
+\url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
 #create a response surface design and assign random data to response y

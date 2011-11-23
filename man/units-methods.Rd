@@ -41,7 +41,7 @@ Get and set the \code{units} for the factors in an object of class \code{\link{t
  \code{\link{lows}}\cr
  \code{\link{highs}}\cr
  \code{\link{types}}\cr
- \url{http://www.user.tu-berlin.de/kalicete/qualityTools/}
+ \url{http://www.r-qualitytools.org}
  }
 \examples{
 fdo = fracDesign(k = 2)  #NA in response column

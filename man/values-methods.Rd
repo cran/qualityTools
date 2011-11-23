@@ -29,5 +29,5 @@ Get and set the \code{values} for the factors in an object of class \code{\link{
 }}
 \keyword{methods}
 \seealso{
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }

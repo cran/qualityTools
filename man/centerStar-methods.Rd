@@ -27,7 +27,7 @@ Get and set the Center Points of the star portion for an object of class \code{\
 \code{\link{centerCube}}\cr
 \code{\link{cube}}\cr
 \code{\link{star}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }
 \examples{
 #create a response surface design for k = 3 factors

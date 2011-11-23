@@ -47,5 +47,5 @@ object of class \code{\link{gageRR}}.
 
 \keyword{methods}
 \seealso{
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/}
+\url{http://www.r-qualitytools.org}
 }

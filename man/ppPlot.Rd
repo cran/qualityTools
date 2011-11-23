@@ -95,12 +95,12 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 
 \note{
  For an example in context which shows the usage of the function \code{ppPlot()}  
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S4.html#SS1.SSS3}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Analyze.html}.
 }
 
 \seealso{
 \code{\link{fitdistr}} in R-package MASS\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S4.html#SS1.SSS3}
+\url{http://www.r-qualitytools.org/Analyze.html}
 }
 \examples{
 #set up the plotting window for 6 plots

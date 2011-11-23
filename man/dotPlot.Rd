@@ -65,7 +65,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \seealso{
 \code{\link{hist}}\cr
 \code{\link{boxplot}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S4.html}
+\url{http://www.r-qualitytools.org/Analyze.html}
 }
 \examples{
 #create some data and grouping

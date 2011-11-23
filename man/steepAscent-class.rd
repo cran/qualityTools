@@ -18,7 +18,7 @@ Objects can be created by calls of the form \code{new("steepAscent", ...)}.
     \item{\code{X}:}{Object of class \code{"data.frame"} ~~ }
     \item{\code{response}:}{Object of class \code{"data.frame"} ~~ }
   }
-}
+}                                                                             
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }

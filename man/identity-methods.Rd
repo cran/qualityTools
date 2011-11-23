@@ -32,7 +32,7 @@ Calculates the alias table for a fractional taguchi design and prints an easy to
 \code{\link{aliasTable}}\cr
 \code{\link{fracDesign}}\cr
 \code{\link{fracChoose}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }
 \examples{
 #generate a 2^(4-1) factorial design by assigning the interaction ABC to the factor D

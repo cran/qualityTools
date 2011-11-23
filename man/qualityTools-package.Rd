@@ -29,14 +29,14 @@ ontrol} (i.e. \bold{DMAIC}) cycle of the Six Sigma Quality Management methodolog
 \tabular{ll}{
 Package: \tab qualityTools\cr
 Type: \tab Package\cr
-Version: \tab 0.93\cr
-Date: \tab 2011-08-12\cr
+Version: \tab 0.94\cr
+Date: \tab 2011-11-18\cr
 URL: \tab \url{http://r-qualitytools.org}\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }}
 
-\note{This package is primarily used for teaching! The package vignette is available under \url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}.}
+\note{This package is primarily used for teaching! The package vignette is available under \url{http://www.r-qualitytools.org}.}
 
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}\cr

@@ -30,5 +30,5 @@ Get and set the generators for blocking.
 \seealso{
 \code{\link{response}} \cr
 \code{\link{facDesign}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org/Improve.html}
 }

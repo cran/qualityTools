@@ -7,9 +7,11 @@ Test Statistics
 \description{
 Generic S3 function for objects of class \code{adtest}.
 }
+
 \usage{
-print.adtest(x, digits = 4, quote = TRUE, prefix = "", ...)
+\method{print}{adtest}(x, digits = 4, quote = TRUE, prefix = "", \dots)
 }
+
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
@@ -34,6 +36,6 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \seealso{
 \code{\link{print.default}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/}
+\url{http://www.r-qualitytools.org}
 }
 

@@ -46,7 +46,7 @@ TODO:
 \code{\link{rsmDesign}} for response surface designs,\cr
 \code{\link{fracDesign}} for fractional factorial design,\cr
 \code{\link{gageRRDesign}} for gage designs\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
+\url{http://www.r-qualitytools.org}
 }
 \examples{
 oaChoose()

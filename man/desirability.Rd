@@ -52,7 +52,7 @@ This function returns a desirability function.
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \note{
- For an example in context which shows the usage of the function \code{desirability()} please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS7}.
+ For an example in context which shows the usage of the function \code{desirability()} please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
@@ -60,7 +60,7 @@ This function returns a desirability function.
 \seealso{
 \code{\link{desires}}\cr
 \code{\link{optimum}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS7}
+\url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
 #Maximization of a response

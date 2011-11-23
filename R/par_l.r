@@ -1,5 +1,5 @@
-paretoChart = function(x, weight, showTable = TRUE, las = 0, main, col, border, xlab, ylab = "Frequency", percentVec, 
-    ...) {
+paretoChart = function(x, weight, showTable = TRUE, las = 0, main, col, border, xlab, 
+    ylab = "Frequency", percentVec, ...) {
     varName = deparse(substitute(x))
     corp.col = "pink3"
     corp.border = "red3"
@@ -51,7 +51,8 @@ paretoChart = function(x, weight, showTable = TRUE, las = 0, main, col, border, 
         sumFreq = sum(xtable)
         percentage = xtable/sum(xtable) * 100
         cumPerc = cumFreq/sumFreq * 100
-        frameOut = data.frame(Frequency = as.numeric(xtable), Cum.Freq = cumFreq, Percentage = percentage, Cum.Perc = cumPerc)
+        frameOut = data.frame(Frequency = as.numeric(xtable), Cum.Freq = cumFreq, Percentage = percentage, 
+            Cum.Perc = cumPerc)
         names(frameOut) = c(ylab, paste("Cum.", ylab), "Percentage", "Cum. Percentage")
         row.names(frameOut) = names(xtable)
         frameInt = as.data.frame(t(frameOut))
@@ -77,8 +78,9 @@ paretoChart = function(x, weight, showTable = TRUE, las = 0, main, col, border, 
         }
         if (showTable) {
             par(fig = c(0, 1, tablespace, 1))
-            xValue = barplot(xtable, axes = FALSE, las = las, width = 1, space = 0.2, xlim = c(0.2, 1.2 * length(xtable)), 
-                main = main, ylim = c(0, sum(xtable) + 0.01 * (sum(xtable))), ylab = ylab, xlab = xlab, col = col, border = border)
+            xValue = barplot(xtable, axes = FALSE, las = las, width = 1, space = 0.2, xlim = c(0.2, 
+                1.2 * length(xtable)), main = main, ylim = c(0, sum(xtable) + 0.01 * (sum(xtable))), 
+                ylab = ylab, xlab = xlab, col = col, border = border)
             axis(1, at = xValue, labels = names(xtable), las = las)
             axis(2)
             axis(4, at = percentVec * (sumFreq), labels = percentVec)
@@ -89,10 +91,10 @@ paretoChart = function(x, weight, showTable = TRUE, las = 0, main, col, border, 
             mymai[1] = 0
             mymai[3] = 0
             par(mai = mymai)
-            plot(xValue, rep(1, length(xValue)), xlim = c(0.2, 1.2 * length(xtable)), ylim = c(0, 5), axes = FALSE, ylab = "", 
-                type = "n")
-            axis(2, pos = 0.2, at = 1:4, labels = rev(c(ylab, paste("Cum.", ylab), "Percentage", "Cum. Percentage")), 
-                tick = FALSE, las = 1)
+            plot(xValue, rep(1, length(xValue)), xlim = c(0.2, 1.2 * length(xtable)), ylim = c(0, 
+                5), axes = FALSE, ylab = "", type = "n")
+            axis(2, pos = 0.2, at = 1:4, labels = rev(c(ylab, paste("Cum.", ylab), "Percentage", 
+                "Cum. Percentage")), tick = FALSE, las = 1)
             numCol = dim(frameInt)[2]
             numRow = dim(frameInt)[1]
             for (i in 1:numCol) {
@@ -104,8 +106,9 @@ paretoChart = function(x, weight, showTable = TRUE, las = 0, main, col, border, 
         else {
             mymai[2] = mymai[4]
             par(mai = mymai)
-            xValue = barplot(xtable, axes = FALSE, las = las, width = 1, space = 0.2, xlim = c(0.2, 1.2 * length(xtable)), 
-                main = main, ylim = c(0, sum(xtable) + 0.01 * (sum(xtable))), ylab = ylab, xlab = xlab, col = col, border = border)
+            xValue = barplot(xtable, axes = FALSE, las = las, width = 1, space = 0.2, xlim = c(0.2, 
+                1.2 * length(xtable)), main = main, ylim = c(0, sum(xtable) + 0.01 * (sum(xtable))), 
+                ylab = ylab, xlab = xlab, col = col, border = border)
             axis(1, at = xValue, labels = names(xtable), las = las)
             axis(2)
             axis(4, at = percentVec * (sumFreq), labels = percentVec)

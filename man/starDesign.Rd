@@ -48,8 +48,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \code{\link{fracDesign}} for 2^k-p fractional factorial designs\cr
 \code{\link{rsmDesign}} for response surface designs\cr
 \code{\link{mixDesign}} for mixture designs\cr
-\code{\link{taguchiDesign}} for taguchi designs\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
+\code{http://www.r-qualitytools.org}
 }
 \examples{
 #Example 1 - sequential assembly

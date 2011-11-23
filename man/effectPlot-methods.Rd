@@ -19,7 +19,7 @@ function to create an effect plot for an object of class \code{\link{taguchiDesi
 }
 }}
 \seealso{
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 }
 \keyword{methods}
 \keyword{design}

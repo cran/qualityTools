@@ -41,5 +41,5 @@ nonStructure
 \keyword{methods}
 
 \seealso{
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/qualityTools.html}
+\url{http://www.r-qualitytools.org}
 }

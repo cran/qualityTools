@@ -38,7 +38,7 @@ see \code{\link{desirability}}.
 \code{\link{facDesign}}\cr
 \code{\link{rsmDesign}}\cr
 \code{\link{desirability}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS8}
+\url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
 #arbitrary example with random data!!!

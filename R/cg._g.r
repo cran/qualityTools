@@ -1,5 +1,5 @@
-cg = function(x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, type, col, pch, xlim, ylim, conf.level = 0.95, 
-    cex.val = 1.5) {
+cg = function(x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, type, col, pch, 
+    xlim, ylim, conf.level = 0.95, cex.val = 1.5) {
     if (missing(x)) 
         stop("x must be given as a vector")
     if (missing(target)) {
@@ -37,36 +37,40 @@ cg = function(x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, type, 
     if (missing(xlim)) 
         xlim = c(0, length(x))
     if (missing(ylim)) 
-        ylim = c(min(x, target - n/2 * (abs(diff(tolerance))), quant1, quant2), max(x, target + n/2 * (abs(diff(tolerance))), 
-            quant1, quant2))
+        ylim = c(min(x, target - n/2 * (abs(diff(tolerance))), quant1, quant2), max(x, target + n/2 * 
+            (abs(diff(tolerance))), quant1, quant2))
     Cg = (facCg * (abs(diff(tolerance))))/ref.ar
     Cgk = (facCgk * (abs(diff(tolerance))) - abs(target - mean))/(ref.ar/2)
     layout(matrix(data = c(1, 1, 1, 1, 1, 1, 2, 3, 4), ncol = 3, nrow = 3))
     par.old = par()$mar
     par(mar = c(5.1, 4.1, 4.1, 10.1))
-    plot(x, type = plot.type, col = col, main = "RunChart", pch = pch, xlim = c(xlim[1] - 0.05 * xlim[2], xlim[2]), ylim = ylim)
+    plot(x, type = plot.type, col = col, main = "RunChart", pch = pch, xlim = c(xlim[1] - 0.05 * 
+        xlim[2], xlim[2]), ylim = ylim)
     abline(h = target)
-    rect(xleft = min(xlim) - 0.09 * max(xlim), xright = -0.005 * max(xlim), ybottom = min(ylim), ytop = max(ylim), col = "white", 
-        border = "white")
-    text(min(xlim) - 0.1 * max(xlim), target, pos = 4, srt = 0, "target", xpd = TRUE, bg = "white", cex = cex.val)
+    rect(xleft = min(xlim) - 0.09 * max(xlim), xright = -0.005 * max(xlim), ybottom = min(ylim), 
+        ytop = max(ylim), col = "white", border = "white")
+    text(min(xlim) - 0.1 * max(xlim), target, pos = 4, srt = 0, "target", xpd = TRUE, bg = "white", 
+        cex = cex.val)
     if (targetmissing == TRUE) 
         abline(h = mean, lty = 2, col = "seagreen")
     abline(h = quant1, col = "seagreen", lty = 3)
     abline(h = quant2, col = "seagreen", lty = 3)
     abline(h = c(target + n/2 * (abs(diff(tolerance))), target - n/2 * (abs(diff(tolerance)))))
     lines(lowess(x), col = "red")
-    temp = axis(4, at = c(target + n/2 * (abs(diff(tolerance))), target - n/2 * (abs(diff(tolerance))), mean(x)), labels = FALSE)
-    text(max(xlim) + 0.075 * max(xlim), temp[3], srt = 0, adj = 0, substitute(x[tar] + a %.% b, list(a = round(n/2, 4), 
-        b = "T")), xpd = TRUE, cex = cex.val)
-    text(max(xlim) + 0.075 * max(xlim), temp[2], srt = 0, adj = 0, expression(bar(x)), xpd = TRUE, cex = cex.val, col = "seagreen")
-    text(max(xlim) + 0.075 * max(xlim), temp[1], srt = 0, adj = 0, substitute(x[tar] - a %.% b, list(a = round(n/2, 4), 
-        b = "T")), xpd = TRUE, cex = cex.val)
+    temp = axis(4, at = c(target + n/2 * (abs(diff(tolerance))), target - n/2 * (abs(diff(tolerance))), 
+        mean(x)), labels = FALSE)
+    text(max(xlim) + 0.075 * max(xlim), temp[3], srt = 0, adj = 0, substitute(x[tar] + a %.% b, list(a = round(n/2, 
+        4), b = "T")), xpd = TRUE, cex = cex.val)
+    text(max(xlim) + 0.075 * max(xlim), temp[2], srt = 0, adj = 0, expression(bar(x)), xpd = TRUE, 
+        cex = cex.val, col = "seagreen")
+    text(max(xlim) + 0.075 * max(xlim), temp[1], srt = 0, adj = 0, substitute(x[tar] - a %.% b, list(a = round(n/2, 
+        4), b = "T")), xpd = TRUE, cex = cex.val)
     lt1 = round(((1 - ref.interval)/2) * 100, 3)
     lt2 = round(((ref.interval + (1 - ref.interval)/2)) * 100, 3)
-    text(max(xlim) + 0.075 * max(xlim), quant1, srt = 0, adj = 0, substitute(x[a * b], list(a = lt1, b = "%")), xpd = TRUE, 
-        cex = cex.val, col = "seagreen")
-    text(max(xlim) + 0.075 * max(xlim), quant2, srt = 0, adj = 0, substitute(x[a * b], list(a = lt2, b = "%")), xpd = TRUE, 
-        cex = cex.val, col = "seagreen")
+    text(max(xlim) + 0.075 * max(xlim), quant1, srt = 0, adj = 0, substitute(x[a * b], list(a = lt1, 
+        b = "%")), xpd = TRUE, cex = cex.val, col = "seagreen")
+    text(max(xlim) + 0.075 * max(xlim), quant2, srt = 0, adj = 0, substitute(x[a * b], list(a = lt2, 
+        b = "%")), xpd = TRUE, cex = cex.val, col = "seagreen")
     par(mar = par.old)
     plot(0:6, 0:6, type = "n", axes = FALSE, xlab = "", ylab = "", main = "")
     text(2.5, 5, expression(bar(x)), pos = 2, cex = cex.val)
@@ -84,22 +88,24 @@ cg = function(x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, type, 
     temp = hist(x.c, plot = FALSE)
     par.old = par()$mar
     par(mar = c(3.1, 4.1, 0.55, 2.1))
-    hist(x.c, freq = FALSE, ylim = c(0, max(density(x.c)$y, temp$density) + 0.4 * max(density(x.c)$y, temp$density)), 
-        col = "lightblue", main = paste("Histogram of", deparse(substitute(x)), "- target"))
+    hist(x.c, freq = FALSE, ylim = c(0, max(density(x.c)$y, temp$density) + 0.4 * max(density(x.c)$y, 
+        temp$density)), col = "lightblue", main = paste("Histogram of", deparse(substitute(x)), "- target"))
     test = t.test(x.c, mu = 0, conf.level = conf.level)
-    lines(x = c(0, 0), y = c(0, max(density(x.c)$y, temp$density) + 0.3 * max(density(x.c)$y, temp$density)), col = "red")
-    lines(x = c(test$conf.int[1], test$conf.int[1]), y = c(0, max(density(x.c)$y, temp$density) + 0.3 * max(density(x.c)$y, 
-        temp$density)), col = "blue", lty = 3)
-    lines(x = c(test$conf.int[2], test$conf.int[2]), y = c(0, max(density(x.c)$y, temp$density) + 0.3 * max(density(x.c)$y, 
-        temp$density)), col = "blue", lty = 3)
+    lines(x = c(0, 0), y = c(0, max(density(x.c)$y, temp$density) + 0.3 * max(density(x.c)$y, temp$density)), 
+        col = "red")
+    lines(x = c(test$conf.int[1], test$conf.int[1]), y = c(0, max(density(x.c)$y, temp$density) + 
+        0.3 * max(density(x.c)$y, temp$density)), col = "blue", lty = 3)
+    lines(x = c(test$conf.int[2], test$conf.int[2]), y = c(0, max(density(x.c)$y, temp$density) + 
+        0.3 * max(density(x.c)$y, temp$density)), col = "blue", lty = 3)
     legend("topright", legend = c("conf.int"), col = c("blue"), lty = c(3), inset = c(0.01, 0.06))
-    legend("topleft", legend = c(expression(paste(H[0], " : Bias = 0")), paste("t-value: ", round(test$statistic, 3)), 
-        paste("p-value: ", round(test$p.value, 3))), inset = c(-0.01, 0.04), bty = "n")
+    legend("topleft", legend = c(expression(paste(H[0], " : Bias = 0")), paste("t-value: ", round(test$statistic, 
+        3)), paste("p-value: ", round(test$p.value, 3))), inset = c(-0.01, 0.04), bty = "n")
     lines(density(x.c))
     par(mar = par.old)
-    plot(x, type = plot.type, col = col, main = "Tolerance View", pch = 20, xlim = xlim, ylim = c(min(x, tolerance[2], 
-        tolerance[1], target + n/2 * (tolerance[2] - tolerance[1]), target - n/2 * (tolerance[2] - tolerance[1])), max(x, 
-        tolerance[2], tolerance[1], target + n/2 * (tolerance[2] - tolerance[1]), target - n/2 * (tolerance[2] - tolerance[1]))))
+    plot(x, type = plot.type, col = col, main = "Tolerance View", pch = 20, xlim = xlim, ylim = c(min(x, 
+        tolerance[2], tolerance[1], target + n/2 * (tolerance[2] - tolerance[1]), target - n/2 * 
+            (tolerance[2] - tolerance[1])), max(x, tolerance[2], tolerance[1], target + n/2 * (tolerance[2] - 
+        tolerance[1]), target - n/2 * (tolerance[2] - tolerance[1]))))
     abline(h = c(tolerance[1], tolerance[2]), lty = 2, col = "red")
     abline(h = target)
     abline(h = c(target + n/2 * (tolerance[2] - tolerance[1]), target - n/2 * (tolerance[2] - tolerance[1])))

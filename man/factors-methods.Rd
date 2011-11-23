@@ -45,7 +45,7 @@ Get and set the \code{factors} in an object of class \code{\link{taguchiDesign}}
 \code{\link{types}}\cr
 \code{\link{response}}\cr
 \code{\link{facDesign}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS1}
+\url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
 fdo = facDesign(k = 3)  #NA in response column

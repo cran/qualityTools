@@ -21,13 +21,13 @@ fracDesign generates 2^k full- or fractional factorial designs.
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \note{
  For an example in context which shows the usage of the function \code{fracDesign()}  
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS2}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
 \seealso{
 \code{\link{facDesign}}\cr 
 \code{\link{rsmDesign}}\cr 
 \code{\link{taguchiDesign}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS2}}
+\url{http://www.r-qualitytools.org/Improve.html}}
 \examples{
 vp.full = facDesign(k = 3)                                  #returns a 2^3 full factorial design
 vp.full = blocking(vp.full, 2)                              #design in 2 blocks

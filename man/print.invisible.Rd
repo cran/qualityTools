@@ -6,8 +6,9 @@ Print Function
 \description{
 Generic S3 function for objects of class \code{\link{invisible}}.
 }
+
 \usage{
-print.invisible(x, ...)
+\method{print}{invisible}(x, \dots)
 }
 \arguments{
   \item{x}{
@@ -24,5 +25,5 @@ further arguments passed to or from other methods.
 \seealso{
 \code{\link{simProc}}\cr
 \code{\link{print.default}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/}
+\url{http://www.r-qualitytools.org}
 }

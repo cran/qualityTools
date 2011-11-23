@@ -22,12 +22,12 @@ MYERS, R.H.; MONTGOMERY, D.C.; ANDERSON-COOK, C.M.: Response Surface Methodology
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
-for an example for usage please visit \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS6}.
+for an example for usage please visit \url{http://www.r-qualitytools.org/Improve.html}.
 }
 \seealso{
 \code{\link{fracChoose}}\cr
 \code{\link{rsmDesign}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS6}
+\url{http://www.r-qualitytools.org/Improve.html}
 }
 
 

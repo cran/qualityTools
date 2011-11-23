@@ -90,14 +90,14 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \note{
 This method is still under construction! \cr
 For an example in context which shows the usage of the function \code{contourPlot3()} to an object of class \code{\link{mixDesign}}, 
-please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS9}.
+please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
 
 \seealso{
 \code{\link{wirePlot3}}  \cr
 \code{\link{mixDesign}}  \cr
 \code{\link{colorRampPalette}}  \cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS9}
+\url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
 #yarn example p.564 Response Surface Methodology

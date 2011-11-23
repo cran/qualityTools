@@ -27,7 +27,7 @@ Get and set the \code{\link{centerCube}} for the factors in an object of class \
 \code{\link{centerStar}} \cr
 \code{\link{cube}} \cr
 \code{\link{star}} \cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools}
+\url{http://www.r-qualitytools.org}
 
 }
 \examples{

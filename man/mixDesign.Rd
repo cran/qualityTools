@@ -71,7 +71,7 @@ In this version the creation of (augmented) lattice, centroid mixture designs is
 The creation of constrained component proportions is partially supported but don't rely on it. Visualization (i.e. ternary plots) for some of these designs can be done with the help of the \code{\link{wirePlot3}} and \code{\link{contourPlot3}} function. \cr
 Visualization is however BETA and the analysis of mixture designs is not as convenvient as for objects of class \code{\link{facDesign}} (i.e. needs to be done manually, at this point). Feedback is welcome...\cr\cr
 For an example in context which shows the usage of the function \code{mixDesign()} to an object of class \code{\link{facDesign}}, 
-please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS9}.
+please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
 
 \seealso{
@@ -80,7 +80,7 @@ please read the vignette for the package \code{\link{qualityTools}} at \url{http
 \code{\link{rsmDesign}}\cr
 \code{\link{wirePlot3}}\cr
 \code{\link{contourPlot3}}\cr
-\url{http://www.user.tu-berlin.de/kalicete/qualityTools/S5.html#SS9}
+\url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
 
