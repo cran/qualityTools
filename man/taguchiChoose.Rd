@@ -1,5 +1,6 @@
 \name{taguchiChoose}
 \alias{taguchiChoose}
+\keyword{Design of Experiments}
 \title{
 Taguchi Designs
 }
@@ -46,7 +47,8 @@ It is recommended to consult a textbook on taguchi methods to be fully aware of 
 \code{\link{rsmDesign}} for response surface designs\cr
 \code{\link{fracDesign}} for fractional factorial design\cr
 \code{\link{gageRRDesign}} for gage designs            \cr
-\url{http://www.r-qualitytools.org}
+\url{http://www.r-qualitytools.org}\cr
+\url{http://webapps.r-qualitytools.org/brew/taguchi/taguchi.html}
 }
 \examples{
 taguchiChoose()

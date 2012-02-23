@@ -1,6 +1,8 @@
 \name{ppPlot}
 \Rdversion{1.1}
 \alias{ppPlot}
+\keyword{Distribution Identification}
+\keyword{Six Sigma}
 \title{
 Probability Plots for various distributions
 }
@@ -9,8 +11,8 @@ Probability Plots for various distributions
 }
 \usage{
 ppPlot(x, distribution,  confbounds = TRUE, alpha, probs, main, xlab, ylab, 
-       xlim, ylim, border = "red", bounds = "black", grid = TRUE, box = TRUE, 
-       stats = TRUE, start, ...)
+       xlim, ylim, border = "red", bounds.col = "black", bounds.lty = 1, 
+       grid = TRUE, box = TRUE, stats = TRUE, start, ...)
 }
 \arguments{
   \item{x}{
@@ -66,9 +68,13 @@ vector giving the range of the y-axis.
 numerical value or single character string giving the color of interpolation line.\cr
 By default \code{border} is set to \dQuote{red}.
 }
-\item{bounds}{
+\item{bounds.col}{
 numerical value or single character string giving the color of confidence bounds lines.\cr
 By default bounds is set to \dQuote{black}.
+}
+\item{bounds.lty}{
+numerical value  giving the color of confidence bounds lines.\cr
+By default bounds is set to \sQuote{1}.
 }
   \item{grid}{
 logical value, deciding whether a grid will be added to the current plot.\cr

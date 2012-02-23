@@ -1,6 +1,8 @@
 \name{mixDesign}
 \Rdversion{1.1}
 \alias{mixDesign}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{
 Mixture Designs
 }

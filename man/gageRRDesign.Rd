@@ -1,6 +1,7 @@
 \name{gageRRDesign}
 \Rdversion{1.1}
 \alias{gageRRDesign}
+\keyword{Measurement Systems Analysis}
 \title{
 Gage R&R - Gage Repeatability and Reproducibility
 }
@@ -56,7 +57,8 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 
 \seealso{
  \code{\link{gageRR}}\cr
- \url{http://www.r-qualitytools.org/Measure.html}
+ \url{http://www.r-qualitytools.org/Measure.html}\cr
+ \url{http://webapps.r-qualitytools.org/brew/Gage/gageRR.html}
 }
 \examples{
 #create a Gage R&R Design

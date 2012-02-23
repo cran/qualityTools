@@ -1,4 +1,5 @@
 \name{MSALinearity-class}
+\keyword{Measurement Systems Analysis}
 \Rdversion{1.1}
 \docType{class}
 \alias{MSALinearity-class}

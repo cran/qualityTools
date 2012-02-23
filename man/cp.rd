@@ -1,6 +1,9 @@
 \name{cp}
 \Rdversion{1.1}
 \alias{cp}
+\keyword{Process Capability Analysis}
+\keyword{Distribution Identification}
+\keyword{Six Sigma}
 \title{
 Process Capability Indices
 }
@@ -11,10 +14,11 @@ Lower-, upper and total fraction of nonconforming entities are calculated. Box C
 }
 \usage{
 cp(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, 
-   lambda = c(-5,5), main, xlim, ylim, grouping = NULL, std.dev = NULL,  
-   conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", 
-   lineType = "solid", specCol = "red3", specWidth = 1, cex.text = 2, 
-   cex.val = 1.5, cex.col = "darkgray", plot = TRUE, ...)
+    lambda = c(-5,5), main, xlim, ylim, grouping = NULL, std.dev = NULL,  
+    conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", 
+    lineType = "solid", specCol = "red3", specWidth = 1, cex.text = 2, 
+    cex.val = 1.5, cex.col = "darkgray", plot = TRUE, bounds.lty = 3, 
+    bounds.col = "red", ...)
 }
 \arguments{
   \item{x}{
@@ -101,6 +105,12 @@ numerical value specifying the cex for the process capability ratios.
   \item{cex.col}{
 numerical value or character string specifying the color for lsl, usl and target. 
 }
+  \item{bounds.col}{
+ graphical parameter. For further details see \code{\link{ppPlot}} or \code{\link{qqPlot}}.
+}
+  \item{bounds.lty}{
+ graphical parameter. For further details see \code{\link{ppPlot}} or \code{\link{qqPlot}}.
+}
   \item{plot}{
 logical value. If set to \sQuote{FALSE} the graphical output will be omitted.\
 By default \code{plot} is set to \sQuote{TRUE}.
@@ -144,7 +154,8 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \seealso{
 \code{\link{qqPlot}}\cr
 \code{\link{ppPlot}}\cr
-\url{http://www.r-qualitytools.org/Analyze.html}
+\url{http://www.r-qualitytools.org/Analyze.html}\cr
+\url{http://webapps.r-qualitytools.org/brew/PCR/pcr.html}
 }
 \examples{
 x = rweibull(30, 2, 8) +100

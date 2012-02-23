@@ -1,5 +1,7 @@
 \name{interactionPlot}
 \alias{interactionPlot}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{interactionPlot}
 \description{Display effects of an object of class \code{facDesign} in a line plot.}
 
@@ -31,7 +33,8 @@ Parts of the original interactionPlot were integrated.
 \seealso{
 \code{\link{factors}}\cr
 \code{\link{fracDesign}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/Improve.html}\cr
+\url{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html}
 }
 \examples{
 #NA in response column and 2 replicates per factor combination

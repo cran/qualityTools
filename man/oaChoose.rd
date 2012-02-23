@@ -1,5 +1,6 @@
 \name{oaChoose}
 \alias{oaChoose}
+\keyword{Design of Experiments}
 \title{
 Taguchi Designs
 }

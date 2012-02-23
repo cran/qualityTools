@@ -1,4 +1,6 @@
 \name{wirePlot}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \Rdversion{1.1}
 \alias{wirePlot}
 
@@ -113,7 +115,8 @@ The function \code{wirePlot()} returns an invisible list with the following entr
 \code{\link{contourPlot}}\cr
 \code{\link{filled.contour}}\cr
 \code{\link{persp}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/Improve.html}\cr
+\url{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html}
 }
 \examples{
 #create a response surface design and assign random data to response y

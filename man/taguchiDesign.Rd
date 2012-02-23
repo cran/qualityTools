@@ -1,5 +1,7 @@
 \name{taguchiDesign}
 \alias{taguchiDesign}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 
 \title{
 Taguchi Designs
@@ -66,8 +68,10 @@ contributions to quality engineering. In: Quality and Reliability Engineering In
 \code{\link{facDesign}} for 2^k factorial designs\cr
 \code{\link{rsmDesign}} for response surface designs\cr
 \code{\link{fracDesign}} for fractional factorial design\cr
+\code{\link{pbDesign}} for response surface designs\cr
 \code{\link{gageRRDesign}} for gage designs           \cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/Improve.html} \cr
+\url{http://webapps.r-qualitytools.org/brew/taguchi/taguchi.html}
 }
 \examples{
 tdo = taguchiDesign("L9_3")

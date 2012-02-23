@@ -3,7 +3,7 @@
 \alias{dgamma3}
 \alias{pgamma3}
 \alias{qgamma3}
-
+\keyword{Distribution Identification}
 \title{
  The gamma Distribution (3 Parameter)
 }

@@ -1,4 +1,5 @@
 \name{as.data.frame.facDesign}
+\keyword{Design of Experiments}
 \alias{as.data.frame.facDesign}
 \title{
 Coerce to a data.frame

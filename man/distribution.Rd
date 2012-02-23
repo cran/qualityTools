@@ -1,5 +1,6 @@
 \name{distribution}
 \alias{distribution}
+\keyword{Distribution Identification}
 \title{
 Distribution
 }

@@ -1,6 +1,8 @@
 \name{qqPlot}
 \Rdversion{1.1}
 \alias{qqPlot}
+\keyword{Distribution Identification}
+\keyword{Six Sigma}
 \title{
 Quantile-Quantile Plots for various distributions
 }
@@ -9,7 +11,7 @@ Quantile-Quantile Plots for various distributions
 }      
 \usage{
 qqPlot(x, y, confbounds = TRUE, alpha, main, xlab, ylab, xlim, ylim, 
-       border = "red", bounds = "black", start, ...)
+       border = "red", bounds.col = "black", bounds.lty = 1, start, ...)
 }
 \arguments{
   \item{x}{
@@ -61,9 +63,13 @@ vector giving the range of the y-axis.
 numerical value or single character string giving the color of interpolation line.\cr
 By default \code{border} is set to \dQuote{red}.
 }
-\item{bounds}{
+\item{bounds.col}{
 numerical value or single character string giving the color of confidence bounds lines.\cr
 By default bounds is set to \dQuote{black}.
+}
+\item{bounds.lty}{
+numerical value  giving the color of confidence bounds lines.\cr
+By default bounds is set to \sQuote{1}.
 }
 \item{start}{
 A named list giving the parameters to be fitted with initial values. Must be supplied for some distribution: (see Details).

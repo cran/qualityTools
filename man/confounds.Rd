@@ -1,5 +1,7 @@
 \name{confounds}
 \alias{confounds}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{
 Confounded Effects
 }

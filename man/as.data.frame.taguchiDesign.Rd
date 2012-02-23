@@ -1,4 +1,5 @@
 \name{as.data.frame.taguchiDesign}
+\keyword{Design of Experiments}
 \alias{as.data.frame.taguchiDesign}
 \title{
 Coerce to a data.frame

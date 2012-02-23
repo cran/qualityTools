@@ -1,4 +1,6 @@
 \name{blocking}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \Rdversion{1.1}
 \alias{blocking}
 \title{

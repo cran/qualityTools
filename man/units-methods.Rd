@@ -9,8 +9,10 @@
 \alias{units<-,mixDesign-method}
 \alias{units,taguchiDesign-method}
 \alias{units<-,taguchiDesign-method}
+\alias{units,pbDesign-method}
+\alias{units<-,pbDesign-method}
 \title{Get and set methods}
-\description{Get and set the \code{units} for the factors in an object of class \code{\link{facDesign}}.}
+\description{Get and set the \code{units} for the factors in an object of class \code{\link{facDesign}}, etc.}
 
 \usage{
 \S4method{units}{facDesign}(x)
@@ -34,8 +36,14 @@ Get and set the \code{units} for the factors in an object of class \code{\link{m
 \item{\code{signature(x = "taguchiDesign")}}{
 Get and set the \code{units} for the factors in an object of class \code{\link{taguchiDesign}}.
 }
+\item{\code{signature(x = "pbDesign")}}{
+Get and set the \code{units} for the factors in an object of class \code{\link{taguchiDesign}}.
+}
 }}
-\author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
+\author{
+Thomas Roth \email{thomas.roth@tu-berlin.de}\cr
+Etienne Stockhausen \email{stocdarf@mailbox.tu-berlin.de}
+}
 \seealso{
  \code{\link{factors}}\cr
  \code{\link{lows}}\cr

@@ -1,4 +1,5 @@
-setClass("distr", representation(x = "vector", name = "character", parameters = "numeric", sd = "numeric", n = "numeric", loglik = "numeric"))
+setClass("distr", representation(x = "vector", name = "character", parameters = "numeric", sd = "numeric", 
+    n = "numeric", loglik = "numeric"))
 setClass("distrCollection", representation(distr = "list"))
 setMethod("[", signature(x = "distrCollection", i = "ANY"), function(x, i, drop = missing) {
     x@distr[i]
@@ -47,8 +48,8 @@ distribution = function(x, distribution = "weibull", start, ...) {
         stop("Package MASS needs to be installed!")
     if (is.character(distribution)) 
         distribution = tolower(distribution)
-    allDistr = c("beta", "cauchy", "chi-squared", "exponential", "f", "gamma", "geometric", "log-normal", "logistic", "negative binomial", "normal", "poisson", 
-        "t", "weibull")
+    allDistr = c("beta", "cauchy", "chi-squared", "exponential", "f", "gamma", "geometric", "log-normal", 
+        "logistic", "negative binomial", "normal", "poisson", "t", "weibull")
     if (distribution %in% allDistr) 
         distrVec = distribution
     else distrVec = c("normal")
@@ -70,7 +71,8 @@ distribution = function(x, distribution = "weibull", start, ...) {
     return(distrColl)
 }
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim, ylab, line.col, line.width, box = TRUE, ...) {
+setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim, ylab, line.col, line.width, 
+    box = TRUE, ...) {
     object = x
     xVals = object@x
     parameters = object@parameters
@@ -114,8 +116,8 @@ setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim,
     hist(xVals, freq = FALSE, xlab = xlab, ylab = ylab, xlim = xlim, ylim = ylim, main = main, ...)
     lines(xPoints, yPoints, col = line.col, lwd = line.width)
     abline(h = 0)
-    legend("topright", c(paste(c(names(parameters), "A", "p"), ": ", c(format(parameters, digits = 3), format(A, digits = 3), format(p, digits = 3))), sep = " "), 
-        inset = 0.02)
+    legend("topright", c(paste(c(names(parameters), "A", "p"), ": ", c(format(parameters, digits = 3), 
+        format(A, digits = 3), format(p, digits = 3))), sep = " "), inset = 0.02)
     if (box) {
         box()
     }
@@ -141,7 +143,8 @@ setMethod("plot", signature(x = "distr"), function(x, y, main, xlab, xlim, ylim,
     invisible(list(xlim = x, ylim = y))
 }
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-setMethod("plot", signature(x = "distrCollection"), function(x, y, xlab, ylab, xlim, ylim, line.col, line.width, ...) {
+setMethod("plot", signature(x = "distrCollection"), function(x, y, xlab, ylab, xlim, ylim, line.col, 
+    line.width, ...) {
     y = NULL
     object = x
     distrList = object@distr
@@ -155,15 +158,15 @@ setMethod("plot", signature(x = "distrCollection"), function(x, y, xlab, ylab, x
         line.col = "red"
     if (missing(line.width)) 
         line.width = 1
-    lapply(distrList, plot, xlim = xlim, ylim = ylim, line.col = line.col, line.width = line.width, ...)
+    lapply(distrList, plot, xlim = xlim, ylim = ylim, line.col = line.col, line.width = line.width, 
+        ...)
     cat(paste("Total of", numDist, "plots created"))
     cat("\n")
     cat(paste("Use par(mfrow = c(2,", numColWin, ") to see all of them!", sep = ""))
     cat("\n")
 })
-qqPlot <- function (x, y, confbounds = TRUE, alpha, main, xlab, ylab, xlim, ylim, border = "red", bounds = "black",
-    start, ...) 
-{
+qqPlot <- function(x, y, confbounds = TRUE, alpha, main, xlab, ylab, xlim, ylim, border = "red", bounds.col = "black", 
+    bounds.lty = 1, start, ...) {
     DB = FALSE
     parList = list(...)
     if (is.null(parList[["col"]])) 
@@ -186,18 +189,16 @@ qqPlot <- function (x, y, confbounds = TRUE, alpha, main, xlab, ylab, xlim, ylim
     }
     if (missing(y)) 
         y = "normal"
-	if(missing(alpha))
-		alpha = 0.05
-    if (alpha <=0 || alpha >=1) 
-            stop(paste("alpha should be between 0 and 1!"))		
+    if (missing(alpha)) 
+        alpha = 0.05
+    if (alpha <= 0 || alpha >= 1) 
+        stop(paste("alpha should be between 0 and 1!"))
     if (missing(main)) 
-        main = paste("Q-Q Plot for", deparse(substitute(y)), 
-            "distribution")
+        main = paste("Q-Q Plot for", deparse(substitute(y)), "distribution")
     if (missing(xlab)) 
         xlab = paste("Quantiles for", deparse(substitute(x)))
     if (missing(ylab)) 
-        ylab = paste("Quantiles from", deparse(substitute(y)), 
-            "distribution")
+        ylab = paste("Quantiles from", deparse(substitute(y)), "distribution")
     if (is.numeric(y)) {
         cat("\ncalling (original) qqplot from namespace stats!\n")
         return(stats::qqplot(x, y, ...))
@@ -206,24 +207,18 @@ qqPlot <- function (x, y, confbounds = TRUE, alpha, main, xlab, ylab, xlim, ylim
     theoretical.quantiles = NULL
     xs = sort(x)
     distribution = tolower(y)
-    distWhichNeedParameters = c("weibull", "logistic", "gamma", 
-        "exponential", "f", "geometric", "chi-squared", "negative binomial", 
-        "poisson")
-    
-	
-	# new
-	threeParameterDistr = c("weibull3", "lognormal3", "gamma3")                
-	threeParameter = distribution %in% threeParameterDistr
-	if(threeParameter) distribution = substr(distribution, 1, nchar(distribution)-1)
-	# end new
-
-	if (is.character(distribution)) {
+    distWhichNeedParameters = c("weibull", "logistic", "gamma", "exponential", "f", "geometric", "chi-squared", 
+        "negative binomial", "poisson")
+    threeParameterDistr = c("weibull3", "lognormal3", "gamma3")
+    threeParameter = distribution %in% threeParameterDistr
+    if (threeParameter) 
+        distribution = substr(distribution, 1, nchar(distribution) - 1)
+    if (is.character(distribution)) {
         qFun = .charToDistFunc(distribution, type = "q")
         if (is.null(qFun)) 
             stop(paste(deparse(substitute(y)), "distribution could not be found!"))
     }
     theoretical.probs = ppoints(xs)
-	
     xq = NULL
     yq = quantile(xs, prob = c(0.25, 0.75))
     dots <- list(...)
@@ -239,43 +234,31 @@ qqPlot <- function (x, y, confbounds = TRUE, alpha, main, xlab, ylab, xlim, ylim
             print(fitList)
             print("Ende")
         }
-		# new
-		if(!threeParameter){
-        fittedDistr = do.call(fitdistr, fitList)
-        parameter = fittedDistr$estimate
-
-		#save the distribution parameter#
-		thethas = fittedDistr$estimate
-		# save the cariance-covariance matrix
-		varmatrix = fittedDistr$vcov
-		# end of my code
-		
-		# new code for three parameter
-		} else {
-			parameter = do.call(paste(".",distribution, "3", sep = ""), list(xs) )    ####
-			threshold = parameter$threshold
-		}
-		
+        if (!threeParameter) {
+            fittedDistr = do.call(fitdistr, fitList)
+            parameter = fittedDistr$estimate
+            thethas = fittedDistr$estimate
+            varmatrix = fittedDistr$vcov
+        }
+        else {
+            parameter = do.call(paste(".", distribution, "3", sep = ""), list(xs))
+            threshold = parameter$threshold
+        }
         parameter = .lfkp(as.list(parameter), formals(qFun))
         params = .lfkp(parList, formals(qFun))
         parameter = .lfrm(as.list(parameter), params)
         parameter = c(parameter, params)
-        theoretical.quantiles = do.call(qFun, c(list(c(theoretical.probs)), 
-            parameter))
-		
-		# new
-		if(!threeParameter){		
-		# array containing names of the distributions, for which conf intervals can be computed
-		confIntCapable = c("exponential", "log-normal", "logistic", "normal", "weibull", "gamma", "beta", "cauchy")
-		getConfIntFun = .charToDistFunc(distribution, type = ".confint")
-		# if possible, compute the conf intervals
-		if(confbounds == TRUE){
-			if(distribution %in% confIntCapable){
-				confInt = getConfIntFun(xs, thethas, varmatrix, alpha)
-			}
-		}# end of my code
-		}
-		
+        theoretical.quantiles = do.call(qFun, c(list(c(theoretical.probs)), parameter))
+        if (!threeParameter) {
+            confIntCapable = c("exponential", "log-normal", "logistic", "normal", "weibull", "gamma", 
+                "beta", "cauchy")
+            getConfIntFun = .charToDistFunc(distribution, type = ".confint")
+            if (confbounds == TRUE) {
+                if (distribution %in% confIntCapable) {
+                  confInt = getConfIntFun(xs, thethas, varmatrix, alpha)
+                }
+            }
+        }
         xq <- do.call(qFun, c(list(c(0.25, 0.75)), parameter))
         if (DB) {
             print(paste("parameter: ", parameter))
@@ -289,15 +272,14 @@ qqPlot <- function (x, y, confbounds = TRUE, alpha, main, xlab, ylab, xlim, ylim
         params$p = c(0.25, 0.75)
         xq = do.call(qFun, params)
     }
-
-    params = .lfkp(parList, c(formals(plot.default), par()))	
-	
-	if(!threeParameter){
-		params$y = theoretical.quantiles
-	}  else {
-		params$y = theoretical.quantiles+threshold
-	}
-	params$x = xs
+    params = .lfkp(parList, c(formals(plot.default), par()))
+    if (!threeParameter) {
+        params$y = theoretical.quantiles
+    }
+    else {
+        params$y = theoretical.quantiles + threshold
+    }
+    params$x = xs
     params$xlab = xlab
     params$ylab = ylab
     params$main = main
@@ -317,33 +299,28 @@ qqPlot <- function (x, y, confbounds = TRUE, alpha, main, xlab, ylab, xlim, ylim
     params$b = 1
     params$col = border
     do.call(abline, params)
-	
-	if(!threeParameter){
-	# plot the confInt if available
-	if(confbounds == TRUE){
-	 if(distribution %in% confIntCapable){
-		params = .lfkp(parList, c(formals(lines), par()))	
-		params$x = confInt[[3]]
-		params$y = confInt[[1]]
-		params$col = bounds
-		do.call(lines, params)
-		
-		params$x = confInt[[3]]
-		params$y = confInt[[2]]
-		params$col = bounds
-		do.call(lines, params)
-		}
-	} #end of my function
-	}
-	
-    invisible(list(x = theoretical.quantiles, y = xs, int = params$a, 
-        slope = params$b))
+    if (!threeParameter) {
+        if (confbounds == TRUE) {
+            if (distribution %in% confIntCapable) {
+                params = .lfkp(parList, c(formals(lines), par()))
+                params$x = confInt[[3]]
+                params$y = confInt[[1]]
+                params$col = bounds.col
+                params$lty = bounds.lty
+                do.call(lines, params)
+                params$x = confInt[[3]]
+                params$y = confInt[[2]]
+                params$col = bounds.col
+                params$lty = bounds.lty
+                do.call(lines, params)
+            }
+        }
+    }
+    invisible(list(x = theoretical.quantiles, y = xs, int = params$a, slope = params$b))
 }
-
-ppPlot <- function (x, distribution, confbounds = TRUE, alpha, probs, main, xlab, ylab, xlim, ylim, 
-    border = "red", bounds = "black", grid = TRUE, box = TRUE, stats = TRUE, start, 
-    ...) 
-{
+ppPlot <- function(x, distribution, confbounds = TRUE, alpha, probs, main, xlab, ylab, xlim, ylim, 
+    border = "red", bounds.col = "black", bounds.lty = 1, grid = TRUE, box = TRUE, stats = TRUE, start, 
+    ...) {
     DB = FALSE
     conf.level = 0.95
     conf.lines = TRUE
@@ -366,10 +343,10 @@ ppPlot <- function (x, distribution, confbounds = TRUE, alpha, probs, main, xlab
     xq = NULL
     yq = NULL
     x1 = NULL
-	if(missing(alpha))
-		alpha = 0.05
-    if (alpha <=0 || alpha >=1) 
-            stop(paste("alpha should be between 0 and 1!"))	
+    if (missing(alpha)) 
+        alpha = 0.05
+    if (alpha <= 0 || alpha >= 1) 
+        stop(paste("alpha should be between 0 and 1!"))
     if (missing(probs)) 
         probs = ppoints(11)
     else if (min(probs) <= 0 || max(probs) >= 1) 
@@ -378,16 +355,14 @@ ppPlot <- function (x, distribution, confbounds = TRUE, alpha, probs, main, xlab
     if (is.numeric(x)) {
         x1 <- sort(na.omit(x))
         if (missing(xlim)) 
-            xlim = c(min(x1) - 0.1 * diff(range(x1)), max(x1) + 
-                0.1 * diff(range(x1)))
+            xlim = c(min(x1) - 0.1 * diff(range(x1)), max(x1) + 0.1 * diff(range(x1)))
     }
     if (missing(distribution)) 
         distribution = "normal"
     if (missing(ylim)) 
         ylim = NULL
     if (missing(main)) 
-        main = paste("Probability Plot for", deparse(substitute(distribution)), 
-            "distribution")
+        main = paste("Probability Plot for", deparse(substitute(distribution)), "distribution")
     if (missing(xlab)) 
         xlab = deparse(substitute(x))
     if (missing(ylab)) 
@@ -396,20 +371,16 @@ ppPlot <- function (x, distribution, confbounds = TRUE, alpha, probs, main, xlab
         distList = x@distr
         for (i in 1:length(distList)) {
             d = distList[[i]]
-            do.call(ppPlot, c(list(x = d@x, distribution = d@name), 
-                parList))
+            do.call(ppPlot, c(list(x = d@x, distribution = d@name), parList))
         }
         invisible()
     }
-    distWhichNeedParameters = c("weibull", "gamma", "logistic", 
-        "exponential", "f", "geometric", "chi-squared", "negative binomial", 
-        "poisson")
-	# new
-	threeParameterDistr = c("weibull3", "lognormal3", "gamma3")
-	threeParameter = distribution %in% threeParameterDistr
-	if(threeParameter) distribution = substr(distribution, 1, nchar(distribution)-1)
-	# end new
-	
+    distWhichNeedParameters = c("weibull", "gamma", "logistic", "exponential", "f", "geometric", "chi-squared", 
+        "negative binomial", "poisson")
+    threeParameterDistr = c("weibull3", "lognormal3", "gamma3")
+    threeParameter = distribution %in% threeParameterDistr
+    if (threeParameter) 
+        distribution = substr(distribution, 1, nchar(distribution) - 1)
     if (is.character(distribution)) {
         qFun = .charToDistFunc(distribution, type = "q")
         pFun = .charToDistFunc(distribution, type = "p")
@@ -426,19 +397,17 @@ ppPlot <- function (x, distribution, confbounds = TRUE, alpha, probs, main, xlab
         fitList$densfun = distribution
         if (!missing(start)) 
             fitList$start = start
-		
-		if(!threeParameter){
-        fittedDistr = do.call(fitdistr, fitList)
-        parameter = fittedDistr$estimate
-		#save the distribution parameter#
-		thethas = fittedDistr$estimate
-		# save the cariance-covariance matrix
-		varmatrix = fittedDistr$vcov		
-		} else {
-			parameter = do.call(paste(".",distribution, "3", sep = ""), list(x1) )    ####
-			print(parameter[3])
-			threshold = parameter$threshold
-		}
+        if (!threeParameter) {
+            fittedDistr = do.call(fitdistr, fitList)
+            parameter = fittedDistr$estimate
+            thethas = fittedDistr$estimate
+            varmatrix = fittedDistr$vcov
+        }
+        else {
+            parameter = do.call(paste(".", distribution, "3", sep = ""), list(x1))
+            print(parameter[3])
+            threshold = parameter$threshold
+        }
         parameter = .lfkp(as.list(parameter), formals(qFun))
         params = .lfkp(parList, formals(qFun))
         parameter = .lfrm(as.list(parameter), params)
@@ -449,23 +418,17 @@ ppPlot <- function (x, distribution, confbounds = TRUE, alpha, probs, main, xlab
             print(as.list(parameter))
             print(list(probs))
         }
-		
-				
-		# new
-		if(!threeParameter){		
-		# array containing names of the distributions, for which conf intervals can be computed
-		confIntCapable = c("exponential", "log-normal", "logistic", "normal", "weibull", "gamma", "beta", "cauchy")
-		getConfIntFun = .charToDistFunc(distribution, type = ".confint")
-		# if possible, compute the conf intervals
-		if(confbounds == TRUE){
-			if(distribution %in% confIntCapable){
-				confInt = getConfIntFun(x1, thethas, varmatrix, alpha)
-			}
-		}# end of my code
-		}
-		
-
-		y = do.call(qFun, c(list(ppoints(x1)), as.list(parameter)))
+        if (!threeParameter) {
+            confIntCapable = c("exponential", "log-normal", "logistic", "normal", "weibull", "gamma", 
+                "beta", "cauchy")
+            getConfIntFun = .charToDistFunc(distribution, type = ".confint")
+            if (confbounds == TRUE) {
+                if (distribution %in% confIntCapable) {
+                  confInt = getConfIntFun(x1, thethas, varmatrix, alpha)
+                }
+            }
+        }
+        y = do.call(qFun, c(list(ppoints(x1)), as.list(parameter)))
         yc = do.call(qFun, c(list(ppoints(x1)), as.list(parameter)))
         cv = do.call(dFun, c(list(yc), as.list(parameter)))
         print(cv)
@@ -488,9 +451,8 @@ ppPlot <- function (x, distribution, confbounds = TRUE, alpha, probs, main, xlab
         xq = quantile(x1, probs = c(0.25, 0.75))
     }
     params = .lfkp(parList, c(formals(plot.default), par()))
-
-	params$x = x1
-	params$y = y
+    params$x = x1
+    params$y = y
     params$xlab = xlab
     params$ylab = ylab
     params$main = main
@@ -501,8 +463,7 @@ ppPlot <- function (x, distribution, confbounds = TRUE, alpha, probs, main, xlab
         params$col = params$col[1]
     do.call(plot, params)
     pParams = params
-    params = .lfkp(parList, list(cex.main = 1, cex.axis = 1, 
-        cex.lab = 1))
+    params = .lfkp(parList, list(cex.main = 1, cex.axis = 1, cex.lab = 1))
     params$side = 1
     axisAtX = do.call(axis, params)
     params$side = 2
@@ -511,8 +472,7 @@ ppPlot <- function (x, distribution, confbounds = TRUE, alpha, probs, main, xlab
     params$las = 2
     do.call(axis, params)
     if (grid) {
-        params = .lfkp(parList, c(formals(abline), list(lwd = 1, 
-            col = 1)))
+        params = .lfkp(parList, c(formals(abline), list(lwd = 1, col = 1)))
         params$h = axisAtY
         params$v = axisAtX
         if (!(is.null(params$col[3]) || is.na(params$col[3]))) 
@@ -526,33 +486,33 @@ ppPlot <- function (x, distribution, confbounds = TRUE, alpha, probs, main, xlab
     pParams = .lfkp(pParams, list(x = 1, y = 1, col = 1, cex = 1))
     do.call(points, pParams)
     params = .lfkp(parList, c(formals(abline), par()))
-    if(!threeParameter){
-		params$a = 0
-	}  else {
-		params$a = -threshold
-	}
+    if (!threeParameter) {
+        params$a = 0
+    }
+    else {
+        params$a = -threshold
+    }
     params$b = 1
     params$col = border
     do.call(abline, params)
-	
-	if(!threeParameter){
-	# plot the confInt if available
-	if(confbounds == TRUE){
-	 if(distribution %in% confIntCapable){
-		params = .lfkp(parList, c(formals(lines), par()))	
-		params$x = confInt[[3]]
-		params$y = confInt[[2]]
-		params$col = bounds
-		do.call(lines, params)
-		
-		params$x = confInt[[3]]
-		params$y = confInt[[1]]
-		params$col = bounds
-		do.call(lines, params)		
-		}
-	} #end of my function
-	}
+    if (!threeParameter) {
+        if (confbounds == TRUE) {
+            if (distribution %in% confIntCapable) {
+                params = .lfkp(parList, c(formals(lines), par()))
+                params$x = confInt[[3]]
+                params$y = confInt[[2]]
+                params$col = bounds.col
+                params$lty = bounds.lty
+                do.call(lines, params)
+                params$x = confInt[[3]]
+                params$y = confInt[[1]]
+                params$col = bounds.col
+                params$lty = bounds.lty
+                do.call(lines, params)
+            }
+        }
+    }
     if (box) 
         box()
     invisible(list(x = x, y = y, int = params$a, slope = params$b))
-}
+} 

@@ -1,6 +1,8 @@
 \name{contourPlot}
 \Rdversion{1.1}
 \alias{contourPlot}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{
 Contour Plot
 }
@@ -87,8 +89,9 @@ This function can be used to display the desirability of each response by specif
 \code{\link{wirePlot}} \cr
 \code{\link{filled.contour}} \cr
 \code{\link{persp}} \cr
-\code{link{colorRampPalette}} \cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\code{\link{colorRampPalette}} \cr
+\url{http://www.r-qualitytools.org/Improve.html}\cr
+\url{http://webapps.r-qualitytools.org/brew/facDesign/rsmDesign.html}
 }
 \examples{
 #create a response surface design and assign random data to response y

@@ -1,6 +1,8 @@
 \name{optimum}
 \Rdversion{1.1}
 \alias{optimum}
+\keyword{Multiple Response Optimization}
+\keyword{Six Sigma}
 \title{
 Optimal factor settings 
 }

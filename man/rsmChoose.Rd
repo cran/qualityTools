@@ -1,4 +1,5 @@
 \name{rsmChoose}
+\keyword{Design of Experiments}
 \Rdversion{1.1}
 \alias{rsmChoose}
 \title{Choosing a response surface design from a table}
@@ -16,7 +17,15 @@ Useful Central Composite Designs with orthogonal blocking and near rotatability
 object of class \code{\link{facDesign}}.
 }
 \references{
-MYERS, R.H.; MONTGOMERY, D.C.; ANDERSON-COOK, C.M.: Response Surface Methodology p.329, table 7.5. New Jersey: Wiley,2009.
+\itemize{
+ \item BOX, George. E. P. and HUNTER, J.S.: "Multifactor Experimental Designs for Exploring Response Surfaces",\cr
+       The Annals of Mathematical Statistics 28, p.195-233, 1957 \cr
+  \item MYERS, R.H.; MONTGOMERY, D.C.; ANDERSON-COOK, C.M.:\cr
+       Response Surface Methodology (2009) p.329, table 7.5. New Jersey: Wiley.\cr
+}
+
+
+ 
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
@@ -27,7 +36,8 @@ for an example for usage please visit \url{http://www.r-qualitytools.org/Improve
 \seealso{
 \code{\link{fracChoose}}\cr
 \code{\link{rsmDesign}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/Improve.html}\cr
+\url{http://webapps.r-qualitytools.org/brew/facDesign/rsmDesign.html}
 }
 
 

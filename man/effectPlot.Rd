@@ -1,5 +1,7 @@
 \name{effectPlot}
 \alias{effectPlot}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{
 Main Effect Plots
 }
@@ -20,7 +22,7 @@ needs to be an object of class \code{\link{facDesign}} or \code{\link{taguchiDes
 for which factor is the effectPlot to be created.
 }
   \item{fun}{
-a function for the construction of the effectPlot such as \code{\link{mean}}, \code{link{median}},etc.\cr
+a function for the construction of the effectPlot such as \code{\link{mean}}, \code{\link{median}},etc.\cr
 By default \code{fun} is set to \code{\link{mean}}. 
 }
   \item{response}{
@@ -78,10 +80,12 @@ effectPlot uses an altered version of the base function \code{\link{interaction.
 \seealso{
 \code{\link{interactionPlot}}\cr
 \code{\link{paretoPlot}}\cr
+\code{\link{snPlot}}\cr
 \code{\link{facDesign}}\cr
 \code{\link{response}}\cr
 \code{\link{normalPlot}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/Improve.html}\cr
+\url{http://webapps.r-qualitytools.org/brew/Gage/gageRR.html}
 }
 \examples{
 #effectPlot for a 2^k factorial design

@@ -1,5 +1,7 @@
 \name{normalPlot}
 \alias{normalPlot}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{
 Normal plot
 }
@@ -8,8 +10,8 @@ function to generate a normal plot of the factor effects for an object of class 
 }
 \usage{
 normalPlot(fdo, threeWay = FALSE, na.last = NA, alpha = 0.05, response = NULL,
-           sig.col = c("red1", "red2", "red3"), main, ylim, xlim, xlab, ylab,
-           pch, col, border = "red", ...)
+           sig.col = c("red1", "red2", "red3"), sig.pch = c(1, 2, 3), main,
+           ylim, xlim, xlab, ylab, pch, col, border = "red", ...)
 }
 \arguments{
   \item{fdo}{
@@ -31,6 +33,9 @@ character with length of \sQuote{1}. It needs to be the same character as the na
 By default \code{response} is set to \sQuote{NULL}.}
   \item{sig.col}{
 vector - colors for marking significant interactions. By default \code{sig.col} is set to \sQuote{c("red1", "red2", "red3")}. 
+}
+\item{sig.pch}{
+vector - point characters for marking significant interactions. By default \code{sig.pch} is set to \sQuote{c(1, 2, 3)}. 
 }
   \item{main}{
 graphical parameter. A main title for the plot, see also \code{\link{title}}.
@@ -81,7 +86,8 @@ NULL}
 \seealso{
 \code{\link{facDesign}}\cr
 \code{\link{paretoPlot}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/Improve.html}  \cr
+\url{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html}
 }
 \examples{
 #factorial design

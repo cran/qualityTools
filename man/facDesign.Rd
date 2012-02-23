@@ -1,5 +1,7 @@
 \name{facDesign}
 \alias{facDesign}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{facDesign}
 \description{Generates a 2^k full factorial design.}
 
@@ -26,8 +28,11 @@ facDesign(k = 3, p = 0, replicates = 1, blocks = 1, centerCube = 0)
 \code{\link{fracDesign}}\cr
 \code{\link{fracChoose}}\cr 
 \code{\link{rsmDesign}}\cr
+\code{\link{pbDesign}}\cr
 \code{\link{taguchiDesign}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}}
+\url{http://www.r-qualitytools.org/Improve.html}\cr
+\url{http://webapps.r-qualitytools.org/brew/facDesign/facDesign.html}
+}
 \examples{
 #returns a 2^3 full factorial design
 vp.full = facDesign(k = 3)        

@@ -1,6 +1,8 @@
 \name{desirability}
 \Rdversion{1.1}
 \alias{desirability}
+\keyword{Multiple Response Optimization}
+\keyword{Six Sigma}
 \title{
 Desirability Function
 }

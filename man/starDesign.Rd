@@ -1,5 +1,7 @@
 \name{starDesign}
 \alias{starDesign}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{
 Axial Design
 }

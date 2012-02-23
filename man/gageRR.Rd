@@ -8,7 +8,7 @@ Gage R&R - Gage Repeatability and Reproducibility
 Performs a Gage R&R analysis for an object of class \code{\link{gageRR}}.
 }
 \usage{                             
-gageRR(gdo, method = "crossed", sigma = 5.15, alpha = 0.25, DM = NULL,
+gageRR(gdo, method = "crossed", sigma = 6, alpha = 0.25, DM = NULL,
        HM = NULL, tolerance = NULL, dig = 3, ...)
 }
 
@@ -27,7 +27,7 @@ Analysis using Gage Repeatability and Reproducibility or \dQuote{nested} which i
 \item{sigma}{ numeric value giving the number of sigmas.\cr
  For sigma=6 this relates to 99.73 percent representing the full spread of a normal distribution function (i.e. pnorm(3) - pnorm(-3)).\cr
  Another popular setting sigma=5.15 relates to 99 percent (i.e. \code{pnorm(2.575) - pnorm(-2.575)}).
- By default \code{sigma} is set to \sQuote{5.15}.
+ By default \code{sigma} is set to \sQuote{6}.
 }
   \item{alpha}{
 alpha value for discarding the interaction Operator:Part and fitting a non-interaction model.
@@ -63,6 +63,8 @@ Thomas Roth \email{thomas.roth@tu-berlin.de
  please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Measure.html}.
 }
 \seealso{
+\code{\link{gageLin}} \cr
+\code{\link{cg}} \cr
 \code{\link{gageRRDesign}}\cr 
 \code{\link{response}}       \cr
 \code{\link{cg}}                \cr

@@ -1,5 +1,7 @@
 \name{wirePlot3}
 \alias{wirePlot3}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{
 function to create a ternary plot (3D wire plot) for an object of class mixDesign
 }
@@ -88,7 +90,8 @@ please read the vignette for the package \code{\link{qualityTools}} at \url{http
 
 \seealso{
 \code{\link{contourPlot3}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/Improve.html}       \cr
+\url{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html}
 }
 \examples{
 #yarn elongation example p.564 Response Surface Methodology

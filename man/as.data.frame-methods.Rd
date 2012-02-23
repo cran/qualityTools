@@ -6,6 +6,7 @@
 \alias{as.data.frame,facDesign-method}
 \alias{as.data.frame,mixDesign-method}
 \alias{as.data.frame,taguchiDesign-method}
+\alias{as.data.frame,pbDesign-method}
 \alias{as.data.frame,steepAscent-method}
 \alias{as.data.frame,gageRR-method}
 \alias{as.data.frame,MSALinearity-method}
@@ -35,6 +36,10 @@ object of class \code{\link{mixDesign}}
 }
 
 \item{\code{signature(x = "taguchiDesign")}}{
+object of class \code{\link{taguchiDesign}}
+}
+
+\item{\code{signature(x = "pbDesign")}}{
 object of class \code{\link{taguchiDesign}}
 }
 

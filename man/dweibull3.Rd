@@ -3,7 +3,7 @@
 \alias{dweibull3}
 \alias{pweibull3}
 \alias{qweibull3}
-
+\keyword{Distribution Identification}
 \title{
  The Weibull Distribution (3 Parameter)
 }
