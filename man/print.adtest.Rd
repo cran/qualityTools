@@ -1,6 +1,5 @@
 \name{print.adtest}
 \alias{print.adtest}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Test Statistics
 }
@@ -12,7 +11,6 @@ Generic S3 function for objects of class \code{adtest}.
 \method{print}{adtest}(x, digits = 4, quote = TRUE, prefix = "", \dots)
 }
 
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 needs to be an object of class \code{adtest}.

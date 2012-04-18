@@ -33,7 +33,9 @@ Get and set the \code{tolerance} for an object of class \code{\link{gageRR}}.
 }
 \examples{
 x = gageRRDesign(Operators = 3, Parts = 10, Measurements = 3)
-tolerance(x)                                                  #default 6tolerance
-tolerance(x) = 100                                            #100 units
+#default 6tolerance
+tolerance(x)   
+#100 units                                               
+tolerance(x) = 100                                            
 tolerance(x)
 }

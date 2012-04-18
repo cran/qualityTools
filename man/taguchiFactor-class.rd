@@ -9,7 +9,6 @@ taguchiFactor Class
 }
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("taguchiFactor", ...)}.
-%%  ~~ describe objects here ~~
 }
 
 

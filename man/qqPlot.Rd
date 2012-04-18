@@ -1,7 +1,6 @@
 \name{qqPlot}
 \Rdversion{1.1}
 \alias{qqPlot}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Quantile-Quantile Plots for various distributions
 }
@@ -9,9 +8,9 @@ Quantile-Quantile Plots for various distributions
 \code{qqPlot} creates a QQ plot of the values in x including a line which passes through the first and third quartiles.
 }      
 \usage{
-qqPlot(x, y, main, xlab, ylab, xlim, ylim, border = "red", start, ...)
+qqPlot(x, y, confbounds = TRUE, alpha, main, xlab, ylab, xlim, ylim, 
+       border = "red", bounds = "black", start, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 the sample for qqPlot
@@ -37,6 +36,12 @@ character string specifying the distribution of x. The function \code{qqPlot} wi
 }
 By default \code{distribution} is set to \dQuote{normal}.
 }
+  \item{confbounds}{
+boolean value: \sQuote{TRUE} if confidence bounds should be drawn (default value).
+}
+  \item{alpha}{
+significance level for the confidence bounds, set on \sQuote{0.05} by default.
+}
   \item{main}{
 an overall title for the plot: see \code{\link{title}}.
 }
@@ -56,6 +61,10 @@ vector giving the range of the y-axis.
 numerical value or single character string giving the color of interpolation line.\cr
 By default \code{border} is set to \dQuote{red}.
 }
+\item{bounds}{
+numerical value or single character string giving the color of confidence bounds lines.\cr
+By default bounds is set to \dQuote{black}.
+}
 \item{start}{
 A named list giving the parameters to be fitted with initial values. Must be supplied for some distribution: (see Details).
 }
@@ -64,7 +73,10 @@ further graphical parameters: (see \code{\link{par}}).
 }
 }
 \details{
-Distribution fitting is deligated to function fitdistr of the R-package MASS.
+Distribution fitting is deligated to function \code{\link{fitdistr}} of the R-package MASS.\cr
+For computation of the confidence bounds the variance of the quantiles is estimated using the delta method,\cr
+which implies estimation of observed Fisher Information matrix as well as the gradient of the CDF of the fitted distribution.\cr
+Where possible, those values are replaced by their normal approximation. 
 }
 \value{
 a list containing the x and y quantiles
@@ -79,6 +91,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
  please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Analyze.html}.
 }
 \seealso{
+\code{\link{ppPlot}}
 \code{\link{fitdistr}} in R-package MASS\cr
 \url{http://www.r-qualitytools.org/Analyze.html}
 }

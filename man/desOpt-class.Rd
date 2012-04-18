@@ -9,7 +9,6 @@ desOpt Class
 }
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("desOpt", ...)}.
-%%  ~~ describe objects here ~~ 
 }
 \section{Slots}{
   \describe{
@@ -25,8 +24,6 @@ Objects can be created by calls of the form \code{new("desOpt", ...)}.
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \examples{
 showClass("desOpt")

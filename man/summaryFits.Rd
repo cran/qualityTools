@@ -1,6 +1,5 @@
 \name{summaryFits}
 \alias{summaryFits}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Fit Summary 
 }
@@ -10,7 +9,6 @@ Function to give an overview of fitted linear models for objects of class \code{
 \usage{
 summaryFits(fdo, lmFit = TRUE, curvTest = TRUE, origFit = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{fdo}{
 needs to be an object of class \code{\link{facDesign}}.

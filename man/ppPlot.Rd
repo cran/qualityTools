@@ -1,7 +1,6 @@
 \name{ppPlot}
 \Rdversion{1.1}
 \alias{ppPlot}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Probability Plots for various distributions
 }
@@ -9,9 +8,10 @@ Probability Plots for various distributions
 \code{ppPlot} creates a Probability plot of the values in x including a line. 
 }
 \usage{
-ppPlot(x, distribution, probs, main, xlab, ylab, xlim, ylim, border = "red", grid = TRUE, box = TRUE, stats = TRUE, start, ...)
+ppPlot(x, distribution,  confbounds = TRUE, alpha, probs, main, xlab, ylab, 
+       xlim, ylim, border = "red", bounds = "black", grid = TRUE, box = TRUE, 
+       stats = TRUE, start, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 vector containing the sample for \code{ppPlot}.
@@ -37,6 +37,12 @@ character string specifying the distribution of x. The function \code{ppPlot} wi
 }
 By default \code{distribution} is set to \dQuote{normal}.
 }
+  \item{confbounds}{
+boolean value: \sQuote{TRUE} if confidence bounds should be drawn (default value).
+}
+  \item{alpha}{
+significance level for the confidence bounds, set on \sQuote{0.05} by default.
+}
   \item{probs}{
 vector containing the percentages for the y axis. All the values need to be between \sQuote{0} and \sQuote{1}\cr
 If \code{probs} is missing it will be calculated internally.
@@ -60,6 +66,10 @@ vector giving the range of the y-axis.
 numerical value or single character string giving the color of interpolation line.\cr
 By default \code{border} is set to \dQuote{red}.
 }
+\item{bounds}{
+numerical value or single character string giving the color of confidence bounds lines.\cr
+By default bounds is set to \dQuote{black}.
+}
   \item{grid}{
 logical value, deciding whether a grid will be added to the current plot.\cr
 By default \code{grid} is set to \sQuote{TRUE}.
@@ -80,7 +90,10 @@ further graphical parameters (see \code{\link{par}}).
 }
 }
 \details{
-Distribution fitting is deligated to function \code{\link{fitdistr}} of the R-package MASS.
+Distribution fitting is deligated to function \code{\link{fitdistr}} of the R-package MASS.\cr
+For computation of the confidence bounds the variance of the quantiles is estimated using the delta method,\cr
+which implies estimation of observed Fisher Information matrix as well as the gradient of the CDF of the fitted distribution.\cr
+Where possible, those values are replaced by their normal approximation. 
 }
 \value{
 \code{ppPlot} returns a list containing the following: \cr
@@ -99,6 +112,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 
 \seealso{
+\code{\link{qqPlot}}
 \code{\link{fitdistr}} in R-package MASS\cr
 \url{http://www.r-qualitytools.org/Analyze.html}
 }

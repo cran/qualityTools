@@ -1,7 +1,6 @@
 \name{gageRR}
 \Rdversion{1.1}
 \alias{gageRR}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Gage R&R - Gage Repeatability and Reproducibility
 }
@@ -9,8 +8,8 @@ Gage R&R - Gage Repeatability and Reproducibility
 Performs a Gage R&R analysis for an object of class \code{\link{gageRR}}.
 }
 \usage{                             
-gageRR(gdo, method = "crossed", sigma = 5.15, alpha = 0.25, DM = NULL, HM = NULL,
- tolerance = NULL, dig = 3, ...)
+gageRR(gdo, method = "crossed", sigma = 5.15, alpha = 0.25, DM = NULL,
+       HM = NULL, tolerance = NULL, dig = 3, ...)
 }
 
 \arguments{
@@ -75,9 +74,10 @@ Thomas Roth \email{thomas.roth@tu-berlin.de
 gdo = gageRRDesign(3,10, 2, randomize = FALSE)
 
 #set the response i.e. Measurements
-y = c(23,22,22,22,22,25,23,22,23,22,20,22,22,22,24,25,27,28,23,24,23,24,24,22,22,22,24,23,22,24,20,20,25,24,22,24,21,20,21,22,21,22,21,21,24,27,25,27,23,22,25,23,23,22,22,23,25,21,24,23)
+y = c(23,22,22,22,22,25,23,22,23,22,20,22,22,22,24,25,27,28,23,24,23,24,24,22,
+      22,22,24,23,22,24,20,20,25,24,22,24,21,20,21,22,21,22,21,21,24,27,25,27,
+      23,22,25,23,23,22,22,23,25,21,24,23)
 response(gdo) = y
-
 
 #perform a Gage R&R
 gdo = gageRR(gdo, tolerance = 5)
@@ -89,7 +89,8 @@ summary(gdo)
 plot(gdo)
 
 
-##create a crossed Gage R&R Design - Vardeman, VanValkenburg 1999 - Two-Way Random-Effects Analyses and Gauge
+##create a crossed Gage R&R Design - 
+##Vardeman, VanValkenburg 1999 - Two-Way Random-Effects Analyses and Gauge
 #gdo = gageRRDesign(Operators = 5, Parts = 2, Measurements = 3, randomize = FALSE)
 #
 ##Measurements

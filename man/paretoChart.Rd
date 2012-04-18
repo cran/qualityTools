@@ -1,6 +1,5 @@
 \name{paretoChart}
 \alias{paretoChart}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Pareto Chart
 }
@@ -8,9 +7,9 @@ Pareto Chart
 function to create a pareto chart.
 }
 \usage{
-paretoChart(x, weight, showTable = TRUE, las = 0, main, col, border, xlab, ylab = "Frequency", percentVec, ...)
+paretoChart(x, weight, showTable = TRUE, las = 0, main, col, border, xlab, 
+            ylab = "Frequency", percentVec, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 vector of qualitative values.
@@ -57,7 +56,10 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
  please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Define.html}.
 }
 \examples{
-defects = LETTERS[runif(80, 1, 10)]#artifical defects dataset
-paretoChart(defects) #paretoChart of the defects
+
+#artifical defects dataset
+defects = LETTERS[runif(80, 1, 10)]
+#paretoChart of the defects
+paretoChart(defects) 
 }
 

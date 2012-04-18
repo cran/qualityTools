@@ -6,7 +6,6 @@
 \title{
 Statistical Methods for Quality Sciences
 }
-%\Description
 \description{
 This Package contains methods associated with the (\strong{D})\bold{efine} (\strong{M})\bold{easure} (\strong{A})\bold{nalyze} (\strong{I})\bold{mprove} and (\strong{C})\bold{
 ontrol} (i.e. \bold{DMAIC}) cycle of the Six Sigma Quality Management methodology.
@@ -24,13 +23,12 @@ ontrol} (i.e. \bold{DMAIC}) cycle of the Six Sigma Quality Management methodolog
 }
 }
 
-
 \details{
 \tabular{ll}{
 Package: \tab qualityTools\cr
 Type: \tab Package\cr
-Version: \tab 0.94\cr
-Date: \tab 2011-11-18\cr
+Version: \tab 0.96\cr
+Date: \tab 2012-04-18\cr
 URL: \tab \url{http://r-qualitytools.org}\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
@@ -42,11 +40,10 @@ LazyLoad: \tab yes\cr
 Thomas Roth \email{thomas.roth@tu-berlin.de}\cr
 Maintainer: Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
-%Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
 \keyword{package}
 \examples{
 example(paretoChart)
-%%example(mvPlot)
+example(mvPlot)
 example(dotPlot)
 example(qqPlot)
 example(ppPlot)

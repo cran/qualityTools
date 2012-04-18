@@ -1,6 +1,5 @@
 \name{as.data.frame.facDesign}
 \alias{as.data.frame.facDesign}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Coerce to a data.frame
 }
@@ -12,8 +11,6 @@ S3 generic for facDesign class.
 \method{as.data.frame}{facDesign}(x, row.names = NULL, optional = FALSE, ...)
 }
 
-
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
  needs to be an object of class \code{\link{facDesign}}.

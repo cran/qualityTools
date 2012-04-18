@@ -1,5 +1,5 @@
-contourPlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, border, 
-    form = "linear", col = 1, col.text, cex.axis, axes = TRUE, steps, factors) {
+contourPlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, border, form = "linear", col = 1, col.text, cex.axis, axes = TRUE, 
+    steps, factors) {
     DB = FALSE
     out = list()
     mdo = data
@@ -30,8 +30,7 @@ contourPlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, 
     col.axis = par("col.axis")
     if (!is.function(col)) {
         if (identical(col, 1)) 
-            col = colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", 
-                "red", "#7F0000"))
+            col = colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
         if (identical(col, 2)) 
             col = colorRampPalette(c("blue", "white", "red"), space = "Lab")
         if (identical(col, 3)) 
@@ -87,7 +86,7 @@ contourPlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, 
     v = seq(acc, 1, length = acc)
     w = c(seq(2, acc, length = acc/2), seq(acc, 2, length = acc/2))
     mat[outer(w, v, `+`) <= acc] = NA
-    .mfc(mat, main = main, color = col, axes = FALSE, key.axes = axis(4))
+    .mfc(mat, main = main, col = col, axes = FALSE, key.axes = axis(4))
     if (axes == TRUE) {
         segments(0.5, 0, 0.5, 1, col = col.axis)
         coox1 = rep(0.49, 11)
@@ -124,8 +123,7 @@ contourPlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, 
     mtext(zlab, 1, at = 1.025, cex = 1.5)
     invisible(mat)
 }
-wirePlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, form = "linear", 
-    phi, theta, col = 1, steps, factors) {
+wirePlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, form = "linear", phi, theta, col = 1, steps, factors) {
     DB = FALSE
     out = list()
     mdo = data
@@ -153,8 +151,7 @@ wirePlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, for
         steps = 100
     if (!is.function(col)) {
         if (identical(col, 1)) 
-            col = colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", 
-                "red", "#7F0000"))
+            col = colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
         if (identical(col, 2)) 
             col = colorRampPalette(c("blue", "white", "red"), space = "Lab")
         if (identical(col, 3)) 
@@ -230,17 +227,13 @@ wirePlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, for
     }
     maxim = max(mat, na.rm = TRUE) * acc
     minim = min(mat, na.rm = TRUE) * acc
-    per = persp(x = seq(0, acc, length = acc), y = seq(0, acc * sca, length = ncmat), mat * acc, 
-        phi = .phi, theta = .theta, scale = TRUE, col = "transparent", border = FALSE, box = FALSE, 
-        main = main, xlab = xlab, ylab = ylab)
-    lineList = contourLines(x = seq(0, acc, length = acc), y = seq(0, acc * sca, length = ncmat), 
-        mat)
+    per = persp(x = seq(0, acc, length = acc), y = seq(0, acc * sca, length = ncmat), mat * acc, phi = .phi, theta = .theta, scale = TRUE, col = "transparent", 
+        border = FALSE, box = FALSE, main = main, xlab = xlab, ylab = ylab)
+    lineList = contourLines(x = seq(0, acc, length = acc), y = seq(0, acc * sca, length = ncmat), mat)
     for (i in seq(along = lineList)) lines(trans3d(lineList[[i]]$x, lineList[[i]]$y, z = minim, pmat = per))
     if (.phi < 90) {
-        lines(trans3d(x = seq(0, acc/2, length = 10), y = seq(0, acc * sca, length = 10), z = maxim, 
-            pmat = per), lty = 2)
-        lines(trans3d(x = seq(acc, acc/2, length = 10), y = seq(0, acc * sca, length = 10), z = maxim, 
-            pmat = per), lty = 2)
+        lines(trans3d(x = seq(0, acc/2, length = 10), y = seq(0, acc * sca, length = 10), z = maxim, pmat = per), lty = 2)
+        lines(trans3d(x = seq(acc, acc/2, length = 10), y = seq(0, acc * sca, length = 10), z = maxim, pmat = per), lty = 2)
         lines(trans3d(x = 0:acc, y = 0, z = maxim, pmat = per), lty = 2)
     }
     if (.theta > 323 || .theta < 37) {
@@ -253,23 +246,18 @@ wirePlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, for
     if (.theta > 156 && .theta < 323) {
         lines(trans3d(x = acc, y = 0, z = minim:maxim, pmat = per), lty = 2)
     }
-    lines(trans3d(x = seq(0, acc/2, length = 10), y = seq(0, acc * sca, length = 10), z = minim, 
-        pmat = per), lty = 1, lwd = 2)
-    lines(trans3d(x = seq(acc, acc/2, length = 10), y = seq(0, acc * sca, length = 10), z = minim, 
-        pmat = per), lty = 1, lwd = 2)
+    lines(trans3d(x = seq(0, acc/2, length = 10), y = seq(0, acc * sca, length = 10), z = minim, pmat = per), lty = 1, lwd = 2)
+    lines(trans3d(x = seq(acc, acc/2, length = 10), y = seq(0, acc * sca, length = 10), z = minim, pmat = per), lty = 1, lwd = 2)
     lines(trans3d(x = 0:acc, y = 0, z = minim, pmat = per), lty = 1, lwd = 2)
-    text(trans3d(x = acc/2 + acc/50, y = acc * sca + acc * sca/50, z = minim, pmat = per), labels = xlab, 
-        lwd = 2)
+    text(trans3d(x = acc/2 + acc/50, y = acc * sca + acc * sca/50, z = minim, pmat = per), labels = xlab, lwd = 2)
     text(trans3d(x = -acc/50, y = -acc * sca/50, z = minim, pmat = per), labels = ylab, lwd = 2)
     text(trans3d(x = acc + acc/50, 0, z = minim, pmat = per), labels = zlab, cex = 1, lwd = 2)
     par(new = TRUE)
-    persp(x = seq(0, acc, length = acc), y = seq(0, acc * sca, length = ncmat), mat * acc, phi = .phi, 
-        theta = .theta, scale = TRUE, col = color[facetcol], border = FALSE, box = FALSE)
+    persp(x = seq(0, acc, length = acc), y = seq(0, acc * sca, length = ncmat), mat * acc, phi = .phi, theta = .theta, scale = TRUE, col = color[facetcol], 
+        border = FALSE, box = FALSE)
     if (.phi > 0) {
-        lines(trans3d(x = seq(0, acc/2, length = 10), y = seq(0, acc * sca, length = 10), z = maxim, 
-            pmat = per), lty = 2)
-        lines(trans3d(x = seq(acc, acc/2, length = 10), y = seq(0, acc * sca, length = 10), z = maxim, 
-            pmat = per), lty = 2)
+        lines(trans3d(x = seq(0, acc/2, length = 10), y = seq(0, acc * sca, length = 10), z = maxim, pmat = per), lty = 2)
+        lines(trans3d(x = seq(acc, acc/2, length = 10), y = seq(0, acc * sca, length = 10), z = maxim, pmat = per), lty = 2)
         lines(trans3d(x = 0:acc, y = 0, z = maxim, pmat = per), lty = 2)
     }
     if (.theta > 37 && .theta < 156) {
@@ -291,11 +279,9 @@ wirePlot3 = function(x, y, z, response, data = NULL, main, xlab, ylab, zlab, for
         temp[leglevel == 0] = " "
         legpretty = paste(temp, legpretty, sep = "")
         if (.theta <= 180) 
-            legend("topright", inset = 0.02, legend = paste(">", legpretty), col = legcol, bg = "white", 
-                pt.cex = 1.5, cex = 0.75, pch = 15)
+            legend("topright", inset = 0.02, legend = paste(">", legpretty), col = legcol, bg = "white", pt.cex = 1.5, cex = 0.75, pch = 15)
         if (.theta > 180) 
-            legend("topleft", inset = 0.02, legend = paste(">", legpretty), col = legcol, bg = "white", 
-                pt.cex = 1.5, cex = 0.75, pch = 15)
+            legend("topleft", inset = 0.02, legend = paste(">", legpretty), col = legcol, bg = "white", pt.cex = 1.5, cex = 0.75, pch = 15)
     }
     invisible(mat)
 } 

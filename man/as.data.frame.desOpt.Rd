@@ -1,6 +1,5 @@
 \name{as.data.frame.desOpt}
 \alias{as.data.frame.desOpt}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Coerce to a data.frame
 }
@@ -12,7 +11,6 @@ S3 generic for desOpt class.
 \method{as.data.frame}{desOpt}(x, row.names = NULL, optional = FALSE, ...)
 }
 
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
  needs to be an object of class \code{desOpt}.

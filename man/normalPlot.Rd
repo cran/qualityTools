@@ -1,16 +1,16 @@
 \name{normalPlot}
 \alias{normalPlot}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Half-Normal plot
+Normal plot
 }
 \description{
-function to generate a half-normal plot of the factor effects for an object of class \code{\link{facDesign}}.
+function to generate a normal plot of the factor effects for an object of class \code{\link{facDesign}}.
 }
 \usage{
-normalPlot(fdo, threeWay = FALSE, na.last = NA, alpha = 0.05, sig.col = c("red1", "red2", "red3"), main, ylim, xlim, xlab, ylab, pch, col, border = "red", ...)
+normalPlot(fdo, threeWay = FALSE, na.last = NA, alpha = 0.05, response = NULL,
+           sig.col = c("red1", "red2", "red3"), main, ylim, xlim, xlab, ylab,
+           pch, col, border = "red", ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{fdo}{
 object of class \code{\link{facDesign}}.
@@ -24,6 +24,11 @@ By default set to \sQuote{NA}.
   \item{alpha}{
 alpha for marking interactions.
 }
+  \item{response}{
+response variable. If the response data frame of fdo consists of more then one responses,\cr
+this variable can be used to choose just one column of the response data frame. \code{response} needs to be an object of class 
+character with length of \sQuote{1}. It needs to be the same character as the name of the response in the response data frame that should be plotted.\cr
+By default \code{response} is set to \sQuote{NULL}.}
   \item{sig.col}{
 vector - colors for marking significant interactions. By default \code{sig.col} is set to \sQuote{c("red1", "red2", "red3")}. 
 }
@@ -56,6 +61,15 @@ graphical parameter. Single numerical value or character string giving the color
 further graphical parameters see \code{\link{par}}.
 }
 }
+\details{
+If the given facDesign object \code{fdo} contains replicates this function will deliver a normal plot\cr
+i.e.: effects divided by the standard deviation (t-value) will be plotted against an appropriate probability\cr
+scaling (see: \code{\link{ppoints}}).\cr
+If the given facDesign object \code{fdo} contains no replications the standard error can not be calculated.\cr
+In that case the function will deliver an effect plot.       \cr
+i.e.: the effects will be plotted against an appropriate probability scaling. (see: \code{\link{ppoints}}).\cr
+ 
+}
 \value{
 NULL}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
@@ -64,18 +78,20 @@ NULL}
  For a more detailed example which shows the usage of \code{normalPlot()} in context please read the vignette for the package 
  \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
 \code{\link{facDesign}}\cr
 \code{\link{paretoPlot}}\cr
 \url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
-fdo = facDesign(k=3, replicates = 2)  #factorial design
-set.seed(123) #seed for random numbers
-y = rnorm(nrow(fdo))  #random numbers
-response(fdo) = y #set the response
-normalPlot(fdo) #create a normal plot
+#factorial design
+fdo = facDesign(k=3, replicates = 2)  
+#seed for random numbers
+set.seed(123) 
+#random numbers
+y = rnorm(nrow(fdo)) 
+#set the response 
+response(fdo) = y 
+#create a normal plot
+normalPlot(fdo) 
 }

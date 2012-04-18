@@ -71,7 +71,8 @@ contributions to quality engineering. In: Quality and Reliability Engineering In
 }
 \examples{
 tdo = taguchiDesign("L9_3")
-values(tdo) = list(A = c("material 1","material 2","material 3"), B = c(29, 30, 35))
+values(tdo) = list(A = c("material 1","material 2","material 3"), 
+                   B = c(29, 30, 35))
 names(tdo) = c("Factors", "Are", "Documented", "In The Design")
 response(tdo) = rnorm(9)
 summary(tdo)

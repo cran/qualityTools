@@ -33,6 +33,8 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \url{http://www.r-qualitytools.org}
 }
 \examples{
-design = rsmDesign(k = 3) #rotatable response surface design with 3 factors
-star(design)  #star portion of the design
+#rotatable response surface design with 3 factors
+design = rsmDesign(k = 3) 
+#star portion of the design
+star(design)  
 }

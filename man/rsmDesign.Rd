@@ -9,7 +9,8 @@ Generate a response surface design (i.e. central composite design)
 Generates a response surface design containing a cube, centerCube, star and centerStar portion.
 }
 \usage{
-rsmDesign(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs = 1,  fp = 1, sp = 1, faceCentered = FALSE)
+rsmDesign(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs = 1,  
+          fp = 1, sp = 1, faceCentered = FALSE)
 }
 \arguments{
   \item{k}{
@@ -69,7 +70,8 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
-#central composite design for 2 factors with 2 blocks, alpha = 1.41, 5 centerpoints in the cube portion and 3 centerpoints in the star portion
+#central composite design for 2 factors with 2 blocks, alpha = 1.41, 
+#5 centerpoints in the cube portion and 3 centerpoints in the star portion:
 rsmDesign(k = 2, blocks = 2, alpha = sqrt(2),cc = 5, cs = 3)
 
 #central composite design with both, orthogonality and near rotatability 

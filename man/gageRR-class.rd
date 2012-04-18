@@ -9,7 +9,6 @@ gageRR Class
 }
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("gageRR", ...)}.
-%%  ~~ describe objects here ~~
 }
 
 \section{Slots}{
@@ -28,6 +27,9 @@ Objects can be created by calls of the form \code{new("gageRR", ...)}.
     \item{\code{Comments}:}{Object of class \code{"character"} ~~ }
     \item{\code{b}:}{Object of class \code{"factor"} ~~ }
     \item{\code{a}:}{Object of class \code{"factor"} ~~ }
+    \item{\code{numM}:}{Object of class \code{"numeric"} ~~ }
+    \item{\code{numO}:}{Object of class \code{"numeric"} ~~ }
+    \item{\code{numP}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{y}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{facNames}:}{Object of class \code{"character"} ~~ }
 

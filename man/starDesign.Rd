@@ -52,10 +52,15 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \examples{
 #Example 1 - sequential assembly
-fdo = facDesign(k = 3, centerCube = 1)  #factorial design with one center point in the cube portion
+#factorial design with one center point in the cube portion
+fdo = facDesign(k = 3, centerCube = 1)  
 fdo
-response(fdo) = 1:9  #set the response via generic response method
-rsd = starDesign(data = fdo)  #sequential assembly of a response surface design (rsd)
+
+#set the response via generic response method
+response(fdo) = 1:9 
+ 
+#sequential assembly of a response surface design (rsd)
+rsd = starDesign(data = fdo)  
 rsd
 
 #Example 2 - returning a list

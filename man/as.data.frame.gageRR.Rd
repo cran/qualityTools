@@ -1,6 +1,5 @@
 \name{as.data.frame.gageRR}
 \alias{as.data.frame.gageRR}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Coerce to a data.frame
 }
@@ -12,7 +11,6 @@ S3 generic for gageRR class.
 \method{as.data.frame}{gageRR}(x, row.names = NULL, optional = FALSE, ...)
 }
 
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
  needs to be an object of class \code{\link{gageRR}}.

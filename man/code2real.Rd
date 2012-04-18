@@ -1,6 +1,5 @@
 \name{code2real}
 \alias{code2real}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Coding
 }
@@ -10,7 +9,6 @@ Function to calculate the real value of a coded value.
 \usage{
 code2real(low, high, codedValue)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{low}{
  numeric value giving the lower boundary.

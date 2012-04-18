@@ -2,11 +2,12 @@ citHeader("To cite package 'qualityTools' in publications use:")
      ## R >= 2.9.0 passes package metadata to citation().
      if(!exists("meta") || is.null(meta)) meta <- packageDescription("qualityTools")
      year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date)
-     vers <- paste("R package version", meta$Version)
+     vers <- paste("R package version", meta$Version, "http://www.r-qualitytools.org")
 
 citEntry(entry="Manual",
      title = "qualityTools: Statistics in Quality Science.",
      author = personList(as.person("Thomas Roth")),
      year = year,
      note = vers,
+     url = "http://www.r-qualitytools.org",
      textVersion = paste("Thomas Roth (",year,"). qualityTools: Statistics in Quality Science.",vers, ".", sep=" "))

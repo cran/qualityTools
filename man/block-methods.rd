@@ -35,6 +35,7 @@ Get and set the Blocking structure for a \code{facDesign} object.
 \url{http://www.r-qualitytools.org}
 }
 \examples{
-fdo = facDesign(k = 3)    #NA in response column
+#NA in response column
+fdo = facDesign(k = 3)    
 block(fdo)
 }                                              

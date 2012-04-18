@@ -48,6 +48,7 @@ Get and set the \code{factors} in an object of class \code{\link{taguchiDesign}}
 \url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
-fdo = facDesign(k = 3)  #NA in response column
+#NA in response column
+fdo = facDesign(k = 3)  
 factors(fdo)
 }

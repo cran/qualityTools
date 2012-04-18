@@ -4,15 +4,15 @@
 
 \title{
 3D Plot
-
 }
 \description{
 Creates a wireframe diagramm for an object of class \code{\link{facDesign}}.
 }
 \usage{
-wirePlot(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, zlab, form = "fit", phi, theta, ticktype, col = 1, steps, factors, fun, plot)
+wirePlot(x, y, z, data = NULL, xlim, ylim, zlim, main, xlab, ylab, border, sub, 
+         zlab, form = "fit", phi, theta, ticktype, col = 1, steps, factors, fun,
+         plot)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 name providing the Factor A for the plot.

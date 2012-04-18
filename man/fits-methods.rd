@@ -36,7 +36,8 @@ Get and set the \code{fits} for an object of class \code{\link{facDesign}}.
 fdo = rsmDesign(k = 2, blocks = 2, alpha = "both")
 
 #set two responses for the response surface designs
-response(fdo) = data.frame(y= rnorm(14, 12, sd =  2), y2 =  -2*fdo[,4]^2 - fdo[,5]^2 + rnorm(14, 12))
+response(fdo) = data.frame(y= rnorm(14, 12, sd =  2), 
+                           y2 =  -2*fdo[,4]^2 - fdo[,5]^2 + rnorm(14, 12))
 
 #set a fit for each response
 fits(fdo) = lm(y ~ A*B , data = fdo)

@@ -12,14 +12,14 @@
         mfrow = c(2, 2)
     if (x == 5) 
         mfrow = c(2, 3)
-    if (x >= 6) 
-        mfrow = c(2, 3)
+    if (x == 6) 
+        mfrow = c(2, 3) 
+    if (x >= 7) 
+        mfrow = c(3, 3)     
     return(list(dev, mfrow))
 }
-setGeneric("averagePlot", function(x, main, xlab, ylab, col, ask = TRUE, single = FALSE, 
-    ...) standardGeneric("averagePlot"))
-setMethod("averagePlot", signature(x = "gageRR"), function(x, main, xlab, ylab, col, ask = TRUE, 
-    single = FALSE, ...) {
+setGeneric("averagePlot", function(x, main, xlab, ylab, col, ask = TRUE, single = FALSE, ...) standardGeneric("averagePlot"))
+setMethod("averagePlot", signature(x = "gageRR"), function(x, main, xlab, ylab, col, ask = TRUE, single = FALSE, ...) {
     old.par <- par(no.readonly = TRUE)
     ops = length(unique(x[, 3]))
     pts = length(unique(x[, 4]))
@@ -60,8 +60,7 @@ setMethod("averagePlot", signature(x = "gageRR"), function(x, main, xlab, ylab, 
             par(mfrow = .splitDev(ops - m * 6)[[2]])
             m = m + 1
         }
-        if (scr == TRUE && (i/(prod(par("mfcol"))) - i%/%(prod(par("mfcol")))) == 0 && single == 
-            FALSE) {
+        if (scr == TRUE && (i/(prod(par("mfcol"))) - i%/%(prod(par("mfcol")))) == 0 && single == FALSE) {
             if (ask != TRUE) {
                 dev.new()
                 par(old.par)

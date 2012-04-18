@@ -44,7 +44,8 @@ Get and set the \code{units} for the factors in an object of class \code{\link{t
  \url{http://www.r-qualitytools.org}
  }
 \examples{
-fdo = fracDesign(k = 2)  #NA in response column
+#NA in response column
+fdo = fracDesign(k = 2)  
 summary(fdo)
 units(fdo) = c("min","C") 
 names(fdo) = c("Time", "Temperature") 

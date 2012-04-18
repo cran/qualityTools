@@ -1,6 +1,5 @@
-setClass("MSALinearity", representation(X = "data.frame", Y = "data.frame", model = "lm", 
-    conf.level = "numeric", Linearity = "numeric", GageName = "character", GageTolerance = "numeric", 
-    DateOfStudy = "character", PersonResponsible = "character", Comments = "character", facNames = "character"))
+setClass("MSALinearity", representation(X = "data.frame", Y = "data.frame", model = "lm", conf.level = "numeric", Linearity = "numeric", GageName = "character", 
+    GageTolerance = "numeric", DateOfStudy = "character", PersonResponsible = "character", Comments = "character", facNames = "character"))
 setMethod("response", "MSALinearity", function(object) {
     out = object@Y
     return(out)
@@ -22,8 +21,7 @@ setMethod("summary", signature(object = "MSALinearity"), function(object) {
     names(object@Linearity) = "Linearity:"
     print(object@Linearity)
 })
-setMethod("plot", signature(x = "MSALinearity"), function(x, ylim, col, pch, lty = c(1, 
-    2), ...) {
+setMethod("plot", signature(x = "MSALinearity"), function(x, ylim, col, pch, lty = c(1, 2), ...) {
     if (is(x, "MSALinearity") == FALSE) 
         stop("object needs to be from class 'MSALinearity'")
     conf.level = x@conf.level
@@ -39,8 +37,7 @@ setMethod("plot", signature(x = "MSALinearity"), function(x, ylim, col, pch, lty
     for (i in 1:g) mbias[i] = mean(as.numeric(bias[i, ]))
     if (missing(ylim)) 
         ylim = c(min(bias, na.rm = TRUE), max(bias, na.rm = TRUE))
-    plot(x = x@X$Ref, y = mbias, ylim = ylim, col = col[2], pch = pch[2], ylab = "Bias", xlab = "Reference Values", 
-        ...)
+    plot(x = x@X$Ref, y = mbias, ylim = ylim, col = col[2], pch = pch[2], ylab = "Bias", xlab = "Reference Values", ...)
     for (i in 1:g) points(x = rep(x@X$Ref[i], length = m), y = bias[i, ], col = col[1], pch = pch[1])
     abline(h = 0, lty = 3, col = "gray")
     BIAS = numeric()
@@ -60,8 +57,8 @@ setMethod("plot", signature(x = "MSALinearity"), function(x, ylim, col, pch, lty
     lines(ref, pre[, 1], col = col[3], lty = lty[1])
     lines(ref, pre[, 2], col = col[4], lty = lty[2])
     lines(ref, pre[, 3], col = col[4], lty = lty[2])
-    legend("topright", legend = c("Single Bias", "Mean Bias", "Regression", paste(conf.level * 100, 
-        "% conf.level")), pch = c(pch, -1, -1), col = col, lty = c(-1, -1, lty), inset = 0.04)
+    legend("topright", legend = c("Single Bias", "Mean Bias", "Regression", paste(conf.level * 100, "% conf.level")), pch = c(pch, -1, -1), col = col, lty = c(-1, 
+        -1, lty), inset = 0.04)
 })
 setMethod("show", signature(object = "MSALinearity"), function(object) {
     print(as.data.frame(object))
@@ -69,12 +66,10 @@ setMethod("show", signature(object = "MSALinearity"), function(object) {
 as.data.frame.MSALinearity = function(x, row.names = NULL, optional = FALSE, ...) {
     return(cbind(x@X, x@Y))
 }
-setMethod("as.data.frame", "MSALinearity", function(x, row.names = NULL, optional = FALSE, 
-    ...) {
+setMethod("as.data.frame", "MSALinearity", function(x, row.names = NULL, optional = FALSE, ...) {
     return(cbind(x@X, x@Y))
 })
-gageLin <- function(object, conf.level = 0.95, ylim, col, pch, lty = c(1, 2), stats = TRUE, 
-    plot = TRUE) {
+gageLin <- function(object, conf.level = 0.95, ylim, col, pch, lty = c(1, 2), stats = TRUE, plot = TRUE) {
     if (is(object, "MSALinearity") == FALSE) 
         stop("object needs to be from class 'MSALinearity'")
     object@conf.level = conf.level
@@ -91,11 +86,9 @@ gageLin <- function(object, conf.level = 0.95, ylim, col, pch, lty = c(1, 2), st
     if (missing(ylim)) 
         ylim = c(min(bias, na.rm = TRUE), max(bias, na.rm = TRUE))
     if (plot == TRUE) 
-        plot(x = object@X$Ref, y = mbias, ylim = ylim, col = col[2], pch = pch[2], ylab = "Bias", 
-            xlab = "Reference Values")
+        plot(x = object@X$Ref, y = mbias, ylim = ylim, col = col[2], pch = pch[2], ylab = "Bias", xlab = "Reference Values")
     if (plot == TRUE) {
-        for (i in 1:g) points(x = rep(object@X$Ref[i], length = m), y = bias[i, ], col = col[1], 
-            pch = pch[1])
+        for (i in 1:g) points(x = rep(object@X$Ref[i], length = m), y = bias[i, ], col = col[1], pch = pch[1])
         abline(h = 0, lty = 3, col = "gray")
     }
     BIAS = numeric()
@@ -125,8 +118,8 @@ gageLin <- function(object, conf.level = 0.95, ylim, col, pch, lty = c(1, 2), st
     object@Linearity = Linearity
     names(Linearity) = "LINEARITY:"
     if (plot == TRUE) {
-        legend("topright", legend = c("Single Bias", "Mean Bias", "Regression", paste(conf.level * 
-            100, "% conf.level")), pch = c(pch, -1, -1), col = col, lty = c(-1, -1, lty), inset = 0.04)
+        legend("topright", legend = c("Single Bias", "Mean Bias", "Regression", paste(conf.level * 100, "% conf.level")), pch = c(pch, -1, -1), col = col, lty = c(-1, 
+            -1, lty), inset = 0.04)
     }
     if (stats == TRUE) {
         cat("----------------------", fill = TRUE)
@@ -146,9 +139,8 @@ gageLin <- function(object, conf.level = 0.95, ylim, col, pch, lty = c(1, 2), st
     }
     else return(object)
 }
-setClass("MSALinearity", representation(X = "data.frame", Y = "data.frame", model = "lm", 
-    conf.level = "numeric", Linearity = "numeric", GageName = "character", GageTolerance = "numeric", 
-    DateOfStudy = "character", PersonResponsible = "character", Comments = "character", facNames = "character"))
+setClass("MSALinearity", representation(X = "data.frame", Y = "data.frame", model = "lm", conf.level = "numeric", Linearity = "numeric", GageName = "character", 
+    GageTolerance = "numeric", DateOfStudy = "character", PersonResponsible = "character", Comments = "character", facNames = "character"))
 setMethod("response", "MSALinearity", function(object) {
     out = object@Y
     return(out)
@@ -170,8 +162,7 @@ setMethod("summary", signature(object = "MSALinearity"), function(object) {
     names(object@Linearity) = "Linearity:"
     print(object@Linearity)
 })
-setMethod("plot", signature(x = "MSALinearity"), function(x, ylim, col, pch, lty = c(1, 
-    2), ...) {
+setMethod("plot", signature(x = "MSALinearity"), function(x, ylim, col, pch, lty = c(1, 2), ...) {
     if (is(x, "MSALinearity") == FALSE) 
         stop("object needs to be from class 'MSALinearity'")
     conf.level = x@conf.level
@@ -187,8 +178,7 @@ setMethod("plot", signature(x = "MSALinearity"), function(x, ylim, col, pch, lty
     for (i in 1:g) mbias[i] = mean(as.numeric(bias[i, ]))
     if (missing(ylim)) 
         ylim = c(min(bias, na.rm = TRUE), max(bias, na.rm = TRUE))
-    plot(x = x@X$Ref, y = mbias, ylim = ylim, col = col[2], pch = pch[2], ylab = "Bias", xlab = "Reference Values", 
-        ...)
+    plot(x = x@X$Ref, y = mbias, ylim = ylim, col = col[2], pch = pch[2], ylab = "Bias", xlab = "Reference Values", ...)
     for (i in 1:g) points(x = rep(x@X$Ref[i], length = m), y = bias[i, ], col = col[1], pch = pch[1])
     abline(h = 0, lty = 3, col = "gray")
     BIAS = numeric()
@@ -208,8 +198,8 @@ setMethod("plot", signature(x = "MSALinearity"), function(x, ylim, col, pch, lty
     lines(ref, pre[, 1], col = col[3], lty = lty[1])
     lines(ref, pre[, 2], col = col[4], lty = lty[2])
     lines(ref, pre[, 3], col = col[4], lty = lty[2])
-    legend("topright", legend = c("Single Bias", "Mean Bias", "Regression", paste(conf.level * 100, 
-        "% conf.level")), pch = c(pch, -1, -1), col = col, lty = c(-1, -1, lty), inset = 0.04)
+    legend("topright", legend = c("Single Bias", "Mean Bias", "Regression", paste(conf.level * 100, "% conf.level")), pch = c(pch, -1, -1), col = col, lty = c(-1, 
+        -1, lty), inset = 0.04)
 })
 setMethod("show", signature(object = "MSALinearity"), function(object) {
     print(as.data.frame(object))
@@ -217,8 +207,7 @@ setMethod("show", signature(object = "MSALinearity"), function(object) {
 as.data.frame.MSALinearity = function(x, row.names = NULL, optional = FALSE, ...) {
     return(cbind(x@X, x@Y))
 }
-setMethod("as.data.frame", "MSALinearity", function(x, row.names = NULL, optional = FALSE, 
-    ...) {
+setMethod("as.data.frame", "MSALinearity", function(x, row.names = NULL, optional = FALSE, ...) {
     return(cbind(x@X, x@Y))
 })
 gageLinDesign <- function(ref, n = 5) {

@@ -1,5 +1,8 @@
 \name{cg}
 \alias{cg}
+\alias{cgToleranceView}
+\alias{cgHist}
+\alias{cgRunChart}
 \title{
  Function to calculate and visualize the gage capability.
 }
@@ -10,7 +13,18 @@
  and displayed.
 }
 \usage{
-cg(x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, type, col, pch, xlim, ylim, conf.level = 0.95, cex.val = 1.5)
+cg             (x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, 
+                type, col, pch, xlim, ylim, conf.level = 0.95, cex.val = 1.5)
+                
+cgToleranceView(x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, 
+                type, col, pch, xlim, ylim, main, conf.level = 0.95, cex.val = 1)
+                
+cgHist         (x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, col,
+                xlim, ylim, main, conf.level = 0.95, cex.val = 1)
+                
+cgRunChart     (x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, 
+                type, col, pch, xlim, ylim,main, conf.level = 0.95, cex.val = 1)
+
 }
 \arguments{
   \item{x}{
@@ -60,6 +74,9 @@ cg(x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, type, col, pch, x
 }
   \item{ylim}{
  vector of length 2 giving the limits for the y axis of the run chart.
+}
+  \item{main}{
+ an overall title for the plot: see \code{\link{title}}.
 }
   \item{conf.level}{
  confidence level for internal t.test checking the significance of the bias between target and mean of x.
@@ -113,8 +130,11 @@ cg(x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, type, col, pch, x
   \code{\link{par}} \cr
   \url{http://www.r-qualitytools.org/Measure.html}
 }
-\examples{                                            
-cg(rnorm(125,mean = 10.01 ,sd = 0.1), target = 10, tolerance = c(8,12))                    #simple example with default values
-cg(rnorm(25,mean = 1.01 ,sd = 0.5), ref.interval=pnorm(5.5/2)-pnorm(-5.5/2), n=0.3)        #example with larger n and adjusted ref. interval 
-cg(rnorm(75, sd = 0.1), facCg = 0.15, facCgk = 0.075, tolerance = c(-10,10)/6)             #example with changed factors for Cg and Cgk
+\examples{            
+#simple example with default values                                
+cg(rnorm(125,mean = 10.01 ,sd = 0.1), target = 10, tolerance = c(8,12)) 
+#example with larger n and adjusted ref. interval                   
+cg(rnorm(25,mean = 1.01 ,sd = 0.5), ref.interval=pnorm(5.5/2)-pnorm(-5.5/2), n=0.3)     
+#example with changed factors for Cg and Cgk   
+cg(rnorm(75, sd = 0.1), facCg = 0.15, facCgk = 0.075, tolerance = c(-10,10)/6)             
 }

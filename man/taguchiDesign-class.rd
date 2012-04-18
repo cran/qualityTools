@@ -9,7 +9,6 @@ taguchiDesign Class
 }
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("taguchiDesign", ...)}.
-%%  ~~ describe objects here ~~
 }
 \section{Slots}{
   \describe{

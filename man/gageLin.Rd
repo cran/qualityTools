@@ -10,7 +10,8 @@ Furthermore the function deliver some characteristic values of linearity studies
 according to MSA (Measurement System Analysis).
 }
 \usage{
-gageLin(object, conf.level = 0.95, ylim, col, pch, lty = c(1, 2), stats = TRUE, plot = TRUE)
+gageLin(object, conf.level = 0.95, ylim, col, pch, lty = c(1, 2), 
+        stats = TRUE, plot = TRUE)
 }
 \arguments{
   \item{object}{
@@ -71,17 +72,24 @@ with e.g. \code{\link{plot}} or \code{\link{summary}}.
   \url{http://www.r-qualitytools.org}
 }
 \examples{
-A=c(2.7,2.5,2.4,2.5,2.7,2.3,2.5,2.5,2.4,2.4,2.6,2.4)  # Results of single runs
+# Results of single runs
+A=c(2.7,2.5,2.4,2.5,2.7,2.3,2.5,2.5,2.4,2.4,2.6,2.4)  
 B=c(5.1,3.9,4.2,5,3.8,3.9,3.9,3.9,3.9,4,4.1,3.8)
 C=c(5.8,5.7,5.9,5.9,6,6.1,6,6.1,6.4,6.3,6,6.1)
 D=c(7.6,7.7,7.8,7.7,7.8,7.8,7.8,7.7,7.8,7.5,7.6,7.7)
 E=c(9.1,9.3,9.5,9.3,9.4,9.5,9.5,9.5,9.6,9.2,9.3,9.4)
 
-test=gageLinDesign(ref=c(2,4,6,8,10),n=12)            # creates Desing
-Messungen=data.frame(rbind(A,B,C,D,E))                # creates data.frame with results 
-response(test)=Messungen                              # enter results in Desing
+# creates Desing
+test=gageLinDesign(ref=c(2,4,6,8,10),n=12)
+ # creates data.frame with results             
+Messungen=data.frame(rbind(A,B,C,D,E))
+# enter results in Desing               
+response(test)=Messungen                              
 
-MSALin=gageLin(test,stats=FALSE,plot=FALSE)           # no plot and no return
-plot(MSALin)                                          # plot only
-summary(MSALin)                                       # summary
+# no plot and no return
+MSALin=gageLin(test,stats=FALSE,plot=FALSE)
+# plot only           
+plot(MSALin)
+# summary                                          
+summary(MSALin)                                       
 }

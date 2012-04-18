@@ -75,10 +75,15 @@ value must be of same length as \code{nrow(object)}. If value is shorter/longer 
 }
 
 \examples{
-fdo = fracDesign(k = 3)   #NA in response column
+#NA in response column
+fdo = fracDesign(k = 3)   
 fdo
-y = rnorm(8)              #response
-response(fdo) = y         #2^k numeric values in response column
+
+#response
+y = rnorm(8) 
+  
+#2^k numeric values in response column           
+response(fdo) = y        
 fdo
 }
 
