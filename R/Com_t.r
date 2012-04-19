@@ -1,6 +1,5 @@
 setGeneric("compPlot", function(x, main, xlab, ylab, col, cex.lab, fun = NULL, ...) standardGeneric("compPlot"))
-setMethod("compPlot", signature(x = "gageRR"), function(x, main, xlab, ylab, col, cex.lab, 
-    fun = NULL, ...) {
+setMethod("compPlot", signature(x = "gageRR"), function(x, main, xlab, ylab, col, cex.lab, fun = NULL, ...) {
     if (missing(xlab)) 
         xlab = ""
     if (missing(ylab)) 
@@ -38,8 +37,7 @@ setMethod("compPlot", signature(x = "gageRR"), function(x, main, xlab, ylab, col
             }
             else {
                 if (k < i) {
-                  plot(means[k, ], means[i, ], xlab = xlab, ylab = ylab, col = col, axes = FALSE, 
-                    ...)
+                  plot(means[k, ], means[i, ], xlab = xlab, ylab = ylab, col = col, axes = FALSE, ...)
                   box()
                   if (k == 1) 
                     axis(2)

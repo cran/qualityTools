@@ -1,7 +1,6 @@
 \name{dotPlot}
 \Rdversion{1.1}
 \alias{dotPlot}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Function to create a dot plot 
 }
@@ -9,7 +8,8 @@ Function to create a dot plot
 dotPlot creates a dot plot. For data in groups the dotPlot is displayed stacked in one or not-stacked in different plot regions.
 }
 \usage{
-dotPlot(x, group, xlim, ylim, col, xlab, ylab, pch, cex, breaks, stacked = TRUE, ...)
+dotPlot(x, group, xlim, ylim, col, xlab, ylab, pch, cex, breaks, 
+        stacked = TRUE, ...)
 }
 
 \arguments{
@@ -60,8 +60,6 @@ values in x are assigned to the bins defined by breaks. The actual binning is do
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
 \code{\link{hist}}\cr
 \code{\link{boxplot}}\cr
@@ -73,11 +71,13 @@ x = rnorm(28)
 g = rep(1:2, 14)
 
 #dot plot with groups and no stacking
-dotPlot(x, group = g, stacked = FALSE, pch = c(19, 20), main = "Non stacked dot plot")
+dotPlot(x, group = g, stacked = FALSE, pch = c(19, 20), 
+        main = "Non stacked dot plot")
 
 #dot plot with groups and stacking
 x = rnorm(28)
-dotPlot(x, group = g, stacked = TRUE, pch = c(19, 20), main = "Stacked dot plot")
+dotPlot(x, group = g, stacked = TRUE, pch = c(19, 20), 
+        main = "Stacked dot plot")
 
 
 }

@@ -1,7 +1,6 @@
 \name{contourPlot}
 \Rdversion{1.1}
 \alias{contourPlot}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Contour Plot
 }
@@ -9,9 +8,9 @@ Contour Plot
 Creates a contour diagramm for an object of class \code{\link{facDesign}}.
 }
 \usage{
-contourPlot(x, y, z, data = NULL, xlim, ylim, main, xlab, ylab, form = "fit", col = 1, steps, factors, fun)
+contourPlot(x, y, z, data = NULL, xlim, ylim, main, xlab, ylab, form = "fit", 
+            col = 1, steps, factors, fun)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 name providing the Factor A for the plot.
@@ -83,8 +82,6 @@ This function can be used to display the desirability of each response by specif
  For an example in context which shows the usage of the function \code{contourPlot()} to an object of class \code{\link{facDesign}}, 
  please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 \code{\link{wirePlot}} \cr

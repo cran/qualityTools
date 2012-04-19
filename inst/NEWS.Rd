@@ -40,6 +40,36 @@
     \item 10 Dec 2010: gageRR with no interaction term is now calculated
     correctly. Bug in gageRR was found by user.
     
+    \item ----qualityTools version 1.50----
+
+    \item included comparison plot (compPlot) for Measurement Systems Analysis i.e. Gage R\&R
+    
+    \item included average plot (averagePlot) for Measurement Systems Analysis i.e. Gage R\&R
+        
+    \item inclued whiskers plot (whiskersPlot) for Measurement Systems Analysis i.e. Gage R\&R
+    
+    \item inclued error plot (errorPlot) for Measurement Systems Analysis i.e. Gage R\&R
+
+    
+    \item ----qualityTools Version 1.52----
+    
+    \item Bootstrap-based Anderson-Darling Test for Univariate Distributions included in method adSim.
+    
+    \item QQ-Plot-, PP-Plot- and respectively Process Capability methods partly calculate confidence limits
+    
+    \item included 3 parameter weibull (weibull3), lognormal (lognormal3) and gamma (gamma3)
+    
+    \item Multi Vari Chart method rewritten
+    
+    \item normalPlot can handle non replicated designs
+    
+    \item smaller fixes/enhancements to rsmDesign, fracDesign and facDesign
+    
+    
+    
+    
+    
 }}
+
 
 

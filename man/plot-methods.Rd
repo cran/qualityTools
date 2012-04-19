@@ -12,9 +12,12 @@
 \description{Methods for function \code{\link{plot}} in Package \code{graphics}}
 
 %\usage{
-%\S4method{plot}{desirability}(x, y = NULL, scale, main, xlab, ylab, type, col, numPoints = 500, ...)
-%\S4method{plot}{distr}(x,y, main, xlab, xlim, ylim, ylab, line.col, line.width, box, ...)
-%\S4method{plot}{distrCollection}(x, y, xlab, ylab, xlim, ylim, line.col, line.width, ...)
+%\S4method{plot}{desirability}(x, y = NULL, scale, main, xlab, ylab, type, col,
+%\                             numPoints = 500, ...)
+%\S4method{plot}{distr}(x,y, main, xlab, xlim, ylim, ylab, line.col, line.width,
+%\                      box, ...)
+%\S4method{plot}{distrCollection}(x, y, xlab, ylab, xlim, ylim, line.col, 
+%\                                line.width, ...)
 %\S4method{plot}{gageRR}(x,y, main, xlab, ylab, col, lwd, fun, ...)
 %}
 

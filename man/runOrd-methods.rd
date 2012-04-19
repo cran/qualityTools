@@ -21,14 +21,15 @@
 \describe{
 
 \item{\code{signature(object = "facDesign")}}{
-%%  ~~describe this method here~~
 }
 }}
 \seealso{
 \url{http://www.r-qualitytools.org}
 }
 \examples{
-fdo = facDesign(k = 3)  #NA in response column
+#NA in response column
+fdo = facDesign(k = 3)
+  
 runOrd(fdo)
 }
 

@@ -1,6 +1,5 @@
 \name{contourPlot3}
 \alias{contourPlot3}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 function to create a ternary plot (contour plot) for an object of class mixDesign
 }
@@ -8,9 +7,10 @@ function to create a ternary plot (contour plot) for an object of class mixDesig
 This function creates a ternary plot (contour plot) for mixture designs (i.e. object of class mixDesign)
 }
 \usage{
-contourPlot3(x, y, z, response, data = NULL, main, xlab, ylab, zlab, border, form = "linear", col = 1, col.text, cex.axis, axes = TRUE, steps, factors)
+contourPlot3(x, y, z, response, data = NULL, main, xlab, ylab, zlab, border, 
+             form = "linear", col = 1, col.text, cex.axis, axes = TRUE, 
+             steps, factors)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 factor 1 of the \code{\link{mixDesign}} object.
@@ -101,15 +101,19 @@ please read the vignette for the package \code{\link{qualityTools}} at \url{http
 }
 \examples{
 #yarn example p.564 Response Surface Methodology
-mdo = mixDesign(3,2, center = FALSE, axial = FALSE, randomize = FALSE, replicates  = c(1,1,2,3))
+mdo = mixDesign(3,2, center = FALSE, axial = FALSE, randomize = FALSE, 
+                replicates  = c(1,1,2,3))
 names(mdo) = c("polyethylene", "polystyrene", "polypropylene")
 units(mdo) = "percent"
-elongation = c(11.0, 12.4, 15.0, 14.8, 16.1, 17.7, 16.4, 16.6, 8.8, 10.0, 10.0, 9.7, 11.8, 16.8, 16.0)
+elongation = c(11.0, 12.4, 15.0, 14.8, 16.1, 17.7, 16.4, 16.6, 8.8, 10.0, 10.0, 
+               9.7, 11.8, 16.8, 16.0)
 response(mdo) = elongation
 
 dev.new(14,14); par(mfrow = c(2,2))
 contourPlot3(A, B, C, elongation, data = mdo, form = "linear")
 contourPlot3(A, B, C, elongation, data = mdo, form = "quadratic", col = 2)
-contourPlot3(A, B, C, elongation, data = mdo, form = "elongation ~ I(A^2) - B:A + I(C^2)", col = 3)
-contourPlot3(A, B, C, elongation, data = mdo, form = "quadratic", col = colorRampPalette(c("yellow", "white", "red")))
+contourPlot3(A, B, C, elongation, data = mdo, 
+             form = "elongation ~ I(A^2) - B:A + I(C^2)", col = 3)
+contourPlot3(A, B, C, elongation, data = mdo, form = "quadratic", 
+             col = colorRampPalette(c("yellow", "white", "red")))
 }

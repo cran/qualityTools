@@ -1,6 +1,5 @@
 \name{as.data.frame.mixDesign}
 \alias{as.data.frame.mixDesign}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Coerce the object of class mixDesign to a data.frame
 }
@@ -12,8 +11,6 @@ S3 generic for mixDesign class.
 \method{as.data.frame}{mixDesign}(x, row.names = NULL, optional = FALSE, ...)
 }
 
-
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
  needs to be an object of class \code{\link{mixDesign}}.

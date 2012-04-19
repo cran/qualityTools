@@ -1,7 +1,6 @@
 \name{pcr}
 \Rdversion{1.1}
 \alias{pcr}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Process Capability Indices
 }
@@ -11,7 +10,11 @@ A histogramm with a density curve is displayed along with the specification limi
 Lower-, upper and total fraction of nonconforming entities are calculated. Box-Cox Transformations are supported as well as the calculation of Anderson Darling Test Statistics. 
 }
 \usage{
-pcr(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, lambda = c(-5,5), main, xlim, ylim, grouping = NULL, std.dev = NULL,  conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", lineType = "solid", specCol = "red3", specWidth = 1, cex.text = 2, cex.val = 1.5, cex.col = "darkgray", ...)
+pcr(x, distribution = "normal", lsl, usl, target, boxcox = FALSE, 
+    lambda = c(-5,5), main, xlim, ylim, grouping = NULL, std.dev = NULL,  
+    conf.level = 0.9973002, start, lineWidth = 1, lineCol = "red", 
+    lineType = "solid", specCol = "red3", specWidth = 1, cex.text = 2, 
+    cex.val = 1.5, cex.col = "darkgray", plot = TRUE, ...)
 }
 \arguments{
   \item{x}{
@@ -27,6 +30,9 @@ character string specifying the distribution of x. The function \code{cp} will a
   \item \dQuote{gamma}
   \item \dQuote{weibull}
   \item \dQuote{cauchy}
+  \item \dQuote{gamma3}
+  \item \dQuote{weibull3}
+  \item \dQuote{lognormal3}
   \item \dQuote{beta}
   \item \dQuote{f}
   \item \dQuote{t}
@@ -72,7 +78,7 @@ numeric value between \sQuote{0} and \sQuote{1} giving the confidence interval.\
 By default \code{conf.level} is 0.9973 (99.73\%) which is the reference interval bounded by the 99.865\% and 0.135\% quantile. 
 }
   \item{start}{
-a named list giving the parameters to be fitted with initial values. Must be supplied for some distribution (see Details).
+a named list giving the parameters to be fitted with initial values. Must be supplied for some distribution (see \code{\link{fitdistr}} of the R-package \code{MASS}).
 }
   \item{lineWidth}{
 a numeric value specifying the width of the line for the density curve.
@@ -97,6 +103,10 @@ numerical value specifying the cex for the process capability ratios.
 }
   \item{cex.col}{
 numerical value or character string specifying the color for lsl, usl and target. 
+}
+  \item{plot}{
+logical value. If set to \sQuote{FALSE} the graphical output will be omitted.\
+By default \code{plot} is set to \sQuote{TRUE}.
 }
   \item{\dots}{
 some other graphical parameters.

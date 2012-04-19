@@ -1,6 +1,5 @@
 \name{overall}
 \alias{overall}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Overall Desirability
 }
@@ -12,7 +11,6 @@ This function serves for a visualization of the desirability approach for multip
 \usage{
 overall(fdo, steps = 20, constraints, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{fdo}{
 needs to be an object of class \code{\link{facDesign}} containing \code{\link{fits}} and \code{\link{desires}}}
@@ -49,7 +47,8 @@ fits(rsdo) = lm(y ~ A*B + I(A^2) + I(B^2), data = rsdo)
 fits(rsdo) = lm(y2 ~ A*B + I(A^2) + I(B^2), data = rsdo)
 desires(rsdo) = desirability(y, -1, 2, scale = c(1, 1), target = "max")
 desires(rsdo) = desirability(y2, -1, 0, scale = c(1, 1), target = "min")
-dVals = overall(rsdo, steps = 10, constraints = list(A = c(-0.5,1), B = c(0, 1)))
+dVals = overall(rsdo, steps = 10, constraints = list(A = c(-0.5,1), 
+                B = c(0, 1)))
 
 ##Uncomment for visualization of desirabilities
 #require(lattice)

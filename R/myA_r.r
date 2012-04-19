@@ -1,4 +1,4 @@
-.myADTest = function(x, distribution, ...) {
+.myADTest = function(x, distribution, ...) {                                                                     ####   .MYADTESTS-FUNCTION
     require(MASS, quietly = TRUE)
     if (missing(distribution)) 
         distribution = "normal"
@@ -26,10 +26,10 @@
     else {
         pFun = match.fun(distribution)
     }
-    if (identical(distribution, "log-normal")) {
-        x = log(x)
-        distribution = "normal"
-    }
+#    if (identical(distribution, "log-normal")) {                               ####
+#        x = log(x)                                                             ####
+#        distribution = "normal"                                                ####
+#    }                                                                          ####
     if (length(dots) == 0) {
         fittedDistr = fitdistr(x, distribution)
         parameter = fittedDistr$estimate
@@ -206,10 +206,8 @@ print.adtest = function(x, digits = 4, quote = TRUE, prefix = "", ...) {
         fp <- format.pval(x$p.value, digits = digits)
         if (x$tableValue) {
             if (x$smaller) 
-                out <- c(out, paste("p-value", if (substr(fp, 1L, 1L) == "<") fp else paste("<=", 
-                  fp)))
-            else out <- c(out, paste("p-value", if (substr(fp, 1L, 1L) == "=") fp else paste(">", 
-                fp)))
+                out <- c(out, paste("p-value", if (substr(fp, 1L, 1L) == "<") fp else paste("<=", fp)))
+            else out <- c(out, paste("p-value", if (substr(fp, 1L, 1L) == "=") fp else paste(">", fp)))
         }
         else {
             out <- c(out, paste("p-value", if (substr(fp, 1L, 1L) == "<") fp else paste("=", fp)))
@@ -227,8 +225,7 @@ print.adtest = function(x, digits = 4, quote = TRUE, prefix = "", ...) {
         }
     }
     if (!is.null(x$conf.int)) {
-        cat(format(100 * attr(x$conf.int, "conf.level")), "percent confidence interval:\n", format(c(x$conf.int[1L], 
-            x$conf.int[2L])), "\n")
+        cat(format(100 * attr(x$conf.int, "conf.level")), "percent confidence interval:\n", format(c(x$conf.int[1L], x$conf.int[2L])), "\n")
     }
     if (!is.null(x$estimate)) {
         cat("sample estimates:\n")

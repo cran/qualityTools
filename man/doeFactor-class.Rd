@@ -9,7 +9,6 @@ doeFactor Class
 }
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("doeFactor", ...)}.
-%%  ~~ describe objects here ~~
 }
 
 \section{Slots}{

@@ -35,7 +35,8 @@ Calculates the alias table for a fractional taguchi design and prints an easy to
 \url{http://www.r-qualitytools.org}
 }
 \examples{
-#generate a 2^(4-1) factorial design by assigning the interaction ABC to the factor D
+#generate a 2^(4-1) factorial design by assigning the interaction ABC 
+#to the factor D
 vp = fracDesign(k = 4, gen = "D = ABC")
 
 #the defining relation is (D = ABC)*D = I = ABCD. I is the identity.

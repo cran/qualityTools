@@ -1,7 +1,6 @@
 \name{randomize}
 \Rdversion{1.1}
 \alias{randomize}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Randomization
 }
@@ -11,7 +10,6 @@ function to do randomize the run order of factorial designs.
 \usage{
 randomize(fdo, random.seed, so = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{fdo}{
 needs to be an object of class \code{\link{facDesign}}.

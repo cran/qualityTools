@@ -1,4 +1,4 @@
-.charToDistFunc = function(distribution, type = "q") {
+.charToDistFunc = function(distribution, type = "q") {                                                           ####   .CHARTODISTFUNC-FUNCTION
     fun = NULL
     if (identical("beta", distribution)) 
         fun = eval(parse(text = paste(type, "beta", sep = "")))
@@ -12,8 +12,10 @@
         fun = eval(parse(text = paste(type, "f", sep = "")))
     if (identical("geometric", distribution)) 
         fun = eval(parse(text = paste(type, "geom", sep = "")))
-    if (identical("log-normal", distribution)) 
+    if (identical("log-normal", distribution) || identical("lognormal", distribution))         ####
         fun = eval(parse(text = paste(type, "lnorm", sep = "")))
+    if (identical("log-normal3", distribution) || identical("lognormal3", distribution))       ####
+        fun = eval(parse(text = paste(type, "lnorm3", sep = "")))                              ####
     if (identical("logistic", distribution)) 
         fun = eval(parse(text = paste(type, "logis", sep = "")))
     if (identical("negative binomial", distribution)) 
@@ -26,6 +28,8 @@
         fun = eval(parse(text = paste(type, "t", sep = "")))
     if (identical("weibull", distribution)) 
         fun = eval(parse(text = paste(type, "weibull", sep = "")))
+    if (identical("weibull3", distribution))                                                   ####
+        fun = eval(parse(text = paste(type, "weibull3", sep = "")))                            ####
     if (identical("gamma", distribution)) 
         fun = eval(parse(text = paste(type, "gamma", sep = "")))
     return(fun)

@@ -30,7 +30,8 @@ Get and set the \code{sigma} for an object of class \code{\link{gageRR}}.
 }
 \examples{
 x = gageRRDesign(Operators = 3, Parts = 10, Measurements = 3)
-sigma(x)  #default 6sigma
+#default 6sigma
+sigma(x) 
 sigma(x) = 5.15
 sigma(x)
 }

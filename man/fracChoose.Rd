@@ -1,7 +1,6 @@
 \name{fracChoose}
 \Rdversion{1.1}
 \alias{fracChoose}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Choosing a fractional or full factorial design from a table.
 }
@@ -14,6 +13,13 @@ fracChoose()
 
 \value{
 \code{fracChoose()} returns an object of class \code{\link{facDesign}}.
+}
+\references{
+The standard designs provided by \code{fracChoose()} are out of:
+\itemize{
+ \item BOX, G.E.P. and HUNTER, J.S.: "Multifactor Experimental Designs for Exploring Response Surfaces",\cr
+       The Annals of Mathematical Statstics 28, p.195- 241, 1957 \cr
+}
 }
 \author{
 Thomas Roth \email{thomas.roth@tu-berlin.de}

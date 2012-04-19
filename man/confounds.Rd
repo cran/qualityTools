@@ -1,6 +1,5 @@
 \name{confounds}
 \alias{confounds}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Confounded Effects
 }
@@ -10,7 +9,6 @@ Function to display confounded effects of a fractional factorial design in a hum
 \usage{
 confounds(x, depth = 2)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
  needs to be an object of class \code{\link{facDesign}}.

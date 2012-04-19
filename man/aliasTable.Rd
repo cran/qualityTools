@@ -10,7 +10,6 @@ Function to do display an alias table for the aliased effects of a fractional fa
 \usage{
 aliasTable(fdo, degree, show = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{fdo}{
  needs to be an object of class \code{\link{facDesign}}.
@@ -45,6 +44,8 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \url{http://www.r-qualitytools.org/Improve.html}
 }
 \examples{
-fracFac = fracDesign(k = 3, gen = "C = AB")                                 #create a fractional factorial design
-aliasTable(fracFac)                                                         #display the alias table
+#create a fractional factorial design
+fracFac = fracDesign(k = 3, gen = "C = AB") 
+#display the alias table                                
+aliasTable(fracFac)                                                         
 }

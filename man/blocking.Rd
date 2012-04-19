@@ -1,7 +1,6 @@
 \name{blocking}
 \Rdversion{1.1}
 \alias{blocking}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Blocking
 }
@@ -11,7 +10,6 @@ Blocks a given factorial or response surface design.
 \usage{
 blocking(fdo, blocks, BoR = FALSE, random.seed, useTable = "rsm", gen)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{fdo}{
  needs to be an object of class \code{\link{facDesign}}.
@@ -53,8 +51,6 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
  \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
 \code{\link{facDesign}} \cr
 \url{http://www.r-qualitytools.org/Improve.html}
@@ -70,6 +66,7 @@ blocking(fdo, 2)
 #create a response surface design for 3 factors
 fdo = rsmDesign(k = 3)
 
-#make it a design with 3 blocks (i.e. 1 block for star part and 2 blocks for the cube part)
+#make it a design with 3 blocks (i.e. 1 block for star part and 2 blocks 
+#for the cube part)
 blocking(fdo, 3)
 }

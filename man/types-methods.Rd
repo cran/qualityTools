@@ -34,7 +34,8 @@ Get and set the \code{types} for the factors in an object of class \code{\link{f
 \url{http://www.r-qualitytools.org}
 }
 \examples{
-fdo = fracDesign(k = 3)  #NA in response column
+#NA in response column
+fdo = fracDesign(k = 3)  
 summary(fdo)
 types(fdo) = c("numeric","numeric", "factor" )
 names(fdo) = c("Time", "Temperature", "Catalyst")

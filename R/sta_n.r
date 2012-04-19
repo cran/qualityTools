@@ -3,8 +3,7 @@
         stop(paste(deparse(substitute(data)), "needs to be an object of class 'facDesign'"))
     return(length(unique(fdo@block[[1]])))
 }
-starDesign = function(k, p = 0, alpha = c("both", "rotatable", "orthogonal"), cs, cc, 
-    data) {
+starDesign = function(k, p = 0, alpha = c("both", "rotatable", "orthogonal"), cs, cc, data) {
     DB = FALSE
     fdo = NULL
     csFrame = NULL

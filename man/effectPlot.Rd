@@ -7,7 +7,9 @@ Main Effect Plots
 A main effect plot is created for designs of type taguchiDesign and facDesign.
 }
 \usage{
-effectPlot(object, factors, fun = mean, single = FALSE, points = FALSE, classic = FALSE, axes = TRUE, lty, xlab, ylab, main, ylim, ...)
+effectPlot(object, factors, fun = mean, response = NULL, single = FALSE, 
+           points = FALSE, classic = FALSE, axes = TRUE, lty, xlab, ylab, main, 
+           ylim, ...)
 }
 
 \arguments{
@@ -21,6 +23,11 @@ for which factor is the effectPlot to be created.
 a function for the construction of the effectPlot such as \code{\link{mean}}, \code{link{median}},etc.\cr
 By default \code{fun} is set to \code{\link{mean}}. 
 }
+  \item{response}{
+response variable. If the response data frame of fdo consists of more then one responses,\cr
+this variable can be used to choose just one column of the response data frame. \code{response} needs to be an object of class 
+character with length of \sQuote{1}. It needs to be the same character as the name of the response in the response data frame that should be plotted.\cr
+By default \code{response} is set to \sQuote{NULL}.}
   \item{single}{
 logical value. If \sQuote{TRUE} device region can be set up using for instance \code{par(mfrow = c(2,2))}.\cr
 By default \code{single} is set to \sQuote{FALSE}.
@@ -79,7 +86,8 @@ effectPlot uses an altered version of the base function \code{\link{interaction.
 \examples{
 #effectPlot for a 2^k factorial design
 fdo = facDesign(k = 3)
-response(fdo) = rnorm(8)  #set response with generic response function
+#set response with generic response function
+response(fdo) = rnorm(8)  
 effectPlot(fdo)
 
 #effectPlot for a taguchiDesign

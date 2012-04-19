@@ -7,17 +7,17 @@
     return(alpha)
 }
 .centerPoints = function(nrow, k) {
-    if (!is.numeric(nrow)) 
+    if (!is.numeric(nrow))
         stop("nrow must be numeric")
-    if (!is.numeric(k)) 
+    if (!is.numeric(k))
         stop("ncol must be numeric")
     mat = as.data.frame(matrix(rep(0, nrow * k), nrow, ncol = k))
     return(mat)
 }
 .starFrame = function(k, alpha) {
-    if (!is.numeric(k)) 
+    if (!is.numeric(k))
         stop("k must be numeric")
-    if (!is.numeric(alpha)) 
+    if (!is.numeric(alpha))
         stop("alpha must be numeric")
     .starFrame = as.data.frame(matrix(0, nrow = k * 2, ncol = k))
     for (j in 1:k) {
@@ -27,14 +27,14 @@
     }
     return(.starFrame)
 }
-rsmDesign = function(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs = 1, fp = 1, 
+rsmDesign = function(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs = 1, fp = 1,
     sp = 1, faceCentered = FALSE) {
     DB = FALSE
-    if (blocks > 2^(k - 1) + 1) 
+    if (blocks > 2^(k - 1) + 1)
         stop("Blocking not possible")
-    if (alpha == "rotatable") 
+    if (alpha == "rotatable")
         alpha = .alphaRot(k, p)
-    if (alpha == "orthogonal") 
+    if (alpha == "orthogonal")
         alpha = .alphaOrth(k, p, cc = cc, cs = cs)
     if (alpha == "both") {
         found = FALSE
@@ -43,8 +43,8 @@ rsmDesign = function(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs =
                 print(k)
                 print(blocks)
             }
-            if (.rsmOrth[[i]]$k == k) 
-                if (.rsmOrth[[i]]$blocks == blocks) 
+            if (.rsmOrth[[i]]$k == k)
+                if (.rsmOrth[[i]]$blocks == blocks)
                   if (.rsmOrth[[i]]$p == p) {
                     cc = .rsmOrth[[i]]$cc
                     cs = .rsmOrth[[i]]$cs
@@ -66,15 +66,15 @@ rsmDesign = function(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs =
         print(cs)
         print(blocks)
     }
-    fdo = facDesign(k = k, replicates = fp)
+    fdo = facDesign(k = k, p = p, replicates = fp)                              ###      
     if (cc > 0) {
         temp = as.data.frame(matrix(0, nrow = cc, ncol = ncol(cube(fdo))))
         names(temp) = names(cube(fdo))
         centerCube(fdo) = temp
-        if (DB) 
+        if (DB)
             print("centerCube")
     }
-    if (DB) 
+    if (DB)
         print("star not added")
     temp = .starFrame(k, alpha)
     starportion = data.frame()
@@ -83,7 +83,7 @@ rsmDesign = function(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs =
     }
     names(starportion) = names(cube(fdo))
     star(fdo) = starportion
-    if (DB) 
+    if (DB)
         print("star added")
     if (cs > 0) {
         temp = as.data.frame(matrix(0, nrow = cs, ncol = ncol(cube(fdo))))
@@ -124,13 +124,13 @@ rsmDesign = function(k = 3, p = 0, alpha = "rotatable", blocks = 1, cc = 1, cs =
 .rsmOrth[[28]] = list(k = 6, p = 1, col = 7, row = 2, blocks = 2, cc = 4, cs = 2)
 .rsmOrth[[29]] = list(k = 6, p = 1, col = 7, row = 1, blocks = 1, cc = 0, cs = 0)
 .rsmOrth[[30]] = list(k = 7, p = 0, col = 8, row = 6, blocks = 17, cc = 1, cs = 11)
-.rsmOrth[[31]] = list(k = 7, p = 0, col = 8, row = 6, blocks = 17, cc = 1, cs = 11)
-.rsmOrth[[32]] = list(k = 7, p = 0, col = 8, row = 5, blocks = 9, cc = 1, cs = 11)
-.rsmOrth[[33]] = list(k = 7, p = 0, col = 8, row = 4, blocks = 5, cc = 1, cs = 11)
-.rsmOrth[[34]] = list(k = 7, p = 0, col = 8, row = 3, blocks = 3, cc = 1, cs = 11)
-.rsmOrth[[35]] = list(k = 7, p = 0, col = 8, row = 2, blocks = 2, cc = 1, cs = 11)
-.rsmOrth[[36]] = list(k = 7, p = 0, col = 8, row = 1, blocks = 1, cc = 0, cs = 0)
-.rsmOrth[[37]] = list(k = 7, p = 1, col = 9, row = 5, blocks = 9, cc = 1, cs = 4)
+#.rsmOrth[[31]] = list(k = 7, p = 0, col = 8, row = 6, blocks = 17, cc = 1, cs = 11) ###
+.rsmOrth[[31]] = list(k = 7, p = 0, col = 8, row = 5, blocks = 9, cc = 1, cs = 11)
+.rsmOrth[[32]] = list(k = 7, p = 0, col = 8, row = 4, blocks = 5, cc = 1, cs = 11)
+.rsmOrth[[33]] = list(k = 7, p = 0, col = 8, row = 3, blocks = 3, cc = 1, cs = 11)
+.rsmOrth[[34]] = list(k = 7, p = 0, col = 8, row = 2, blocks = 2, cc = 1, cs = 11)
+.rsmOrth[[35]] = list(k = 7, p = 0, col = 8, row = 1, blocks = 1, cc = 0, cs = 0)
+.rsmOrth[[36]] = list(k = 7, p = 1, col = 9, row = 5, blocks = 9, cc = 1, cs = 4)
 rsmChoose = function() {
     DB = FALSE
     old.par <- par(no.readonly = TRUE)
@@ -148,7 +148,7 @@ rsmChoose = function() {
     par(oma = c(4, 4, 4, 4))
     for (i in 1:6) for (j in 1:9) {
         par(mfg = c(i, j))
-        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n", 
+        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n",
             xlab = "", ylab = "", bg = "red", fg = "green")
         box()
     }
@@ -156,10 +156,10 @@ rsmChoose = function() {
         temp = rsmList[[i]]
         par(mfg = c(temp$row, temp$col))
         par(mfg = c(temp$row, temp$col))
-        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n", 
+        plot(0, 0, xaxs = "i", yaxs = "i", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, type = "n",
             xlab = "", ylab = "", bg = "red", fg = "green")
         rect(0, 0, 1, 1, col = colPalette[2^((temp$k) - (temp$p))])
-        text(0.1, 0.9, paste("N =", 2^((temp$k) - (temp$p)) + temp$cc * (temp$blocks - 1) + temp$cs + 
+        text(0.1, 0.9, paste("N =", 2^((temp$k) - (temp$p)) + temp$cc * (temp$blocks - 1) + temp$cs +
             (temp$k + temp$p) * 2), adj = c(0, 1), cex = 1.25)
         text(0.1, 0.75, paste("k =", temp$k), adj = c(0, 1), cex = 1.25)
         text(0.1, 0.6, paste("p =", temp$p), adj = c(0, 1), cex = 1.25)
@@ -178,33 +178,42 @@ rsmChoose = function() {
     cat("\nWaiting for your selection:")
     cat("\n\n")
     flush.console()
-    if (DB) 
+    if (DB)
         cat("TODO: standardize the locator part in respect to possible figure region")
     x = numeric(0)
     y = numeric(0)
-    xyList = locator(1)
+    xyList = locator(1)                                                         ###
+    print(xyList)
     x = ceiling(xyList$x + 8)
     y = ceiling(5 - xyList$y)
     if (DB) {
         print(paste("x:", x))
         print(paste("y:", y))
     }
-    if (length(x) < 1) 
+    if (length(x) < 1)
         return(rsmDesign(k = 2, p = 0, blocks = 2, alpha = "both"))
-    if (length(y) < 1) 
+    if (length(y) < 1)
         return(rsmDesign(k = 2, p = 0, blocks = 2, alpha = "both"))
-    if (!(x %in% factorVals) || !(y %in% blockVals)) 
-        return(rsmDesign(k = 2, p = 0, blocks = 2, alpha = "both"))
+#    if (!(x %in% factorVals) || !(y %in% blockVals))                           ###
+#        return(rsmDesign(k = 2, p = 0, blocks = 2, alpha = "both"))            ###
     blocks = blockVals[y]
     k = factorVals[x]
+    if (x==5 || x==7 || x==9 )                                                  ###
+     p = 1                                                                      ###
+    else                                                                        ###
+     p = 0                                                                      ###
     if (DB) {
         print(paste("blocks:", blocks))
         print(paste("k:", k))
+  #      print(rsmList)                                                         ###
     }
     for (i in seq(along = rsmList)) {
-        if (rsmList[[i]]$k == k) 
-            if (rsmList[[i]]$blocks == blocks) 
-                return(rsmDesign(k = k, p = rsmList[[i]]$p, blocks = blocks, alpha = "both"))
+        if (rsmList[[i]]$k == k)
+            if (rsmList[[i]]$blocks == blocks)
+                if (rsmList[[i]]$p == p)                                        ###
+                   return(rsmDesign(k = k, p = rsmList[[i]]$p, blocks = blocks, ###
+                          alpha = "both", cc = rsmList[[i]]$cc,                 ###
+                          cs = rsmList[[i]]$cs))                                ###
     }
     return(cat("\nno selection recognized\n"))
-} 
+}

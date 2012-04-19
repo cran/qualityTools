@@ -1,6 +1,6 @@
 .NAMES = LETTERS[c(1:8, 10:26)]
-setClass("doeFactor", representation = representation(low = "ANY", high = "ANY", name = "character", 
-    unit = "character", type = "character"), prototype = prototype(low = -1, high = 1, name = "", 
+setClass("doeFactor", representation = representation(low = "ANY", high = "ANY", name = "character",
+    unit = "character", type = "character"), prototype = prototype(low = -1, high = 1, name = "",
     unit = "", type = "numeric"))
 setGeneric(".low", function(object) standardGeneric(".low"))
 setGeneric(".low<-", function(x, value) standardGeneric(".low<-"))
@@ -9,10 +9,10 @@ setReplaceMethod(".low", "doeFactor", function(x, value) {
     boolOld = is.numeric(.low(x))
     x@low <- value
     boolNew = is.numeric(.low(x))
-    if (boolNew) 
+    if (boolNew)
         x@type = "numeric"
     else x@type = "factor"
-    if (boolOld != boolNew) 
+    if (boolOld != boolNew)
         print("Note: The types of the factors were changed!")
     return(x)
 })
@@ -23,10 +23,10 @@ setReplaceMethod(".high", "doeFactor", function(x, value) {
     boolOld = is.numeric(.high(x))
     x@high <- value
     boolNew = is.numeric(.high(x))
-    if (boolNew) 
+    if (boolNew)
         x@type = "numeric"
     else x@type = "factor"
-    if (boolOld != boolNew) 
+    if (boolOld != boolNew)
         print("Note: The types of the factors were changed!")
     return(x)
 })
@@ -63,9 +63,9 @@ setMethod("show", signature(object = "doeFactor"), function(object) {
     cat("type: ", .type(object), "\n")
     cat("\n")
 })
-setClass(Class = "facDesign", representation = representation(name = "character", factors = "list", 
-    cube = "data.frame", star = "data.frame", centerCube = "data.frame", centerStar = "data.frame", 
-    generator = "ANY", response = "data.frame", block = "data.frame", blockGen = "data.frame", runOrder = "data.frame", 
+setClass(Class = "facDesign", representation = representation(name = "character", factors = "list",
+    cube = "data.frame", star = "data.frame", centerCube = "data.frame", centerStar = "data.frame",
+    generator = "ANY", response = "data.frame", block = "data.frame", blockGen = "data.frame", runOrder = "data.frame",
     standardOrder = "data.frame", desireVal = "list", desirability = "list", fits = "list"))
 setGeneric(".nfp", function(object) standardGeneric(".nfp"))
 setMethod(".nfp", "facDesign", function(object) {
@@ -95,14 +95,14 @@ setMethod("fits", "facDesign", function(x) {
     return(x@fits)
 })
 setMethod("fits<-", "facDesign", function(x, value) {
-    if (!identical(class(value), "lm")) 
+    if (!identical(class(value), "lm"))
         stop(paste(deparse(substitute(value)), "needs to an object of class lm"))
-    if (!any(names(value$model)[1] == names(response(x)))) 
+    if (!any(names(value$model)[1] == names(response(x))))
         stop(paste("fitted response", names(value$model)[1], "could not be found in", deparse(substitute(x))))
     listPos = length(x@fits) + 1
     yName = names(value$model)[1]
     isIn = (yName == names(x@fits))
-    if (any(isIn)) 
+    if (any(isIn))
         listPos = (1:length(names(x@fits)))[isIn]
     x@fits[[listPos]] = value
     names(x@fits)[listPos] = yName
@@ -114,12 +114,12 @@ setMethod("desires", "facDesign", function(x) {
     return(x@desirability)
 })
 setMethod("desires<-", "facDesign", function(x, value) {
-    if (!any(value@response == names(response(x)))) 
+    if (!any(value@response == names(response(x))))
         stop(paste(value@response, "is not a response!"))
     listPos = length(x@desirability) + 1
     yName = value@response
     isIn = (yName == names(x@desirability))
-    if (any(isIn)) 
+    if (any(isIn))
         listPos = (1:length(names(x@desirability)))[isIn]
     x@desirability[[listPos]] = value
     names(x@desirability)[listPos] = yName
@@ -152,12 +152,12 @@ setMethod("[", signature(x = "facDesign", i = "ANY", j = "ANY"), function(x, i, 
     out = fdo
     cube(out) = oldIndex[newIndex[1:nrow(cube)]]
 }
-setReplaceMethod("[", signature(x = "facDesign", i = "ANY", j = "ANY"), function(x, i, 
+setReplaceMethod("[", signature(x = "facDesign", i = "ANY", j = "ANY"), function(x, i,
     j, value) {
     print(paste("setting values via [", i, ",", j, " ]  is not supported"))
     print("Use response() to set the values of the response!")
     return(x)
-    if (class(value) == "data.frame") 
+    if (class(value) == "data.frame")
         if (dim(as.data.frame(x)) == dim(as.data.frame(value))) {
             print("data.frame in einzelne Slots umkopieren")
         }
@@ -181,7 +181,7 @@ setMethod("types", "facDesign", function(x) {
 })
 setReplaceMethod("types", "facDesign", function(x, value) {
     for (i in 1:length(x@factors)) {
-        if (!identical(value[i], "numeric") & !identical(value[i], "factor")) 
+        if (!identical(value[i], "numeric") & !identical(value[i], "factor"))
             stop(paste(value[i], "\ttype of factor needs to be 'numeric' or 'factor'"))
         .type(x@factors[[i]]) = as.character(value[i])
     }
@@ -191,7 +191,7 @@ setMethod("units", "facDesign", function(x) {
     return(sapply(factors(x), .unit))
 })
 setMethod("units<-", "facDesign", function(x, value) {
-    for (i in 1:length(x@factors)) if (length(value) > 1) 
+    for (i in 1:length(x@factors)) if (length(value) > 1)
         .unit(x@factors[[i]]) = as.character(value[i])
     else .unit(x@factors[[i]]) = as.character(value[1])
     x
@@ -241,9 +241,9 @@ setGeneric("star<-", function(x, value) standardGeneric("star<-"))
 setMethod("star", "facDesign", function(x) x@star)
 setReplaceMethod("star", "facDesign", function(x, value) {
     DB = FALSE
-    if (!is.data.frame(value)) 
+    if (!is.data.frame(value))
         stop("data.frame must be provided!")
-    if (.numFac(x) != ncol(value)) 
+    if (.numFac(x) != ncol(value))
         stop("number of columns not matching!")
     if (nrow(value) == 0) {
         return("TODO: remove star und Rest anpassen")
@@ -260,17 +260,17 @@ setReplaceMethod("star", "facDesign", function(x, value) {
     newRunOrd = data.frame()
     if (numNewRow > 0) {
         newNums = data.frame(newNums = seq(max(oldRunOrd) + 1, max(oldRunOrd) + numNewRow, by = 1))
-        if (DB) 
+        if (DB)
             print(newNums)
         names(newNums) = names(oldRunOrd)
         newRunOrd = data.frame(oldRunOrd[1:lenFirst, ])
-        if (DB) 
+        if (DB)
             print(newRunOrd)
         names(newRunOrd) = names(oldRunOrd)
         restFrame = data.frame(oldRunOrd[-c(1:lenFirst), ])
         names(restFrame) = names(oldRunOrd)
         newRunOrd = rbind(newRunOrd, newNums, restFrame)
-        if (DB) 
+        if (DB)
             print(newRunOrd)
     }
     else {
@@ -292,7 +292,7 @@ setReplaceMethod("star", "facDesign", function(x, value) {
     }
     oldBlockGen = blockGen(x)
     if (ncol(oldBlockGen) > 0) {
-        if (DB) 
+        if (DB)
             print("TODO: BlockGen anpassen!")
         newBlockGen = data.frame(oldBlockGen[1:lenFirst, ])
         names(newBlockGen) = names(blockGen(x))
@@ -301,14 +301,14 @@ setReplaceMethod("star", "facDesign", function(x, value) {
         restBlockGen = data.frame(oldBlockGen[-c(1:(lenFirst + nrow(oldDf))), ])
         names(restBlockGen) = names(oldBlockGen)
         newBlockGen = rbind(newBlockGen, naFrameGen, restBlockGen)
-        if (DB) 
+        if (DB)
             print(newBlockGen)
         blockGen(x) = newBlockGen
     }
     oldBlock = block(x)
     newBlock = data.frame(oldBlock[1:lenFirst, ])
     names(newBlock) = names(oldBlock)
-    naFrame = as.data.frame(matrix(rep(max(newBlock) + 1, times = ncol(oldBlock) * nrow(newDf)), 
+    naFrame = as.data.frame(matrix(rep(max(newBlock) + 1, times = ncol(oldBlock) * nrow(newDf)),
         ncol = ncol(oldBlock)))
     names(naFrame) = names(oldBlock)
     restBlock = data.frame(oldBlock[-c(1:(lenFirst + nrow(oldDf))), ])
@@ -323,9 +323,9 @@ setGeneric("centerCube<-", function(x, value) standardGeneric("centerCube<-"))
 setMethod("centerCube", "facDesign", function(x) x@centerCube)
 setReplaceMethod("centerCube", "facDesign", function(x, value) {
     DB = FALSE
-    if (!is.data.frame(value)) 
+    if (!is.data.frame(value))
         stop("data.frame must be provided!")
-    if (.numFac(x) != ncol(value)) 
+    if (.numFac(x) != ncol(value))
         stop("number of columns not matching!")
     if (nrow(value) == 0) {
         return("TODO: remove CenterCube und Rest anpassen")
@@ -337,11 +337,11 @@ setReplaceMethod("centerCube", "facDesign", function(x, value) {
     oldResponse = response(x)
     blockValues = unique(block(x)[1:nrow(cube(x)), ])
     numBlocks = length(blockValues)
-    if (numBlocks > 1) 
+    if (numBlocks > 1)
         for (i in 1:(numBlocks - 1)) {
             newDf = rbind(newDf, value)
         }
-    if (DB) 
+    if (DB)
         print(newDf)
     numNewRow = nrow(newDf) - nrow(oldDf)
     oldOrd = standOrd(x)
@@ -394,7 +394,7 @@ setReplaceMethod("centerCube", "facDesign", function(x, value) {
     response(x) = newResponse
     oldBlockGen = blockGen(x)
     if (ncol(oldBlockGen) > 0) {
-        if (DB) 
+        if (DB)
             print("TODO: BlockGen Spalte(n) anpassen")
         newBlockGen = data.frame(oldBlockGen[1:lenCube, ])
         names(newBlockGen) = names(blockGen(x))
@@ -404,7 +404,7 @@ setReplaceMethod("centerCube", "facDesign", function(x, value) {
         names(restFrame) = names(blockGen(x))
         newBlockGen = rbind(newBlockGen, naFrameGen, restFrame)
         blockGen(x) = newBlockGen
-        if (DB) 
+        if (DB)
             print(newBlockGen)
     }
     oldBlock = block(x)
@@ -413,7 +413,7 @@ setReplaceMethod("centerCube", "facDesign", function(x, value) {
     naFrame = as.data.frame(matrix(rep(blockValues, times = nrow(newDf)/numBlocks), ncol = 1))
     restFrame = as.data.frame(oldBlock[-c(1:(lenCube + nrow(oldDf))), ])
     names(restFrame) = names(block(x))
-    if (DB) 
+    if (DB)
         print(naFrame)
     names(naFrame) = names(oldBlock)
     newBlock = rbind(newBlock, naFrame, restFrame)
@@ -428,9 +428,9 @@ setMethod("centerStar", "facDesign", function(x) {
 })
 setReplaceMethod("centerStar", "facDesign", function(x, value) {
     DB = FALSE
-    if (!is.data.frame(value)) 
+    if (!is.data.frame(value))
         stop("data.frame must be provided!")
-    if (.numFac(x) != ncol(value)) 
+    if (.numFac(x) != ncol(value))
         stop("number of columns not matching!")
     if (nrow(value) == 0) {
         return("TODO: remove CenterCube und Rest anpassen")
@@ -452,7 +452,7 @@ setReplaceMethod("centerStar", "facDesign", function(x, value) {
         restFrame = data.frame(oldRunOrd[-c(1:lenRest), ])
         names(restFrame) = names(oldRunOrd)
         newRunOrd = rbind(newRunOrd, newNums, restFrame)
-        if (DB) 
+        if (DB)
             print(newRunOrd)
         runOrd(x) = newRunOrd
     }
@@ -466,10 +466,10 @@ setReplaceMethod("centerStar", "facDesign", function(x, value) {
     newResponse = data.frame(oldResponse[1:lenRest, ])
     names(newResponse) = names(response(x))
     newResponse = rbind(newResponse, naFrame)
-    if (DB) 
+    if (DB)
         print(" vor centerStar response")
     response(x) = newResponse
-    if (DB) 
+    if (DB)
         print("hinter centerStar response")
     oldBlockGen = blockGen(x)
     if (ncol(oldBlockGen) > 0) {
@@ -481,14 +481,14 @@ setReplaceMethod("centerStar", "facDesign", function(x, value) {
         restBlockGen = data.frame(oldBlockGen[-c(1:(lenRest + nrow(oldDf))), ])
         names(restBlockGen) = names(oldBlockGen)
         newBlockGen = rbind(newBlockGen, naFrameGen, restBlockGen)
-        if (DB) 
+        if (DB)
             print(newBlockGen)
         blockGen(x) = newBlockGen
     }
     oldBlock = block(x)
     newBlock = data.frame(oldBlock[1:lenRest, ])
     names(newBlock) = names(block(x))
-    naFrame = as.data.frame(matrix(rep(max(block(x)[1:nrow(cube(x)), ]) + 1, times = ncol(block(x)) * 
+    naFrame = as.data.frame(matrix(rep(max(block(x)[1:nrow(cube(x)), ]) + 1, times = ncol(block(x)) *
         nrow(newDf)), ncol = ncol(block(x))))
     names(naFrame) = names(oldBlock)
     restBlock = data.frame(oldBlock[-c(1:(lenRest + nrow(oldDf))), ])
@@ -512,11 +512,11 @@ setMethod("response", "facDesign", function(object) {
 })
 setReplaceMethod("response", "facDesign", function(object, value) {
     index = order(runOrd(object))
-    if (!is.vector(value) && !is.data.frame(value)) 
+    if (!is.vector(value) && !is.data.frame(value))
         stop("vector or data.frame expected!")
     if (is.vector(value) && (is.numeric(value) || is.na(value))) {
-        if (nrow(response(object)) != length(value)) 
-            stop(paste("Number of rows for Design does not equal length of vector ", nrow(object), 
+        if (nrow(response(object)) != length(value))
+            stop(paste("Number of rows for Design does not equal length of vector ", nrow(object),
                 " != ", length(value), " "))
         object@response <- data.frame(value)
         object@response[index, ] <- value
@@ -540,11 +540,11 @@ setMethod("blockGen", "facDesign", function(object) {
     return(object@blockGen)
 })
 setReplaceMethod("blockGen", "facDesign", function(object, value) {
-    if (!is.vector(value) && !is.data.frame(value)) 
+    if (!is.vector(value) && !is.data.frame(value))
         stop("vector or data.frame expected!")
     if (is.vector(value) && (is.numeric(value) || is.na(value))) {
-        if (nrow(object) != length(value)) 
-            stop(paste("Number of rows for Design does not equal length of vector ", nrow(object), 
+        if (nrow(object) != length(value))
+            stop(paste("Number of rows for Design does not equal length of vector ", nrow(object),
                 " != ", length(value), " "))
         object@blockGen <- as.data.frame(value)
         names(blockGen(object)) = deparse(substitute(value))
@@ -566,11 +566,11 @@ setMethod("block", "facDesign", function(object) {
     return(object@block)
 })
 setReplaceMethod("block", "facDesign", function(object, value) {
-    if (!is.vector(value) && !is.data.frame(value)) 
+    if (!is.vector(value) && !is.data.frame(value))
         stop("vector or data.frame expected!")
     if (is.vector(value) && (is.numeric(value) || is.na(value))) {
-        if (nrow(object) != length(value)) 
-            stop(paste("Number of rows for Design does not equal length of vector ", nrow(object), 
+        if (nrow(object) != length(value))
+            stop(paste("Number of rows for Design does not equal length of vector ", nrow(object),
                 " != ", length(value), " "))
         object@block <- as.data.frame(value)
         names(block(object)) = deparse(substitute(value))
@@ -607,7 +607,7 @@ setGeneric("factors", function(x) standardGeneric("factors"))
 setMethod("factors", "facDesign", function(x) x@factors)
 setGeneric("factors<-", function(x, value) standardGeneric("factors<-"))
 setReplaceMethod("factors", "facDesign", function(x, value) {
-    if (length(value) != dim(cube(x))[2]) 
+    if (length(value) != dim(cube(x))[2])
         stop("\nNumber of factors doesn't match with number of columns for factorial Design\n")
     x@factors <- value
     x
@@ -619,17 +619,17 @@ setReplaceMethod("names", "facDesign", function(x, value) {
     for (i in 1:length(x@factors)) names(x@factors[[i]]) = as.character(value[i])
     x
 })
-setMethod("as.data.frame", "facDesign", function(x, row.names = NULL, optional = FALSE, 
+setMethod("as.data.frame", "facDesign", function(x, row.names = NULL, optional = FALSE,
     ...) {
     if (!is.null(cube(x))) {
         frameOut = cube(x)
     }
     else return(NULL)
-    if (!is.null(centerCube)) 
+    if (!is.null(centerCube))
         frameOut = rbind(frameOut, centerCube(x))
-    if (!is.null(star(x))) 
+    if (!is.null(star(x)))
         frameOut = rbind(frameOut, star(x))
-    if (!is.null(centerStar(x))) 
+    if (!is.null(centerStar(x)))
         frameOut = rbind(frameOut, centerStar(x))
     if (!is.null(factors(x)) && length(factors(x)) == dim(frameOut)[2]) {
         names(frameOut) = as.character(names(names(x)))
@@ -645,7 +645,7 @@ setMethod("as.data.frame", "facDesign", function(x, row.names = NULL, optional =
     if (nrow(standOrd(x)) > 0) {
         frameOut = cbind(standOrd(x), frameOut)
     }
-    if (nrow(frameOut) == nrow(response(x))) 
+    if (nrow(frameOut) == nrow(response(x)))
         frameOut = cbind(frameOut, x@response)
     else {
         temp = as.data.frame(matrix(NA, nrow = nrow(frameOut), ncol = ncol(response(x))))
@@ -661,11 +661,11 @@ as.data.frame.facDesign = function(x, row.names = NULL, optional = FALSE, ...) {
         frameOut = cube(x)
     }
     else return(NULL)
-    if (!is.null(centerCube)) 
+    if (!is.null(centerCube))
         frameOut = rbind(frameOut, centerCube(x))
-    if (!is.null(star(x))) 
+    if (!is.null(star(x)))
         frameOut = rbind(frameOut, star(x))
-    if (!is.null(centerStar(x))) 
+    if (!is.null(centerStar(x)))
         frameOut = rbind(frameOut, centerStar(x))
     if (!is.null(factors(x)) && length(factors(x)) == dim(frameOut)[2]) {
         names(frameOut) = as.character(names(names(x)))
@@ -681,7 +681,7 @@ as.data.frame.facDesign = function(x, row.names = NULL, optional = FALSE, ...) {
     if (nrow(standOrd(x)) > 0) {
         frameOut = cbind(standOrd(x), frameOut)
     }
-    if (nrow(frameOut) == nrow(response(x))) 
+    if (nrow(frameOut) == nrow(response(x)))
         frameOut = cbind(frameOut, x@response)
     else {
         temp = as.data.frame(matrix(NA, nrow = nrow(frameOut), ncol = ncol(response(x))))
@@ -719,7 +719,7 @@ setMethod("summary", signature(object = "facDesign"), function(object) {
     x = cube(x)
     index = numeric(0)
     for (i in 1:(dim(x)[2])) {
-        if (!(TRUE && (unique(x[, i]) %in% c(-1, 1)))) 
+        if (!(TRUE && (unique(x[, i]) %in% c(-1, 1))))
             index = c(index, i)
     }
     if (length(index) > 0) {
@@ -727,7 +727,7 @@ setMethod("summary", signature(object = "facDesign"), function(object) {
         cat("Column(s) ", index, " are discarded for analysis\n")
     }
     n = dim(x)[2]
-    if (n <= 1) 
+    if (n <= 1)
         stop("Factorial Design contains only one row!")
     a = 0
     for (m in 2:n) {
@@ -741,7 +741,7 @@ setMethod("summary", signature(object = "facDesign"), function(object) {
                   cat("\n")
                   cat("Identitaet gefunden\n")
                 }
-                if (sum(colProd) < 0) 
+                if (sum(colProd) < 0)
                   ident = -combMat[, i]
                 else ident = combMat[, i]
                 a = a + 1
@@ -761,7 +761,7 @@ setMethod("summary", signature(object = "facDesign"), function(object) {
     if (length(identityList) > 0) {
         for (i in 1:length(identityList)) {
             identLen = length((strsplit(names(identityList)[i], split = character(0))[[1]]))
-            if (length(resolution) == 0 || identLen > resolution) 
+            if (length(resolution) == 0 || identLen > resolution)
                 resolution = c(resolution, identLen)
             cat("I = ", names(identityList)[i], "\t\tColumns:", identityList[[i]], "\n")
         }
@@ -800,7 +800,7 @@ setMethod("identity", signature(x = "facDesign"), function(x) {
     resolution = numeric(0)
     temp = NULL
     A = aliasTable(x, show = FALSE)
-    if (any(dim(A) == 0)) 
+    if (any(dim(A) == 0))
         return(identityList)
     temp = as.matrix(A["Identity", ])
     boolTemp = apply(temp, 2, as.logical)
@@ -814,7 +814,7 @@ setMethod("identity", signature(x = "facDesign"), function(x) {
     if (length(identityList) > 0) {
         for (i in 1:length(identityList)) {
             identLen = length((strsplit(names(identityList)[i], split = character(0))[[1]]))
-            if (length(resolution) == 0 || identLen > resolution) 
+            if (length(resolution) == 0 || identLen > resolution)
                 resolution = c(resolution, identLen)
             cat("I = ", names(identityList)[i], "\t\tColumns:", identityList[[i]], "\n")
         }
@@ -833,19 +833,19 @@ confounds = function(x, depth = 2) {
     }
     effect1 = numeric(0)
     effect2 = numeric(0)
-    if (DB) 
+    if (DB)
         identityList
     index = numeric(0)
     for (i in 1:(dim(x)[2])) {
-        if (!(TRUE && (unique(x[, i]) %in% c(-1, 1)))) 
+        if (!(TRUE && (unique(x[, i]) %in% c(-1, 1))))
             index = c(index, i)
     }
-    if (length(index) > 0) 
+    if (length(index) > 0)
         x = x[, -index]
-    if (DB) 
+    if (DB)
         cat("Column(s) ", index, " are discarded for analysis\n")
     n = dim(x)[2]
-    if (n <= 1) 
+    if (n <= 1)
         stop("Factorial Design contains only one row!")
     for (j in 1:length(identityList)) {
         ident = identityList[[j]]
@@ -855,13 +855,13 @@ confounds = function(x, depth = 2) {
                 isect = intersect(ident, combMat[, i])
                 conf = setdiff(ident, isect)
                 conf = sort(c(conf, setdiff(combMat[, i], isect)))
-                effect1 = c(effect1, paste(sort(names(x)[as.numeric((combMat[, i]))]), sep = "", 
+                effect1 = c(effect1, paste(sort(names(x)[as.numeric((combMat[, i]))]), sep = "",
                   collapse = ""))
                 effect2 = c(effect2, paste(sort(names(x)[conf]), sep = "", collapse = ""))
                 if (DB) {
-                  cat("Effect(s) ", as.numeric((combMat[, i])), " aliased with Effect(s)", conf, 
+                  cat("Effect(s) ", as.numeric((combMat[, i])), " aliased with Effect(s)", conf,
                     "\n")
-                  cat("Effect(s)", names(x)[as.numeric((combMat[, i]))], " aliased with Effects ", 
+                  cat("Effect(s)", names(x)[as.numeric((combMat[, i]))], " aliased with Effects ",
                     names(x)[conf], "\n")
                 }
             }
@@ -871,22 +871,22 @@ confounds = function(x, depth = 2) {
         cat(effect1, "\n")
         cat(effect2, "\n")
     }
-    if (length(effect1) > 0) 
+    if (length(effect1) > 0)
         dupIndex = numeric(0)
     for (i in 1:length(effect1)) {
         if (DB) {
             cat("i: ", i, "\tlength(effect1): ", length(effect1), "\n")
             cat("effect 1 : ", effect1, "\n")
         }
-        if (i > length(effect1)) 
+        if (i > length(effect1))
             break
         index = (1:length(effect1))[effect2 == effect1[i]]
-        if (DB) 
+        if (DB)
             cat("index: ", index, "\n")
         dupIndex = numeric(0)
         for (j in index) {
             if (effect1[j] == effect2[i]) {
-                if (i != j) 
+                if (i != j)
                   dupIndex = c(dupIndex, j)
             }
         }
@@ -897,23 +897,47 @@ confounds = function(x, depth = 2) {
     }
     cat("\nAlias Structure:\n")
     for (i in 1:length(effect1)) {
-        if ((length(strsplit(effect1[i], split = character(0))[[1]]) <= depth) && (length(strsplit(effect2[i], 
-            split = character(0))[[1]]) <= depth)) 
+        if ((length(strsplit(effect1[i], split = character(0))[[1]]) <= depth) && (length(strsplit(effect2[i],
+            split = character(0))[[1]]) <= depth))
             cat(effect1[i], "\tis confounded with\t", effect2[i], "\n")
-        if (identical(depth, "all")) 
+        if (identical(depth, "all"))
             cat(effect1[i], "\tis confounded with\t", effect2[i], "\n")
     }
     invisible(effect1)
 }
-fracDesign = function(k = 3, gen = NULL, replicates = 1, blocks = 1, centerCube = 0, random.seed = 1234) {
+fracDesign = function(k = 3, p = 0, gen = NULL, replicates = 1, blocks = 1, centerCube = 0, random.seed = 1234) {    ###
     DB = FALSE
-    if (!is.numeric(random.seed)) 
+    STDfdo=FALSE
+    if (p<0 || p>7)                                                                                                  ###
+     stop("p needs to be an integer between 0 and 7!")                                                               ###
+    if (abs(p - round(p)) > .Machine$double.eps^0.5)                                                                 ###
+    {                                                                                                                ###
+     warning(paste("p needs to be an integer but is real! p was rounded to", round(p)))                              ###
+     p=round(p)                                                                                                      ###
+    }                                                                                                                ###
+    if (p != 0)                                                                                                      ###
+    {                                                                                                                ###
+     gen = NULL                                                                                                      ###
+     for (i in 1:length(.fdoOrth))                                                                                   ###
+      {                                                                                                              ###
+       if (k==.fdoOrth[[i]]$k && p==.fdoOrth[[i]]$p)                                                                 ###
+       {                                                                                                             ###
+         STDfdo=TRUE                                                                                                 ###
+         return(fracDesign(k=.fdoOrth[[i]]$k, gen=.fdoOrth[[i]]$gen,                                                 ###
+                replicates = replicates, blocks = blocks,                                                            ###
+                centerCube = centerCube, random.seed = random.seed))                                                 ###
+       }                                                                                                             ###
+      }                                                                                                              ###
+      if(STDfdo==FALSE)                                                                                              ###
+       stop("No standard Design for the choosen combination of k and p (see: fracChoose())!")                        ###
+    }                                                                                                                ###
+    if (!is.numeric(random.seed))
         stop("random.seed needs to be numeric")
-    if (!is.numeric(blocks)) 
+    if (!is.numeric(blocks))
         stop("blocks needs to be numeric!")
-    if (!is.numeric(replicates)) 
+    if (!is.numeric(replicates))
         stop("replicates needs to be numeric!")
-    else if (replicates < 0) 
+    else if (replicates < 0)
         stop("replicates need to >= 0")
     N <- 2^k
     X <- matrix(NA, nrow = N, ncol = k)
@@ -930,7 +954,7 @@ fracDesign = function(k = 3, gen = NULL, replicates = 1, blocks = 1, centerCube 
         }
     }
     frameOut = data.frame(X)
-    if (DB) 
+    if (DB)
         print("juhu")
     if (!is.null(gen)) {
         listGen = vector("list", length(gen))
@@ -943,9 +967,9 @@ fracDesign = function(k = 3, gen = NULL, replicates = 1, blocks = 1, centerCube 
         }
         temp = character(0)
         for (i in seq(along = gen)) {
-            if (DB) 
+            if (DB)
                 cat("gen[", i, "] = ", gen[i], "\n")
-            if (!is.character(gen[i])) 
+            if (!is.character(gen[i]))
                 stop("Defining Relations should contain characters only!")
             chars = strsplit(gen[i], split = character(0))[[1]]
             if (DB) {
@@ -956,7 +980,7 @@ fracDesign = function(k = 3, gen = NULL, replicates = 1, blocks = 1, centerCube 
             checkDupl = character(0)
             for (j in 1:length(chars)) {
                 if (chars[j] %in% toupper(c(.NAMES[1:26], letters[1:26]))) {
-                  if (chars[j] %in% checkDupl) 
+                  if (chars[j] %in% checkDupl)
                     stop("Defining relations contain one or more duplicates!")
                   checkDupl = c(checkDupl, chars[j])
                   temp = c(temp, chars[j])
@@ -977,9 +1001,9 @@ fracDesign = function(k = 3, gen = NULL, replicates = 1, blocks = 1, centerCube 
             cat("\n")
         }
         for (i in seq(along = gen)) {
-            if (DB) 
+            if (DB)
                 cat("gen[", i, "] = ", gen[i], "\n")
-            if (!is.character(gen[i])) 
+            if (!is.character(gen[i]))
                 stop("Defining Relations should contain characters only!")
             chars = strsplit(gen[i], split = character(0))[[1]]
             numVec = numeric(0)
@@ -987,7 +1011,7 @@ fracDesign = function(k = 3, gen = NULL, replicates = 1, blocks = 1, centerCube 
             allowedChars = c(.NAMES[1:26], letters[1:26], "=")
             for (j in 1:length(chars)) {
                 if (chars[j] %in% allowedChars) {
-                  if ((chars[j] == "=") & (length(numVec) != 1)) 
+                  if ((chars[j] == "=") & (length(numVec) != 1))
                     stop("check position of \"=\" in generators!")
                   if (chars[j] != "=") {
                     charVec = c(charVec, toupper(chars[j]))
@@ -1003,10 +1027,10 @@ fracDesign = function(k = 3, gen = NULL, replicates = 1, blocks = 1, centerCube 
             .numFactors = c(.numFactors, numVec)
             charFactors = c(charFactors, charVec)
         }
-        if (DB) 
+        if (DB)
             print("juhu")
         names(.numFactors) = charFactors
-        if (length(unique(.numFactors)) > k) 
+        if (length(unique(.numFactors)) > k)
             stop("number of distinct Factors in generators greater than k!")
         if (DB) {
             print(listGen)
@@ -1015,7 +1039,7 @@ fracDesign = function(k = 3, gen = NULL, replicates = 1, blocks = 1, centerCube 
         }
         for (i in seq(along = listGen)) {
             ind <- trunc(listGen[[i]])
-            if (any(abs(ind) > k)) 
+            if (any(abs(ind) > k))
                 stop(paste("generator:", paste(ind[1], "=", paste(ind[-1], collapse = "*")), "includes undefined columns"))
             x <- rep(sign(ind[1]), N)
             for (j in ind[-1]) x <- x * X[, j]
@@ -1043,11 +1067,11 @@ fracDesign = function(k = 3, gen = NULL, replicates = 1, blocks = 1, centerCube 
     for (i in seq(along = listFac)) listFac[i] = new("doeFactor")
     names(listFac) = names(frameOut)
     factors(DesignOut) = listFac
-    if (DB) 
+    if (DB)
         print(frameOut)
-    if (DB) 
+    if (DB)
         print("yes")
-    if (DB) 
+    if (DB)
         print("aha")
     numRows = nrow(cube(DesignOut)) + nrow(star(DesignOut)) + nrow(centerStar(DesignOut)) + nrow(centerCube(DesignOut))
     if (DB) {
@@ -1055,21 +1079,21 @@ fracDesign = function(k = 3, gen = NULL, replicates = 1, blocks = 1, centerCube 
         print("response")
     }
     DesignOut@response = data.frame(y = rep(NA, numRows))
-    if (DB) 
+    if (DB)
         print("response")
     standardOrder = data.frame(matrix(data = 1:numRows, nrow = numRows, ncol = 1))
     names(standardOrder) = "StandOrder"
     standardOrder
     standOrd(DesignOut) = standardOrder
-    if (DB) 
+    if (DB)
         print("1")
     set.seed(random.seed)
     runOrder = as.data.frame(standardOrder[sample(1:numRows), ])
-    if (DB) 
+    if (DB)
         print("2")
     names(runOrder) = "RunOrder"
     runOrd(DesignOut) = runOrder
-    if (DB) 
+    if (DB)
         print("3")
     if (centerCube >= 1) {
         temp = data.frame(matrix(rep(0, centerCube * k), ncol = k, nrow = centerCube))
@@ -1077,11 +1101,42 @@ fracDesign = function(k = 3, gen = NULL, replicates = 1, blocks = 1, centerCube 
         centerCube(DesignOut) = temp
     }
     temp = try(blocking(DesignOut, blocks = blocks))
-    if (inherits(temp, "try-error")) 
-        return(DesignOut)
+    if (inherits(temp, "try-error"))
+        stop("Blocking not possible!")      #return(DesignOut)                  ###
     return(blocking(DesignOut, blocks = blocks))
 }
-facDesign = function(k = 3, replicates = 1, blocks = 1, centerCube = 0) {
-    frameOut = fracDesign(k = k, gen = NULL, replicates = replicates, blocks = blocks, centerCube = centerCube)
+facDesign = function(k = 3, p = 0, replicates = 1, blocks = 1, centerCube = 0) {  ###
+    frameOut = fracDesign(k = k, p = p, gen = NULL, replicates = replicates, blocks = blocks, centerCube = centerCube)  ###
     return(frameOut)
-} 
+}
+
+###
+
+.fdoOrth = vector(mode = "list", length = 3)                                                           ###
+.fdoOrth[[1]] = list(k = 3, gen = "C=AB", p = 1)                                                       ###
+.fdoOrth[[2]] = list(k = 4, gen = "D=ABC", p = 1)                                                      ###
+.fdoOrth[[3]] = list(k = 5, gen = c("D=AB","E=AC"), p = 2)                                             ###
+.fdoOrth[[4]] = list(k = 6, gen = c("D=AB","E=AC","F=BC"), p = 3)                                      ###
+.fdoOrth[[5]] = list(k = 7, gen = c("D=AB","E=AC","F=BC","G=ABC"), p = 4)                              ###
+.fdoOrth[[6]] = list(k = 5, gen = "E=ABCD", p = 1)                                                     ###
+.fdoOrth[[7]] = list(k = 6, gen = c("E=ABC","F=BCD"), p = 2)                                           ###
+.fdoOrth[[8]] = list(k = 7, gen = c("E=ABC","F=BCD","G=ACD"), p = 3)                                   ###
+.fdoOrth[[9]] = list(k = 8, gen = c("E=BCD","F=ACD","G=ABC","H=ABD"), p = 4)                           ###
+.fdoOrth[[10]] = list(k = 9, gen = c("E=ABC","F=BCD","G=ACD","H=ABD","J=ABCD"), p = 5)                 ###
+.fdoOrth[[11]] = list(k = 10, gen = c("E=ABC","F=BCD","G=ACD","H=ABD","J=ABCD","K=AB"), p = 6)         ###
+.fdoOrth[[12]] = list(k = 11, gen = c("E=ABC","F=BCD","G=ACD","H=ABD","J=ABCD","K=AB","L=AC"), p = 7)  ###
+.fdoOrth[[13]] = list(k = 6, gen = "F=ABCDE", p = 1)                                                   ###
+.fdoOrth[[14]] = list(k = 7, gen = c("F=ABCD","G=ABDE"), p = 2)                                        ###
+.fdoOrth[[15]] = list(k = 8, gen = c("F=ABC","G=ABD","H=BCDE"), p = 3)                                 ###
+.fdoOrth[[16]] = list(k = 9, gen = c("F=BCDE","G=ACDE","H=ABDE","J=ABCE"), p = 4)                      ###
+.fdoOrth[[17]] = list(k = 10, gen = c("F=ABCD","G=ABCE","H=ABDE","J=ACDE","K=BCDE"), p = 5)            ###
+.fdoOrth[[18]] = list(k = 11, gen = c("F=ABC","G=BCD","H=CDE","J=ACD","K=AEF","L=ADEF"), p = 6)        ###
+.fdoOrth[[19]] = list(k = 7, gen = "G=ABCDEF", p = 1)                                                  ###
+.fdoOrth[[20]] = list(k = 8, gen = c("G=ABCD","H=ABEF"), p = 2)                                        ###
+.fdoOrth[[21]] = list(k = 9, gen = c("G=ABCD","H=ABEF","J=CDEF"), p = 3)                               ###
+.fdoOrth[[22]] = list(k = 10, gen = c("G=BCDF","H=ACDF","J=ABDE","K=ABCE"), p = 4)                     ###
+.fdoOrth[[23]] = list(k = 11, gen = c("G=CDE","H=ABCD","J=ABF","K=BDEF","L=ADEF"), p = 5)              ###
+.fdoOrth[[24]] = list(k = 8, gen = "H=ABCDEFG", p = 1)                                                 ###
+.fdoOrth[[25]] = list(k = 9, gen = c("H=ACDFG","J=BCEFG"), p = 2)                                      ###
+.fdoOrth[[26]] = list(k = 10, gen = c("H=ABCG","J=BCDE","K=ACDF"), p = 3)                              ###
+.fdoOrth[[27]] = list(k = 11, gen = c("H=ABCG","J=BCDE","K=ACDF","L=ABCDEFG"), p = 4)                  ###

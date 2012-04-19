@@ -1,7 +1,6 @@
 \name{desirability}
 \Rdversion{1.1}
 \alias{desirability}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Desirability Function
 }
@@ -9,9 +8,9 @@ Desirability Function
 Creates desirability functions for use in the optimization of multiple responses.
 }
 \usage{
-desirability(response, low, high, target = "max", scale = c(1, 1), importance = 1, constraints)
+desirability(response, low, high, target = "max", scale = c(1, 1), 
+             importance = 1, constraints)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{response}{
 name of the response.
@@ -55,8 +54,6 @@ This function returns a desirability function.
  For an example in context which shows the usage of the function \code{desirability()} please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
 \code{\link{desires}}\cr
 \code{\link{optimum}}\cr
@@ -64,21 +61,24 @@ This function returns a desirability function.
 }
 \examples{
 #Maximization of a response
-#define a desirability for response y where higher values of y are better as long as the response is smaller than high
+#define a desirability for response y where higher values of y are better 
+#as long as the response is smaller than high
 d = desirability(y, low = 6, high = 18, target = "max")
 
 #show and plot the desirability function
 d; plot(d)
 
 #Minimization of a response including a scaling factor
-#define a desirability for response y where lower values of y are better as long as the response is higher than low
+#define a desirability for response y where lower values of y are better 
+#as long as the response is higher than low
 d = desirability(y, low = 6, high = 18, scale = c(2),target = "min")
 
 #show and plot the desirability function
 d; plot(d)
 
 #Specific target of a response is best including a scaling factor
-#define a desirability for response y where desired value is at 8 and values lower than 6 as well as values higher than 18 are not acceptable
+#define a desirability for response y where desired value is at 8 
+#and values lower than 6 as well as values higher than 18 are not acceptable
 d = desirability(y, low = 6, high = 18, scale = c(0.5,2),target = 12)
 
 #show and plot the desirability function
