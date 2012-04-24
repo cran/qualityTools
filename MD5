@@ -1,4 +1,4 @@
-4b21fbec0d6d7688bf8ce11b833aea03 *DESCRIPTION
+a13fdcc0233eeaafb9b2492b1aef56cd *DESCRIPTION
 6356bfed802926e731e32096ed2cf5e9 *NAMESPACE
 ad2e72bcb5850a062779340b70afab98 *R/Blo_n.r
 ac184b49e834b597412c5e6a99c904a1 *R/COM_P.R
@@ -40,7 +40,7 @@ da0e9af955c5255d772b9f794889e0a5 *R/whi_t.r
 82e861969df89dd058e5315e18a3cbe0 *Rplots.pdf
 1976360c05fc035f52db867008777d01 *inst/CITATION
 945a050aa1a1259af28a221dbed37a3b *inst/NEWS.Rd
-fbc4a108d55abb44526abd903b6c1eb3 *inst/doc/qualityTools.pdf
+4b581fba245dd479e3e998f678642b5b *inst/doc/qualityTools.pdf
 6146f2c1d620dd9f55539b0de826d9af *inst/doc/qualityTools.rnw
 6bcd357795f36584486e03e3f797d552 *man/MSALinearity-class.Rd
 2213406675caa798a1da82b79ae33ce1 *man/adSim.Rd
@@ -118,7 +118,7 @@ d647a6cbd42cdfd9d1fa840889b59d01 *man/pcr.Rd
 a8b8df69e76647379b5ba473d4fd6091 *man/print.adtest.Rd
 8ef2238c20c2455d5ee7be1127d784f0 *man/print.invisible.Rd
 ab89a978b104eb99908cd9742e617102 *man/qqPlot.Rd
-6b4124bf78f26e7b4e00b523f19ebde3 *man/qualityTools-package.Rd
+55b27675ab19d83963a5094f75cdcc17 *man/qualityTools-package.Rd
 d5ff8d1ab59b673c6f47b0163013907c *man/randomize.Rd
 584d2227ae5750902efd718f3123ccc5 *man/response-methods.rd
 7b6a93032d6c4986b2548673a42f61a9 *man/rsmChoose.Rd
