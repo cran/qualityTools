@@ -1,4 +1,6 @@
 \name{rsmDesign}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \Rdversion{1.1}
 \alias{rsmDesign}
 
@@ -65,9 +67,11 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \seealso{
 \code{\link{facDesign}}\cr
 \code{\link{fracDesign}}\cr
-\code{\link{fracChoose}}\cr
+\code{\link{fracChoose}}\cr 
+\code{\link{pbDesign}}\cr
 \code{\link{rsmChoose}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/Improve.html}\cr
+\url{http://webapps.r-qualitytools.org/brew/facDesign/rsmDesign.html}
 }
 \examples{
 #central composite design for 2 factors with 2 blocks, alpha = 1.41, 

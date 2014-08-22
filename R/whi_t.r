@@ -1,5 +1,6 @@
 setGeneric("whiskersPlot", function(x, main, xlab, ylab, col, ylim, legend = TRUE, ...) standardGeneric("whiskersPlot"))
-setMethod("whiskersPlot", signature(x = "gageRR"), function(x, main, xlab, ylab, col, ylim, legend = TRUE, ...) {
+setMethod("whiskersPlot", signature(x = "gageRR"), function(x, main, xlab, ylab, col, ylim, legend = TRUE, 
+    ...) {
     ops = length(unique(x[, 3]))
     pts = length(unique(x[, 4]))
     n = length(x[, 5])/pts/ops
@@ -25,13 +26,14 @@ setMethod("whiskersPlot", signature(x = "gageRR"), function(x, main, xlab, ylab,
         }
         ylim = c(-1.25 * abs(min(min_y)), abs(max(max_y)))
     }
-    plot(x = 1:((pts * n * ops) + pts + 1), y = rep(0, pts * n * ops + pts + 1), col = "transparent", xlim = c(0, pts * n * ops + pts + 1), ylim = ylim, xlab = xlab, 
-        ylab = ylab, main = main, axes = FALSE)
+    plot(x = 1:((pts * n * ops) + pts + 1), y = rep(0, pts * n * ops + pts + 1), col = "transparent", 
+        xlim = c(0, pts * n * ops + pts + 1), ylim = ylim, xlab = xlab, ylab = ylab, main = main, axes = FALSE)
     abline(v = seq(1, pts * n * ops + pts + 1, by = n * ops + 1), col = "gray")
     abline(h = 0, col = "gray", lty = 3)
     box()
     axis(2)
-    axis(1, at = seq(1 + (n * ops/2), pts * n * ops + pts + 1 - (n * ops/2), length = pts), labels = unique(x[, 4]))
+    axis(1, at = seq(1 + (n * ops/2), pts * n * ops + pts + 1 - (n * ops/2), length = pts), labels = unique(x[, 
+        4]))
     j = 0
     for (i in 1:pts) {
         dat = subset(val, val[, 4] == unique(x[, 4])[i])
@@ -47,6 +49,7 @@ setMethod("whiskersPlot", signature(x = "gageRR"), function(x, main, xlab, ylab,
         }
     }
     if (legend == TRUE) 
-        legend("bottomleft", legend = unique(x[, 3]), fill = col, horiz = TRUE, box.col = 1, bg = "white", title = paste(names(val)[3], "(s):", sep = ""), inset = 0.04)
+        legend("bottomleft", legend = unique(x[, 3]), fill = col, horiz = TRUE, box.col = 1, bg = "white", 
+            title = paste(names(val)[3], "(s):", sep = ""), inset = 0.04)
     return()
 }) 

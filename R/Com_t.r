@@ -1,5 +1,6 @@
 setGeneric("compPlot", function(x, main, xlab, ylab, col, cex.lab, fun = NULL, ...) standardGeneric("compPlot"))
-setMethod("compPlot", signature(x = "gageRR"), function(x, main, xlab, ylab, col, cex.lab, fun = NULL, ...) {
+setMethod("compPlot", signature(x = "gageRR"), function(x, main, xlab, ylab, col, cex.lab, fun = NULL, 
+    ...) {
     if (missing(xlab)) 
         xlab = ""
     if (missing(ylab)) 

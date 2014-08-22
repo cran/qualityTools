@@ -6,6 +6,7 @@
 \alias{summary,facDesign-method}
 \alias{summary,mixDesign-method}
 \alias{summary,taguchiDesign-method}
+\alias{summary,pbDesign-method}
 \alias{summary,gageRR-method}
 \alias{summary,MSALinearity-method}
 \title{Methods for Function summary in Package base}
@@ -37,13 +38,19 @@ object of class \code{\link{mixDesign}}.
 object of class \code{\link{taguchiDesign}}.
 }
 
+\item{\code{signature(object = "pbDesign")}}{
+object of class \code{\link{pbDesign}}.
+}
 
 \item{\code{signature(object = "gageRR")}}{
 object of class \code{\link{gageRR}}.
 }
 }}
 
-\author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
+\author{
+Thomas Roth \email{thomas.roth@tu-berlin.de}\cr
+Etienne Stockhausen \email{stocdarf@mailbox.tu-berlin.de} 
+}
 
 \keyword{methods}
 \seealso{

@@ -1,4 +1,5 @@
 \name{mixDesign-class}
+\keyword{Design of Experiments}
 \Rdversion{1.1}
 \docType{class}
 \alias{mixDesign-class}

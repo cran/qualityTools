@@ -1,5 +1,7 @@
 \name{mvPlot}
 \alias{mvPlot}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{
 Multi-Vari-Charts
 }

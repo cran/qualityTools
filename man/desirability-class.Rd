@@ -1,4 +1,5 @@
 \name{desirability-class}
+\keyword{Multiple Response Optimization}
 \Rdversion{1.1}
 \docType{class}
 \alias{desirability-class}

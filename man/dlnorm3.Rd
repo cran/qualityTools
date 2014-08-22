@@ -3,6 +3,7 @@
 \alias{dlnorm3}
 \alias{plnorm3}
 \alias{qlnorm3}
+\keyword{Distribution Identification}
 
 \title{
  The Lognormal Distribution (3 Parameter)

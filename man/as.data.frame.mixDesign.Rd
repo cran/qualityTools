@@ -1,5 +1,6 @@
 \name{as.data.frame.mixDesign}
 \alias{as.data.frame.mixDesign}
+\keyword{Design of Experiments}
 \title{
 Coerce the object of class mixDesign to a data.frame
 }

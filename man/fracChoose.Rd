@@ -1,4 +1,5 @@
 \name{fracChoose}
+\keyword{Design of Experiments}
 \Rdversion{1.1}
 \alias{fracChoose}
 \title{
@@ -15,10 +16,11 @@ fracChoose()
 \code{fracChoose()} returns an object of class \code{\link{facDesign}}.
 }
 \references{
-The standard designs provided by \code{fracChoose()} are out of:
 \itemize{
- \item BOX, G.E.P. and HUNTER, J.S.: "Multifactor Experimental Designs for Exploring Response Surfaces",\cr
-       The Annals of Mathematical Statstics 28, p.195- 241, 1957 \cr
+ \item BOX, George. E. P. and HUNTER, J.S.: "Multifactor Experimental Designs for Exploring Response Surfaces",\cr
+       The Annals of Mathematical Statistics 28, p.195- 241, 1957 \cr
+  \item BOX, George E. P. and HUNTER, J. Stuart and HUNTER, William G.\cr
+       Statistics for Experimenters (2005) 28, p.272, table 6.22 \cr
 }
 }
 \author{
@@ -34,6 +36,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \code{\link{fracDesign}}\cr
 \code{\link{rsmChoose}} \cr
 \code{\link{rsmDesign}} \cr
-\url{http://www.r-qualitytools.org/Improve.html} \cr
-Statistics for Experimenters (2005) Box, Hunter, Hunter p.272, table 6.22
+\url{http://www.r-qualitytools.org/Improve.html} \cr 
+\url{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html} \cr
+
 }

@@ -1,5 +1,7 @@
 \name{contourPlot3}
 \alias{contourPlot3}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{
 function to create a ternary plot (contour plot) for an object of class mixDesign
 }
@@ -97,7 +99,8 @@ please read the vignette for the package \code{\link{qualityTools}} at \url{http
 \code{\link{wirePlot3}}  \cr
 \code{\link{mixDesign}}  \cr
 \code{\link{colorRampPalette}}  \cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/Improve.html}\cr
+\url{http://webapps.r-qualitytools.org/brew/facDesign/rsmDesign.html}
 }
 \examples{
 #yarn example p.564 Response Surface Methodology

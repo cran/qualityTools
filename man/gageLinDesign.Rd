@@ -1,5 +1,6 @@
 \name{gageLinDesign}
 \alias{gageLinDesign}
+\keyword{Measurement Systems Analysis}
 \title{
 Function to create a object of class MSALinearity.
 }
@@ -31,7 +32,8 @@ The results for the single should be entered with the help of \code{\link{respon
   \code{\link{gageLin}}  \cr
   \code{\link{response}} \cr
   \code{\link{edit}}\cr
-  \url{http://www.r-qualitytools.org}
+  \url{http://www.r-qualitytools.org}\cr
+  \url{http://webapps.r-qualitytools.org/brew/gageLin/gageLin.html}
 }
 \examples{
 # results of run A-E

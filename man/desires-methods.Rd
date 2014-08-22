@@ -5,6 +5,7 @@
 \alias{desires-methods}
 \alias{desires,facDesign-method}
 \alias{desires<-,facDesign-method}
+\keyword{Multiple Response Optimization}
 \title{Get and set methods}
 \description{Set or get the desirability for each response of a factorial design. The desirability is stored in the facDesign object. Setting desirabilities is required for optimization of multiple responses.}
 

@@ -1,5 +1,6 @@
-\name{as.data.frame.gageRR}
+\name{as.data.frame.gageRR}   
 \alias{as.data.frame.gageRR}
+\keyword{Measurement Systems Analysis}
 \title{
 Coerce to a data.frame
 }

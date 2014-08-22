@@ -215,6 +215,9 @@ randomize = function(fdo, random.seed, so = FALSE) {
 }
 blocking = function(fdo, blocks, BoR = FALSE, random.seed, useTable = "rsm", gen) {
     override = FALSE
+    Block = data.frame(Block = rep(1, nrow(fdo)))
+    block(fdo) = Block
+    fdo = randomize(fdo, so = TRUE)
     if (missing(random.seed)) {
         runif(1)
         random.seed = .Random.seed[sample(1:626, 1)]
@@ -255,8 +258,10 @@ blocking = function(fdo, blocks, BoR = FALSE, random.seed, useTable = "rsm", gen
     if (!override) {
         .blockGenCol = .blockGenCol(gen, fdo)
         .blockCol = .blockCol(.blockGenCol)
-        block(fdo) = .blockCol
-        blockGen(fdo) = .blockGenCol
+        Block = .blockCol
+        BlockGenCol = .blockGenCol
+        block(fdo) = Block
+        blockGen(fdo) = BlockGenCol
     }
     numCC = nrow(centerCube(fdo))
     if (numCC > 0) {

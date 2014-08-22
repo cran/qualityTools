@@ -1,5 +1,7 @@
 \name{errorPlot}
 \alias{errorPlot}
+\keyword{Measurement Systems Analysis}
+\keyword{Six Sigma}
 \title{
  Function to create error Charts
 }
@@ -77,7 +79,8 @@ Please do read the vignette for the package \code{\link{qualityTools}} at \url{h
 \seealso{
   \code{\link{gageRR}} \cr
   \code{\link{par}} \cr
-  \url{http://www.r-qualitytools.org}
+  \url{http://www.r-qualitytools.org}\cr
+  \url{http://webapps.r-qualitytools.org/brew/Gage/gageRR.html}
 }
 \examples{
 #create gageRR-object

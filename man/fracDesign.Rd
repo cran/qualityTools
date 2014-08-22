@@ -1,5 +1,7 @@
 \name{fracDesign}
 \alias{fracDesign}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{fracDesign}
 \description{Generates a 2^k full- or fractional factorial design.}
 
@@ -31,9 +33,12 @@ fracDesign generates 2^k full- or fractional factorial designs.
 \seealso{
 \code{\link{facDesign}}\cr
 \code{\link{fracChoose}}\cr 
+\code{\link{pbDesign}}\cr
 \code{\link{rsmDesign}}\cr 
 \code{\link{taguchiDesign}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}}
+\url{http://www.r-qualitytools.org/Improve.html}\cr
+\url{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html}
+}
 \examples{
 #returns a 2^3 full factorial design
 vp.full = facDesign(k = 3)       

@@ -1,5 +1,7 @@
 \name{compPlot}
 \alias{compPlot}
+\keyword{Measurement Systems Analysis}
+\keyword{Six Sigma}
 \title{
  Function to create comparison Plots
 }
@@ -59,6 +61,7 @@ Please do read the vignette for the package \code{\link{qualityTools}} at \url{h
   \code{\link{gageRR}} \cr
   \code{\link{par}} \cr
   \url{http://www.r-qualitytools.org} \cr
+  \url{http://webapps.r-qualitytools.org/brew/Gage/gageRR.html}
 }
 \examples{
 #create gageRR-object

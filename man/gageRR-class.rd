@@ -1,5 +1,6 @@
 \name{gageRR-class}
 \Rdversion{1.1}
+\keyword{Measurement Systems Analysis}
 \docType{class}
 \alias{gageRR-class}
 

@@ -29,7 +29,6 @@ object of class \code{\link{facDesign}}.
 object of class \code{\link{steepAscent}}.
 }
 
-
 \item{\code{signature(x = "gageRR")}}{
 object fo class \code{\link{gageRR}}.
 }

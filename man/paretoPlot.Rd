@@ -1,5 +1,7 @@
 \name{paretoPlot}
 \alias{paretoPlot}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \title{paretoPlot}
 \description{Display standardized effects and interactions of a 'facDesign' object in a pareto plot.}
 
@@ -44,7 +46,7 @@ Design and Analysis of experiments - Volume2 - Advanced Experimental Design - Hi
 }
 
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
-\seealso{\code{\link{factors}}, \code{\link{fracDesign}}, \code{\link{facDesign}}}
+\seealso{\code{\link{factors}}, \code{\link{fracDesign}}, \code{\link{facDesign}}, \url{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html}}
 \examples{
 #factorial design with replications
 #NA in response column and 2 replicates per factor combination

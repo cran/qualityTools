@@ -1,4 +1,6 @@
 \name{simProc}
+\keyword{Design of Experiments}
+\keyword{Six Sigma}
 \alias{simProc}
 
 \title{

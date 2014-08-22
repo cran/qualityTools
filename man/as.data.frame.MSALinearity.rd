@@ -1,5 +1,6 @@
 \name{as.data.frame.MSALinearity}
 \alias{as.data.frame.MSALinearity}
+\keyword{Measurement Systems Analysis}
 \title{
 Coerce to a data.frame
 }

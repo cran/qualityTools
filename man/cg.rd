@@ -3,6 +3,8 @@
 \alias{cgToleranceView}
 \alias{cgHist}
 \alias{cgRunChart}
+\keyword{Gage Capability}
+\keyword{Six Sigma}
 \title{
  Function to calculate and visualize the gage capability.
 }
@@ -17,13 +19,15 @@ cg             (x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2,
                 type, col, pch, xlim, ylim, conf.level = 0.95, cex.val = 1.5)
                 
 cgToleranceView(x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, 
-                type, col, pch, xlim, ylim, main, conf.level = 0.95, cex.val = 1)
+                type, col, pch, xlim, ylim, main, conf.level = 0.95, cex.val = 1,
+                cgOut = TRUE)
                 
 cgHist         (x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, col,
-                xlim, ylim, main, conf.level = 0.95, cex.val = 1)
+                xlim, ylim, main, conf.level = 0.95, cex.val = 1, cgOut = TRUE)
                 
 cgRunChart     (x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2, 
-                type, col, pch, xlim, ylim,main, conf.level = 0.95, cex.val = 1)
+                type, col, pch, xlim, ylim,main, conf.level = 0.95, cex.val = 1,
+                cgOut = TRUE)
 
 }
 \arguments{
@@ -85,6 +89,11 @@ cgRunChart     (x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2,
   \item{cex.val}{
  numeric value giving the size of the text in the legend. See also \code{\link{par}}.
 }
+  \item{cgOut}{
+  logical value deciding wether the Cg and Cgk values should be plotted in a legend. Only
+  available for the function \code{cgHist}, \code{cgToleranceView} and \code{cgRunChart}.
+  The default value for cgOut is \sQuote{TRUE}. 
+  }                                                                      
 }
 \details{
  The calculation of the potential and actual gage capability are based on the 
@@ -126,9 +135,12 @@ cgRunChart     (x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2,
 }
 
 \seealso{
+  \code{\link{gageLin}} \cr
+  \code{\link{gageRR}} \cr
   \code{\link{plot}} \cr
   \code{\link{par}} \cr
-  \url{http://www.r-qualitytools.org/Measure.html}
+  \url{http://www.r-qualitytools.org/Measure.html}\cr
+  \url{http://webapps.r-qualitytools.org/brew/CG/cg.html}
 }
 \examples{            
 #simple example with default values                                

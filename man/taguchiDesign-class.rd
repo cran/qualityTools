@@ -1,4 +1,5 @@
 \name{taguchiDesign-class}
+\keyword{Design of Experiments}
 \Rdversion{1.1}
 \docType{class}
 \alias{taguchiDesign-class}

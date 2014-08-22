@@ -65,7 +65,23 @@
     
     \item smaller fixes/enhancements to rsmDesign, fracDesign and facDesign
     
+
+    \item ----qualityTools Version 1.54----
     
+    \item fixed a previously introduced error regarding the blocking of factorial designs. The randomized runOrder when creating factorial designs has unfortunately changed with this fix.
+    
+    \item in normalPlot the level of significance is additionaly represented by different values for pch
+    
+    \item added parameter in qqPlot and ppPlot for the color of the confidence bounds
+
+    \item added Plackett Burman Designs (Screening)
+
+    \item added snPlot for taguchi Designs
+    
+    \item smaller enhancements for the use of the qualityTools package in a Web Application http://webapps.r-qualityTools.org
+    \item fixed a bug for displaying the desirability value when using a single response
+    
+    \item smaller changes to the vignettes
     
     
     

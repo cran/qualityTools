@@ -14,7 +14,7 @@
 }
 \arguments{
   \item{x}{an object of class \code{\link{facDesign}}.}
-  \item{value}{an object of class \code{link{lm}}.}
+  \item{value}{an object of class \code{\link{lm}}.}
 }
 
 \section{Methods}{

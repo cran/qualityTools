@@ -1,5 +1,7 @@
 \name{gageLin}
 \alias{gageLin}
+\keyword{Measurement Systems Analysis}
+\keyword{Six Sigma}
 \title{
 Function to visualize and calucalte the linearity of a gage.
 }
@@ -66,10 +68,13 @@ with e.g. \code{\link{plot}} or \code{\link{summary}}.
 }
 
 \seealso{
+  \code{\link{cg}} \cr
+  \code{\link{gageRR}} \cr
   \code{\link{gageLinDesign}}  \cr
   \code{\link{response}} \cr
   \code{\link{edit}}\cr
-  \url{http://www.r-qualitytools.org}
+  \url{http://www.r-qualitytools.org} \cr
+  \url{http://webapps.r-qualitytools.org/brew/gageLin/gageLin.html}
 }
 \examples{
 # Results of single runs
