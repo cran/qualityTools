@@ -53,13 +53,13 @@ This function returns a desirability function.
 }}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \note{
- For an example in context which shows the usage of the function \code{desirability()} please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
+ For an example in context which shows the usage of the function \code{desirability()} please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}.
 }
 
 \seealso{
 \code{\link{desires}}\cr
 \code{\link{optimum}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
 #Maximization of a response

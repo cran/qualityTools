@@ -147,7 +147,7 @@ In case no specification limits are given, \sQuote{lsl} and \sQuote{usl} are cal
 At this point there's no distinction made between process performance P_pk and process capability.\cr
 The latter implies a process that is in statistical contro whereas process performance is estimated for a process that might not have been demonstrated to be in a state of statistical control.\cr
 Currently work is being done to support the usage of three parameter weibull, loglogistic and gamma distribution.\cr
-For a detailed example which shows the usage of the function \code{cp()} please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Analyze.html}.
+For a detailed example which shows the usage of the function \code{cp()} please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Analyze.html}.
 }
 
 \references{
@@ -156,7 +156,7 @@ For a detailed example which shows the usage of the function \code{cp()} please 
  \item ISO/TR(2007).Statistical methods in process management - capability and performance - part 4: process capability estimates and performance (ISO/TR 22514-4). 
  \item MITTAG, H.-J.; RINNE, H.: Prozessfaehigkeitsmessung fuer die industrielle Praxis. Muinch: Hanser, 1999.
  \item KOTZ, Samuel; LOVELACE, Cynthia R.: Process capability indices in theory and practice. London,New York: Arnold, 1998.
- \item Process Capability Statistics for Non-Normal Distributions in R \url{http://www.r-qualitytools.org/useR2011/ProcessCapabilityInR.pdf}
+ \item Process Capability Statistics for Non-Normal Distributions in R \url{https://web.warwick.ac.uk/statsdept/user2011/TalkSlides/Contributed/18Aug_0950_FocusVI_5-ProcessOptimization_2-Roth.pdf}
 }
 }
 
@@ -167,8 +167,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \seealso{
 \code{\link{qqPlot}}\cr
 \code{\link{ppPlot}}\cr
-\url{http://www.r-qualitytools.org/Analyze.html}\cr
-\url{http://webapps.r-qualitytools.org/brew/PCR/pcr.html}
+\url{http://www.r-qualitytools.org/html/Analyze.html}
 }
 \examples{
 x = rweibull(30, 2, 8) +100

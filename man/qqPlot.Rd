@@ -94,12 +94,12 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
  For an example in context which shows the usage of the function \code{qqPlot()}  
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Analyze.html}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Analyze.html}.
 }
 \seealso{
 \code{\link{ppPlot}}
 \code{\link{fitdistr}} in R-package MASS\cr
-\url{http://www.r-qualitytools.org/Analyze.html}
+\url{http://www.r-qualitytools.org/html/Analyze.html}
 }
 \examples{
 #set up the plotting window for 6 plots

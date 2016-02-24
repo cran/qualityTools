@@ -2,6 +2,38 @@ exportClass(desirability, distr, distrCollection, facDesign, desOpt)
 
 exportPattern("^[^\\.]")
 
-import(graphics)
-
-                                                                                      
+import(methods, MASS, Rsolnp, graphics)
+importFrom("grDevices", "cm.colors", "colorRampPalette",
+             "contourLines", "dev.new", "heat.colors", "rainbow",
+             "trans3d")
+importFrom("stats", "aggregate", "anova", "aov", "as.formula", "coef",
+             "coefficients", "complete.cases", "density", "df.residual",
+             "dgamma", "formula", "lm", "lowess", "median", "na.omit",
+             "optim", "optimize", "pcauchy", "pexp", "pgamma", "plnorm",
+             "plogis", "pnorm", "ppoints", "predict", "predict.lm",
+             "qbeta", "qcauchy", "qexp", "qgamma", "qlnorm", "qlogis",
+             "qnorm", "qt", "quantile", "qweibull", "rcauchy", "rexp",
+             "rgamma", "rlogis", "rnorm", "runif", "sd", "t.test",
+             "uniroot")
+importFrom("utils", "as.roman", "combn", "flush.console", "str")
+#export("as.data.frame.MSALinearity, function")
+#S3method("as.data.frame.MSALinearity, function")
+S3method(print, adtest)
+S3method(print, invisible)
+S3method(as.data.frame, facDesign)
+S3method(as.data.frame, taguchiDesign)
+S3method(as.data.frame, pbDesign)
+S3method(as.data.frame, steepAscent)
+S3method(as.data.frame, gageRR)
+S3method(as.data.frame, mixDesign)
+S3method(as.data.frame, desOpt)
+S3method(as.data.frame, MSALinearity)
+export("as.data.frame.facDesign")
+export("as.data.frame.gageRR")
+export("as.data.frame.mixDesign")
+export("as.data.frame.pbDesign")
+export("as.data.frame.steepAscent")
+export("as.data.frame.taguchiDesign")
+export("as.data.frame.steepAscent")
+export("print.adtest")
+export("print.invisible")

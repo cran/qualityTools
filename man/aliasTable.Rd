@@ -34,14 +34,14 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \note{
  For a more detailed example which shows the effect of applying \code{aliasTable()} to 
  an object of class \code{\link{facDesign}}, please read the vignette for the package 
- \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
+ \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}.
 }
 
 \seealso{
 %\code{\link{confounds}},
 \code{\link{fracDesign}},       \cr
 \code{\link{fracChoose}},       \cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
 #create a fractional factorial design

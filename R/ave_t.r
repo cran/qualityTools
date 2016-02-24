@@ -13,14 +13,13 @@
     if (x == 5) 
         mfrow = c(2, 3)
     if (x == 6) 
-        mfrow = c(2, 3)
+        mfrow = c(2, 3) 
     if (x >= 7) 
-        mfrow = c(3, 3)
+        mfrow = c(3, 3)     
     return(list(dev, mfrow))
 }
 setGeneric("averagePlot", function(x, main, xlab, ylab, col, ask = TRUE, single = FALSE, ...) standardGeneric("averagePlot"))
-setMethod("averagePlot", signature(x = "gageRR"), function(x, main, xlab, ylab, col, ask = TRUE, single = FALSE, 
-    ...) {
+setMethod("averagePlot", signature(x = "gageRR"), function(x, main, xlab, ylab, col, ask = TRUE, single = FALSE, ...) {
     old.par <- par(no.readonly = TRUE)
     ops = length(unique(x[, 3]))
     pts = length(unique(x[, 4]))

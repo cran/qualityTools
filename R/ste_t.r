@@ -1,5 +1,4 @@
-setClass(Class = "steepAscent", representation = representation(name = "character", X = "data.frame", 
-    response = "data.frame"))
+setClass(Class = "steepAscent", representation = representation(name = "character", X = "data.frame", response = "data.frame"))
 setMethod("response", "steepAscent", function(object) {
     out = object@response
     return(out)
@@ -101,8 +100,7 @@ steepAscent = function(factors, response, size = 0.2, steps = 5, data) {
     }
     initial = ncol(frameOut)
     for (i in seq(along = factors)) {
-        frameOut[, i + initial] = code2real(lows(fdo)[[factors[i]]], highs(fdo)[[factors[i]]], x[i] * 
-            0:steps)
+        frameOut[, i + initial] = code2real(lows(fdo)[[factors[i]]], highs(fdo)[[factors[i]]], x[i] * 0:steps)
         names(frameOut)[i + initial] = paste(factors[i], ".real", collapse = "", sep = "")
         if (DB) 
             print(factors[i])

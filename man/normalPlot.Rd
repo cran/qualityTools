@@ -81,13 +81,12 @@ NULL}
 
 \note{
  For a more detailed example which shows the usage of \code{normalPlot()} in context please read the vignette for the package 
- \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
+ \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}.
 }
 \seealso{
 \code{\link{facDesign}}\cr
 \code{\link{paretoPlot}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}  \cr
-\url{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
 #factorial design

@@ -109,14 +109,13 @@ The function \code{wirePlot()} returns an invisible list with the following entr
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \note{
  For an example in context which shows the usage of the function \code{wirePlot()} to an object of class \code{\link{facDesign}}, 
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}.
 }
 \seealso{
 \code{\link{contourPlot}}\cr
 \code{\link{filled.contour}}\cr
 \code{\link{persp}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}\cr
-\url{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
 #create a response surface design and assign random data to response y

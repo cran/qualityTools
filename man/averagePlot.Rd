@@ -65,14 +65,13 @@ The idea of the plot and the example given by \code{example(averagePlot)} are ou
      Etienne Stockhausen: \email{stocdarf@mailbox.tu-berlin.de}
 }
 \note{
-Please do read the vignette for the package \code{\link{qualityTools}} at \url{http://www.user.tu-berlin.de/kalicete/qualityTools}.
+Please do read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org}.
 }
 
 \seealso{
   \code{\link{gageRR}} \cr
   \code{\link{par}} \cr
-  \url{http://www.r-qualitytools.org}\cr
-  \url{http://webapps.r-qualitytools.org/brew/Gage/gageRR.html}
+  \url{http://www.r-qualitytools.org}
 }
 \examples{
 # create gageRR-object

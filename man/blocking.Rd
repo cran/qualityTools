@@ -50,12 +50,12 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \code{blocking} is still buggy at this time and Blocking on Replicates is not yet implemented and Blocking requires k >= 3 factors. This will change soon.\cr
  For an example in context which shows the effect of applying \code{blocking()} to 
  an object of class \code{\link{facDesign}}, please read the vignette for the package 
- \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
+ \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}.
 }
 
 \seealso{
 \code{\link{facDesign}} \cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 
 }
 \examples{

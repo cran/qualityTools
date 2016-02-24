@@ -105,7 +105,7 @@
 \vspace{1cm}
 \huge{\textbf{Working with the qualityTools package}}
 \\[1ex]
-\large{\textbf{A short introduction\footnote{An updated version of this document can be found under \url{http://www.r-qualitytools.org}. A web application can be found under \url{http://webapps.r-qualitytools.org}}}}
+\large{\textbf{A short introduction\footnote{An updated version of this document can be found under \url{http://www.r-qualitytools.org}.}}}
 \\[1ex]
 \Large{Thomas Roth}
 \\[1ex]
@@ -1062,33 +1062,33 @@ effectPlot(tdo, col = 2)
 \end{center}\end{figure}
 
 
-\section{Web Application for the qualityTools package}
-In some cases it is not convenient to install sosftware and sometimes it is simply not possible. In order to make use of the qualityTools package in these cases, methods that are routinely performed, subject to reports and especially associated to the different phases of Six Sigma Projects are also provided as a web application under \url{http://webapps.r-qualitytools.org}. Methods include:
+%\section{Web Application for the qualityTools package}
+%In some cases it is not convenient to install sosftware and sometimes it is simply not possible. In order to make use of the qualityTools package in these cases, methods that are routinely performed, subject to reports and especially associated to the different phases of Six Sigma Projects are also provided as a web application under \url{http://webapps.r-qualitytools.org}. Methods include:
 
-\begin{itemize}
-\item Statistical Process Control (SPC),
-\begin{itemize}
-\item \href{http://webapps.r-qualitytools.org/brew/PCR/pcr.html}{Process Capability Indices},
-\item \href{http://webapps.r-qualitytools.org/brew/QCC/qcc.html}{Quality Control Charts}, 
-\end{itemize}
-
-\item Measurement Systems Analysis,
-\begin{itemize}
-\item \href{http://webapps.r-qualitytools.org/brew/Gage/gageRR.html}{Gage Reapeatability \& Reproducibility Studies (Gage R\&R)} according to \citet{MSA.2010},
-\item \href{http://webapps.r-qualitytools.org/brew/CG/cg.html}{Gage Capability Indices} according to VDA 5,
-\end{itemize}
-
-\item Design of Experiments,
-\begin{itemize}
-\item \href{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html}{Fractional Factorial Designs / Screening Designs},
-\item \href{http://webapps.r-qualitytools.org/brew/facDesign/facDesign.html}{Full Factorial Designs},
-\item \href{http://webapps.r-qualitytools.org/brew/facDesign/rsmDesign.html}{Response Surface Designs} including Desirabilities,
-\end{itemize}
-\end{itemize}
-
-as well as other methods such as \href{http://webapps.r-qualitytools.org/brew/tTest/tTest.html}{t tests}, \href{http://webapps.r-qualitytools.org/brew/qqPlot/qqPlot.html}{quantile-quantile plots} and \href{http://webapps.r-qualitytools.org/brew/powerT/powerT.html}{power calculations} for one and two sample t tests. 
-
-The web application builds upon the rApache project \citep{Horner.2010} which embeds the R interpreter inside the apache webserver and gives access to these methods within a web application.\footnote{For more information on rApache visit the  rApache website under \url{http://rapache.net/index.html}}. The generation of reports is accomplished by using \href{http://www.statistik.lmu.de/~leisch/Sweave/}{Sweave} \citep{Leisch.2003}. Data can be imported from .csv and .xls files, whole sessions can be saved and restored via \href{http://en.wikipedia.org/wiki/JSON}{JSON}.
+%\begin{itemize}
+%\item Statistical Process Control (SPC),
+%\begin{itemize}
+% \item \href{http://webapps.r-qualitytools.org/brew/PCR/pcr.html}{Process Capability Indices},
+% \item \href{http://webapps.r-qualitytools.org/brew/QCC/qcc.html}{Quality Control Charts}, 
+% \end{itemize}
+% 
+% \item Measurement Systems Analysis,
+% \begin{itemize}
+% \item \href{http://webapps.r-qualitytools.org/brew/Gage/gageRR.html}{Gage Reapeatability \& Reproducibility Studies (Gage R\&R)} according to \citet{MSA.2010},
+% \item \href{http://webapps.r-qualitytools.org/brew/CG/cg.html}{Gage Capability Indices} according to VDA 5,
+% \end{itemize}
+% 
+% \item Design of Experiments,
+% \begin{itemize}
+% \item \href{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html}{Fractional Factorial Designs / Screening Designs},
+% \item \href{http://webapps.r-qualitytools.org/brew/facDesign/facDesign.html}{Full Factorial Designs},
+% \item \href{http://webapps.r-qualitytools.org/brew/facDesign/rsmDesign.html}{Response Surface Designs} including Desirabilities,
+% \end{itemize}
+% \end{itemize}
+% 
+% as well as other methods such as \href{http://webapps.r-qualitytools.org/brew/tTest/tTest.html}{t tests}, \href{http://webapps.r-qualitytools.org/brew/qqPlot/qqPlot.html}{quantile-quantile plots} and \href{http://webapps.r-qualitytools.org/brew/powerT/powerT.html}{power calculations} for one and two sample t tests. 
+% 
+% The web application builds upon the rApache project \citep{Horner.2010} which embeds the R interpreter inside the apache webserver and gives access to these methods within a web application.\footnote{For more information on rApache visit the  rApache website under \url{http://rapache.net/index.html}}. The generation of reports is accomplished by using \href{http://www.statistik.lmu.de/~leisch/Sweave/}{Sweave} \citep{Leisch.2003}. Data can be imported from .csv and .xls files, whole sessions can be saved and restored via \href{http://en.wikipedia.org/wiki/JSON}{JSON}.
 
 \section{Session Information}
 The version number of R and packages loaded for generating the vignette were:

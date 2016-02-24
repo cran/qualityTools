@@ -55,7 +55,7 @@ Get and set the \code{factors} in an object of class \code{\link{taguchiDesign}}
 \code{\link{types}}\cr
 \code{\link{response}}\cr
 \code{\link{facDesign}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
 #NA in response column

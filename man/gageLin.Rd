@@ -73,8 +73,7 @@ with e.g. \code{\link{plot}} or \code{\link{summary}}.
   \code{\link{gageLinDesign}}  \cr
   \code{\link{response}} \cr
   \code{\link{edit}}\cr
-  \url{http://www.r-qualitytools.org} \cr
-  \url{http://webapps.r-qualitytools.org/brew/gageLin/gageLin.html}
+  \url{http://www.r-qualitytools.org}
 }
 \examples{
 # Results of single runs

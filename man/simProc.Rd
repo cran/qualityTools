@@ -39,14 +39,14 @@ factor 1 is best within [40, 250]; factor 2 within [90, 240]
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \note{
  For an example in context which shows the usage of the function \code{simProc()}
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}
 }
 
 \seealso{
 \code{\link{facDesign}} for 2^k factorial designs\cr
 \code{\link{rsmDesign}} for response surface designs\cr
 \code{\link{fracDesign}} for fractional factorial design\cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
 simProc(120, 140, 1)

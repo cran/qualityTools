@@ -53,9 +53,9 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
  For an example which shows the usage of the function \code{paretoChart()}
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Define.html}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Define.html}.
 }
-\seealso{\url{http://webapps.r-qualitytools.org/brew/paretoChart/paretoChart.html}}
+
 \examples{
 
 #artifical defects dataset

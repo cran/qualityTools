@@ -131,7 +131,7 @@ cgRunChart     (x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2,
 \note{
  Support for other distributions than normal might be included later in an update.\cr
  For a more detailed example which shows the usage \code{cg()} please read the vignette for the package 
- \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Measure.html}.
+ \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Measure.html}.
 }
 
 \seealso{
@@ -139,8 +139,7 @@ cgRunChart     (x, target, tolerance, ref.interval, facCg, facCgk, n = 0.2,
   \code{\link{gageRR}} \cr
   \code{\link{plot}} \cr
   \code{\link{par}} \cr
-  \url{http://www.r-qualitytools.org/Measure.html}\cr
-  \url{http://webapps.r-qualitytools.org/brew/CG/cg.html}
+  \url{http://www.r-qualitytools.org/html/Measure.html}
 }
 \examples{            
 #simple example with default values                                

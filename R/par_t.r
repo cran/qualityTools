@@ -1,12 +1,12 @@
-paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.last = NA, alpha = 0.05, 
-    response = NULL, xlim, ylim, xlab, ylab, main, single = TRUE, ...) {
+paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.last = NA, alpha = 0.05, response = NULL, xlim, ylim, xlab, ylab, main, single = TRUE, ...) {  ###
     DB = FALSE
-    if (single == FALSE) 
-        par(mfrow = .splitDev(length(response(fdo)))[[2]])
-    if (is.null(response) == FALSE) {
-        temp = response(fdo)[response]
-        response(fdo) = temp
-    }
+    if(single==FALSE)                                                           ###
+     par(mfrow=.splitDev(length(response(fdo)))[[2]])                           ###
+    if(is.null(response)==FALSE)                                                ###
+    {                                                                           ###
+     temp=response(fdo)[response]                                               ###
+     response(fdo)=temp                                                         ###
+    }                                                                           ###
     ylimMissing = FALSE
     if (missing(ylim)) 
         ylimMissing = TRUE
@@ -22,14 +22,15 @@ paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.l
     effect.list = vector("list")
     for (j in 1:ncol(response(fdo))) {
         par(mar = c(5.1, 4.1, 4.1, 4.1))
-        if (j > 1 && single == TRUE) {
+        if (j > 1 && single==TRUE) {
             dev.new()
             par(mar = c(5.1, 4.1, 4.1, 4.1))
         }
         if (!any(is.na(response(fdo)[, j]))) {
             if (missing(ylab)) 
-                ylabel = names(response(fdo))[j]
-            else ylabel = ylab
+                ylabel = names(response(fdo))[j]                                ###
+            else                                                                ###
+                ylabel = ylab                                                   ###
             form = paste("response(fdo)[,", j, "]~")
             for (i in 1:ncol(cube(fdo))) {
                 form = paste(form, names(cube(fdo))[i], sep = "")
@@ -65,8 +66,7 @@ paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.l
                     ylim <- (range(c(0, abs(effect), 1.3 * ME))) * 1.1
                   else ylim <- (range(c(effect, -1.3 * ME, 1.3 * ME))) * 1.1
                 if (abs) {
-                  xVals = barplot(abs(effect), las = 2, main = main, xlab = xlab, ylim = ylim, ylab = ylabel, 
-                    ...)
+                  xVals = barplot(abs(effect), las = 2, main = main, xlab = xlab, ylim = ylim, ylab = ylabel, ...)
                   abline(h = ME, col = "red")
                   abline(h = SME, col = "red")
                   try(axis(4, at = ME, labels = round(ME, 3), las = 2), silent = T)
@@ -75,8 +75,7 @@ paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.l
                   text(x = xVals[2], y = SME, "SME", pos = 3)
                 }
                 else {
-                  xVals = barplot(effect, las = 2, main = main, xlab = xlab, ylim = ylim, ylab = ylabel, 
-                    ...)
+                  xVals = barplot(effect, las = 2, main = main, xlab = xlab, ylim = ylim, ylab = ylabel, ...)
                   abline(h = c(-ME, ME), col = "red")
                   abline(h = c(-SME, SME), col = "red")
                   try(axis(4, at = c(-ME, ME), labels = round(c(-ME, ME), 3), las = 2), silent = T)
@@ -86,8 +85,7 @@ paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.l
                 }
                 if (length(xVals) >= 1) 
                   for (i in 1:length(xVals)) {
-                    text(xVals[i], effect[i] + max(ylim) * sign(effect[i]) * 0.05, format(round(effect[i], 
-                      3)))
+                    text(xVals[i], effect[i] + max(ylim) * sign(effect[i]) * 0.05, format(round(effect[i], 3)))
                   }
                 if (DB) 
                   print(paste("MSE:", ME, "SME:", SME))
@@ -95,8 +93,8 @@ paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.l
             else {
                 if (missing(main)) 
                   main = "Standardized main effects and interactions"
-                effect = ((summary(lm.1)$coefficients[-pmatch("(Intercept)", names(coef(lm.1))), 1])/(summary(lm.1)$coefficients[-pmatch("(Intercept)", 
-                  names(coef(lm.1))), 2]))
+                effect = ((summary(lm.1)$coefficients[-pmatch("(Intercept)", names(coef(lm.1))), 1])/(summary(lm.1)$coefficients[-pmatch("(Intercept)", names(coef(lm.1))), 
+                  2]))
                 if (all(is.na(effect))) 
                   stop("effects could not be calculated")
                 effect = effect[!is.na(effect)]
@@ -123,16 +121,14 @@ paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.l
                 effect = effect[order(abs(effect), na.last = TRUE, decreasing = decreasing)]
                 effect = round(effect, 3)
                 if (abs) {
-                  xVals = barplot(abs(effect), las = 2, main = main, xlab = xlab, ylim = ylim, ylab = ylabel, 
-                    ...)
+                  xVals = barplot(abs(effect), las = 2, main = main, xlab = xlab, ylim = ylim, ylab = ylabel, ...)
                   if (length(xVals) >= 1) 
                     for (i in 1:length(xVals)) {
                       text(xVals[i], abs(effect[i] + max(ylim) * sign(effect[i]) * 0.05), format(effect[i]))
                     }
                 }
                 else {
-                  xVals = barplot(effect, las = 2, main = main, xlab = xlab, ylim = ylim, ylab = ylabel, 
-                    ...)
+                  xVals = barplot(effect, las = 2, main = main, xlab = xlab, ylim = ylim, ylab = ylabel, ...)
                   if (length(xVals) >= 1) 
                     for (i in 1:length(xVals)) {
                       text(xVals[i], effect[i] + max(ylim) * sign(effect[i]) * 0.05, format(effect[i]))
@@ -140,12 +136,10 @@ paretoPlot = function(fdo, threeWay = FALSE, abs = TRUE, decreasing = TRUE, na.l
                 }
                 myDelta = diff(range(ylim)) * 0.02
                 try(abline(h = sig.pos, col = "red"), silent = TRUE)
-                try(axis(4, at = c(sig.pos, sig.neg), labels = round(c(sig.pos, sig.neg), 3), las = 2), 
-                  silent = T)
+                try(axis(4, at = c(sig.pos, sig.neg), labels = round(c(sig.pos, sig.neg), 3), las = 2), silent = T)
                 try(abline(h = sig.neg, col = "red"), silent = TRUE)
             }
-            legend(location, legend = names(fdo), pch = paste(names(names(fdo)), sep = ""), bg = "white", 
-                inset = 0.02)
+            legend(location, legend = names(fdo), pch = paste(names(names(fdo)), sep = ""), bg = "white", inset = 0.02)
             abline(h = 0)
             box()
         }

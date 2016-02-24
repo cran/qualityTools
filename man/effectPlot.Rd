@@ -74,7 +74,7 @@ effectPlot uses an altered version of the base function \code{\link{interaction.
 
 \note{
  For an example in context which shows the usage of the function \code{effectPlot()} to an object of class \code{\link{facDesign}} or an object of class \code{\link{taguchiDesign}}, 
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}.
 }
 
 \seealso{
@@ -84,8 +84,7 @@ effectPlot uses an altered version of the base function \code{\link{interaction.
 \code{\link{facDesign}}\cr
 \code{\link{response}}\cr
 \code{\link{normalPlot}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}\cr
-\url{http://webapps.r-qualitytools.org/brew/Gage/gageRR.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
 #effectPlot for a 2^k factorial design

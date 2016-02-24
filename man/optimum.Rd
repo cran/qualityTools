@@ -50,7 +50,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 
 \note{
  For a  example which shows the usage of \code{optimum()} in context please read the vignette for the package 
- \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
+ \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}.
 }
 
 \seealso{
@@ -58,7 +58,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \code{\link{desirability}} \cr
 \code{\link{desires}}         \cr
 \code{\link[Rsolnp]{gosolnp}}    \cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
 #BEWARE BIG EXAMPLE --Simultaneous Optimization of Several Response Variables--

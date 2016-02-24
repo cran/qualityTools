@@ -63,7 +63,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \seealso{
 \code{\link{hist}}\cr
 \code{\link{boxplot}}\cr
-\url{http://www.r-qualitytools.org/Analyze.html}
+\url{http://www.r-qualitytools.org/html/Analyze.html}
 }
 \examples{
 #create some data and grouping

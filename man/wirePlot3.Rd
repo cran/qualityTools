@@ -85,13 +85,12 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \note{
 This method is still under construction!!\cr
 For an example in context which shows the usage of the function \code{wirePlot3()} to an object of class \code{\link{mixDesign}}, 
-please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
+please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}.
 }
 
 \seealso{
 \code{\link{contourPlot3}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}       \cr
-\url{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}       
 }
 \examples{
 #yarn elongation example p.564 Response Surface Methodology

@@ -52,7 +52,7 @@ Etienne Stockhausen \email{stocdarf@mailbox.tu-berlin.de}
 \code{\link{rsmDesign}} for response surface designs\cr
 \code{\link{fracDesign}} for fractional factorial design\cr
 \code{\link{gageRRDesign}} for gage designs           \cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
  pbdo=pbDesign(5)

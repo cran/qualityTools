@@ -109,7 +109,7 @@ snPlot invisibly returns a data.frame containing all the single Signal-to-Noise 
 \code{\link{facDesign}}\cr
 \code{\link{response}}\cr
 \code{\link{normalPlot}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
 tdo = taguchiDesign("L9_3",replicates=3)

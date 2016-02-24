@@ -28,13 +28,12 @@ Parts of the original interactionPlot were integrated.
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \note{
  For an example in context which shows the usage of the function \code{interactionPlot()} to an object of class \code{\link{facDesign}}, 
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}.
 }
 \seealso{
 \code{\link{factors}}\cr
 \code{\link{fracDesign}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}\cr
-\url{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
 #NA in response column and 2 replicates per factor combination

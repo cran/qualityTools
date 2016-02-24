@@ -112,8 +112,7 @@
 summaryFits = function(fdo, lmFit = TRUE, curvTest = TRUE, origFit = TRUE) {
     summaryList = vector(mode = "list", length = 0)
     origFrame = as.data.frame(fdo)
-    for (i in names(names(fdo))) origFrame[, i] = code2real(lows(fdo)[[i]], highs(fdo)[[i]], origFrame[, 
-        i])
+    for (i in names(names(fdo))) origFrame[, i] = code2real(lows(fdo)[[i]], highs(fdo)[[i]], origFrame[, i])
     for (f in names(response(fdo))) {
         if (!is.null(fits(fdo)[[f]])) {
             cat(paste("----------- Summary for response '", f, "' -----------", sep = ""))

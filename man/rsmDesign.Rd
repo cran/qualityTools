@@ -61,7 +61,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
  For an example in context which shows the usage of the function \code{rsmDesign()}
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}.
 }
 
 \seealso{
@@ -70,8 +70,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \code{\link{fracChoose}}\cr 
 \code{\link{pbDesign}}\cr
 \code{\link{rsmChoose}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}\cr
-\url{http://webapps.r-qualitytools.org/brew/facDesign/rsmDesign.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
 #central composite design for 2 factors with 2 blocks, alpha = 1.41, 

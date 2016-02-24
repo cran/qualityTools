@@ -158,6 +158,8 @@
     gen = temp[1, 1:numCol]
     return(gen)
 }
+
+#Reihenfolge muss noch auf Standard gesetzt werden
 .blockGenCol = function(gen, fdo) {
     DB = FALSE
     blockVec = NULL
@@ -215,8 +217,8 @@ randomize = function(fdo, random.seed, so = FALSE) {
 }
 blocking = function(fdo, blocks, BoR = FALSE, random.seed, useTable = "rsm", gen) {
     override = FALSE
-    Block = data.frame(Block = rep(1, nrow(fdo)))
-    block(fdo) = Block
+    Block = data.frame(Block = rep(1, nrow(fdo))) #do not change
+    block(fdo) = Block  #do not change
     fdo = randomize(fdo, so = TRUE)
     if (missing(random.seed)) {
         runif(1)
@@ -237,6 +239,8 @@ blocking = function(fdo, blocks, BoR = FALSE, random.seed, useTable = "rsm", gen
             numB1 = nrow(cube(fdo)) + nrow(centerCube(fdo))
             numB2 = nrow(fdo) - numB1
             block(fdo) = data.frame(Block = c(rep(1, numB1), rep(2, numB2)))
+            #or by using standard order always
+    
             blockGen(fdo) = data.frame(B1 = rep(NA, nrow(fdo)))
         }
         if (blocks %in% c(2, 3, 5, 9, 17)) 
@@ -258,10 +262,13 @@ blocking = function(fdo, blocks, BoR = FALSE, random.seed, useTable = "rsm", gen
     if (!override) {
         .blockGenCol = .blockGenCol(gen, fdo)
         .blockCol = .blockCol(.blockGenCol)
-        Block = .blockCol
-        BlockGenCol = .blockGenCol
+        Block = .blockCol#[runOrd(fdo)[,1],] #TODO: fix this in block()
+        BlockGenCol = .blockGenCol#[runOrd(fdo)[,1],] #TODO: fix this in block()
+        #or by using standard order always
         block(fdo) = Block
         blockGen(fdo) = BlockGenCol
+#       block(fdo) = .blockCol
+#        blockGen(fdo) = .blockGenCol
     }
     numCC = nrow(centerCube(fdo))
     if (numCC > 0) {

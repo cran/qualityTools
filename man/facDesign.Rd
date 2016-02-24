@@ -23,15 +23,14 @@ facDesign(k = 3, p = 0, replicates = 1, blocks = 1, centerCube = 0)
 \value{The function \code{\link{facDesign}} returns an object of class \code{\link{facDesign}}.}
 \author{Thomas Roth \email{thomas.roth@tu-berlin.de}}
 \note{For an example in context which shows the usage of the function \code{\link{facDesign}} 
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.}
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}.}
 \seealso{
 \code{\link{fracDesign}}\cr
 \code{\link{fracChoose}}\cr 
 \code{\link{rsmDesign}}\cr
 \code{\link{pbDesign}}\cr
 \code{\link{taguchiDesign}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}\cr
-\url{http://webapps.r-qualitytools.org/brew/facDesign/facDesign.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 \examples{
 #returns a 2^3 full factorial design

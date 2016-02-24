@@ -28,7 +28,7 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
  For an example in context which shows the usage of the function \code{fracChoose()}  
- please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/Improve.html}.
+ please read the vignette for the package \code{\link{qualityTools}} at \url{http://www.r-qualitytools.org/html/Improve.html}.
 }
 
 \seealso{
@@ -36,7 +36,6 @@ Thomas Roth \email{thomas.roth@tu-berlin.de}
 \code{\link{fracDesign}}\cr
 \code{\link{rsmChoose}} \cr
 \code{\link{rsmDesign}} \cr
-\url{http://www.r-qualitytools.org/Improve.html} \cr 
-\url{http://webapps.r-qualitytools.org/brew/facDesign/fracDesign.html} \cr
+\url{http://www.r-qualitytools.org/html/Improve.html}
 
 }

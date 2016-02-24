@@ -31,13 +31,12 @@ object of class \code{\link{facDesign}}.
 Thomas Roth \email{thomas.roth@tu-berlin.de}
 }
 \note{
-for an example for usage please visit \url{http://www.r-qualitytools.org/Improve.html}.
+for an example for usage please visit \url{http://www.r-qualitytools.org/html/Improve.html}.
 }
 \seealso{
 \code{\link{fracChoose}}\cr
 \code{\link{rsmDesign}}\cr
-\url{http://www.r-qualitytools.org/Improve.html}\cr
-\url{http://webapps.r-qualitytools.org/brew/facDesign/rsmDesign.html}
+\url{http://www.r-qualitytools.org/html/Improve.html}
 }
 
 
